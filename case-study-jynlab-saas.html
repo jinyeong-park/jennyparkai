@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2B SaaS Customer Lifecycle & Cohort Retention Analysis — Jenny Park</title>
+  <meta name="description" content="Case study: Modeling a unified SaaS metrics datamart in dbt and Snowflake to resolve declining Net Revenue Retention, identifying product activation milestones using Kaplan-Meier survival analysis.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────────
+       TOKENS — shared with portfolio
+    ───────────────────────────────────────────── */
+    :root {
+      --surface:    #FFFFFF;
+      --raised:     #F2F1EE;
+      --ink:        #0C0C0C;
+      --muted:      #6F6C66;
+      --accent:     #A85C13;
+      --on-accent:  #FFFFFF;
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body:    'Instrument Sans', system-ui, sans-serif;
+
+      --s1: 0.25rem;  --s2: 0.5rem;   --s3: 0.75rem;  --s4: 1rem;
+      --s5: 1.5rem;   --s6: 2rem;     --s7: 3rem;     --s8: 4rem;
+      --s9: 6rem;     --s10: 8rem;
+
+      --radius: 0px;
+      --line: 1px solid #E0DDD8;
+      --t-fast: 150ms;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: 800px;
+      margin-inline: auto;
+      padding-inline: var(--s6);
+    }
+
+    /* ─────────────────────────────────────────────
+       HEADER
+    ───────────────────────────────────────────── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: var(--line);
+    }
+    .site-header .wrap {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .wordmark {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .header-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--t-fast) var(--ease);
+    }
+    .header-back:hover { color: var(--ink); }
+    .header-back svg { flex-shrink: 0; }
+
+    /* ─────────────────────────────────────────────
+       CASE STUDY HERO
+    ───────────────────────────────────────────── */
+    .cs-hero {
+      padding-block: var(--s8) var(--s7);
+      border-bottom: var(--line);
+    }
+    .cs-hero .wrap { max-width: 800px; }
+
+    .cs-kicker {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s5);
+    }
+    .cs-kicker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .cs-hero h1 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: var(--s5);
+      max-width: 22ch;
+    }
+
+    .cs-hero-lead {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 60ch;
+      margin-bottom: var(--s6);
+    }
+
+    .cs-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s5);
+      padding-top: var(--s5);
+      border-top: var(--line);
+    }
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cs-meta-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .cs-meta-value {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ─────────────────────────────────────────────
+       STAT STRIP
+    ───────────────────────────────────────────── */
+    .stat-strip {
+      background: var(--raised);
+      border-bottom: var(--line);
+      padding-block: var(--s6);
+    }
+    .stat-strip .wrap {
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s6);
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ─────────────────────────────────────────────
+       BODY CONTENT
+    ───────────────────────────────────────────── */
+    .cs-body {
+      padding-block: var(--s8);
+    }
+    .cs-body .wrap { max-width: 800px; }
+
+    .cs-section {
+      margin-bottom: var(--s8);
+    }
+    .cs-section:last-child { margin-bottom: 0; }
+
+    .cs-section-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.625rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: var(--s3);
+      margin-top: var(--s5);
+    }
+
+    .cs-section p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: var(--s4);
+    }
+    .cs-section ul li {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      padding-left: var(--s5);
+      position: relative;
+      margin-bottom: var(--s2);
+    }
+    .cs-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    .cs-section ul li strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────────
+       PROBLEM BLOCK
+    ───────────────────────────────────────────── */
+    .problem-block {
+      background: var(--raised);
+      border-left: 3px solid var(--accent);
+      padding: var(--s5) var(--s6);
+      margin-bottom: var(--s4);
+    }
+    .problem-block p {
+      margin-bottom: 0;
+      color: var(--ink);
+    }
+
+    /* ─────────────────────────────────────────────
+       DATA TABLE
+    ───────────────────────────────────────────── */
+    .table-wrapper {
+      overflow-x: auto;
+      margin-bottom: var(--s6);
+      border: var(--line);
+    }
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .cs-table thead {
+      background: var(--raised);
+    }
+    .cs-table th {
+      text-align: left;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: var(--s3) var(--s4);
+      border-bottom: var(--line);
+      white-space: nowrap;
+    }
+    .cs-table td {
+      padding: var(--s3) var(--s4);
+      border-bottom: var(--line);
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .cs-table tr:last-child td { border-bottom: none; }
+    .cs-table td:first-child { color: var(--ink); font-weight: 500; }
+    .cs-table .highlight-row td {
+      background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .cs-table .accent-val {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────────
+       IMPACT CARDS
+    ───────────────────────────────────────────── */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      margin-bottom: var(--s6);
+    }
+    .impact-card {
+      border: var(--line);
+      padding: var(--s5);
+      background: var(--surface);
+    }
+    .impact-card .ic-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: var(--s2);
+    }
+    .impact-card .ic-label {
+      font-size: 0.875rem;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: var(--s1);
+    }
+    .impact-card .ic-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────────────
+       TECH STACK
+    ───────────────────────────────────────────── */
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2);
+    }
+    .tech-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--raised);
+      border: var(--line);
+      padding: var(--s1) var(--s3);
+      letter-spacing: 0.02em;
+    }
+
+    /* ─────────────────────────────────────────────
+       DIVIDER
+    ───────────────────────────────────────────── */
+    .cs-divider {
+      border: none;
+      border-top: var(--line);
+      margin-block: var(--s7);
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER CTA
+    ───────────────────────────────────────────── */
+    .cs-footer-cta {
+      background: var(--raised);
+      border-top: var(--line);
+      padding-block: var(--s7);
+    }
+    .cs-footer-cta .wrap {
+      max-width: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s6);
+      flex-wrap: wrap;
+    }
+    .cs-footer-cta h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.375rem;
+      color: var(--ink);
+      margin-bottom: var(--s2);
+    }
+    .cs-footer-cta p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: var(--s3) var(--s5);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+      border: 1.5px solid transparent;
+      white-space: nowrap;
+    }
+    .btn--primary {
+      background: var(--accent);
+      color: var(--on-accent);
+      border-color: var(--accent);
+    }
+    .btn--primary:hover { background: #924f10; border-color: #924f10; }
+    .btn--secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn--secondary:hover { background: var(--ink); color: var(--surface); }
+
+    /* ─────────────────────────────────────────────
+       SITE FOOTER
+    ───────────────────────────────────────────── */
+    .site-footer {
+      padding-block: var(--s6);
+      border-top: var(--line);
+    }
+    .site-footer .wrap {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s4);
+    }
+    .footer-name {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .footer-location {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .wrap { padding-inline: var(--s4); }
+      .stat-strip .wrap { grid-template-columns: 1fr 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .cs-footer-cta .wrap { flex-direction: column; align-items: flex-start; }
+      .cs-hero { padding-block: var(--s6) var(--s5); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ───────────────── HEADER ───────────────── -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="wordmark">Jenny Park</a>
+      <a href="index.html#work" class="header-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to work
+      </a>
+    </div>
+  </header>
+
+  <!-- ───────────────── HERO ───────────────── -->
+  <section class="cs-hero">
+    <div class="wrap">
+      <p class="cs-kicker">
+        <span>Product &amp; Revenue Analytics</span>
+        <span class="cs-kicker-dot" aria-hidden="true"></span>
+        <span>JYNLAB</span>
+      </p>
+      <h1>B2B SaaS Customer Lifecycle &amp; Cohort Retention Analysis</h1>
+      <p class="cs-hero-lead">
+        A freemium B2B SaaS platform experienced declining Net Revenue Retention and unpredictable
+        free-to-paid conversions. This project built an enterprise analytics framework in dbt and
+        Snowflake, transforming granular product usage logs into a unified SaaS metrics datamart —
+        then applied survival analysis to identify the exact onboarding moments that determine
+        long-term retention.
+      </p>
+
+      <div class="cs-meta-row">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Company</span>
+          <span class="cs-meta-value">JYNLAB</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Data &amp; Product Analyst</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Methods</span>
+          <span class="cs-meta-value">Survival Analysis, Cohort Retention</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">dbt, Snowflake, Python</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── STAT STRIP ───────────────── -->
+  <div class="stat-strip" aria-label="Key results">
+    <div class="wrap">
+      <div class="stat-item">
+        <span class="stat-value">18.8%</span>
+        <span class="stat-label">Free-to-paid conversion for PQL-activated users</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">2.5×</span>
+        <span class="stat-label">Increase in 90-day retention from Aha moment activation</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">+15%</span>
+        <span class="stat-label">Projected free-to-paid conversion lift from onboarding redesign</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────────────── BODY ───────────────── -->
+  <main class="cs-body">
+    <div class="wrap">
+
+      <!-- Problem -->
+      <section class="cs-section">
+        <p class="cs-section-label">The Problem</p>
+        <h2>Declining NRR with No Visibility into Why</h2>
+        <div class="problem-block">
+          <p>
+            <strong>Declining NRR &amp; Churn:</strong> The VP of Growth lacked visibility into which
+            user onboarding pathways led to long-term enterprise conversion versus early churn — making
+            it impossible to design effective intervention strategies.
+          </p>
+        </div>
+        <div class="problem-block">
+          <p>
+            <strong>Siloed Data:</strong> Product activity logs were disconnected from subscription
+            revenue data, preventing cross-functional alignment between Product, Marketing, and Finance
+            on shared metrics like MRR, ARR, and NRR.
+          </p>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Approach -->
+      <section class="cs-section">
+        <p class="cs-section-label">Approach</p>
+        <h2>Data Architecture &amp; Analytical Approach</h2>
+
+        <h3>1. Data Transformation &amp; Analytics Engineering (dbt + Snowflake)</h3>
+        <p>
+          Built a modular data pipeline transforming raw product events and billing data into
+          production-ready analytical models:
+        </p>
+        <ul>
+          <li><strong>Feature Adoption &amp; Activation:</strong> Quantified Product-Qualified Lead (PQL) milestones such as team invites and core workspace actions to define activation thresholds.</li>
+          <li><strong>SaaS Revenue Datamart:</strong> Modeled Monthly Recurring Revenue (MRR), Annual Recurring Revenue (ARR), Churn Rate, and Net Revenue Retention (NRR) as standardized, cross-functional metrics in Snowflake.</li>
+        </ul>
+
+        <h3>2. Survival Analysis &amp; Aha Moment Identification (Python)</h3>
+        <ul>
+          <li><strong>Kaplan-Meier Survival Estimates:</strong> Utilized Python (<code>lifelines</code>) to model user retention curves and predict precise churn windows across customer cohorts segmented by activation behavior.</li>
+          <li><strong>Activation Lever Mapping:</strong> Identified that inviting 3 or more teammates within the first 7 days served as the core "Aha moment," increasing 90-day retention by over 2.5×.</li>
+        </ul>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Findings -->
+      <section class="cs-section">
+        <p class="cs-section-label">Key Findings</p>
+        <h2>Cohort Performance by Activation Tier</h2>
+        <p>
+          Segmenting users by activation behavior revealed a dramatic performance gap — the difference
+          between a 1.2% and 18.8% free-to-paid conversion rate came down to a single onboarding action.
+        </p>
+
+        <div class="table-wrapper">
+          <table class="cs-table" aria-label="Cohort retention metrics by activation segment">
+            <thead>
+              <tr>
+                <th>Cohort Segment</th>
+                <th>Free-to-Paid Conv.</th>
+                <th>90-Day Retention</th>
+                <th>ARR Expansion Rate</th>
+                <th>Primary Churn Driver</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Non-Activated Users</td>
+                <td>1.2%</td>
+                <td>14.0%</td>
+                <td>0.0%</td>
+                <td>Low core feature adoption within 3 days</td>
+              </tr>
+              <tr>
+                <td>Single-User Accounts</td>
+                <td>4.5%</td>
+                <td>38.0%</td>
+                <td>5.2%</td>
+                <td>Lack of team collaboration triggers</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>PQL Activated (3+ Invites)</td>
+                <td class="accent-val">18.8%</td>
+                <td class="accent-val">82.5%</td>
+                <td class="accent-val">34.1%</td>
+                <td>Seats limit reached (Expansion trigger)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          PQL-activated users converted at 15× the rate of non-activated users and retained at nearly
+          6× the rate — confirming that the onboarding "Aha moment" was the highest-leverage
+          intervention point in the entire funnel.
+        </p>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Impact -->
+      <section class="cs-section">
+        <p class="cs-section-label">Business Impact</p>
+        <h2>Results &amp; Actions Taken</h2>
+
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="ic-value">+15%</div>
+            <div class="ic-label">Conversion Lift Projected</div>
+            <div class="ic-desc">From in-product prompts encouraging multi-user invites during initial onboarding setup.</div>
+          </div>
+          <div class="impact-card">
+            <div class="ic-value">2.5×</div>
+            <div class="ic-label">Retention Improvement</div>
+            <div class="ic-desc">Users who hit the 3-invite Aha moment retained at 82.5% vs. 14% for non-activated accounts.</div>
+          </div>
+          <div class="impact-card">
+            <div class="ic-value">Unified</div>
+            <div class="ic-label">Metrics Across Teams</div>
+            <div class="ic-desc">Standardized NRR, CAC Payback, and PQL definitions across Product and Finance in Snowflake.</div>
+          </div>
+        </div>
+
+        <ul>
+          <li><strong>Onboarding Redesign:</strong> Recommended in-product prompts encouraging multi-user invites during initial setup, projecting a 15% increase in free-to-paid conversion.</li>
+          <li><strong>Targeted Intervention:</strong> Established automated trigger alerts for accounts slipping below key usage thresholds to enable proactive Customer Success outreach.</li>
+          <li><strong>Unified Metrics:</strong> Standardized NRR, CAC Payback, and PQL definitions across Product and Finance teams in Snowflake, enabling cross-functional alignment for the first time.</li>
+        </ul>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Tech Stack -->
+      <section class="cs-section">
+        <p class="cs-section-label">Tech Stack</p>
+        <h2>Tools &amp; Methods</h2>
+        <div class="tech-grid">
+          <span class="tech-tag">Snowflake</span>
+          <span class="tech-tag">dbt</span>
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">Python 3.11</span>
+          <span class="tech-tag">lifelines</span>
+          <span class="tech-tag">plotly</span>
+          <span class="tech-tag">pandas</span>
+          <span class="tech-tag">numpy</span>
+          <span class="tech-tag">Kaplan-Meier Survival Analysis</span>
+          <span class="tech-tag">Cohort Retention Analysis</span>
+          <span class="tech-tag">PQL Modeling</span>
+          <span class="tech-tag">SaaS Metrics</span>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Source -->
+      <section class="cs-section">
+        <p class="cs-section-label">Source Code</p>
+        <h2>Code &amp; Documentation</h2>
+        <p>
+          Full dbt project, data transformation models, and analysis scripts are available on GitHub.
+        </p>
+        <a href="https://github.com/jinyeong-park/jynlab-saas-retention-analysis"
+           target="_blank"
+           rel="noopener"
+           class="btn btn--secondary">
+          View on GitHub
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ───────────────── FOOTER CTA ───────────────── -->
+  <section class="cs-footer-cta" aria-label="Contact">
+    <div class="wrap">
+      <div>
+        <h3>Interested in working together?</h3>
+        <p>Open to Data Analyst, Growth Analyst, and Marketing Analytics roles in the Bay Area or remote.</p>
+      </div>
+      <div style="display:flex; gap: var(--s3); flex-wrap: wrap;">
+        <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
+        <a href="index.html#work" class="btn btn--secondary">See more work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── FOOTER ───────────────── -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <div class="footer-name">Jenny Park</div>
+        <div class="footer-location">San Francisco Bay Area</div>
+      </div>
+      <a href="https://www.linkedin.com/in/jennypark7/" target="_blank" rel="noopener"
+         style="font-size:0.8125rem; font-weight:500; color:var(--muted);">LinkedIn</a>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Assisted Marketing Mix Modeling (MMM) & Forecasting — Jenny Park</title>
+  <meta name="description" content="Case study: Building a Bayesian Marketing Mix Model in Python to resolve post-cookie tracking limitations, integrating Adstock decay and an LLM-powered insight agent to automate budget optimization.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────────
+       TOKENS — shared with portfolio
+    ───────────────────────────────────────────── */
+    :root {
+      --surface:    #FFFFFF;
+      --raised:     #F2F1EE;
+      --ink:        #0C0C0C;
+      --muted:      #6F6C66;
+      --accent:     #A85C13;
+      --on-accent:  #FFFFFF;
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body:    'Instrument Sans', system-ui, sans-serif;
+
+      --s1: 0.25rem;  --s2: 0.5rem;   --s3: 0.75rem;  --s4: 1rem;
+      --s5: 1.5rem;   --s6: 2rem;     --s7: 3rem;     --s8: 4rem;
+      --s9: 6rem;     --s10: 8rem;
+
+      --radius: 0px;
+      --line: 1px solid #E0DDD8;
+      --t-fast: 150ms;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: 800px;
+      margin-inline: auto;
+      padding-inline: var(--s6);
+    }
+
+    /* ─────────────────────────────────────────────
+       HEADER
+    ───────────────────────────────────────────── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: var(--line);
+    }
+    .site-header .wrap {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .wordmark {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .header-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--t-fast) var(--ease);
+    }
+    .header-back:hover { color: var(--ink); }
+    .header-back svg { flex-shrink: 0; }
+
+    /* ─────────────────────────────────────────────
+       CASE STUDY HERO
+    ───────────────────────────────────────────── */
+    .cs-hero {
+      padding-block: var(--s8) var(--s7);
+      border-bottom: var(--line);
+    }
+    .cs-hero .wrap { max-width: 800px; }
+
+    .cs-kicker {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s5);
+    }
+    .cs-kicker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .cs-hero h1 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: var(--s5);
+      max-width: 22ch;
+    }
+
+    .cs-hero-lead {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 60ch;
+      margin-bottom: var(--s6);
+    }
+
+    .cs-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s5);
+      padding-top: var(--s5);
+      border-top: var(--line);
+    }
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cs-meta-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .cs-meta-value {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ─────────────────────────────────────────────
+       STAT STRIP
+    ───────────────────────────────────────────── */
+    .stat-strip {
+      background: var(--raised);
+      border-bottom: var(--line);
+      padding-block: var(--s6);
+    }
+    .stat-strip .wrap {
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s6);
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ─────────────────────────────────────────────
+       BODY CONTENT
+    ───────────────────────────────────────────── */
+    .cs-body {
+      padding-block: var(--s8);
+    }
+    .cs-body .wrap { max-width: 800px; }
+
+    .cs-section {
+      margin-bottom: var(--s8);
+    }
+    .cs-section:last-child { margin-bottom: 0; }
+
+    .cs-section-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.625rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: var(--s3);
+      margin-top: var(--s5);
+    }
+
+    .cs-section p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: var(--s4);
+    }
+    .cs-section ul li {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      padding-left: var(--s5);
+      position: relative;
+      margin-bottom: var(--s2);
+    }
+    .cs-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    .cs-section ul li strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────────
+       PROBLEM BLOCK
+    ───────────────────────────────────────────── */
+    .problem-block {
+      background: var(--raised);
+      border-left: 3px solid var(--accent);
+      padding: var(--s5) var(--s6);
+      margin-bottom: var(--s4);
+    }
+    .problem-block p {
+      margin-bottom: 0;
+      color: var(--ink);
+    }
+
+    /* ─────────────────────────────────────────────
+       DATA TABLE
+    ───────────────────────────────────────────── */
+    .table-wrapper {
+      overflow-x: auto;
+      margin-bottom: var(--s6);
+      border: var(--line);
+    }
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .cs-table thead {
+      background: var(--raised);
+    }
+    .cs-table th {
+      text-align: left;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: var(--s3) var(--s4);
+      border-bottom: var(--line);
+      white-space: nowrap;
+    }
+    .cs-table td {
+      padding: var(--s3) var(--s4);
+      border-bottom: var(--line);
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .cs-table tr:last-child td { border-bottom: none; }
+    .cs-table td:first-child { color: var(--ink); font-weight: 500; }
+    .cs-table .highlight-row td {
+      background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .cs-table .accent-val {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────────
+       IMPACT CARDS
+    ───────────────────────────────────────────── */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      margin-bottom: var(--s6);
+    }
+    .impact-card {
+      border: var(--line);
+      padding: var(--s5);
+      background: var(--surface);
+    }
+    .impact-card .ic-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: var(--s2);
+    }
+    .impact-card .ic-label {
+      font-size: 0.875rem;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: var(--s1);
+    }
+    .impact-card .ic-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────────────
+       TECH STACK
+    ───────────────────────────────────────────── */
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2);
+    }
+    .tech-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--raised);
+      border: var(--line);
+      padding: var(--s1) var(--s3);
+      letter-spacing: 0.02em;
+    }
+
+    /* ─────────────────────────────────────────────
+       DIVIDER
+    ───────────────────────────────────────────── */
+    .cs-divider {
+      border: none;
+      border-top: var(--line);
+      margin-block: var(--s7);
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER CTA
+    ───────────────────────────────────────────── */
+    .cs-footer-cta {
+      background: var(--raised);
+      border-top: var(--line);
+      padding-block: var(--s7);
+    }
+    .cs-footer-cta .wrap {
+      max-width: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s6);
+      flex-wrap: wrap;
+    }
+    .cs-footer-cta h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.375rem;
+      color: var(--ink);
+      margin-bottom: var(--s2);
+    }
+    .cs-footer-cta p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: var(--s3) var(--s5);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+      border: 1.5px solid transparent;
+      white-space: nowrap;
+    }
+    .btn--primary {
+      background: var(--accent);
+      color: var(--on-accent);
+      border-color: var(--accent);
+    }
+    .btn--primary:hover { background: #924f10; border-color: #924f10; }
+    .btn--secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn--secondary:hover { background: var(--ink); color: var(--surface); }
+
+    /* ─────────────────────────────────────────────
+       SITE FOOTER
+    ───────────────────────────────────────────── */
+    .site-footer {
+      padding-block: var(--s6);
+      border-top: var(--line);
+    }
+    .site-footer .wrap {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s4);
+    }
+    .footer-name {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .footer-location {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .wrap { padding-inline: var(--s4); }
+      .stat-strip .wrap { grid-template-columns: 1fr 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .cs-footer-cta .wrap { flex-direction: column; align-items: flex-start; }
+      .cs-hero { padding-block: var(--s6) var(--s5); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ───────────────── HEADER ───────────────── -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="wordmark">Jenny Park</a>
+      <a href="index.html#work" class="header-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to work
+      </a>
+    </div>
+  </header>
+
+  <!-- ───────────────── HERO ───────────────── -->
+  <section class="cs-hero">
+    <div class="wrap">
+      <p class="cs-kicker">
+        <span>Marketing Analytics &amp; AI</span>
+        <span class="cs-kicker-dot" aria-hidden="true"></span>
+        <span>JYNLAB</span>
+      </p>
+      <h1>AI-Assisted Marketing Mix Modeling (MMM) &amp; Forecasting</h1>
+      <p class="cs-hero-lead">
+        With third-party cookie deprecation restricting granular user-level tracking, traditional
+        attribution methods fail to account for offline media and long-term channel impacts. This
+        project built a macro-level Bayesian Marketing Mix Model in Python — quantifying carryover
+        effects and saturation points across channels, then layered an LLM-powered copilot to
+        automate budget optimization and executive reporting.
+      </p>
+
+      <div class="cs-meta-row">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Company</span>
+          <span class="cs-meta-value">JYNLAB</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Marketing Analyst &amp; AI Engineer</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Methods</span>
+          <span class="cs-meta-value">Bayesian MMM, Adstock, LLM Pipelines</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">Python, PyMC, Claude API</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── STAT STRIP ───────────────── -->
+  <div class="stat-strip" aria-label="Key results">
+    <div class="wrap">
+      <div class="stat-item">
+        <span class="stat-value">8.5%</span>
+        <span class="stat-label">Projected revenue increase without raising net spend</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">$65K</span>
+        <span class="stat-label">Quarterly budget shifted from saturated to high-ROI channels</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">Auto</span>
+        <span class="stat-label">Weekly executive briefs generated by LLM insight agent</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────────────── BODY ───────────────── -->
+  <main class="cs-body">
+    <div class="wrap">
+
+      <!-- Problem -->
+      <section class="cs-section">
+        <p class="cs-section-label">The Problem</p>
+        <h2>Attribution Blind Spots in a Cookie-Less World</h2>
+        <div class="problem-block">
+          <p>
+            <strong>Signal Loss &amp; Privacy Barriers:</strong> Cookie-less environments prevent
+            deterministic tracking for offline channels (TV, sponsorships) and cross-device digital
+            campaigns — making platform-reported ROAS unreliable for executive budget decisions.
+          </p>
+        </div>
+        <div class="problem-block">
+          <p>
+            <strong>Non-Linear Ad Dynamics:</strong> Marketing spend suffers from lag effects
+            (Adstock carryover) and diminishing marginal returns. Linear ROI projections were
+            causing the team to over-invest in saturated channels while under-funding high-potential ones.
+          </p>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Approach -->
+      <section class="cs-section">
+        <p class="cs-section-label">Approach</p>
+        <h2>Data Architecture &amp; Analytical Approach</h2>
+
+        <h3>1. Bayesian Time-Series MMM (Python)</h3>
+        <p>
+          Utilized Bayesian statistical modeling to quantify macro-level channel performance over time,
+          capturing dynamics that platform dashboards fundamentally cannot measure:
+        </p>
+        <ul>
+          <li><strong>Adstock Transformation (Carryover Effect):</strong> Modeled decay rate functions to capture lingering consumer memory effects across TV, Paid Search, Social, and Sponsorships — accounting for the fact that ad exposure impacts behavior days or weeks after the impression.</li>
+          <li><strong>Hill Saturation Function (Diminishing Returns):</strong> Mapped non-linear budget curves to identify exact inflection points where incremental spend yields diminishing returns — enabling precise channel-level budget ceilings.</li>
+        </ul>
+
+        <h3>2. AI-Powered Insight Copilot (LLM Pipeline Integration)</h3>
+        <ul>
+          <li>Built an automated Python pipeline using LLM API integrations (Claude / OpenAI) to process weekly model outputs, generate executive summary memos, and trigger automated alerts when channel budgets reach saturation thresholds.</li>
+          <li>Enabled dynamic budget scenario planning through an interactive forecasting interface for executive decision-making — turning a quarterly analysis into a continuous optimization workflow.</li>
+        </ul>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Findings -->
+      <section class="cs-section">
+        <p class="cs-section-label">Key Findings</p>
+        <h2>Channel Optimization &amp; Budget Reallocation</h2>
+        <p>
+          The MMM revealed significant misalignment between current spend and optimal budget
+          allocation — Paid Social and Sponsorships were both past their saturation points,
+          while Paid Search and Brand TV remained under-invested.
+        </p>
+
+        <div class="table-wrapper">
+          <table class="cs-table" aria-label="Channel spend optimization metrics">
+            <thead>
+              <tr>
+                <th>Channel</th>
+                <th>Quarter Spend</th>
+                <th>Carryover Half-Life</th>
+                <th>Saturation Point</th>
+                <th>Optimal Budget</th>
+                <th>Expected Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-row">
+                <td>Paid Search</td>
+                <td>$150,000</td>
+                <td>1.2 Weeks</td>
+                <td>$180,000</td>
+                <td class="accent-val">$175,000</td>
+                <td>+12.4% Incremental Growth</td>
+              </tr>
+              <tr>
+                <td>Paid Social</td>
+                <td>$200,000</td>
+                <td>2.5 Weeks</td>
+                <td>$160,000 (Saturated)</td>
+                <td>$150,000</td>
+                <td>Reallocated $50k excess spend</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>Brand TV / Video</td>
+                <td>$100,000</td>
+                <td>5.8 Weeks</td>
+                <td>$220,000</td>
+                <td class="accent-val">$130,000</td>
+                <td>Long-term baseline lift</td>
+              </tr>
+              <tr>
+                <td>Sponsorships</td>
+                <td>$80,000</td>
+                <td>4.0 Weeks</td>
+                <td>$75,000 (Saturated)</td>
+                <td>$65,000</td>
+                <td>Reallocated to high-performing digital</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Paid Social was consuming $40,000 in excess quarterly spend beyond its saturation point.
+          Brand TV — with a 5.8-week carryover half-life — was under-funded relative to its
+          long-term revenue contribution, making it the clearest reallocation opportunity.
+        </p>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Impact -->
+      <section class="cs-section">
+        <p class="cs-section-label">Business Impact</p>
+        <h2>Results &amp; Actions Taken</h2>
+
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="ic-value">+8.5%</div>
+            <div class="ic-label">Revenue Increase Projected</div>
+            <div class="ic-desc">By shifting $65K from saturated channels to under-allocated Search and TV — without increasing total budget.</div>
+          </div>
+          <div class="impact-card">
+            <div class="ic-value">$65K</div>
+            <div class="ic-label">Budget Reallocated</div>
+            <div class="ic-desc">Moved quarterly spend from Paid Social and Sponsorships past saturation into higher-ROI channels.</div>
+          </div>
+          <div class="impact-card">
+            <div class="ic-value">Auto</div>
+            <div class="ic-label">Weekly Executive Briefs</div>
+            <div class="ic-desc">LLM agent digests weekly MMM run results into natural-language marketing memos — eliminating manual reporting.</div>
+          </div>
+        </div>
+
+        <ul>
+          <li><strong>Budget Optimization:</strong> Shifted $65,000 in quarterly budget away from saturated channels toward under-allocated digital Search and TV, projecting an 8.5% increase in total revenue without raising net spend.</li>
+          <li><strong>Automated Workflow:</strong> Streamlined executive reporting by deploying an LLM agent that automatically digests weekly MMM results into natural-language marketing briefs.</li>
+          <li><strong>Forward Forecasting:</strong> Enabled dynamic budget scenario planning through an interactive forecasting interface for executive decision-making.</li>
+        </ul>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Tech Stack -->
+      <section class="cs-section">
+        <p class="cs-section-label">Tech Stack</p>
+        <h2>Tools &amp; Methods</h2>
+        <div class="tech-grid">
+          <span class="tech-tag">Python 3.11</span>
+          <span class="tech-tag">PyMC</span>
+          <span class="tech-tag">NumPy</span>
+          <span class="tech-tag">SciPy</span>
+          <span class="tech-tag">Pandas</span>
+          <span class="tech-tag">Claude API</span>
+          <span class="tech-tag">OpenAI API</span>
+          <span class="tech-tag">Plotly</span>
+          <span class="tech-tag">Looker</span>
+          <span class="tech-tag">Marketing Mix Modeling</span>
+          <span class="tech-tag">Adstock Decay</span>
+          <span class="tech-tag">Diminishing Returns Curves</span>
+          <span class="tech-tag">Bayesian Time-Series Inference</span>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Source -->
+      <section class="cs-section">
+        <p class="cs-section-label">Source Code</p>
+        <h2>Code &amp; Documentation</h2>
+        <p>
+          Full MMM modeling codebase, LLM pipeline scripts, and documentation are available on GitHub.
+        </p>
+        <a href="https://github.com/jinyeong-park/jynlab-ai-mmm-forecasting"
+           target="_blank"
+           rel="noopener"
+           class="btn btn--secondary">
+          View on GitHub
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ───────────────── FOOTER CTA ───────────────── -->
+  <section class="cs-footer-cta" aria-label="Contact">
+    <div class="wrap">
+      <div>
+        <h3>Interested in working together?</h3>
+        <p>Open to Data Analyst, Growth Analyst, and Marketing Analytics roles in the Bay Area or remote.</p>
+      </div>
+      <div style="display:flex; gap: var(--s3); flex-wrap: wrap;">
+        <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
+        <a href="index.html#work" class="btn btn--secondary">See more work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── FOOTER ───────────────── -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <div class="footer-name">Jenny Park</div>
+        <div class="footer-location">San Francisco Bay Area</div>
+      </div>
+      <a href="https://www.linkedin.com/in/jennypark7/" target="_blank" rel="noopener"
+         style="font-size:0.8125rem; font-weight:500; color:var(--muted);">LinkedIn</a>
+    </div>
+  </footer>
+
+</body>
+</html>
