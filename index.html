@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jenny Park — Data and Growth Analyst, San Francisco Bay Area</title>
+  <meta name="description" content="Jenny Park is a Data and Growth Analyst in the San Francisco Bay Area. She turns customer, marketing, and business data into insights that drive growth decisions.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Jenny Park — Data and Growth Analyst">
+  <meta property="og:description" content="Turning customer, marketing, and business data into growth decisions. Based in the Bay Area.">
+  <meta property="og:image" content="images/08-open-graph.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jennyparkai.com">
+
+  <!-- Favicon: replace with real mark when available -->
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────────
+       TOKENS — P10 Ochre Gallery / F10 Instrument Pair
+    ───────────────────────────────────────────── */
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap');
+
+    :root {
+      /* Colour: five values only. No sixth. */
+      --surface:    #FFFFFF;
+      --raised:     #F2F1EE;
+      --ink:        #0C0C0C;
+      --muted:      #6F6C66;
+      --accent:     #A85C13;
+      --on-accent:  #FFFFFF;
+
+      /* Type */
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body:    'Instrument Sans', system-ui, sans-serif;
+
+      /* Space scale */
+      --s1: 0.25rem;  --s2: 0.5rem;   --s3: 0.75rem;  --s4: 1rem;
+      --s5: 1.5rem;   --s6: 2rem;     --s7: 3rem;     --s8: 4rem;
+      --s9: 6rem;     --s10: 8rem;
+
+      /* Shape */
+      --radius: 0px;
+      --line: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+
+      /* Motion */
+      --t-fast: 150ms;
+      --t-card: 300ms;
+      --ease: cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ─────────────────────────────────────────────
+       RESET
+    ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--surface);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, picture, video { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ─────────────────────────────────────────────
+       LAYOUT UTILITIES
+    ───────────────────────────────────────────── */
+    .wrap {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: var(--s6);
+    }
+    .wrap--narrow { max-width: 760px; }
+    .wrap--wide   { max-width: 1320px; }
+
+    /* ─────────────────────────────────────────────
+       TYPE SCALE — Instrument Pair (F10)
+       Instrument Serif gets contrast from size only.
+    ───────────────────────────────────────────── */
+    h1 {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: clamp(3rem, 7vw, 5rem);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2rem, 3.6vw, 2.8rem);
+      line-height: 1.1;
+    }
+    h3 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1.0625rem;
+      line-height: 1.3;
+    }
+    .kicker {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       BUTTONS
+    ───────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      height: 52px;
+      padding-inline: var(--s6);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--t-fast) var(--ease),
+                  color var(--t-fast) var(--ease),
+                  border-color var(--t-fast) var(--ease);
+    }
+    .btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .btn--primary {
+      background: var(--accent);
+      color: var(--on-accent);
+    }
+    .btn--primary:hover {
+      background: color-mix(in srgb, var(--accent) 92%, #000);
+    }
+    .btn--secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--ink);
+    }
+    .btn--secondary:hover {
+      background: var(--raised);
+    }
+
+    /* ─────────────────────────────────────────────
+       IMAGE SLOTS
+    ───────────────────────────────────────────── */
+    .slot {
+      position: relative;
+      margin: 0;
+      box-sizing: border-box;
+      aspect-ratio: var(--slot-ratio);
+      background: var(--raised);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .slot::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: repeating-linear-gradient(
+        135deg,
+        transparent 0 20px,
+        color-mix(in srgb, var(--ink) 5%, transparent) 20px 21px
+      );
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent);
+    }
+    .slot figcaption {
+      position: absolute;
+      z-index: 0;
+      left: 0; right: 0; bottom: 0;
+      padding: var(--s2) var(--s3);
+      font-family: var(--font-body);
+      font-size: 11px;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+    }
+    .slot img, .slot picture { position: absolute; inset: 0; z-index: 1; }
+    .slot img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: var(--slot-focus, 50% 50%);
+    }
+
+    /* Hero background slot */
+    .slot--hero-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: 0;
+    }
+    .slot--hero-bg::before {
+      background: repeating-linear-gradient(
+        135deg,
+        transparent 0 20px,
+        color-mix(in srgb, var(--ink) 7%, transparent) 20px 21px
+      );
+    }
+    .slot--hero-bg figcaption { bottom: auto; top: 0; }
+
+    @media (max-width: 640px) {
+      .slot--hero-bg { --slot-ratio: 3 / 4; }
+    }
+
+    /* Card slot flush to card top */
+    .card .slot {
+      margin-bottom: var(--s5);
+    }
+
+    /* ─────────────────────────────────────────────
+       SITE HEADER
+    ───────────────────────────────────────────── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: var(--line);
+    }
+    .site-header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .site-header .wordmark {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .site-header nav {
+      display: flex;
+      align-items: center;
+      gap: var(--s5);
+    }
+    .site-header nav a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--t-fast) var(--ease);
+    }
+    .site-header nav a:hover { color: var(--ink); }
+    .site-header nav a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    /* Resume CTA in header: accent link, not button, so it does not compete with hero button */
+    .site-header .nav-resume {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    @media (max-width: 640px) {
+      .site-header nav .nav-hide-mobile { display: none; }
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO
+       Studio Mono: one full-bleed piece + name and discipline
+    ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: clamp(560px, 88vh, 840px);
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: var(--s9);
+      overflow: hidden;
+    }
+
+    /* Scrim: paints only when hero image is present */
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--surface) 90%, transparent) 0%,
+        color-mix(in srgb, var(--surface) 65%, transparent) 50%,
+        color-mix(in srgb, var(--surface) 20%, transparent) 100%
+      );
+    }
+    .hero:has(.slot--hero-bg img) .hero-scrim { opacity: 1; }
+
+    /* Fallback gradient for empty slot state */
+    .hero-scrim-base {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(
+        160deg,
+        color-mix(in srgb, var(--surface) 70%, transparent) 0%,
+        color-mix(in srgb, var(--raised) 40%, transparent) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 680px;
+    }
+
+    .hero-content .kicker {
+      margin-bottom: var(--s4);
+    }
+    .hero-content h1 {
+      margin-bottom: var(--s5);
+    }
+    .hero-content .hero-lead {
+      max-width: 52ch;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: var(--s6);
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--s4);
+    }
+
+    /* Hero entrance animations */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content .kicker     { animation: rise 500ms var(--ease) 60ms  backwards; }
+    .hero-content h1          { animation: rise 600ms var(--ease) 140ms backwards; }
+    .hero-content .hero-lead  { animation: rise 600ms var(--ease) 220ms backwards; }
+    .hero-content .hero-actions { animation: rise 600ms var(--ease) 300ms backwards; }
+
+    @media (max-width: 640px) {
+      .hero {
+        align-items: flex-end;
+        padding-top: 100px;
+        padding-bottom: var(--s7);
+      }
+      .hero-scrim {
+        background: linear-gradient(
+          to bottom,
+          color-mix(in srgb, var(--surface) 20%, transparent) 0%,
+          color-mix(in srgb, var(--surface) 88%, transparent) 55%,
+          var(--surface) 100%
+        );
+      }
+    }
+
+    /* ─────────────────────────────────────────────
+       PROOF STRIP — experience bar
+    ───────────────────────────────────────────── */
+    .proof-strip {
+      background: var(--raised);
+      border-top: var(--line);
+      border-bottom: var(--line);
+      padding-block: var(--s5);
+    }
+    .proof-strip .wrap {
+      display: flex;
+      align-items: center;
+      gap: var(--s7);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .proof-strip .wrap::-webkit-scrollbar { display: none; }
+    .proof-item {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .proof-item .value {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .proof-item .label {
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .proof-divider {
+      flex-shrink: 0;
+      width: 1px;
+      height: 32px;
+      background: var(--line);
+      border: none;
+    }
+
+    /* ─────────────────────────────────────────────
+       SELECTED WORK
+    ───────────────────────────────────────────── */
+    .section-work {
+      padding-block: var(--s9);
+    }
+    .section-work .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: var(--s7);
+      border-bottom: var(--line);
+      padding-bottom: var(--s5);
+    }
+    .section-work .section-header h2 {
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+    }
+    .section-work .section-header .view-all {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      border-bottom: 1px solid transparent;
+      transition: color var(--t-fast) var(--ease),
+                  border-color var(--t-fast) var(--ease);
+    }
+    .section-work .section-header .view-all:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    /* Case study grid */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--s5);
+    }
+
+    /* Featured card: spans 7 of 12 */
+    .card--featured { grid-column: span 7; }
+    /* Standard card: spans 5 of 12 */
+    .card--standard { grid-column: span 5; }
+    /* Row 2: two equal cards */
+    .card--half { grid-column: span 6; }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      border: var(--line);
+      background: var(--surface);
+      padding: var(--s5);
+      transition: background var(--t-fast) var(--ease);
+    }
+    .card:hover { background: var(--raised); }
+
+    /* Card image slot */
+    .card .slot {
+      margin: calc(-1 * var(--s5)) calc(-1 * var(--s5)) var(--s5);
+      border-radius: 0;
+      /* fade in on load */
+      opacity: 0;
+      animation: cardFade var(--t-card) var(--ease) forwards;
+    }
+
+    @keyframes cardFade {
+      to { opacity: 1; }
+    }
+    /* Stagger delays */
+    .card:nth-child(1) .slot { animation-delay: 0ms; }
+    .card:nth-child(2) .slot { animation-delay: 60ms; }
+    .card:nth-child(3) .slot { animation-delay: 120ms; }
+    .card:nth-child(4) .slot { animation-delay: 180ms; }
+    .card:nth-child(5) .slot { animation-delay: 240ms; }
+
+    .card .card-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      margin-bottom: var(--s3);
+    }
+    .card .card-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .card .card-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+    .card h3 {
+      font-size: 1.125rem;
+      line-height: 1.25;
+      margin-bottom: var(--s3);
+    }
+    .card .card-summary {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex-grow: 1;
+      margin-bottom: var(--s4);
+    }
+    .card .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+      border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+      transition: border-color var(--t-fast) var(--ease);
+      width: fit-content;
+    }
+    .card .card-link:hover { border-color: var(--ink); }
+    .card .card-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .card-link-arrow {
+      font-size: 1rem;
+      transition: transform var(--t-fast) var(--ease);
+    }
+    .card .card-link:hover .card-link-arrow { transform: translateX(3px); }
+
+    /* Coming soon state */
+    .card--soon { opacity: 0.6; pointer-events: none; }
+    .card--soon .card-link { display: none; }
+    .card--soon .card-coming {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    @media (max-width: 900px) {
+      .card--featured,
+      .card--standard,
+      .card--half { grid-column: span 12; }
+    }
+    @media (max-width: 640px) {
+      .work-grid { gap: var(--s4); }
+      .section-work { padding-block: var(--s7); }
+    }
+
+    /* ─────────────────────────────────────────────
+       CAPABILITIES STRIP
+    ───────────────────────────────────────────── */
+    .section-capabilities {
+      padding-block: var(--s8);
+      border-top: var(--line);
+    }
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s5) var(--s7);
+      margin-top: var(--s6);
+    }
+    .cap-item h3 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin-bottom: var(--s2);
+      color: var(--ink);
+    }
+    .cap-item p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .cap-item .tools {
+      margin-top: var(--s2);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      color: color-mix(in srgb, var(--muted) 80%, var(--ink));
+    }
+
+    @media (max-width: 900px) {
+      .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .capabilities-grid { grid-template-columns: 1fr; gap: var(--s4); }
+    }
+
+    /* ─────────────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────────────── */
+    .section-about {
+      padding-block: var(--s9);
+      border-top: var(--line);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: var(--s8);
+      align-items: start;
+    }
+    .about-portrait {}
+
+    .about-body .kicker { margin-bottom: var(--s4); }
+    .about-body h2 { margin-bottom: var(--s5); }
+    .about-body p {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 58ch;
+      margin-bottom: var(--s4);
+    }
+    .about-body p:last-of-type { margin-bottom: var(--s6); }
+    .about-body strong { color: var(--ink); font-weight: 600; }
+
+    .about-credentials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s3);
+      margin-top: var(--s5);
+    }
+    .credential {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      padding: var(--s1) var(--s3);
+      border: var(--line);
+      background: var(--raised);
+    }
+
+    .experience-list {
+      margin-top: var(--s6);
+      border-top: var(--line);
+    }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--s3);
+      align-items: baseline;
+      padding-block: var(--s4);
+      border-bottom: var(--line);
+    }
+    .exp-item .exp-role {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .exp-item .exp-company {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .exp-item .exp-period {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: var(--s6);
+      }
+      .about-portrait {
+        max-width: 300px;
+      }
+    }
+    @media (max-width: 640px) {
+      .section-about { padding-block: var(--s7); }
+    }
+
+    /* ─────────────────────────────────────────────
+       CONTACT / MONEY SECTION
+    ───────────────────────────────────────────── */
+    .section-contact {
+      padding-block: var(--s9);
+      border-top: var(--line);
+      background: var(--raised);
+    }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s8);
+      align-items: start;
+    }
+    .contact-inner--single {
+      grid-template-columns: 1fr;
+      max-width: 560px;
+    }
+    .contact-left .kicker { margin-bottom: var(--s4); }
+    .contact-left h2 { margin-bottom: var(--s4); }
+    .contact-left p {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 44ch;
+      margin-bottom: var(--s6);
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      font-size: 0.9375rem;
+      color: var(--ink);
+      border-bottom: 1px solid transparent;
+      width: fit-content;
+      transition: border-color var(--t-fast) var(--ease);
+      padding-bottom: 1px;
+    }
+    .contact-link:hover { border-color: var(--ink); }
+    .contact-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .contact-link .cl-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      width: 60px;
+      flex-shrink: 0;
+    }
+
+    /* Resume CTA block */
+    .contact-right {
+      border: var(--line);
+      padding: var(--s6);
+      background: var(--surface);
+    }
+    .contact-right .cr-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: var(--s4);
+    }
+    .contact-right h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      margin-bottom: var(--s3);
+    }
+    .contact-right p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: var(--s5);
+      max-width: 36ch;
+    }
+    .contact-right .btn { width: 100%; justify-content: center; }
+
+    /* Blocked state: endpoint not connected */
+    .form-blocked {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-top: var(--s3);
+      font-style: italic;
+    }
+
+    @media (max-width: 760px) {
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: var(--s6);
+      }
+    }
+    @media (max-width: 640px) {
+      .section-contact { padding-block: var(--s7); }
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    .site-footer {
+      padding-block: var(--s6);
+      border-top: var(--line);
+    }
+    .site-footer .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s4);
+    }
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .footer-location {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: var(--s5);
+    }
+    .footer-right a {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--t-fast) var(--ease);
+    }
+    .footer-right a:hover { color: var(--ink); }
+    .footer-right a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ─────────────────────────────────────────────
+       STICKY MOBILE RESUME BAR
+    ───────────────────────────────────────────── */
+    .mobile-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: var(--s3) var(--s5);
+      background: var(--surface);
+      border-top: var(--line);
+    }
+    .mobile-bar .btn { width: 100%; justify-content: center; }
+
+    @media (max-width: 640px) {
+      .mobile-bar { display: block; }
+      body { padding-bottom: 72px; }
+      /* Header resume link hidden on mobile, bar takes over */
+      .site-header .nav-resume { display: none; }
+    }
+
+    /* ─────────────────────────────────────────────
+       ACCENT AUDIT
+       Decorative accent uses: one only.
+       1. Primary button (resume CTA) — functional money action
+       Focus rings are functional, do not count.
+    ───────────────────────────────────────────── */
+  </style>
+</head>
+<body>
+
+  <!-- ───────────────── HEADER ───────────────── -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="#" class="wordmark">Jenny Park</a>
+      <nav aria-label="Primary navigation">
+        <a href="#work" class="nav-hide-mobile">Work</a>
+        <a href="#about" class="nav-hide-mobile">About</a>
+        <a href="#contact" class="nav-hide-mobile">Contact</a>
+        <a href="https://www.linkedin.com/in/jennypark7/" target="_blank" rel="noopener" class="nav-resume" aria-label="Jenny Park on LinkedIn">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ───────────────── HERO ───────────────── -->
+  <section class="hero" aria-label="Introduction">
+
+    <!-- Background image slot -->
+    <figure class="slot slot--hero-bg" style="--slot-ratio: 16 / 9; --slot-focus: 60% 50%">
+      <picture>
+        <source media="(max-width: 640px)" srcset="images/01-hero-data-mobile.png">
+        <img src="images/01-hero-data.png"
+             alt="A data dashboard showing growth metrics and analytics charts on a dark screen, clean and minimal"
+             width="1920" height="1080"
+             fetchpriority="high"
+             onerror="this.remove()">
+      </picture>
+      <figcaption>Slot 01. Two files: images/01-hero-data.webp (1920x1080) and images/01-hero-data-mobile.webp (828x1104). Prompt in images.md.</figcaption>
+    </figure>
+
+    <div class="hero-scrim-base" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="hero-content">
+        <p class="kicker">Data and Growth Analyst &nbsp;·&nbsp; Bay Area</p>
+        <h1>Jenny<br>Park</h1>
+        <p class="hero-lead">
+          I turn customer, marketing, and business data into insights that move decisions forward.
+          Three markets at Hyundai. Growth analytics at JYNLAB. Data and AI work at SAP.
+        </p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn--primary">See the work</a>
+          <a href="#contact" class="btn btn--secondary">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── PROOF STRIP ───────────────── -->
+  <section class="proof-strip" aria-label="Experience overview">
+    <div class="wrap">
+      <div class="proof-item">
+        <span class="value">3+ Years</span>
+        <span class="label">Analyst experience</span>
+      </div>
+      <hr class="proof-divider" aria-hidden="true">
+      <div class="proof-item">
+        <span class="value">5 Markets</span>
+        <span class="label">US, Korea, Laos, Myanmar, Vietnam</span>
+      </div>
+      <hr class="proof-divider" aria-hidden="true">
+      <div class="proof-item">
+        <span class="value">SAP, Hyundai</span>
+        <span class="label">Enterprise experience</span>
+      </div>
+      <hr class="proof-divider" aria-hidden="true">
+      <div class="proof-item">
+        <span class="value">SQL, Python, GA4</span>
+        <span class="label">Core tools</span>
+      </div>
+      <hr class="proof-divider" aria-hidden="true">
+      <div class="proof-item">
+        <span class="value">M.S. Penn</span>
+        <span class="label">Computer and Info Technology</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── SELECTED WORK ───────────────── -->
+  <section class="section-work" id="work" aria-label="Selected work">
+    <div class="wrap">
+      <div class="section-header">
+        <h2>Selected work</h2>
+      </div>
+
+      <div class="work-grid">
+
+        <!-- Card 1: Hyundai — featured, spans 7 -->
+        <article class="card card--featured">
+          <figure class="slot" style="--slot-ratio: 16 / 9; --slot-focus: 50% 40%">
+            <img src="images/02-cs-hyundai.png"
+                 alt="A regional sales performance dashboard showing multi-market demand trends across Southeast Asia"
+                 width="1200" height="675"
+                 loading="lazy"
+                 onerror="this.remove()">
+            <figcaption>Slot 02. images/02-cs-hyundai.webp, 1200x675. Prompt in images.md.</figcaption>
+          </figure>
+          <div class="card-meta">
+            <span class="card-tag">Sales Analytics</span>
+            <span class="card-dot" aria-hidden="true"></span>
+            <span class="card-tag">Hyundai Motor / Kolao Holdings</span>
+          </div>
+          <h3>Multi-Market Sales and Demand Analytics</h3>
+          <p class="card-summary">
+            Analyzed Hyundai and Kia sales, inventory, and model-level demand across Laos,
+            Myanmar, and Vietnam. Built executive KPI reporting workflows used by leadership
+            across three markets.
+          </p>
+          <a href="work/hyundai.html" class="card-link">
+            Read case study <span class="card-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <!-- Card 2: JYNLAB — spans 5 -->
+        <article class="card card--standard">
+          <figure class="slot" style="--slot-ratio: 4 / 3; --slot-focus: 50% 35%">
+            <img src="images/03-cs-jynlab.png"
+                 alt="A GA4 analytics report showing organic acquisition funnel data for a digital media property"
+                 width="1200" height="900"
+                 loading="lazy"
+                 onerror="this.remove()">
+            <figcaption>Slot 03. images/03-cs-jynlab.webp, 1200x900. Prompt in images.md.</figcaption>
+          </figure>
+          <div class="card-meta">
+            <span class="card-tag">Growth Analytics</span>
+            <span class="card-dot" aria-hidden="true"></span>
+            <span class="card-tag">JYNLAB</span>
+          </div>
+          <h3>Growth Analytics across Owned Digital Properties</h3>
+          <p class="card-summary">
+            End-to-end growth analysis on properties with real traffic data. GA4, Search
+            Console, funnel analysis, and conversion tracking across paid and organic channels.
+          </p>
+          <a href="work/jynlab.html" class="card-link">
+            Read case study <span class="card-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <!-- Card 3: First Home Bay Area — spans 6 -->
+        <article class="card card--half">
+          <figure class="slot" style="--slot-ratio: 16 / 9; --slot-focus: 50% 40%">
+            <img src="images/04-cs-firsthome.png"
+                 alt="A Google Search Console report showing keyword position trends and organic click growth"
+                 width="1200" height="675"
+                 loading="lazy"
+                 onerror="this.remove()">
+            <figcaption>Slot 04. images/04-cs-firsthome.webp, 1200x675. Prompt in images.md.</figcaption>
+          </figure>
+          <div class="card-meta">
+            <span class="card-tag">SEO and Content Analytics</span>
+            <span class="card-dot" aria-hidden="true"></span>
+            <span class="card-tag">First Home Bay Area</span>
+          </div>
+          <h3>Search and Content Growth Analytics</h3>
+          <p class="card-summary">
+            Organic acquisition analysis using Google Search Console. Keyword position tracking,
+            content gap identification, and traffic attribution for a Bay Area real estate resource.
+          </p>
+          <a href="work/firsthome.html" class="card-link">
+            Read case study <span class="card-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <!-- Card 4: Bay Area Med Spa — spans 6 -->
+        <article class="card card--half">
+          <figure class="slot" style="--slot-ratio: 16 / 9; --slot-focus: 50% 40%">
+            <img src="images/05-cs-medspa.png"
+                 alt="A customer journey funnel chart showing acquisition sources and conversion steps for a health and wellness site"
+                 width="1200" height="675"
+                 loading="lazy"
+                 onerror="this.remove()">
+            <figcaption>Slot 05. images/05-cs-medspa.webp, 1200x675. Prompt in images.md.</figcaption>
+          </figure>
+          <div class="card-meta">
+            <span class="card-tag">Customer Journey Analytics</span>
+            <span class="card-dot" aria-hidden="true"></span>
+            <span class="card-tag">Bay Area Med Spa Guide</span>
+          </div>
+          <h3>Organic Acquisition and Customer Journey Analytics</h3>
+          <p class="card-summary">
+            Mapped the full organic acquisition funnel for a niche directory. Identified drop-off
+            points, analyzed user paths, and tracked conversion across multiple entry channels.
+          </p>
+          <a href="work/medspa.html" class="card-link">
+            Read case study <span class="card-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <!-- Card 5: Admade — spans 12, coming soon or half width -->
+        <article class="card card--half">
+          <figure class="slot" style="--slot-ratio: 16 / 9; --slot-focus: 50% 40%">
+            <img src="images/06-cs-admade.png"
+                 alt="A marketing analytics dashboard showing growth campaign performance and acquisition metrics"
+                 width="1200" height="675"
+                 loading="lazy"
+                 onerror="this.remove()">
+            <figcaption>Slot 06. images/06-cs-admade.webp, 1200x675. Prompt in images.md.</figcaption>
+          </figure>
+          <div class="card-meta">
+            <span class="card-tag">Growth and Marketing Analytics</span>
+            <span class="card-dot" aria-hidden="true"></span>
+            <span class="card-tag">Admade</span>
+          </div>
+          <h3>Growth and Marketing Analytics</h3>
+          <p class="card-summary">
+            Marketing analytics and growth work for a client-facing campaign platform. Acquisition
+            analysis, channel performance tracking, and recommendation development.
+          </p>
+          <a href="work/admade.html" class="card-link">
+            Read case study <span class="card-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+      </div><!-- /work-grid -->
+    </div>
+  </section>
+
+  <!-- ───────────────── CAPABILITIES ───────────────── -->
+  <section class="section-capabilities" aria-label="Capabilities">
+    <div class="wrap">
+      <p class="kicker">What I work on</p>
+      <div class="capabilities-grid">
+
+        <div class="cap-item">
+          <h3>Growth and marketing analytics</h3>
+          <p>Acquisition funnel analysis, channel attribution, and campaign performance measurement. Paid and organic.</p>
+          <p class="tools">GA4 · Google Search Console · Looker · Tableau</p>
+        </div>
+
+        <div class="cap-item">
+          <h3>Sales and demand analytics</h3>
+          <p>Model-level demand forecasting, inventory analysis, and executive KPI reporting across multi-market operations.</p>
+          <p class="tools">SQL · Excel · Tableau · cross-functional reporting</p>
+        </div>
+
+        <div class="cap-item">
+          <h3>Customer journey analytics</h3>
+          <p>Funnel mapping, drop-off analysis, conversion tracking, and path analysis from acquisition to action.</p>
+          <p class="tools">GA4 · SQL · Python · funnel visualization</p>
+        </div>
+
+        <div class="cap-item">
+          <h3>Data and AI product work</h3>
+          <p>Requirements analysis and translating Data and AI capabilities into business use cases for cross-functional teams.</p>
+          <p class="tools">SAP AI · stakeholder collaboration · business analysis</p>
+        </div>
+
+        <div class="cap-item">
+          <h3>Search and content analytics</h3>
+          <p>Organic acquisition analysis, keyword tracking, content gap identification, and search performance reporting.</p>
+          <p class="tools">Google Search Console · GA4 · SEO analytics</p>
+        </div>
+
+        <div class="cap-item">
+          <h3>Experimentation and conversion</h3>
+          <p>Conversion tracking setup, test design, and analysis for digital properties. Hypothesis-driven iteration.</p>
+          <p class="tools">Python · SQL · GA4 · A/B analysis</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── ABOUT ───────────────── -->
+  <section class="section-about" id="about" aria-label="About Jenny Park">
+    <div class="wrap">
+      <div class="about-grid">
+
+        <!-- Portrait slot -->
+        <div class="about-portrait">
+          <figure class="slot" style="--slot-ratio: 4 / 5; --slot-focus: 50% 20%">
+            <img src="images/Jenny%20Park2.png"
+                 alt="Jenny Park, Data and Growth Analyst, San Francisco Bay Area"
+                 width="800" height="1000"
+                 loading="lazy"
+                 onerror="this.remove()">
+            <figcaption>Slot 07. images/Jenny Park2.png — filled.</figcaption>
+          </figure>
+        </div>
+
+        <!-- Bio -->
+        <div class="about-body">
+          <p class="kicker">About</p>
+          <h2>Analyst, not just executor</h2>
+
+          <p>
+            I started in marketing and business development, moved into data analytics and project
+            management at <strong>Hyundai Motor / Kolao Holdings</strong>, and spent three years
+            working across Laos, Myanmar, and Vietnam. The work was demand forecasting, inventory
+            analysis, and building executive reporting from scratch in markets where the data was
+            inconsistent and the decisions still had to get made.
+          </p>
+          <p>
+            At <strong>SAP</strong> I worked on the Data and AI side, translating technical
+            capabilities into business requirements across engineering, data science, and
+            business teams. At <strong>JYNLAB</strong> I own the analytics end to end on digital
+            properties with real traffic, real conversion data, and no one to blame if the
+            analysis is wrong.
+          </p>
+          <p>
+            I am looking for a <strong>Data Analyst, Growth Analyst, or Marketing Analytics</strong>
+            role in the Bay Area or remote. I work well in cross-functional environments, I can
+            explain a chart to a VP and write the SQL behind it, and I care about whether the
+            recommendation got used.
+          </p>
+
+          <!-- Education and certifications -->
+          <div class="about-credentials" aria-label="Education and certifications">
+            <span class="credential">M.S. Computer and Info Technology, Penn</span>
+            <span class="credential">B.A. Business Administration, Ajou University</span>
+            <span class="credential">Systems Analysis, UCLA Extension</span>
+            <span class="credential">Product Analytics Micro-Certification</span>
+            <span class="credential">Certified Scrum Product Owner</span>
+            <span class="credential">AWS Certified AI Practitioner</span>
+          </div>
+
+          <!-- Experience list -->
+          <div class="experience-list" aria-label="Work history">
+            <div class="exp-item">
+              <div>
+                <div class="exp-role">Data and Growth Analytics</div>
+                <div class="exp-company">JYNLAB</div>
+              </div>
+              <div class="exp-period">Current</div>
+            </div>
+            <div class="exp-item">
+              <div>
+                <div class="exp-role">AI Product Engineer</div>
+                <div class="exp-company">SAP</div>
+              </div>
+              <div class="exp-period">Prior</div>
+            </div>
+            <div class="exp-item">
+              <div>
+                <div class="exp-role">Data Analyst and Project Manager</div>
+                <div class="exp-company">Hyundai Motor / Kolao Holdings</div>
+              </div>
+              <div class="exp-period">3+ years</div>
+            </div>
+            <div class="exp-item">
+              <div>
+                <div class="exp-role">Digital Marketing Manager</div>
+                <div class="exp-company">Forever Clinic</div>
+              </div>
+              <div class="exp-period">Prior</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── CONTACT / MONEY ───────────────── -->
+  <section class="section-contact" id="contact" aria-label="Contact">
+    <div class="wrap">
+      <div class="contact-inner contact-inner--single">
+
+        <div class="contact-left">
+          <p class="kicker">Get in touch</p>
+          <h2>Open to opportunities</h2>
+          <p>
+            I am looking for Data Analyst, Growth Analyst, and Marketing Analytics roles in the
+            Bay Area and remote U.S. If the role involves real data problems, I want to hear about it.
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:byjennypark@gmail.com" class="contact-link" aria-label="Email Jenny Park">
+              <span class="cl-label">Email</span>
+              <span>byjennypark@gmail.com</span>
+            </a>
+            <a href="https://www.linkedin.com/in/jennypark7/" class="contact-link" target="_blank" rel="noopener" aria-label="Jenny Park on LinkedIn">
+              <span class="cl-label">LinkedIn</span>
+              <span>linkedin.com/in/jennypark7</span>
+            </a>
+            <a href="https://github.com/jinyeong-park" class="contact-link" target="_blank" rel="noopener" aria-label="Jenny Park on GitHub">
+              <span class="cl-label">GitHub</span>
+              <span>github.com/jinyeong-park</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── FOOTER ───────────────── -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-left">
+        <span class="footer-name">Jenny Park</span>
+        <span class="footer-location">San Jose, California &nbsp;·&nbsp; Open to remote U.S.</span>
+      </div>
+      <nav class="footer-right" aria-label="Footer links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="https://www.linkedin.com/in/jennypark7/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/jinyeong-park" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ───────────────── MOBILE CTA BAR ───────────────── -->
+  <div class="mobile-bar" aria-label="Mobile contact shortcut">
+    <a href="https://www.linkedin.com/in/jennypark7/" target="_blank" rel="noopener" class="btn btn--primary" aria-label="Jenny Park on LinkedIn">Connect on LinkedIn</a>
+  </div>
+
+</body>
+</html>
