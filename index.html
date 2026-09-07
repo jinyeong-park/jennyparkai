@@ -17,6 +17,10 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="images/favicon.svg">
 
+  <!-- Preload LCP hero image -->
+  <link rel="preload" as="image" href="images/01-hero-data.webp" type="image/webp" media="(min-width: 641px)">
+  <link rel="preload" as="image" href="images/01-hero-data-mobile.webp" type="image/webp" media="(max-width: 640px)">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -894,11 +898,14 @@
     <!-- Background image slot -->
     <figure class="slot slot--hero-bg" style="--slot-ratio: 16 / 9; --slot-focus: 60% 50%">
       <picture>
+        <source media="(max-width: 640px)" srcset="images/01-hero-data-mobile.webp" type="image/webp">
         <source media="(max-width: 640px)" srcset="images/01-hero-data-mobile.png">
+        <source srcset="images/01-hero-data.webp" type="image/webp">
         <img src="images/01-hero-data.png"
              alt="A data dashboard showing growth metrics and analytics charts on a dark screen, clean and minimal"
              width="1920" height="1080"
              fetchpriority="high"
+             decoding="async"
              onerror="this.remove()">
       </picture>
       <figcaption>Slot 01. Two files: images/01-hero-data.webp (1920x1080) and images/01-hero-data-mobile.webp (828x1104). Prompt in images.md.</figcaption>
@@ -965,11 +972,15 @@
         <!-- Card 1: JYNLAB — featured, spans 7 -->
         <article class="card card--half">
           <figure class="slot" style="--slot-ratio: 16 / 9; --slot-focus: 50% 35%">
-            <img src="images/03-cs-jynlab.png"
-                 alt="A GA4 analytics report showing organic acquisition funnel data for a digital media property"
-                 width="1200" height="900"
-                 loading="lazy"
-                 onerror="this.remove()">
+            <picture>
+              <source srcset="images/03-cs-jynlab.webp" type="image/webp">
+              <img src="images/03-cs-jynlab.png"
+                   alt="A GA4 analytics report showing organic acquisition funnel data for a digital media property"
+                   width="1200" height="900"
+                   loading="lazy"
+                   decoding="async"
+                   onerror="this.remove()">
+            </picture>
             <figcaption>Slot 03. images/03-cs-jynlab.webp, 1200x900. Prompt in images.md.</figcaption>
           </figure>
           <div class="card-meta">
@@ -994,11 +1005,15 @@
         <!-- Card 2: JYNLAB Product & Revenue Analytics — spans 5 -->
         <article class="card card--half">
           <figure class="slot" style="--slot-ratio: 16 / 9; --slot-focus: 50% 40%">
-            <img src="images/06-cs-admade.png"
-                 alt="A SaaS metrics dashboard showing cohort retention and revenue analytics trends"
-                 width="1200" height="675"
-                 loading="lazy"
-                 onerror="this.remove()">
+            <picture>
+              <source srcset="images/06-cs-admade.webp" type="image/webp">
+              <img src="images/06-cs-admade.png"
+                   alt="A SaaS metrics dashboard showing cohort retention and revenue analytics trends"
+                   width="1200" height="675"
+                   loading="lazy"
+                   decoding="async"
+                   onerror="this.remove()">
+            </picture>
             <figcaption>Slot 04. images/06-cs-admade.png, 1200x675.</figcaption>
           </figure>
           <div class="card-meta">
@@ -1023,11 +1038,15 @@
         <!-- Card 3: JYNLAB Marketing Analytics & AI — spans 6 -->
         <article class="card card--half">
           <figure class="slot" style="--slot-ratio: 16 / 9; --slot-focus: 50% 40%">
-            <img src="images/05-cs-medspa.png"
-                 alt="A marketing mix model chart showing channel contribution, Adstock decay, and budget saturation curves"
-                 width="1200" height="675"
-                 loading="lazy"
-                 onerror="this.remove()">
+            <picture>
+              <source srcset="images/05-cs-medspa.webp" type="image/webp">
+              <img src="images/05-cs-medspa.png"
+                   alt="A marketing mix model chart showing channel contribution, Adstock decay, and budget saturation curves"
+                   width="1200" height="675"
+                   loading="lazy"
+                   decoding="async"
+                   onerror="this.remove()">
+            </picture>
             <figcaption>Slot 05. images/05-cs-medspa.png, 1200x675.</figcaption>
           </figure>
           <div class="card-meta">
@@ -1052,11 +1071,15 @@
         <!-- Card 4: Hyundai — spans 6 -->
         <article class="card card--half">
           <figure class="slot" style="--slot-ratio: 16 / 9; --slot-focus: 50% 40%">
-            <img src="images/02-cs-hyundai.png"
-                 alt="A regional sales performance dashboard showing multi-market demand trends across Southeast Asia"
-                 width="1200" height="675"
-                 loading="lazy"
-                 onerror="this.remove()">
+            <picture>
+              <source srcset="images/02-cs-hyundai.webp" type="image/webp">
+              <img src="images/02-cs-hyundai.png"
+                   alt="A regional sales performance dashboard showing multi-market demand trends across Southeast Asia"
+                   width="1200" height="675"
+                   loading="lazy"
+                   decoding="async"
+                   onerror="this.remove()">
+            </picture>
             <figcaption>Slot 02. images/02-cs-hyundai.webp, 1200x675. Prompt in images.md.</figcaption>
           </figure>
           <div class="card-meta">
@@ -1130,11 +1153,15 @@
         <!-- Portrait slot -->
         <div class="about-portrait">
           <figure class="slot" style="--slot-ratio: 4 / 5; --slot-focus: 50% 20%">
-            <img src="images/Jenny%20Park2.png"
-                 alt="Jenny Park, Data and Growth Analyst, San Francisco Bay Area"
-                 width="800" height="1000"
-                 loading="lazy"
-                 onerror="this.remove()">
+            <picture>
+              <source srcset="images/Jenny%20Park2.webp" type="image/webp">
+              <img src="images/Jenny%20Park2.png"
+                   alt="Jenny Park, Data and Growth Analyst, San Francisco Bay Area"
+                   width="800" height="1000"
+                   loading="lazy"
+                   decoding="async"
+                   onerror="this.remove()">
+            </picture>
             <figcaption>Slot 07. images/Jenny Park2.png — filled.</figcaption>
           </figure>
         </div>
