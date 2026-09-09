@@ -1,298 +1,567 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Revenue Intelligence &amp; GTM Analytics — Case Study</title>
 <style>
-  :root {
-    --ink:#17202a; --muted:#5f6b76; --line:#dfe5ea; --soft:#f5f7f9;
-    --accent:#1f5eff; --accent2:#0f766e; --dark:#101827; --white:#fff;
-  }
-  * { box-sizing:border-box; }
-  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-         color:var(--ink); background:#eef1f4; line-height:1.6; }
-  .page { max-width:1120px; margin:0 auto; background:#fff; min-height:100vh; }
-  header { background:var(--dark); color:#fff; padding:72px 76px 64px; }
-  .eyebrow { text-transform:uppercase; letter-spacing:.12em; font-size:12px; font-weight:700; opacity:.72; }
-  h1 { font-size:52px; line-height:1.05; margin:18px 0 20px; letter-spacing:-.035em; }
-  .hero-copy { max-width:780px; font-size:20px; color:#d9e1eb; }
-  .meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
-  .pill { border:1px solid #405066; border-radius:999px; padding:7px 13px; font-size:13px; color:#dfe7f1; }
-  main { padding:58px 76px 80px; }
-  section { margin-bottom:58px; }
-  h2 { font-size:30px; margin:0 0 18px; letter-spacing:-.02em; }
-  h3 { font-size:19px; margin:25px 0 8px; }
-  p { margin:8px 0 14px; }
-  .lead { font-size:18px; color:#384550; }
-  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
-  .card { border:1px solid var(--line); border-radius:12px; padding:22px; background:#fff; }
-  .card strong { display:block; font-size:25px; margin-bottom:5px; }
-  .card span { color:var(--muted); font-size:14px; }
-  .callout { background:var(--soft); border-left:4px solid var(--accent); padding:20px 22px; margin:22px 0; }
-  .two { display:grid; grid-template-columns:1fr 1fr; gap:30px; }
-  ul { padding-left:21px; }
-  li { margin:7px 0; }
-  .flow { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:24px 0; }
-  .flow span { background:#f2f5f8; border:1px solid var(--line); border-radius:8px; padding:9px 12px; font-size:13px; font-weight:600; }
-  .arrow { color:#87929d; }
-  table { width:100%; border-collapse:collapse; margin-top:20px; font-size:14px; }
-  th,td { border-bottom:1px solid var(--line); text-align:left; padding:12px 10px; vertical-align:top; }
-  th { background:#f7f9fb; font-weight:700; }
-  .step { display:grid; grid-template-columns:52px 1fr; gap:18px; margin:22px 0; }
-  .num { width:40px; height:40px; border-radius:50%; background:var(--dark); color:#fff;
-         display:grid; place-items:center; font-weight:700; }
-  .quote { font-size:22px; line-height:1.45; font-weight:600; padding:26px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  footer { background:var(--soft); padding:30px 76px; color:var(--muted); font-size:13px; }
-  code { background:#f0f3f6; padding:2px 5px; border-radius:4px; }
-  @media(max-width:760px) {
-    header,main,footer { padding-left:25px; padding-right:25px; }
-    h1 { font-size:39px; }
-    .grid,.two { grid-template-columns:1fr; }
-  }
-  @media print {
-    body { background:#fff; }
-    .page { max-width:none; }
-    header { padding:45px; }
-    main { padding:40px 45px; }
-  }
+:root{
+  --bg:#f7f8fa; --surface:#fff; --ink:#17202a; --muted:#66727d;
+  --line:#e2e6ea; --accent:#1769e0; --accent-soft:#edf4ff;
+  --dark:#111827; --code:#f3f5f7;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
+  line-height:1.68}
+a{color:var(--accent);text-decoration:none}
+.page{max-width:1180px;margin:0 auto;background:var(--surface);min-height:100vh}
+.hero{padding:76px 82px 68px;background:var(--dark);color:#fff}
+.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:750;color:#aebbd0}
+h1{font-size:56px;line-height:1.04;letter-spacing:-.045em;margin:18px 0 22px}
+.hero p{max-width:850px;font-size:20px;line-height:1.55;color:#d8e0ea;margin:0}
+.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+.tag{border:1px solid #445168;border-radius:999px;padding:6px 12px;font-size:12px;color:#dce5f0}
+main{padding:62px 82px 90px}
+section{margin:0 0 62px}
+h2{font-size:31px;line-height:1.2;letter-spacing:-.025em;margin:0 0 17px}
+h3{font-size:19px;line-height:1.3;margin:26px 0 7px}
+p{margin:8px 0 15px}
+.lead{font-size:18px;color:#3e4a55}
+hr{border:0;border-top:1px solid var(--line);margin:55px 0}
+.callout{background:var(--accent-soft);border-left:4px solid var(--accent);padding:19px 22px;margin:22px 0}
+.quote{font-size:22px;line-height:1.5;font-weight:650;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:27px 0;margin:25px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:22px}
+.card{border:1px solid var(--line);border-radius:10px;padding:21px;background:#fff}
+.card b{display:block;font-size:18px;margin-bottom:6px}
+.card span{font-size:14px;color:var(--muted)}
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:26px 0}
+.node{padding:9px 12px;border:1px solid var(--line);background:#fafbfc;border-radius:7px;font-size:13px;font-weight:650}
+.arrow{color:#89949e}
+.diagram{background:var(--code);border:1px solid var(--line);border-radius:10px;
+  padding:23px 25px;overflow:auto;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+ul{padding-left:22px;margin-top:9px}
+li{margin:6px 0}
+table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+th,td{text-align:left;border-bottom:1px solid var(--line);padding:12px 10px;vertical-align:top}
+th{background:#f8fafb;font-weight:700}
+.step{display:grid;grid-template-columns:44px 1fr;gap:15px;margin:22px 0}
+.num{width:38px;height:38px;border-radius:50%;background:var(--dark);color:#fff;
+  display:grid;place-items:center;font-weight:750}
+.step h3{margin:0 0 4px}
+.note{color:var(--muted);font-size:13px}
+footer{background:#f1f3f5;color:#68737d;padding:28px 82px;font-size:13px}
+@media(max-width:800px){
+  .hero,main,footer{padding-left:26px;padding-right:26px}
+  h1{font-size:40px}.grid,.two{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff}.page{max-width:none}.hero{padding:45px}
+  main{padding:40px 45px}footer{padding:25px 45px}
+}
 </style>
 </head>
 <body>
 <div class="page">
 
-<header>
-  <div class="eyebrow">Portfolio Case Study · Revenue Analytics</div>
+<header class="hero">
+  <div class="kicker">Portfolio Case Study · B2B Revenue Analytics</div>
   <h1>Revenue Intelligence<br>&amp; GTM Analytics</h1>
-  <p class="hero-copy">
-    Building a trusted analytical foundation across Marketing, Sales/CRM, Contracts,
-    Billing, Product Usage, Customer Success, and Finance — so revenue performance
-    can be analyzed as one connected customer lifecycle.
+  <p>
+    A business-first analytical framework connecting fragmented GTM activity to
+    pipeline, bookings, billing, recognized revenue, expansion, churn, and customer value.
   </p>
-  <div class="meta">
-    <span class="pill">B2B SaaS / GTM Analytics</span>
-    <span class="pill">SQL · dbt · BI</span>
-    <span class="pill">Data quality &amp; reconciliation</span>
+  <div class="tags">
+    <span class="tag">Python</span>
+    <span class="tag">SQL</span>
+    <span class="tag">BigQuery</span>
+    <span class="tag">dbt</span>
+    <span class="tag">Streamlit</span>
+    <span class="tag">Data Quality</span>
+    <span class="tag">Revenue Reconciliation</span>
   </div>
 </header>
 
 <main>
 
 <section>
-  <h2>1. Executive Summary</h2>
-  <p class="lead">
-    B2B revenue data rarely lives in one clean system. Marketing measures demand,
-    Sales manages opportunities, Contracts and Billing capture commercial activity,
-    Product records usage, Customer Success monitors retention, and Finance owns the
-    recognized-revenue view.
-  </p>
-  <p>
-    This case study designs an end-to-end Revenue Intelligence foundation that connects
-    those domains while explicitly separating <strong>Pipeline, Bookings, Billings,
-    Recognized Revenue, Expansion, and Churn</strong>. The goal is not simply to build
-    dashboards, but to establish a reliable analytical layer that answers business
-    questions consistently.
-  </p>
-  <div class="callout">
-    <strong>Core business problem:</strong> Different teams can report different versions
-    of “revenue performance” because the underlying records, identifiers, dates, and
-    metric definitions are fragmented.
-  </div>
+<h2>Overview</h2>
+<p class="lead">
+Revenue data rarely lives in one system. Marketing owns leads and campaigns, Sales owns
+accounts and opportunities, Finance owns billing and revenue, Product owns usage, and
+Customer Success owns renewal, expansion, and churn.
+</p>
+<p>
+Each system answers a different question. The harder question is how to connect the entire
+customer lifecycle into one trusted view of revenue.
+</p>
+<div class="quote">
+“Connect GTM activity to revenue — from the first lead to pipeline, bookings, billing,
+recognized revenue, and retention.”
+</div>
+<p>
+This project builds a Revenue Intelligence &amp; GTM Analytics framework for a scaling B2B
+technology company. The model is intentionally designed around a common revenue lifecycle
+rather than a single source system or one narrow business model.
+</p>
 </section>
 
 <section>
-  <h2>2. Business Questions</h2>
-  <div class="grid">
-    <div class="card"><strong>Demand</strong><span>Which channels and campaigns create qualified pipeline?</span></div>
-    <div class="card"><strong>Pipeline</strong><span>Where is pipeline concentrated, and how reliable is it?</span></div>
-    <div class="card"><strong>Conversion</strong><span>How does the funnel move from lead to opportunity to closed-won?</span></div>
-    <div class="card"><strong>Revenue</strong><span>Do bookings, billings, and recognized revenue reconcile?</span></div>
-    <div class="card"><strong>Customer</strong><span>Which customers expand, remain healthy, or churn?</span></div>
-    <div class="card"><strong>Governance</strong><span>Can executives trust the metrics and their lineage?</span></div>
-  </div>
+<h2>Business Problem</h2>
+<p>
+A scaling B2B organization can have multiple teams reporting on the same commercial
+performance while using different source systems and definitions.
+</p>
+<div class="grid">
+  <div class="card"><b>Marketing</b><span>Which campaigns generate qualified demand?</span></div>
+  <div class="card"><b>Sales</b><span>How much pipeline exists and how likely is it to convert?</span></div>
+  <div class="card"><b>Finance</b><span>Why do bookings, billings, and recognized revenue differ?</span></div>
+  <div class="card"><b>Product</b><span>Does product adoption correlate with customer value?</span></div>
+  <div class="card"><b>Customer Success</b><span>Which accounts expand, renew, or churn?</span></div>
+  <div class="card"><b>Leadership</b><span>Where should GTM resources be allocated next?</span></div>
+</div>
+<div class="callout">
+<strong>The analytical challenge:</strong> build a trusted foundation that preserves the
+differences between commercial metrics instead of forcing every source into one “revenue” number.
+</div>
 </section>
 
 <section>
-  <h2>3. Revenue Lifecycle</h2>
-  <p>The analytical model follows the commercial lifecycle rather than treating each source as an isolated dataset.</p>
-  <div class="flow">
-    <span>Marketing / Demand</span><b class="arrow">→</b>
-    <span>Lead</span><b class="arrow">→</b>
-    <span>Account</span><b class="arrow">→</b>
-    <span>Opportunity</span><b class="arrow">→</b>
-    <span>Contract / Order</span><b class="arrow">→</b>
-    <span>Billing</span><b class="arrow">→</b>
-    <span>Recognized Revenue</span><b class="arrow">→</b>
-    <span>Expansion / Churn</span>
-  </div>
-  <p>
-    A key modeling principle is to avoid using one commercial amount as a proxy for every
-    revenue concept. Pipeline represents potential future business; bookings represent
-    committed business; billings represent invoiced amounts; recognized revenue follows
-    the appropriate recognition logic; expansion and churn describe changes in the
-    customer relationship.
-  </p>
+<h2>Business Objective</h2>
+<p>
+The objective is not to build another dashboard. It is to create a trusted analytical
+foundation that allows GTM, Sales, Finance, and leadership teams to answer:
+</p>
+<ul>
+<li>Where is revenue coming from?</li>
+<li>Where does the GTM funnel break?</li>
+<li>Which pipeline is most likely to convert?</li>
+<li>Why are bookings and revenue different?</li>
+<li>Which customers and segments create the most long-term value?</li>
+<li>What should the business do next?</li>
+</ul>
 </section>
 
 <section>
-  <h2>4. Synthetic Source Data</h2>
-  <p>
-    The project begins with a Python generator that creates reproducible,
-    intentionally imperfect B2B revenue data suitable for dbt/BigQuery analysis.
-    The generated source layer contains seven CSV datasets.
-  </p>
-  <table>
-    <thead><tr><th>Source</th><th>Purpose</th><th>Key analytical role</th></tr></thead>
-    <tbody>
-      <tr><td>Marketing Leads</td><td>Lead acquisition and lifecycle</td><td>Channel, campaign, lead-to-pipeline analysis</td></tr>
-      <tr><td>Salesforce Accounts</td><td>Customer/account master</td><td>Identity, segmentation, lifecycle</td></tr>
-      <tr><td>Salesforce Opportunities</td><td>Sales pipeline</td><td>Stage, amount, forecast, conversion</td></tr>
-      <tr><td>Contracts</td><td>Commercial agreements</td><td>Bookings and contract reconciliation</td></tr>
-      <tr><td>Billing</td><td>Invoices and payments</td><td>Billings, collections, reconciliation</td></tr>
-      <tr><td>Product Events</td><td>Usage/activity</td><td>Adoption and customer-value signals</td></tr>
-      <tr><td>Customer Success</td><td>Health and retention</td><td>Renewal, expansion, churn</td></tr>
-    </tbody>
-  </table>
-  <div class="callout">
-    The generator deliberately includes duplicate account records, missing lead account
-    identifiers, orphan opportunities, duplicate contract IDs, billing amount/timing
-    mismatches, failed or pending payments, multiple revenue models, close-date changes,
-    and incomplete lifecycle coverage. These are analytical inputs for data-quality work,
-    not accidental defects.
-  </div>
+<h2>The Core Revenue Lifecycle</h2>
+<p>
+The analytical model follows a common B2B lifecycle and explicitly separates concepts that
+are often incorrectly treated as the same metric.
+</p>
+<div class="diagram">Marketing / Demand Generation
+              ↓
+            Lead
+              ↓
+           Account
+              ↓
+        Opportunity
+              ↓
+      Contract / Order
+              ↓
+           Billing
+          ↙       ↘
+     Bookings    Billings
+          ↘       ↙
+       Recognized Revenue
+              ↓
+       Expansion / Churn
+              ↓
+       Customer Value / NRR</div>
+<table>
+<tr><th>Metric</th><th>Business meaning</th><th>Why it matters</th></tr>
+<tr><td>Pipeline</td><td>Potential future business</td><td>Measures future commercial opportunity.</td></tr>
+<tr><td>Bookings</td><td>Contracted / won business</td><td>Measures committed commercial value.</td></tr>
+<tr><td>Billings</td><td>Customer invoicing</td><td>Measures amounts billed to customers.</td></tr>
+<tr><td>Recognized Revenue</td><td>Revenue recognized for financial reporting</td><td>Provides the financial performance view.</td></tr>
+<tr><td>Expansion</td><td>Additional value from existing customers</td><td>Shows growth within the installed base.</td></tr>
+<tr><td>Churn</td><td>Lost customer value</td><td>Shows retention leakage and NRR pressure.</td></tr>
+</table>
 </section>
 
 <section>
-  <h2>5. Data Quality &amp; Identity Resolution</h2>
-  <div class="two">
-    <div>
-      <h3>Identity problems</h3>
-      <ul>
-        <li>Duplicate account records can inflate customer counts and revenue.</li>
-        <li>Missing identifiers prevent clean downstream joins.</li>
-        <li>Orphan opportunities create pipeline that cannot be tied to an account.</li>
-        <li>Duplicate contract IDs can double-count commercial value.</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Metric integrity problems</h3>
-      <ul>
-        <li>Billing dates can differ from contract dates.</li>
-        <li>Billing amounts can differ from expected commercial values.</li>
-        <li>Payment status changes the interpretation of invoiced value.</li>
-        <li>Close-date changes affect pipeline timing and forecast analysis.</li>
-      </ul>
-    </div>
-  </div>
-  <p>
-    The analytical challenge is therefore not only “join the tables.” It is to establish
-    a defensible customer identity, define grain, document business rules, and expose
-    exceptions instead of silently hiding them.
-  </p>
+<h2>Revenue Model Coverage</h2>
+<p>
+The framework is designed to be business-model agnostic. The same analytical lifecycle can
+be adapted to different B2B revenue structures.
+</p>
+<div class="grid">
+  <div class="card"><b>Subscription</b><span>Contract → subscription → billing → MRR / ARR → recognized revenue.</span></div>
+  <div class="card"><b>Advertising</b><span>Advertiser → campaign/order → media spend → delivered revenue.</span></div>
+  <div class="card"><b>Transactional</b><span>Buyer/account → transaction → order value → take-rate revenue.</span></div>
+</div>
+<div class="callout">
+The current synthetic dataset includes multiple revenue-model values so the analytical
+framework can be tested beyond a single commercial motion.
+</div>
 </section>
 
 <section>
-  <h2>6. Analytical Architecture</h2>
-  <p>
-    The intended transformation approach uses a layered dbt architecture, separating raw
-    source data from cleaned staging models, reusable intermediate logic, and business-facing
-    marts.
-  </p>
-  <div class="grid">
-    <div class="card"><strong>Raw</strong><span>Source extracts generated as production-like CSVs.</span></div>
-    <div class="card"><strong>Staging</strong><span>Standardize names, types, dates, identifiers, and source conventions.</span></div>
-    <div class="card"><strong>Intermediate</strong><span>Resolve identities, lifecycle relationships, and reconciliation logic.</span></div>
-    <div class="card"><strong>Facts</strong><span>Define measurable business events at explicit grain.</span></div>
-    <div class="card"><strong>Dimensions</strong><span>Account, customer, segment, region, channel, and time context.</span></div>
-    <div class="card"><strong>Marts</strong><span>Funnel, pipeline, revenue, customer lifecycle, and executive reporting.</span></div>
-  </div>
+<h2>Business Questions</h2>
+<div class="two">
+<div>
+<h3>GTM &amp; Pipeline</h3>
+<ul>
+<li>Which channels generate the strongest pipeline?</li>
+<li>Where does the lead-to-opportunity funnel leak?</li>
+<li>Which stages have the weakest conversion?</li>
+<li>How does sales-cycle length vary by segment?</li>
+<li>Which opportunities show explainable risk signals?</li>
+</ul>
+</div>
+<div>
+<h3>Revenue &amp; Customer</h3>
+<ul>
+<li>How do bookings, billings, and revenue reconcile?</li>
+<li>Which segments contribute the most revenue?</li>
+<li>Which customers expand after initial conversion?</li>
+<li>Which accounts show churn or renewal risk?</li>
+<li>How should GTM capacity be prioritized?</li>
+</ul>
+</div>
+</div>
 </section>
 
 <section>
-  <h2>7. Reconciliation Framework</h2>
-  <p>
-    Revenue reconciliation is treated as an investigation framework rather than a single
-    formula. Each commercial layer should be traceable to its source records and business
-    definition.
-  </p>
-  <table>
-    <thead><tr><th>Layer</th><th>Primary question</th><th>Example diagnostic</th></tr></thead>
-    <tbody>
-      <tr><td>Pipeline</td><td>What business is expected?</td><td>Open opportunity amount by stage and expected close period</td></tr>
-      <tr><td>Bookings</td><td>What business became committed?</td><td>Closed-won opportunities versus contract value</td></tr>
-      <tr><td>Billings</td><td>What was invoiced?</td><td>Invoice amount and timing versus contract terms</td></tr>
-      <tr><td>Recognized Revenue</td><td>What should be recognized?</td><td>Revenue by recognition period and contract term</td></tr>
-      <tr><td>Expansion</td><td>Where did customer value increase?</td><td>Expansion amount by account and renewal cycle</td></tr>
-      <tr><td>Churn</td><td>Where did customer value decline?</td><td>Churned accounts and reasons</td></tr>
-    </tbody>
-  </table>
+<h2>Data Sources</h2>
+<p>
+The first implementation step is a Python synthetic-data generator that creates reproducible,
+production-like source data. The generator produces seven raw datasets.
+</p>
+<table>
+<tr><th>Dataset</th><th>Primary entities / fields</th><th>Analytical purpose</th></tr>
+<tr><td>Marketing Leads</td><td>Lead, account, source, campaign, lifecycle stage</td><td>Demand generation and funnel analysis</td></tr>
+<tr><td>Salesforce Accounts</td><td>Account, segment, industry, region, status</td><td>Customer identity and segmentation</td></tr>
+<tr><td>Salesforce Opportunities</td><td>Opportunity, stage, amount, close dates, owner</td><td>Pipeline and forecast analysis</td></tr>
+<tr><td>Contracts</td><td>Contract, opportunity, value, term, revenue model</td><td>Bookings and commercial reconciliation</td></tr>
+<tr><td>Billing</td><td>Invoice, contract, amount, date, payment status</td><td>Billings and reconciliation</td></tr>
+<tr><td>Product Events</td><td>Account, event, feature, active users</td><td>Adoption and customer-value signals</td></tr>
+<tr><td>Customer Success</td><td>Health score, renewal, expansion, churn reason</td><td>Retention and lifecycle analysis</td></tr>
+</table>
 </section>
 
 <section>
-  <h2>8. Business Analysis Workflow</h2>
-  <div class="step"><div class="num">1</div><div><h3>Start with the business question</h3><p>Define the decision, metric, population, time period, and grain before writing SQL.</p></div></div>
-  <div class="step"><div class="num">2</div><div><h3>Map the data requirement</h3><p>Identify source systems, entities, keys, timestamps, and fields needed to answer the question.</p></div></div>
-  <div class="step"><div class="num">3</div><div><h3>Validate data quality</h3><p>Test uniqueness, completeness, referential integrity, valid dates, and expected business relationships.</p></div></div>
-  <div class="step"><div class="num">4</div><div><h3>Model reusable metrics</h3><p>Build consistent transformations so different reports do not recreate competing metric definitions.</p></div></div>
-  <div class="step"><div class="num">5</div><div><h3>Analyze and investigate</h3><p>Use funnel, pipeline, revenue, usage, and customer-health views to identify drivers and anomalies.</p></div></div>
-  <div class="step"><div class="num">6</div><div><h3>Communicate the decision</h3><p>Translate findings into concise business implications, risks, and recommended actions.</p></div></div>
+<h2>Synthetic Data Strategy</h2>
+<p>
+Synthetic data is used to reproduce the analytical conditions of a fragmented revenue
+environment without depending on confidential company data.
+</p>
+<p>
+The generator intentionally creates imperfect records so the project can demonstrate
+data investigation, validation, reconciliation, and governance rather than only clean-table
+aggregation.
+</p>
+<div class="grid">
+  <div class="card"><b>Identity Issues</b><span>Duplicate account records, missing account IDs, and orphan opportunities.</span></div>
+  <div class="card"><b>Commercial Issues</b><span>Duplicate contract IDs and billing amount/timing mismatches.</span></div>
+  <div class="card"><b>Lifecycle Issues</b><span>Close-date changes, failed/pending payments, and incomplete relationships.</span></div>
+</div>
 </section>
 
 <section>
-  <h2>9. Dashboard / BI Story</h2>
-  <div class="two">
-    <div>
-      <h3>Executive Revenue View</h3>
-      <ul>
-        <li>Pipeline, bookings, billings, and recognized revenue trends</li>
-        <li>Revenue by segment, region, and revenue model</li>
-        <li>Reconciliation exceptions and data-quality status</li>
-      </ul>
-    </div>
-    <div>
-      <h3>GTM &amp; Customer View</h3>
-      <ul>
-        <li>Lead → MQL → SQL → opportunity → closed-won conversion</li>
-        <li>Pipeline coverage and close-date movement</li>
-        <li>Product adoption, customer health, expansion, and churn</li>
-      </ul>
-    </div>
-  </div>
+<h2>Data Quality &amp; Identity Resolution</h2>
+<p>
+Data quality is treated as part of analytics rather than a separate engineering concern.
+Before metrics reach a dashboard, the model should establish reliable keys, expected
+relationships, valid amounts, and defensible grain.
+</p>
+<div class="two">
+<div>
+<h3>Identity resolution</h3>
+<ul>
+<li>Identify duplicate account records.</li>
+<li>Resolve customer/account relationships across sources.</li>
+<li>Flag records with missing or orphaned identifiers.</li>
+<li>Prevent duplicate customer records from inflating metrics.</li>
+</ul>
+</div>
+<div>
+<h3>Metric integrity</h3>
+<ul>
+<li>Validate opportunity → contract relationships.</li>
+<li>Compare contract values with billing activity.</li>
+<li>Investigate invoice timing and amount mismatches.</li>
+<li>Separate data exceptions from legitimate business variation.</li>
+</ul>
+</div>
+</div>
 </section>
 
 <section>
-  <h2>10. Key Takeaways</h2>
-  <div class="quote">
-    The value of Revenue Intelligence is not simply producing more dashboards.
-    It is creating a trusted analytical foundation that connects fragmented GTM and
-    revenue processes, makes metric definitions explicit, surfaces data-quality issues,
-    and gives business teams a common language for revenue performance.
-  </div>
-  <p>
-    This project demonstrates a business-first analytics workflow: start from the
-    revenue lifecycle, build the data foundation, validate its integrity, model
-    reusable metrics, investigate performance, and communicate the implications.
-  </p>
+<h2>Analytical Architecture</h2>
+<p>
+The transformation layer follows a dbt-style architecture that separates source cleanup,
+reusable business logic, and business-facing models.
+</p>
+<div class="diagram">Raw Sources
+    ↓
+Staging
+    ↓
+Intermediate Business Logic
+    ↓
+Facts + Dimensions
+    ↓
+Business Marts
+    ↓
+Dashboard / Analysis / AI</div>
+<div class="grid">
+  <div class="card"><b>Staging</b><span>Standardize names, data types, dates, identifiers, and source conventions.</span></div>
+  <div class="card"><b>Intermediate</b><span>Resolve identities and lifecycle relationships; prepare reusable logic.</span></div>
+  <div class="card"><b>Marts</b><span>Expose pipeline, bookings, billing, revenue, funnel, and customer lifecycle metrics.</span></div>
+</div>
 </section>
 
 <section>
-  <h2>11. Portfolio Skills Demonstrated</h2>
-  <div class="grid">
-    <div class="card"><strong>SQL</strong><span>Joins, aggregation, window functions, funnel and revenue analysis.</span></div>
-    <div class="card"><strong>Data Modeling</strong><span>Layered transformations, facts, dimensions, and metric grain.</span></div>
-    <div class="card"><strong>Revenue Analytics</strong><span>Pipeline, bookings, billings, recognized revenue, NRR drivers.</span></div>
-    <div class="card"><strong>Data Quality</strong><span>Duplicates, missing keys, orphan records, reconciliation exceptions.</span></div>
-    <div class="card"><strong>GTM Analytics</strong><span>Marketing, sales funnel, pipeline, customer lifecycle.</span></div>
-    <div class="card"><strong>Executive Communication</strong><span>Turning complex data into decision-oriented narratives.</span></div>
-  </div>
+<h2>Revenue Reconciliation</h2>
+<p>
+Revenue reconciliation is designed as an investigation framework. The objective is not to
+force all numbers to match, but to explain why different commercial layers legitimately
+differ or where data-quality issues exist.
+</p>
+<table>
+<tr><th>Comparison</th><th>Investigation</th></tr>
+<tr><td>Opportunity → Contract</td><td>Closed-won opportunity value versus contract value.</td></tr>
+<tr><td>Contract → Billing</td><td>Expected commercial value versus invoiced amounts and timing.</td></tr>
+<tr><td>Billing → Revenue</td><td>Invoice activity versus the applicable recognition period.</td></tr>
+<tr><td>Customer Lifecycle</td><td>Expansion and churn movements versus the customer revenue base.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>GTM Funnel &amp; Pipeline Intelligence</h2>
+<p>
+Pipeline risk is not determined by one CRM field. The analysis combines operational and
+historical signals to produce an explainable view of opportunity risk.
+</p>
+<div class="flow">
+<span class="node">Lead Volume</span><span class="arrow">→</span>
+<span class="node">MQL / SQL</span><span class="arrow">→</span>
+<span class="node">Opportunity</span><span class="arrow">→</span>
+<span class="node">Pipeline</span><span class="arrow">→</span>
+<span class="node">Win Rate</span><span class="arrow">→</span>
+<span class="node">Revenue</span>
+</div>
+<p>Potential risk signals include:</p>
+<ul>
+<li>Days in current stage</li>
+<li>Total days open</li>
+<li>Close-date changes</li>
+<li>Time since last activity</li>
+<li>Deal size</li>
+<li>Historical stage conversion</li>
+<li>Account segment</li>
+<li>Product engagement</li>
+</ul>
+<div class="callout">
+<strong>Example decision:</strong> rather than simply reporting a large enterprise pipeline,
+identify whether the opportunities have sufficient activity, realistic close dates, healthy
+stage progression, and historical conversion support.
+</div>
+</section>
+
+<section>
+<h2>Semantic Layer</h2>
+<p>
+A reliable analytics platform requires more than clean tables. It requires consistent
+business definitions.
+</p>
+<div class="diagram">Raw Data
+   ↓
+Business Logic
+   ↓
+Validated Metrics
+   ↓
+Semantic Layer
+   ↙      ↓       ↘
+Dashboard Analysis  AI</div>
+<p>
+The semantic layer should document metric name, business definition, calculation logic,
+filters, grain, source, ownership, valid use cases, and known limitations.
+</p>
+<p>
+This creates a shared analytical language across Sales, Finance, GTM Strategy, Leadership,
+BI, and AI workflows.
+</p>
+</section>
+
+<section>
+<h2>AI-Ready Analytics</h2>
+<p>
+AI is treated as a consumer of governed business data, not as a replacement for the
+analytical foundation.
+</p>
+<div class="diagram">Business Question
+       ↓
+Semantic Context
+       ↓
+Validated Metrics
+       ↓
+Approved SQL
+       ↓
+Warehouse
+       ↓
+Results
+       ↓
+Business Insight
+       ↓
+Recommendation</div>
+<p>
+The objective is to make the revenue data foundation AI-ready by providing consistent
+metric definitions, business context, validated calculations, controlled data access,
+and explainable analytical results.
+</p>
+</section>
+
+<section>
+<h2>Dashboard Strategy</h2>
+<div class="grid">
+<div class="card"><b>1. Executive Revenue</b><span>Bookings, billings, recognized revenue, pipeline, coverage, forecast versus actual, growth, and segment performance.</span></div>
+<div class="card"><b>2. Pipeline &amp; Forecast</b><span>Open pipeline, stage mix, segment concentration, coverage, at-risk opportunities, stalled deals, and expected close.</span></div>
+<div class="card"><b>3. GTM Performance</b><span>Funnel conversion, pipeline generated, win rate, sales cycle, channel, segment, rep performance, and revenue contribution.</span></div>
+</div>
+</section>
+
+<section>
+<h2>Business-First Analytical Workflow</h2>
+<div class="step"><div class="num">1</div><div><h3>Business Problem</h3><p>Identify the decision the organization needs to make.</p></div></div>
+<div class="step"><div class="num">2</div><div><h3>Business Question</h3><p>Translate the problem into measurable analytical questions.</p></div></div>
+<div class="step"><div class="num">3</div><div><h3>Metric Definition</h3><p>Define the metric, grain, population, period, and business rules.</p></div></div>
+<div class="step"><div class="num">4</div><div><h3>Data Requirement</h3><p>Map the required entities, fields, keys, timestamps, and source systems.</p></div></div>
+<div class="step"><div class="num">5</div><div><h3>Data Model</h3><p>Build validated, reusable transformations rather than one-off analysis.</p></div></div>
+<div class="step"><div class="num">6</div><div><h3>Analysis</h3><p>Investigate drivers, conversion gaps, revenue movements, and exceptions.</p></div></div>
+<div class="step"><div class="num">7</div><div><h3>Finding → Recommendation</h3><p>Convert analytical findings into an actionable business recommendation.</p></div></div>
+<div class="step"><div class="num">8</div><div><h3>Measurement</h3><p>Define how the recommendation will be monitored after implementation.</p></div></div>
+</section>
+
+<section>
+<h2>Business Impact Framework</h2>
+<table>
+<tr><th>Area</th><th>Potential business outcome</th><th>Measurement examples</th></tr>
+<tr><td>Revenue Growth</td><td>Improve conversion and customer expansion.</td><td>Win rate, revenue per account, expansion, NRR.</td></tr>
+<tr><td>GTM Efficiency</td><td>Allocate sales and marketing capacity more effectively.</td><td>Pipeline velocity, sales cycle, channel quality.</td></tr>
+<tr><td>Forecast Quality</td><td>Improve visibility into pipeline confidence.</td><td>Coverage, close-date movement, risk classification.</td></tr>
+<tr><td>Data Trust</td><td>Reduce conflicting numbers across teams.</td><td>Data-quality tests, reconciliation exceptions, metric consistency.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Project Deliverables</h2>
+<div class="grid">
+<div class="card"><b>Trusted Revenue Model</b><span>Unified account → opportunity → contract → billing → revenue foundation.</span></div>
+<div class="card"><b>GTM Funnel Analysis</b><span>Conversion gaps and pipeline leakage across the commercial funnel.</span></div>
+<div class="card"><b>Pipeline Intelligence</b><span>Pipeline health, coverage, and explainable opportunity risk.</span></div>
+<div class="card"><b>Revenue Reconciliation</b><span>Investigation of differences across CRM, contract, billing, and revenue layers.</span></div>
+<div class="card"><b>Semantic Layer</b><span>Consistent definitions for reusable business metrics.</span></div>
+<div class="card"><b>Decision Support</b><span>Business recommendations connected to measurable outcomes.</span></div>
+</div>
+</section>
+
+<section>
+<h2>Technical Stack</h2>
+<table>
+<tr><th>Layer</th><th>Technology</th></tr>
+<tr><td>Programming</td><td>Python</td></tr>
+<tr><td>Analytics</td><td>SQL + Python</td></tr>
+<tr><td>Data Warehouse</td><td>BigQuery</td></tr>
+<tr><td>Transformation</td><td>dbt</td></tr>
+<tr><td>Visualization</td><td>Streamlit</td></tr>
+<tr><td>BI / Semantic Modeling</td><td>Looker-ready architecture</td></tr>
+<tr><td>Data Quality</td><td>dbt Tests</td></tr>
+<tr><td>AI</td><td>AI-assisted analytical workflow</td></tr>
+</table>
+<p class="note">
+Looker is treated as a target BI / semantic-layer architecture unless an actual Looker
+deployment is included in the repository.
+</p>
+</section>
+
+<section>
+<h2>Repository Structure</h2>
+<div class="diagram">.
+├── data/
+│   └── raw/
+│       ├── raw_marketing_leads.csv
+│       ├── raw_salesforce_accounts.csv
+│       ├── raw_salesforce_opportunities.csv
+│       ├── raw_contracts.csv
+│       ├── raw_billing.csv
+│       ├── raw_product_events.csv
+│       └── raw_customer_success.csv
+│
+├── dbt/
+│   └── models/
+│       ├── staging/
+│       ├── intermediate/
+│       └── marts/
+│
+├── scripts/
+│   ├── generate_synthetic_data.py
+│   ├── run_revenue_reconciliation.py
+│   ├── run_pipeline_analysis.py
+│   ├── detect_pipeline_risk.py
+│   └── generate_ai_insights.py
+│
+├── app/
+│   └── app.py
+│
+├── docs/
+│   ├── business_requirements.md
+│   ├── metric_definitions.md
+│   ├── data_dictionary.md
+│   ├── revenue_mapping.md
+│   ├── semantic_layer.md
+│   └── analysis_findings.md
+│
+├── requirements.txt
+└── README.md</div>
+</section>
+
+<section>
+<h2>Quickstart</h2>
+<div class="step"><div class="num">1</div><div><h3>Generate Synthetic Data</h3><div class="diagram">python scripts/generate_synthetic_data.py</div></div></div>
+<div class="step"><div class="num">2</div><div><h3>Run dbt</h3><div class="diagram">dbt run</div></div></div>
+<div class="step"><div class="num">3</div><div><h3>Run Data Quality Tests</h3><div class="diagram">dbt test</div></div></div>
+<div class="step"><div class="num">4</div><div><h3>Run Revenue Reconciliation</h3><div class="diagram">python scripts/run_revenue_reconciliation.py</div></div></div>
+<div class="step"><div class="num">5</div><div><h3>Run Pipeline Analysis</h3><div class="diagram">python scripts/run_pipeline_analysis.py</div></div></div>
+<div class="step"><div class="num">6</div><div><h3>Launch Dashboard</h3><div class="diagram">streamlit run app/app.py</div></div></div>
+</section>
+
+<section>
+<h2>Current Scope &amp; Limitations</h2>
+<p>
+This portfolio project uses synthetic production-like data. The generated data is intended
+to demonstrate analytical architecture, data-quality investigation, revenue modeling, and
+decision workflows; it does not represent actual company performance.
+</p>
+<p>
+At the current stage, this case study describes the analytical framework and intended
+decision outputs. Quantitative business findings should be added only after the raw data,
+transformations, reconciliation logic, and analyses have been executed and validated.
+</p>
+</section>
+
+<section>
+<h2>Key Takeaway</h2>
+<div class="quote">
+The goal is not to build a complicated data pipeline.
+The goal is to create a trusted analytical foundation that helps the business make better
+revenue decisions.
+</div>
+<p>
+The project demonstrates how a business analyst can move from fragmented GTM data to
+business-ready analytics: understand the commercial lifecycle, define metrics, establish
+data quality, model reusable logic, investigate revenue and pipeline performance, and
+ultimately connect findings to decisions.
+</p>
 </section>
 
 </main>
 
 <footer>
-  <strong>Revenue Intelligence &amp; GTM Analytics</strong><br>
+<strong>Revenue Intelligence &amp; GTM Analytics</strong><br>
 </footer>
-
 </div>
 </body>
 </html>
