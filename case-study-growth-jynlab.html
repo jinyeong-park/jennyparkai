@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,16 +7,19 @@
 
   <title>Multi-Touch Attribution & Incrementality Analytics — Jenny Park</title>
 
-  <meta
-    name="description"
-    content="Case study: Building an end-to-end marketing measurement system using five multi-touch attribution models and geo-holdout incrementality testing to identify true channel impact and optimize marketing spend."
-  >
+<meta
+name="description"
+content="Case study: Building an end-to-end marketing measurement system using five multi-touch attribution models and geo-holdout incrementality testing to identify true channel impact and optimize marketing spend."
+
+>
 
   <!-- Favicon -->
+
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="images/favicon.svg">
 
   <!-- Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -26,21 +30,16 @@
 
   <style>
 
-    /* ─────────────────────────────────────────────
-       TOKENS — shared with portfolio
-    ───────────────────────────────────────────── */
-
     :root {
-
-      --surface:    #FFFFFF;
-      --raised:     #F2F1EE;
-      --ink:        #0C0C0C;
-      --muted:      #6F6C66;
-      --accent:     #A85C13;
-      --on-accent:  #FFFFFF;
+      --surface: #FFFFFF;
+      --raised: #F2F1EE;
+      --ink: #0C0C0C;
+      --muted: #6F6C66;
+      --accent: #A85C13;
+      --on-accent: #FFFFFF;
 
       --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body:    'Instrument Sans', system-ui, sans-serif;
+      --font-body: 'Instrument Sans', system-ui, sans-serif;
 
       --s1: 0.25rem;
       --s2: 0.5rem;
@@ -54,2520 +53,1772 @@
       --s10: 8rem;
 
       --radius: 0px;
-
       --line: 1px solid #E0DDD8;
-
       --t-fast: 150ms;
-
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
-
     }
-
 
     *, *::before, *::after {
-
       box-sizing: border-box;
-
       margin: 0;
-
       padding: 0;
-
     }
-
 
     html {
-
       scroll-behavior: smooth;
-
     }
-
 
     body {
-
       font-family: var(--font-body);
-
       background: var(--surface);
-
       color: var(--ink);
-
       line-height: 1.6;
-
       -webkit-font-smoothing: antialiased;
-
     }
-
 
     a {
-
       color: inherit;
-
       text-decoration: none;
-
     }
 
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
 
     .wrap {
-
       max-width: 800px;
-
       margin-inline: auto;
-
       padding-inline: var(--s6);
-
     }
 
-
-    /* ─────────────────────────────────────────────
-       HEADER
-    ───────────────────────────────────────────── */
-
+    /* HEADER */
 
     .site-header {
-
       position: sticky;
-
       top: 0;
-
       z-index: 50;
-
       background: var(--surface);
-
       border-bottom: var(--line);
-
     }
-
 
     .site-header .wrap {
-
       max-width: 1200px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       height: 56px;
-
     }
-
 
     .wordmark {
-
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-
       font-size: 0.9375rem;
-
       font-weight: 700;
-
       color: var(--ink);
-
     }
-
 
     .header-back {
-
       display: inline-flex;
-
       align-items: center;
-
       gap: var(--s2);
-
       font-size: 0.875rem;
-
       font-weight: 500;
-
       color: var(--muted);
-
       transition: color var(--t-fast) var(--ease);
-
     }
-
 
     .header-back:hover {
-
       color: var(--ink);
-
     }
-
 
     .header-back svg {
-
       flex-shrink: 0;
-
     }
 
-
-    /* ─────────────────────────────────────────────
-       CASE STUDY HERO
-    ───────────────────────────────────────────── */
-
+    /* HERO */
 
     .cs-hero {
-
       padding-block: var(--s8) var(--s7);
-
       border-bottom: var(--line);
-
     }
-
 
     .cs-hero .wrap {
-
       max-width: 800px;
-
     }
-
 
     .cs-kicker {
-
       display: flex;
-
       align-items: center;
-
       gap: var(--s3);
-
       font-size: 0.6875rem;
-
       font-weight: 600;
-
       letter-spacing: 0.1em;
-
       text-transform: uppercase;
-
       color: var(--muted);
-
       margin-bottom: var(--s5);
-
     }
-
 
     .cs-kicker-dot {
-
       width: 4px;
-
       height: 4px;
-
       border-radius: 50%;
-
       background: var(--muted);
-
       flex-shrink: 0;
-
     }
-
 
     .cs-hero h1 {
-
       font-family: var(--font-display);
-
       font-weight: 400;
-
       font-size: clamp(2rem, 5vw, 3rem);
-
       line-height: 1.15;
-
       color: var(--ink);
-
       margin-bottom: var(--s5);
-
       max-width: 22ch;
-
     }
-
 
     .cs-hero-lead {
-
       font-size: 1.0625rem;
-
       line-height: 1.7;
-
       color: var(--muted);
-
       max-width: 60ch;
-
       margin-bottom: var(--s6);
-
     }
-
 
     .cs-meta-row {
-
       display: flex;
-
       flex-wrap: wrap;
-
       gap: var(--s5);
-
       padding-top: var(--s5);
-
       border-top: var(--line);
-
     }
-
 
     .cs-meta-item {
-
       display: flex;
-
       flex-direction: column;
-
       gap: 2px;
-
     }
-
 
     .cs-meta-label {
-
       font-size: 0.6875rem;
-
       font-weight: 600;
-
       letter-spacing: 0.08em;
-
       text-transform: uppercase;
-
       color: var(--muted);
-
     }
-
 
     .cs-meta-value {
-
       font-size: 0.9375rem;
-
       font-weight: 500;
-
       color: var(--ink);
-
     }
 
-
-    /* ─────────────────────────────────────────────
-       STAT STRIP
-    ───────────────────────────────────────────── */
-
+    /* STAT STRIP */
 
     .stat-strip {
-
       background: var(--raised);
-
       border-bottom: var(--line);
-
       padding-block: var(--s6);
-
     }
-
 
     .stat-strip .wrap {
-
       max-width: 800px;
-
       display: grid;
-
       grid-template-columns: repeat(3, 1fr);
-
       gap: var(--s6);
-
     }
-
 
     .stat-item {
-
       display: flex;
-
       flex-direction: column;
-
       gap: var(--s1);
-
     }
-
 
     .stat-value {
-
       font-family: var(--font-display);
-
       font-size: 2.25rem;
-
       font-weight: 400;
-
       color: var(--accent);
-
       line-height: 1;
-
     }
-
 
     .stat-label {
-
       font-size: 0.8125rem;
-
       color: var(--muted);
-
       line-height: 1.4;
-
     }
 
-
-    /* ─────────────────────────────────────────────
-       BODY CONTENT
-    ───────────────────────────────────────────── */
-
+    /* BODY */
 
     .cs-body {
-
       padding-block: var(--s8);
-
     }
-
-
-    .cs-body .wrap {
-
-      max-width: 800px;
-
-    }
-
 
     .cs-section {
-
       margin-bottom: var(--s8);
-
     }
-
 
     .cs-section:last-child {
-
       margin-bottom: 0;
-
     }
-
 
     .cs-section-label {
-
       font-size: 0.6875rem;
-
       font-weight: 600;
-
       letter-spacing: 0.1em;
-
       text-transform: uppercase;
-
       color: var(--muted);
-
       margin-bottom: var(--s4);
-
     }
-
 
     .cs-section h2 {
-
       font-family: var(--font-display);
-
       font-weight: 400;
-
       font-size: 1.625rem;
-
       line-height: 1.2;
-
       color: var(--ink);
-
       margin-bottom: var(--s4);
-
     }
-
 
     .cs-section h3 {
-
       font-size: 1rem;
-
       font-weight: 600;
-
       color: var(--ink);
-
       margin-bottom: var(--s3);
-
       margin-top: var(--s5);
-
     }
-
 
     .cs-section p {
-
       font-size: 1rem;
-
       line-height: 1.75;
-
       color: var(--muted);
-
       margin-bottom: var(--s4);
-
     }
-
 
     .cs-section ul {
-
       list-style: none;
-
-      padding: 0;
-
       margin-bottom: var(--s4);
-
     }
-
 
     .cs-section ul li {
-
       font-size: 1rem;
-
       line-height: 1.7;
-
       color: var(--muted);
-
       padding-left: var(--s5);
-
       position: relative;
-
       margin-bottom: var(--s2);
-
     }
-
 
     .cs-section ul li::before {
-
       content: '—';
-
       position: absolute;
-
       left: 0;
-
       color: var(--accent);
-
-      font-weight: 400;
-
     }
 
-
-    .cs-section ul li strong {
-
+    .cs-section ul li strong,
+    .cs-section p strong {
       color: var(--ink);
-
       font-weight: 600;
-
     }
 
-
-    /* ─────────────────────────────────────────────
-       PROBLEM BLOCK
-    ───────────────────────────────────────────── */
-
+    /* PROBLEM BLOCK */
 
     .problem-block {
-
       background: var(--raised);
-
       border-left: 3px solid var(--accent);
-
       padding: var(--s5) var(--s6);
-
       margin-bottom: var(--s4);
-
     }
-
 
     .problem-block p {
-
       margin-bottom: 0;
-
       color: var(--ink);
-
     }
 
-
-    /* ─────────────────────────────────────────────
-       DATA TABLE
-    ───────────────────────────────────────────── */
-
+    /* TABLE */
 
     .table-wrapper {
-
       overflow-x: auto;
-
       margin-bottom: var(--s6);
-
       border: var(--line);
-
     }
-
 
     .cs-table {
-
       width: 100%;
-
       border-collapse: collapse;
-
       font-size: 0.875rem;
-
     }
-
 
     .cs-table thead {
-
       background: var(--raised);
-
     }
-
 
     .cs-table th {
-
       text-align: left;
-
       font-size: 0.6875rem;
-
       font-weight: 600;
-
       letter-spacing: 0.06em;
-
       text-transform: uppercase;
-
       color: var(--muted);
-
       padding: var(--s3) var(--s4);
-
       border-bottom: var(--line);
-
       white-space: nowrap;
-
     }
-
 
     .cs-table td {
-
       padding: var(--s3) var(--s4);
-
       border-bottom: var(--line);
-
       color: var(--muted);
-
       line-height: 1.4;
-
     }
-
 
     .cs-table tr:last-child td {
-
       border-bottom: none;
-
     }
-
 
     .cs-table td:first-child {
-
       color: var(--ink);
-
       font-weight: 500;
-
     }
 
-
-    .cs-table .highlight-row td {
-
-      background: color-mix(
-        in srgb,
-        var(--accent) 6%,
-        var(--surface)
-      );
-
-      color: var(--ink);
-
+    .incremental-roas {
+      color: var(--accent) !important;
       font-weight: 600;
-
     }
 
-
-    .cs-table .true-roas {
-
-      color: var(--accent);
-
-      font-weight: 600;
-
-    }
-
-
-    /* ─────────────────────────────────────────────
-       IMPACT CARDS
-    ───────────────────────────────────────────── */
-
+    /* IMPACT */
 
     .impact-grid {
-
       display: grid;
-
       grid-template-columns: repeat(3, 1fr);
-
       gap: var(--s4);
-
       margin-bottom: var(--s6);
-
     }
-
 
     .impact-card {
-
       border: var(--line);
-
       padding: var(--s5);
-
       background: var(--surface);
-
     }
-
 
     .impact-card .ic-value {
-
       font-family: var(--font-display);
-
       font-size: 2rem;
-
       color: var(--accent);
-
       line-height: 1;
-
       margin-bottom: var(--s2);
-
     }
-
 
     .impact-card .ic-label {
-
       font-size: 0.875rem;
-
       color: var(--ink);
-
       font-weight: 500;
-
       margin-bottom: var(--s1);
-
     }
-
 
     .impact-card .ic-desc {
-
       font-size: 0.8125rem;
-
       color: var(--muted);
-
       line-height: 1.5;
-
     }
 
-
-    /* ─────────────────────────────────────────────
-       TECH STACK
-    ───────────────────────────────────────────── */
-
+    /* TECH */
 
     .tech-grid {
-
       display: flex;
-
       flex-wrap: wrap;
-
       gap: var(--s2);
-
     }
-
 
     .tech-tag {
-
       font-size: 0.75rem;
-
       font-weight: 500;
-
       color: var(--muted);
-
       background: var(--raised);
-
       border: var(--line);
-
       padding: var(--s1) var(--s3);
-
       letter-spacing: 0.02em;
-
     }
-
-
-    /* ─────────────────────────────────────────────
-       DIVIDER
-    ───────────────────────────────────────────── */
-
 
     .cs-divider {
-
       border: none;
-
       border-top: var(--line);
-
       margin-block: var(--s7);
-
     }
 
-
-    /* ─────────────────────────────────────────────
-       FOOTER CTA
-    ───────────────────────────────────────────── */
-
+    /* FOOTER CTA */
 
     .cs-footer-cta {
-
       background: var(--raised);
-
       border-top: var(--line);
-
       padding-block: var(--s7);
-
     }
-
 
     .cs-footer-cta .wrap {
-
       max-width: 800px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       gap: var(--s6);
-
       flex-wrap: wrap;
-
     }
-
 
     .cs-footer-cta h3 {
-
       font-family: var(--font-display);
-
       font-weight: 400;
-
       font-size: 1.375rem;
-
       color: var(--ink);
-
       margin-bottom: var(--s2);
-
     }
-
 
     .cs-footer-cta p {
-
       font-size: 0.9375rem;
-
       color: var(--muted);
-
     }
-
 
     .btn {
-
       display: inline-flex;
-
       align-items: center;
-
       gap: var(--s2);
-
       font-family: var(--font-body);
-
       font-size: 0.875rem;
-
       font-weight: 600;
-
       padding: var(--s3) var(--s5);
-
       border-radius: var(--radius);
-
       cursor: pointer;
-
-      transition:
-        background var(--t-fast) var(--ease),
-        color var(--t-fast) var(--ease),
-        border-color var(--t-fast) var(--ease);
-
+      transition: background var(--t-fast) var(--ease),
+                  color var(--t-fast) var(--ease),
+                  border-color var(--t-fast) var(--ease);
       border: 1.5px solid transparent;
-
       white-space: nowrap;
-
     }
-
 
     .btn--primary {
-
       background: var(--accent);
-
       color: var(--on-accent);
-
       border-color: var(--accent);
-
     }
-
 
     .btn--primary:hover {
-
       background: #924f10;
-
       border-color: #924f10;
-
     }
-
 
     .btn--secondary {
-
       background: transparent;
-
       color: var(--ink);
-
       border-color: var(--ink);
-
     }
-
 
     .btn--secondary:hover {
-
       background: var(--ink);
-
       color: var(--surface);
-
     }
 
-
-    /* ─────────────────────────────────────────────
-       SITE FOOTER
-    ───────────────────────────────────────────── */
-
+    /* SITE FOOTER */
 
     .site-footer {
-
       padding-block: var(--s6);
-
       border-top: var(--line);
-
     }
-
 
     .site-footer .wrap {
-
       max-width: 1200px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       flex-wrap: wrap;
-
       gap: var(--s4);
-
     }
-
 
     .footer-name {
-
-      font-family:
-        'Plus Jakarta Sans',
-        system-ui,
-        sans-serif;
-
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       font-size: 0.9375rem;
-
       font-weight: 700;
-
       color: var(--ink);
-
     }
-
 
     .footer-location {
-
       font-size: 0.8125rem;
-
       color: var(--muted);
-
     }
 
+    /* JOURNEY FLOW */
 
-    /* ─────────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────────── */
+    .journey-flow {
+      border: var(--line);
+      margin-block: var(--s5);
+      background: var(--surface);
+    }
 
+    .journey-step {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      align-items: center;
+      gap: var(--s4);
+      padding: var(--s4) var(--s5);
+      border-bottom: var(--line);
+    }
+
+    .journey-step:last-child {
+      border-bottom: none;
+    }
+
+    .journey-number {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--ink);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .journey-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .journey-channel {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .journey-stage {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    .journey-role {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* ATTRIBUTION CHART */
+
+    .attribution-chart {
+      border: var(--line);
+      margin-block: var(--s6);
+      background: var(--surface);
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--s4);
+      padding: var(--s4) var(--s5);
+      background: var(--raised);
+      border-bottom: var(--line);
+    }
+
+    .chart-header-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .chart-header-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .chart-body {
+      padding: var(--s5);
+    }
+
+    .chart-row {
+      margin-bottom: var(--s5);
+    }
+
+    .chart-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .chart-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--s2);
+    }
+
+    .chart-channel {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .chart-value {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .chart-track {
+      width: 100%;
+      height: 8px;
+      background: var(--raised);
+      overflow: hidden;
+    }
+
+    .chart-bar {
+      height: 100%;
+      background: var(--ink);
+    }
+
+    .chart-bar--accent {
+      background: var(--accent);
+    }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s4);
+      padding: var(--s4) var(--s5);
+      border-top: var(--line);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--ink);
+    }
+
+    .legend-dot--accent {
+      background: var(--accent);
+    }
+
+    /* ROAS */
+
+    .roas-comparison {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--s4);
+      margin-block: var(--s6);
+    }
+
+    .roas-card {
+      border: var(--line);
+      padding: var(--s5);
+      background: var(--surface);
+    }
+
+    .roas-card--highlight {
+      background: var(--raised);
+      border-left: 3px solid var(--accent);
+    }
+
+    .roas-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s3);
+    }
+
+    .roas-value {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: var(--s2);
+    }
+
+    .roas-card--highlight .roas-value {
+      color: var(--accent);
+    }
+
+    .roas-desc {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    /* BUDGET */
+
+    .budget-visual {
+      border: var(--line);
+      margin-block: var(--s6);
+      background: var(--surface);
+    }
+
+    .budget-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .budget-column {
+      padding: var(--s5);
+    }
+
+    .budget-column:first-child {
+      border-right: var(--line);
+    }
+
+    .budget-title {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s5);
+    }
+
+    .budget-row {
+      margin-bottom: var(--s5);
+    }
+
+    .budget-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .budget-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: var(--s2);
+    }
+
+    .budget-track {
+      height: 10px;
+      background: var(--raised);
+      overflow: hidden;
+    }
+
+    .budget-bar {
+      height: 100%;
+      background: var(--ink);
+    }
+
+    .budget-bar--accent {
+      background: var(--accent);
+    }
+
+    .budget-change {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      margin-left: var(--s2);
+    }
+
+    .budget-change--down {
+      color: var(--muted);
+    }
+
+    .budget-change--up {
+      color: var(--accent);
+    }
+
+    .budget-summary {
+      border-top: var(--line);
+      padding: var(--s5);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      background: var(--raised);
+    }
+
+    .budget-summary-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+
+    .budget-summary-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .budget-summary-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* RESPONSIVE */
 
     @media (max-width: 640px) {
 
       .wrap {
-
         padding-inline: var(--s4);
-
       }
 
       .stat-strip .wrap {
-
-        grid-template-columns: 1fr 1fr;
-
+        grid-template-columns: 1fr;
       }
 
       .impact-grid {
-
         grid-template-columns: 1fr;
-
       }
 
       .cs-footer-cta .wrap {
-
         flex-direction: column;
-
         align-items: flex-start;
-
       }
 
       .cs-hero {
-
         padding-block: var(--s6) var(--s5);
-
       }
 
+      .journey-step {
+        grid-template-columns: 36px 1fr;
+      }
+
+      .journey-role {
+        grid-column: 2;
+        padding-top: var(--s1);
+      }
+
+      .chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .chart-header-note {
+        text-align: left;
+      }
+
+      .roas-comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .budget-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .budget-column:first-child {
+        border-right: none;
+        border-bottom: var(--line);
+      }
+
+      .budget-summary {
+        grid-template-columns: 1fr;
+      }
     }
 
   </style>
 
 </head>
 
-
 <body>
 
-
-  <!-- ───────────────── HEADER ───────────────── -->
-
-
   <header class="site-header">
-
     <div class="wrap">
 
-      <a href="index.html" class="wordmark">
+```
+  <a href="index.html" class="wordmark">
+    Jenny Park
+  </a>
 
-        Jenny Park
+  <a href="index.html#work" class="header-back">
 
-      </a>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d="M10 12L6 8L10 4"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
 
+    Back to work
 
-      <a href="index.html#work" class="header-back">
+  </a>
 
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          aria-hidden="true"
-        >
-
-          <path
-            d="M10 12L6 8L10 4"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-
-        </svg>
-
-        Back to work
-
-      </a>
-
-    </div>
+</div>
+```
 
   </header>
 
-
-  <!-- ───────────────── HERO ───────────────── -->
-
-
   <section class="cs-hero">
-
     <div class="wrap">
 
+```
+  <p class="cs-kicker">
+    <span>Growth &amp; Marketing Analytics</span>
+    <span class="cs-kicker-dot" aria-hidden="true"></span>
+  </p>
 
-      <p class="cs-kicker">
+  <h1>
+    Multi-Touch Attribution &amp; Incrementality Analytics
+  </h1>
 
-        <span>Growth & Marketing Analytics</span>
+  <p class="cs-hero-lead">
+    Built an end-to-end marketing measurement system that reconstructs
+    multi-channel customer journeys, compares five attribution models,
+    and validates true channel impact through geo-holdout incrementality
+    testing to identify attribution overlap and optimize marketing spend.
+  </p>
 
-        <span
-          class="cs-kicker-dot"
-          aria-hidden="true"
-        ></span>
+  <div class="cs-meta-row">
 
-
-
-      </p>
-
-
-      <h1>
-
-        Multi-Touch Attribution &amp; Incrementality Analytics
-
-      </h1>
-
-
-      <p class="cs-hero-lead">
-
-        Built an end-to-end marketing measurement system that reconstructs
-        multi-channel customer journeys, compares five attribution models,
-        and validates true channel impact through geo-holdout incrementality
-        testing to identify platform over-reporting and optimize marketing spend.
-
-      </p>
-
-
-      <div class="cs-meta-row">
-
-
-        <div class="cs-meta-item">
-
-          <span class="cs-meta-label">
-
-            Project
-
-          </span>
-
-          <span class="cs-meta-value">
-
-            Marketing Measurement Project
-
-          </span>
-
-        </div>
-
-
-        <div class="cs-meta-item">
-
-          <span class="cs-meta-label">
-
-            Role
-
-          </span>
-
-          <span class="cs-meta-value">
-
-            Data &amp; Growth Analyst
-
-          </span>
-
-        </div>
-
-
-        <div class="cs-meta-item">
-
-          <span class="cs-meta-label">
-
-            Methods
-
-          </span>
-
-          <span class="cs-meta-value">
-
-            MTA, Geo-Holdout, Incrementality
-
-          </span>
-
-        </div>
-
-
-        <div class="cs-meta-item">
-
-          <span class="cs-meta-label">
-
-            Tools
-
-          </span>
-
-          <span class="cs-meta-value">
-
-            SQL, Python, PostgreSQL, Streamlit
-
-          </span>
-
-        </div>
-
-
-      </div>
-
-
+    <div class="cs-meta-item">
+      <span class="cs-meta-label">Project</span>
+      <span class="cs-meta-value">Marketing Measurement Project</span>
     </div>
 
-  </section>
+    <div class="cs-meta-item">
+      <span class="cs-meta-label">Role</span>
+      <span class="cs-meta-value">Data &amp; Growth Analyst</span>
+    </div>
 
+    <div class="cs-meta-item">
+      <span class="cs-meta-label">Methods</span>
+      <span class="cs-meta-value">MTA, Geo-Holdout, Incrementality</span>
+    </div>
 
-  <!-- ───────────────── STAT STRIP ───────────────── -->
-
-
-  <div
-    class="stat-strip"
-    aria-label="Key results"
-  >
-
-    <div class="wrap">
-
-
-      <div class="stat-item">
-
-        <span class="stat-value">
-
-          14.2%
-
-        </span>
-
-        <span class="stat-label">
-
-          Modeled reduction in Blended CAC
-
-        </span>
-
-      </div>
-
-
-      <div class="stat-item">
-
-        <span class="stat-value">
-
-          34%
-
-        </span>
-
-        <span class="stat-label">
-
-          Platform over-reporting identified
-
-        </span>
-
-      </div>
-
-
-      <div class="stat-item">
-
-        <span class="stat-value">
-
-          $100K
-
-        </span>
-
-        <span class="stat-label">
-
-          Modeled budget reallocation
-
-        </span>
-
-      </div>
-
-
+    <div class="cs-meta-item">
+      <span class="cs-meta-label">Tools</span>
+      <span class="cs-meta-value">SQL, Python, PostgreSQL, Streamlit</span>
     </div>
 
   </div>
 
-
-  <!-- ───────────────── BODY ───────────────── -->
-
-
-  <main class="cs-body">
-
-
-    <div class="wrap">
-
-
-      <!-- ───────────────── PROBLEM ───────────────── -->
-
-
-      <section class="cs-section">
-
-
-        <p class="cs-section-label">
-
-          The Problem
-
-        </p>
-
-
-        <h2>
-
-          Platform Numbers Didn't Add Up
-
-        </h2>
-
-
-        <div class="problem-block">
-
-          <p>
-
-            <strong>Attribution Overlap:</strong>
-
-            Meta, Google, and TikTok each reported conversions using their own
-            attribution windows. The same customer journey could therefore be
-            credited to multiple platforms, overstating total marketing performance.
-
-          </p>
-
-        </div>
-
-
-        <div class="problem-block">
-
-          <p>
-
-            <strong>Demand Capture vs. Demand Creation:</strong>
-
-            Meta Retargeting reported strong ROAS, but platform attribution alone
-            could not determine whether those conversions were actually caused by
-            advertising or would have occurred through Organic, Direct, or another
-            marketing channel.
-
-          </p>
-
-        </div>
-
-
-        <p>
-
-          The core business problem was not simply determining which channel
-          received credit for a conversion.
-
-          It was determining:
-
-          <strong>
-
-            Which channels actually created additional customer demand?
-
-          </strong>
-
-        </p>
-
-
-      </section>
-
-
-      <hr class="cs-divider">
-
-
-      <!-- ───────────────── APPROACH ───────────────── -->
-
-
-      <section class="cs-section">
-
-
-        <p class="cs-section-label">
-
-          Approach
-
-        </p>
-
-
-        <h2>
-
-          From Raw Touchpoints to Marketing Decisions
-
-        </h2>
-
-
-        <h3>
-
-          1. Unified Marketing Data Pipeline
-
-        </h3>
-
-
-        <p>
-
-          The analysis combines marketing spend, user touchpoints, campaign
-          metadata, and backend conversion records into a unified analytical dataset.
-
-        </p>
-
-
-        <ul>
-
-          <li>
-
-            <strong>Ad Spend Data:</strong>
-
-            Campaign spend and platform-reported metrics from Meta,
-            Google Search, and TikTok.
-
-          </li>
-
-
-          <li>
-
-            <strong>User Touchpoint Logs:</strong>
-
-            Clickstream events containing user IDs, timestamps,
-            channels, campaigns, and UTM parameters.
-
-          </li>
-
-
-          <li>
-
-            <strong>Backend Conversions:</strong>
-
-            Ground-truth purchase records used to validate conversion
-            events independently of ad platform claims.
-
-          </li>
-
-        </ul>
-
-
-        <h3>
-
-          2. Customer Journey Reconstruction
-
-        </h3>
-
-
-        <p>
-
-          Before assigning attribution, customer interactions were reconstructed
-          chronologically to understand how users moved across channels before
-          converting.
-
-        </p>
-
-
-        <p>
-
-          Example journey:
-
-        </p>
-
-
-        <div class="problem-block">
-
-          <p>
-
-            TikTok Ad<br>
-            ↓<br>
-            Google Search<br>
-            ↓<br>
-            Meta Retargeting<br>
-            ↓<br>
-            Purchase
-
-          </p>
-
-        </div>
-
-
-        <p>
-
-          PostgreSQL window functions and CTEs were used to sequence
-          touchpoints, identify first and last interactions, and calculate
-          each channel's position within the customer journey.
-
-        </p>
-
-
-        <h3>
-
-          3. SQL Multi-Touch Attribution
-
-        </h3>
-
-
-        <p>
-
-          Built a SQL-based attribution layer using PostgreSQL window functions,
-          CTEs, and customer journey sequencing to compare five attribution
-          models side-by-side.
-
-        </p>
-
-
-        <ul>
-
-
-          <li>
-
-            <strong>First-Touch:</strong>
-
-            Credits the channel responsible for customer discovery.
-
-          </li>
-
-
-          <li>
-
-            <strong>Last-Touch:</strong>
-
-            Credits the final interaction before conversion.
-
-          </li>
-
-
-          <li>
-
-            <strong>Linear:</strong>
-
-            Distributes credit equally across all touchpoints.
-
-          </li>
-
-
-          <li>
-
-            <strong>Time-Decay:</strong>
-
-            Assigns greater credit to interactions closer to conversion.
-
-          </li>
-
-
-          <li>
-
-            <strong>Position-Based:</strong>
-
-            Assigns greater weight to the first and last touchpoints while
-            distributing the remaining credit across middle interactions.
-
-          </li>
-
-
-        </ul>
-
-
-        <h3>
-
-          4. Geo-Holdout Incrementality Testing
-
-        </h3>
-
-
-        <p>
-
-          Attribution models estimate which channels should receive credit.
-
-          Incrementality testing answers a different question:
-
-        </p>
-
-
-        <div class="problem-block">
-
-          <p>
-
-            <strong>
-
-              Would this conversion have happened without the marketing intervention?
-
-            </strong>
-
-          </p>
-
-        </div>
-
-
-        <ul>
-
-          <li>
-
-            Conducted a
-
-            <strong>30-day matched-market geo-holdout experiment</strong>
-
-            across treatment and control DMAs.
-
-          </li>
-
-
-          <li>
-
-            Compared conversion outcomes between markets where campaigns
-            remained active and matched markets where campaigns were held out.
-
-          </li>
-
-
-          <li>
-
-            Estimated
-
-            <strong>Incremental Conversions</strong>,
-
-            <strong>Conversion Lift</strong>,
-
-            <strong>Incremental CAC</strong>,
-
-            and
-
-            <strong>Incremental ROAS</strong>.
-
-          </li>
-
-        </ul>
-
-
-      </section>
-
-
-      <hr class="cs-divider">
-
-
-      <!-- ───────────────── ATTRIBUTION FINDINGS ───────────────── -->
-
-
-      <section class="cs-section">
-
-
-        <p class="cs-section-label">
-
-          Attribution Findings
-
-        </p>
-
-
-        <h2>
-
-          Attribution Changes the Story
-
-        </h2>
-
-
-        <p>
-
-          Comparing multiple attribution models showed that channel performance
-          depended heavily on how conversion credit was assigned.
-
-        </p>
-
-
-        <div class="table-wrapper">
-
-
-          <table
-            class="cs-table"
-            aria-label="Attribution model comparison"
-          >
-
-
-            <thead>
-
-              <tr>
-
-                <th>Channel</th>
-
-                <th>Platform</th>
-
-                <th>First</th>
-
-                <th>Last</th>
-
-                <th>Linear</th>
-
-                <th>Time-Decay</th>
-
-                <th>Position</th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody>
-
-
-              <tr>
-
-                <td>Meta Paid Social</td>
-
-                <td>3.25x</td>
-
-                <td>2.38x</td>
-
-                <td>1.46x</td>
-
-                <td>2.05x</td>
-
-                <td>1.72x</td>
-
-                <td>1.88x</td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>Google Paid Search</td>
-
-                <td>2.80x</td>
-
-                <td>1.95x</td>
-
-                <td>3.10x</td>
-
-                <td>2.54x</td>
-
-                <td>2.88x</td>
-
-                <td>2.76x</td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>TikTok Ads</td>
-
-                <td>1.60x</td>
-
-                <td>2.45x</td>
-
-                <td>0.90x</td>
-
-                <td>1.78x</td>
-
-                <td>1.42x</td>
-
-                <td>2.10x</td>
-
-              </tr>
-
-
-            </tbody>
-
-
-          </table>
-
-
-        </div>
-
-
-        <p>
-
-          Meta appeared strongest under platform-reported attribution but
-          consistently received less credit when the full customer journey
-          was considered.
-
-        </p>
-
-
-        <p>
-
-          TikTok showed the opposite pattern: weak last-touch performance
-          but strong first-touch and position-based performance, suggesting
-          that the channel contributed more to
-
-          <strong>demand creation</strong>
-
-          than demand capture.
-
-        </p>
-
-
-      </section>
-
-
-      <hr class="cs-divider">
-
-
-      <!-- ───────────────── INCREMENTALITY FINDINGS ───────────────── -->
-
-
-      <section class="cs-section">
-
-
-        <p class="cs-section-label">
-
-          Incrementality Findings
-
-        </p>
-
-
-        <h2>
-
-          The Incrementality Reality Check
-
-        </h2>
-
-
-        <p>
-
-          Attribution models provide different ways to distribute credit.
-          Incrementality testing was used to validate whether that attributed
-          performance translated into true causal impact.
-
-        </p>
-
-
-        <div class="table-wrapper">
-
-
-          <table
-            class="cs-table"
-            aria-label="Incrementality comparison"
-          >
-
-
-            <thead>
-
-              <tr>
-
-                <th>Channel</th>
-
-                <th>Platform ROAS</th>
-
-                <th>Attributed ROAS Range</th>
-
-                <th>Incremental ROAS</th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody>
-
-
-              <tr>
-
-                <td>Meta Paid Social</td>
-
-                <td>3.25x</td>
-
-                <td>1.46x – 2.38x</td>
-
-                <td class="true-roas">
-
-                  1.26x
-
-                </td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>Google Paid Search</td>
-
-                <td>2.80x</td>
-
-                <td>1.95x – 3.10x</td>
-
-                <td class="true-roas">
-
-                  2.65x
-
-                </td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>TikTok Ads</td>
-
-                <td>1.60x</td>
-
-                <td>0.90x – 2.45x</td>
-
-                <td class="true-roas">
-
-                  2.10x
-
-                </td>
-
-              </tr>
-
-
-            </tbody>
-
-
-          </table>
-
-
-        </div>
-
-
-        <p>
-
-          Meta's platform ROAS of 3.25x masked a modeled incremental ROAS
-          of 1.26x.
-
-        </p>
-
-
-        <p>
-
-          Attribution models consistently showed that Meta captured credit
-          late in the customer journey, while geo-holdout testing suggested
-          that a meaningful portion of those conversions may have occurred
-          without Meta exposure.
-
-        </p>
-
-
-        <p>
-
-          TikTok showed the opposite pattern:
-
-          weaker last-touch performance but stronger first-touch and
-          incremental performance.
-
-          This suggested that TikTok was more effective at creating demand
-          than capturing existing demand.
-
-        </p>
-
-
-      </section>
-
-
-      <hr class="cs-divider">
-
-
-      <!-- ───────────────── RECOMMENDATION ───────────────── -->
-
-
-      <section class="cs-section">
-
-
-        <p class="cs-section-label">
-
-          Recommendation
-
-        </p>
-
-
-        <h2>
-
-          From Measurement to Budget Decisions
-
-        </h2>
-
-
-        <p>
-
-          The goal of the analysis was not simply to compare metrics.
-
-          The final step was translating measurement results into
-          clear marketing decisions.
-
-        </p>
-
-
-        <h3>
-
-          Meta Paid Social
-
-        </h3>
-
-
-        <div class="problem-block">
-
-          <p>
-
-            <strong>
-
-              High Platform ROAS
-
-              →
-
-              Low Incremental ROAS
-
-              →
-
-              Reduce Retargeting Spend
-
-            </strong>
-
-          </p>
-
-        </div>
-
-
-        <p>
-
-          Meta Retargeting appeared to capture conversions generated by
-          other channels and organic demand. The recommendation was to
-          reduce spend in saturated retargeting segments and prioritize
-          higher-value audiences.
-
-        </p>
-
-
-        <h3>
-
-          Google Paid Search
-
-        </h3>
-
-
-        <div class="problem-block">
-
-          <p>
-
-            <strong>
-
-              Strong Last-Touch
-
-              +
-
-              Strong Incremental ROAS
-
-              →
-
-              Increase High-Intent Budget
-
-            </strong>
-
-          </p>
-
-        </div>
-
-
-        <p>
-
-          Google Search showed strong performance near conversion and
-          maintained high incremental efficiency, supporting additional
-          investment in high-intent campaigns.
-
-        </p>
-
-
-        <h3>
-
-          TikTok Ads
-
-        </h3>
-
-
-        <div class="problem-block">
-
-          <p>
-
-            <strong>
-
-              Weak Last-Touch
-
-              +
-
-              Strong First-Touch
-
-              +
-
-              Strong Incrementality
-
-              →
-
-              Increase Prospecting Investment
-
-            </strong>
-
-          </p>
-
-        </div>
-
-
-        <p>
-
-          TikTok was undervalued by last-touch attribution but demonstrated
-          stronger top-of-funnel contribution and incremental impact,
-          supporting increased investment in prospecting campaigns.
-
-        </p>
-
-
-      </section>
-
-
-      <hr class="cs-divider">
-
-
-      <!-- ───────────────── BUSINESS IMPACT ───────────────── -->
-
-
-      <section class="cs-section">
-
-
-        <p class="cs-section-label">
-
-          Modeled Business Impact
-
-        </p>
-
-
-        <h2>
-
-          Budget Optimization Recommendation
-
-        </h2>
-
-
-        <div class="impact-grid">
-
-
-          <div class="impact-card">
-
-            <div class="ic-value">
-
-              14.2%
-
-            </div>
-
-            <div class="ic-label">
-
-              Modeled CAC Reduction
-
-            </div>
-
-            <div class="ic-desc">
-
-              Estimated reduction in Blended CAC after shifting spend toward
-              higher-incrementality channels.
-
-            </div>
-
-          </div>
-
-
-          <div class="impact-card">
-
-            <div class="ic-value">
-
-              $100K
-
-            </div>
-
-            <div class="ic-label">
-
-              Modeled Budget Reallocation
-
-            </div>
-
-            <div class="ic-desc">
-
-              Recommended shifting quarterly spend away from low-incrementality
-              Meta retargeting toward Google Search and TikTok prospecting.
-
-            </div>
-
-          </div>
-
-
-          <div class="impact-card">
-
-            <div class="ic-value">
-
-              34%
-
-            </div>
-
-            <div class="ic-label">
-
-              Over-Reporting Identified
-
-            </div>
-
-            <div class="ic-desc">
-
-              Platform-reported performance was overstated due to overlapping
-              attribution and low-incrementality conversion activity.
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-
-        <p>
-
-          The final output was designed as an interactive
-
-          <strong>Streamlit decision-support dashboard</strong>
-
-          that allows users to compare platform attribution,
-          multi-touch attribution models, and incremental performance
-          before evaluating budget allocation scenarios.
-
-        </p>
-
-
-      </section>
-
-
-      <hr class="cs-divider">
-
-
-      <!-- ───────────────── TECH STACK ───────────────── -->
-
-
-      <section class="cs-section">
-
-
-        <p class="cs-section-label">
-
-          Tech Stack
-
-        </p>
-
-
-        <h2>
-
-          Tools &amp; Methods
-
-        </h2>
-
-
-        <div class="tech-grid">
-
-
-          <span class="tech-tag">
-
-            Python 3.11
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            pandas
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            numpy
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            scipy
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            statsmodels
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            PostgreSQL
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Window Functions
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            CTEs
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Customer Journey Analysis
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Streamlit
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Plotly
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Multi-Touch Attribution
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            First-Touch
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Last-Touch
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Linear Attribution
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Time-Decay
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Position-Based Attribution
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Geo-Holdout Testing
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Incrementality
-
-          </span>
-
-
-          <span class="tech-tag">
-
-            Causal Inference
-
-          </span>
-
-
-        </div>
-
-
-      </section>
-
-
-      <hr class="cs-divider">
-
-
-      <!-- ───────────────── SOURCE ───────────────── -->
-
-
-      <section class="cs-section">
-
-
-        <p class="cs-section-label">
-
-          Source Code
-
-        </p>
-
-
-        <h2>
-
-          Code &amp; Documentation
-
-        </h2>
-
-
-        <p>
-
-          Full SQL attribution models, Python incrementality analysis,
-          data generation scripts, and Streamlit dashboard code are
-          available on GitHub.
-
-        </p>
-
-
-        <a
-          href="https://github.com/jinyeong-park/jynlab-growth-attribution-system"
-          target="_blank"
-          rel="noopener"
-          class="btn btn--secondary"
-        >
-
-          View on GitHub
-
-
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
-            fill="none"
-            aria-hidden="true"
-          >
-
-            <path
-              d="M3 11L11 3M11 3H5M11 3V9"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-
-          </svg>
-
-
-        </a>
-
-
-      </section>
-
-
-    </div>
-
-
-  </main>
-
-
-  <!-- ───────────────── FOOTER CTA ───────────────── -->
-
-
-  <section
-    class="cs-footer-cta"
-    aria-label="Contact"
-  >
-
-
-    <div class="wrap">
-
-
-      <div>
-
-        <h3>
-
-          Interested in working together?
-
-        </h3>
-
-
-        <p>
-
-          Open to Data Analyst, Growth Analyst, Marketing Analyst,
-          and Marketing Analytics roles in the Bay Area or remote.
-
-        </p>
-
-      </div>
-
-
-      <div
-        style="
-          display:flex;
-          gap: var(--s3);
-          flex-wrap: wrap;
-        "
-      >
-
-
-        <a
-          href="index.html#contact"
-          class="btn btn--primary"
-        >
-
-          Get in touch
-
-        </a>
-
-
-        <a
-          href="index.html#work"
-          class="btn btn--secondary"
-        >
-
-          See more work
-
-        </a>
-
-
-      </div>
-
-
-    </div>
-
+</div>
+```
 
   </section>
 
-
-  <!-- ───────────────── FOOTER ───────────────── -->
-
-
-  <footer class="site-footer">
-
-
+  <div class="stat-strip" aria-label="Key results">
     <div class="wrap">
 
+```
+  <div class="stat-item">
+    <span class="stat-value">14.2%</span>
+    <span class="stat-label">Modeled reduction in Blended CAC</span>
+  </div>
 
-      <div>
+  <div class="stat-item">
+    <span class="stat-value">5</span>
+    <span class="stat-label">Attribution models compared</span>
+  </div>
 
-        <div class="footer-name">
+  <div class="stat-item">
+    <span class="stat-value">$50K</span>
+    <span class="stat-label">Modeled budget reallocation</span>
+  </div>
 
-          Jenny Park
+</div>
+```
 
+  </div>
+
+  <main class="cs-body">
+    <div class="wrap">
+
+```
+  <section class="cs-section">
+
+    <p class="cs-section-label">The Problem</p>
+
+    <h2>Platform Numbers Didn't Add Up</h2>
+
+    <div class="problem-block">
+      <p>
+        <strong>Attribution Overlap:</strong>
+        Meta, Google, and TikTok each reported conversions using their own
+        attribution windows. The same customer journey could therefore be
+        credited to multiple platforms, overstating aggregate marketing performance.
+      </p>
+    </div>
+
+    <div class="problem-block">
+      <p>
+        <strong>Demand Capture vs. Demand Creation:</strong>
+        Meta Retargeting reported strong ROAS, but platform attribution alone
+        could not determine whether those conversions were actually caused by
+        advertising or would have occurred through Organic, Direct, or another
+        marketing channel.
+      </p>
+    </div>
+
+    <p>
+      The core business problem was not simply determining which channel
+      received credit for a conversion. It was determining:
+      <strong>Which channels actually created additional customer demand?</strong>
+    </p>
+
+  </section>
+
+  <hr class="cs-divider">
+
+  <section class="cs-section">
+
+    <p class="cs-section-label">Approach</p>
+
+    <h2>From Raw Touchpoints to Marketing Decisions</h2>
+
+    <h3>1. Unified Marketing Data Pipeline</h3>
+
+    <p>
+      The analysis combines marketing spend, user touchpoints, campaign
+      metadata, and backend conversion records into a unified analytical dataset.
+    </p>
+
+    <ul>
+      <li><strong>Ad Spend Data:</strong> Campaign spend and platform-reported metrics from Meta, Google Search, and TikTok.</li>
+      <li><strong>User Touchpoint Logs:</strong> Clickstream events containing user IDs, timestamps, channels, campaigns, and UTM parameters.</li>
+      <li><strong>Backend Conversions:</strong> Ground-truth purchase records used to validate conversion events independently of ad platform claims.</li>
+    </ul>
+
+    <h3>2. Customer Journey Reconstruction</h3>
+
+    <p>
+      Before assigning attribution, customer interactions were reconstructed
+      chronologically to understand how users moved across channels before
+      converting.
+    </p>
+
+    <p>Example journey:</p>
+
+    <div class="journey-flow" aria-label="Example multi-channel customer journey">
+
+      <div class="journey-step">
+        <div class="journey-number">01</div>
+        <div class="journey-content">
+          <span class="journey-channel">TikTok Ads</span>
+          <span class="journey-stage">Customer discovers the brand</span>
         </div>
-
-
-        <div class="footer-location">
-
-          San Francisco Bay Area
-
-        </div>
-
-
+        <span class="journey-role">Awareness</span>
       </div>
 
+      <div class="journey-step">
+        <div class="journey-number">02</div>
+        <div class="journey-content">
+          <span class="journey-channel">Google Paid Search</span>
+          <span class="journey-stage">Customer searches for a solution</span>
+        </div>
+        <span class="journey-role">Consideration</span>
+      </div>
 
-      <a
-        href="https://www.linkedin.com/in/jennypark7/"
-        target="_blank"
-        rel="noopener"
-        style="
-          font-size:0.8125rem;
-          font-weight:500;
-          color:var(--muted);
-        "
-      >
+      <div class="journey-step">
+        <div class="journey-number">03</div>
+        <div class="journey-content">
+          <span class="journey-channel">Meta Retargeting</span>
+          <span class="journey-stage">Customer returns and evaluates the offer</span>
+        </div>
+        <span class="journey-role">Conversion Assist</span>
+      </div>
 
-        LinkedIn
-
-      </a>
-
+      <div class="journey-step">
+        <div class="journey-number">04</div>
+        <div class="journey-content">
+          <span class="journey-channel">Purchase</span>
+          <span class="journey-stage">Backend conversion record</span>
+        </div>
+        <span class="journey-role">Conversion</span>
+      </div>
 
     </div>
 
+    <p>
+      PostgreSQL window functions and CTEs were used to sequence
+      touchpoints, identify first and last interactions, and calculate
+      each channel's position within the customer journey.
+    </p>
+
+    <h3>3. SQL Multi-Touch Attribution</h3>
+
+    <p>
+      Built a SQL-based attribution layer using PostgreSQL window functions,
+      CTEs, and customer journey sequencing to compare five attribution
+      models side-by-side.
+    </p>
+
+    <ul>
+      <li><strong>First-Touch:</strong> Credits the channel responsible for customer discovery.</li>
+      <li><strong>Last-Touch:</strong> Credits the final interaction before conversion.</li>
+      <li><strong>Linear:</strong> Distributes credit equally across all touchpoints.</li>
+      <li><strong>Time-Decay:</strong> Assigns greater credit to interactions closer to conversion.</li>
+      <li><strong>Position-Based:</strong> Assigns greater weight to the first and last touchpoints while distributing the remaining credit across middle interactions.</li>
+    </ul>
+
+    <h3>4. Geo-Holdout Incrementality Testing</h3>
+
+    <p>
+      Attribution models estimate which channels should receive credit.
+      Incrementality testing answers a different question:
+    </p>
+
+    <div class="problem-block">
+      <p>
+        <strong>Would this conversion have happened without the marketing intervention?</strong>
+      </p>
+    </div>
+
+    <ul>
+      <li>Conducted a <strong>30-day matched-market geo-holdout experiment</strong> across treatment and control DMAs.</li>
+      <li>Compared conversion outcomes between markets where campaigns remained active and matched markets where campaigns were held out.</li>
+      <li>Estimated <strong>Incremental Conversions</strong>, <strong>Conversion Lift</strong>, <strong>Incremental CAC</strong>, and <strong>Incremental ROAS</strong>.</li>
+    </ul>
+
+  </section>
+
+  <hr class="cs-divider">
+
+  <section class="cs-section">
+
+    <p class="cs-section-label">Attribution Findings</p>
+
+    <h2>Attribution Changes the Story</h2>
+
+    <p>
+      Comparing multiple attribution models showed that channel performance
+      depended heavily on how conversion credit was assigned.
+    </p>
+
+    <div class="attribution-chart" aria-label="Platform versus incremental ROAS comparison">
+
+      <div class="chart-header">
+        <div>
+          <div class="chart-header-title">
+            Platform ROAS vs. Incremental ROAS
+          </div>
+        </div>
+
+        <div class="chart-header-note">
+          Platform reporting can overstate<br>
+          true channel impact
+        </div>
+      </div>
+
+      <div class="chart-body">
+
+        <div class="chart-row">
+          <div class="chart-label-row">
+            <span class="chart-channel">Meta Paid Social</span>
+            <span class="chart-value">3.25x → 1.26x</span>
+          </div>
+
+          <div class="chart-track" style="margin-bottom:6px;">
+            <div class="chart-bar" style="width:81%;"></div>
+          </div>
+
+          <div class="chart-track">
+            <div class="chart-bar chart-bar--accent" style="width:32%;"></div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label-row">
+            <span class="chart-channel">Google Paid Search</span>
+            <span class="chart-value">2.80x → 2.65x</span>
+          </div>
+
+          <div class="chart-track" style="margin-bottom:6px;">
+            <div class="chart-bar" style="width:70%;"></div>
+          </div>
+
+          <div class="chart-track">
+            <div class="chart-bar chart-bar--accent" style="width:66%;"></div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label-row">
+            <span class="chart-channel">TikTok Ads</span>
+            <span class="chart-value">1.60x → 2.10x</span>
+          </div>
+
+          <div class="chart-track" style="margin-bottom:6px;">
+            <div class="chart-bar" style="width:40%;"></div>
+          </div>
+
+          <div class="chart-track">
+            <div class="chart-bar chart-bar--accent" style="width:53%;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="chart-legend">
+        <div class="legend-item">
+          <span class="legend-dot"></span>
+          Platform-Reported ROAS
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot legend-dot--accent"></span>
+          Incremental ROAS
+        </div>
+      </div>
+
+    </div>
+
+    <div class="table-wrapper">
+      <table class="cs-table" aria-label="Attribution model comparison">
+
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th>Platform</th>
+            <th>First</th>
+            <th>Last</th>
+            <th>Linear</th>
+            <th>Time-Decay</th>
+            <th>Position</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Meta Paid Social</td>
+            <td>3.25x</td>
+            <td>2.38x</td>
+            <td>1.46x</td>
+            <td>2.05x</td>
+            <td>1.72x</td>
+            <td>1.88x</td>
+          </tr>
+
+          <tr>
+            <td>Google Paid Search</td>
+            <td>2.80x</td>
+            <td>1.95x</td>
+            <td>3.10x</td>
+            <td>2.54x</td>
+            <td>2.88x</td>
+            <td>2.76x</td>
+          </tr>
+
+          <tr>
+            <td>TikTok Ads</td>
+            <td>1.60x</td>
+            <td>2.45x</td>
+            <td>0.90x</td>
+            <td>1.78x</td>
+            <td>1.42x</td>
+            <td>2.10x</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Meta appeared strongest under platform-reported attribution but
+      consistently received less credit when the full customer journey
+      was considered.
+    </p>
+
+    <p>
+      TikTok showed the opposite pattern: weak last-touch performance
+      but strong first-touch and position-based performance, suggesting
+      that the channel contributed more to <strong>demand creation</strong>
+      than demand capture.
+    </p>
+
+  </section>
+
+  <hr class="cs-divider">
+
+  <section class="cs-section">
+
+    <p class="cs-section-label">Incrementality Findings</p>
+
+    <h2>The Incrementality Reality Check</h2>
+
+    <p>
+      Attribution models provide different ways to distribute credit.
+      Incrementality testing was used to validate whether that attributed
+      performance translated into true causal impact.
+    </p>
+
+    <div class="roas-comparison">
+
+      <div class="roas-card">
+        <div class="roas-label">Meta Platform ROAS</div>
+        <div class="roas-value">3.25x</div>
+        <div class="roas-desc">
+          Conversion credit reported by the advertising platform.
+        </div>
+      </div>
+
+      <div class="roas-card roas-card--highlight">
+        <div class="roas-label">Meta Incremental ROAS</div>
+        <div class="roas-value">1.26x</div>
+        <div class="roas-desc">
+          Estimated causal revenue impact after geo-holdout testing.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="table-wrapper">
+
+      <table class="cs-table" aria-label="Incrementality comparison">
+
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th>Platform ROAS</th>
+            <th>Attributed ROAS Range</th>
+            <th>Incremental ROAS</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Meta Paid Social</td>
+            <td>3.25x</td>
+            <td>1.46x – 2.38x</td>
+            <td class="incremental-roas">1.26x</td>
+          </tr>
+
+          <tr>
+            <td>Google Paid Search</td>
+            <td>2.80x</td>
+            <td>1.95x – 3.10x</td>
+            <td class="incremental-roas">2.65x</td>
+          </tr>
+
+          <tr>
+            <td>TikTok Ads</td>
+            <td>1.60x</td>
+            <td>0.90x – 2.45x</td>
+            <td class="incremental-roas">2.10x</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <p>
+      Meta's platform ROAS of 3.25x masked a modeled incremental ROAS
+      of 1.26x.
+    </p>
+
+    <p>
+      Attribution models consistently showed that Meta captured credit
+      late in the customer journey, while geo-holdout testing suggested
+      that a meaningful portion of those conversions may have occurred
+      without Meta exposure.
+    </p>
+
+    <p>
+      TikTok showed the opposite pattern: weaker last-touch performance
+      but stronger first-touch and incremental performance. This suggested
+      that TikTok was more effective at creating demand than capturing
+      existing demand.
+    </p>
+
+  </section>
+
+  <hr class="cs-divider">
+
+  <section class="cs-section">
+
+    <p class="cs-section-label">Recommendation</p>
+
+    <h2>From Measurement to Budget Decisions</h2>
+
+    <p>
+      The goal of the analysis was not simply to compare metrics.
+      The final step was translating measurement results into
+      clear marketing decisions.
+    </p>
+
+    <h3>Meta Paid Social</h3>
+
+    <div class="problem-block">
+      <p>
+        <strong>
+          High Platform ROAS
+          →
+          Low Incremental ROAS
+          →
+          Reduce Retargeting Spend
+        </strong>
+      </p>
+    </div>
+
+    <p>
+      Meta Retargeting appeared to capture conversions generated by
+      other channels and organic demand. The recommendation was to
+      reduce spend in saturated retargeting segments and prioritize
+      higher-value audiences.
+    </p>
+
+    <h3>Google Paid Search</h3>
+
+    <div class="problem-block">
+      <p>
+        <strong>
+          Strong Last-Touch
+          +
+          Strong Incremental ROAS
+          →
+          Increase High-Intent Budget
+        </strong>
+      </p>
+    </div>
+
+    <p>
+      Google Search showed strong performance near conversion and
+      maintained high incremental efficiency, supporting additional
+      investment in high-intent campaigns.
+    </p>
+
+    <h3>TikTok Ads</h3>
+
+    <div class="problem-block">
+      <p>
+        <strong>
+          Weak Last-Touch
+          +
+          Strong First-Touch
+          +
+          Strong Incrementality
+          →
+          Increase Prospecting Investment
+        </strong>
+      </p>
+    </div>
+
+    <p>
+      TikTok was undervalued by last-touch attribution but demonstrated
+      stronger top-of-funnel contribution and incremental impact,
+      supporting increased investment in prospecting campaigns.
+    </p>
+
+  </section>
+
+  <hr class="cs-divider">
+
+  <section class="cs-section">
+
+    <p class="cs-section-label">Modeled Business Impact</p>
+
+    <h2>Budget Optimization Recommendation</h2>
+
+    <div class="budget-visual" aria-label="Marketing budget reallocation recommendation">
+
+      <div class="budget-columns">
+
+        <div class="budget-column">
+
+          <div class="budget-title">Before</div>
+
+          <div class="budget-row">
+            <div class="budget-label">
+              <span>Meta</span>
+              <span>$180K</span>
+            </div>
+
+            <div class="budget-track">
+              <div class="budget-bar" style="width:100%;"></div>
+            </div>
+          </div>
+
+          <div class="budget-row">
+            <div class="budget-label">
+              <span>Google</span>
+              <span>$150K</span>
+            </div>
+
+            <div class="budget-track">
+              <div class="budget-bar" style="width:83%;"></div>
+            </div>
+          </div>
+
+          <div class="budget-row">
+            <div class="budget-label">
+              <span>TikTok</span>
+              <span>$120K</span>
+            </div>
+
+            <div class="budget-track">
+              <div class="budget-bar" style="width:67%;"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="budget-column">
+
+          <div class="budget-title">Recommended</div>
+
+          <div class="budget-row">
+            <div class="budget-label">
+              <span>
+                Meta
+                <span class="budget-change budget-change--down">↓ $50K</span>
+              </span>
+
+              <span>$130K</span>
+            </div>
+
+            <div class="budget-track">
+              <div class="budget-bar" style="width:72%;"></div>
+            </div>
+          </div>
+
+          <div class="budget-row">
+            <div class="budget-label">
+              <span>
+                Google
+                <span class="budget-change budget-change--up">↑ $30K</span>
+              </span>
+
+              <span>$180K</span>
+            </div>
+
+            <div class="budget-track">
+              <div class="budget-bar budget-bar--accent" style="width:100%;"></div>
+            </div>
+          </div>
+
+          <div class="budget-row">
+            <div class="budget-label">
+              <span>
+                TikTok
+                <span class="budget-change budget-change--up">↑ $20K</span>
+              </span>
+
+              <span>$140K</span>
+            </div>
+
+            <div class="budget-track">
+              <div class="budget-bar budget-bar--accent" style="width:78%;"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="budget-summary">
+
+        <div class="budget-summary-item">
+          <span class="budget-summary-value">$50K</span>
+          <span class="budget-summary-label">
+            Reallocated toward higher-incrementality channels
+          </span>
+        </div>
+
+        <div class="budget-summary-item">
+          <span class="budget-summary-value">↓ 14.2%</span>
+          <span class="budget-summary-label">
+            Modeled reduction in Blended CAC
+          </span>
+        </div>
+
+        <div class="budget-summary-item">
+          <span class="budget-summary-value">1.26x → 2.65x</span>
+          <span class="budget-summary-label">
+            Shift from low to higher incremental efficiency
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="impact-grid">
+
+      <div class="impact-card">
+        <div class="ic-value">14.2%</div>
+        <div class="ic-label">Modeled CAC Reduction</div>
+        <div class="ic-desc">
+          Estimated reduction in Blended CAC after shifting spend toward
+          higher-incrementality channels.
+        </div>
+      </div>
+
+      <div class="impact-card">
+        <div class="ic-value">$50K</div>
+        <div class="ic-label">Modeled Budget Reallocation</div>
+        <div class="ic-desc">
+          Recommended shifting quarterly spend away from low-incrementality
+          Meta retargeting toward Google Search and TikTok prospecting.
+        </div>
+      </div>
+
+      <div class="impact-card">
+        <div class="ic-value">5 Models</div>
+        <div class="ic-label">Attribution Comparison</div>
+        <div class="ic-desc">
+          Compared five attribution models to evaluate how channel
+          performance changed based on conversion credit assignment.
+        </div>
+      </div>
+
+    </div>
+
+    <p>
+      The final output was designed as an interactive
+      <strong>Streamlit decision-support dashboard</strong>
+      that allows users to compare platform attribution,
+      multi-touch attribution models, and incremental performance
+      before evaluating budget allocation scenarios.
+    </p>
+
+  </section>
+
+  <hr class="cs-divider">
+
+  <section class="cs-section">
+
+    <p class="cs-section-label">Tech Stack</p>
+
+    <h2>Tools &amp; Methods</h2>
+
+    <div class="tech-grid">
+
+      <span class="tech-tag">Python 3.11</span>
+      <span class="tech-tag">pandas</span>
+      <span class="tech-tag">numpy</span>
+      <span class="tech-tag">scipy</span>
+      <span class="tech-tag">statsmodels</span>
+      <span class="tech-tag">PostgreSQL</span>
+      <span class="tech-tag">Window Functions</span>
+      <span class="tech-tag">CTEs</span>
+      <span class="tech-tag">Customer Journey Analysis</span>
+      <span class="tech-tag">Streamlit</span>
+      <span class="tech-tag">Plotly</span>
+      <span class="tech-tag">Multi-Touch Attribution</span>
+      <span class="tech-tag">First-Touch</span>
+      <span class="tech-tag">Last-Touch</span>
+      <span class="tech-tag">Linear Attribution</span>
+      <span class="tech-tag">Time-Decay</span>
+      <span class="tech-tag">Position-Based Attribution</span>
+      <span class="tech-tag">Geo-Holdout Testing</span>
+      <span class="tech-tag">Incrementality</span>
+      <span class="tech-tag">Causal Inference</span>
+
+    </div>
+
+  </section>
+
+  <hr class="cs-divider">
+
+  <section class="cs-section">
+
+    <p class="cs-section-label">Source Code</p>
+
+    <h2>Code &amp; Documentation</h2>
+
+    <p>
+      Full SQL attribution models, Python incrementality analysis,
+      data generation scripts, and Streamlit dashboard code are
+      available on GitHub.
+    </p>
+
+    <a
+      href="https://github.com/jinyeong-park/jynlab-growth-attribution-system"
+      target="_blank"
+      rel="noopener"
+      class="btn btn--secondary"
+    >
+
+      View on GitHub
+
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path
+          d="M3 11L11 3M11 3H5M11 3V9"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+
+    </a>
+
+  </section>
+
+</div>
+```
+
+  </main>
+
+  <section class="cs-footer-cta" aria-label="Contact">
+
+```
+<div class="wrap">
+
+  <div>
+    <h3>Interested in working together?</h3>
+
+    <p>
+      Open to Data Analyst, Growth Analyst, Marketing Analyst,
+      and Marketing Analytics roles in the Bay Area or remote.
+    </p>
+  </div>
+
+  <div style="display:flex; gap:var(--s3); flex-wrap:wrap;">
+
+    <a href="index.html#contact" class="btn btn--primary">
+      Get in touch
+    </a>
+
+    <a href="index.html#work" class="btn btn--secondary">
+      See more work
+    </a>
+
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <footer class="site-footer">
+
+```
+<div class="wrap">
+
+  <div>
+    <div class="footer-name">
+      Jenny Park
+    </div>
+
+    <div class="footer-location">
+      San Francisco Bay Area
+    </div>
+  </div>
+
+  <a
+    href="https://www.linkedin.com/in/jennypark7/"
+    target="_blank"
+    rel="noopener"
+    style="font-size:0.8125rem;font-weight:500;color:var(--muted);"
+  >
+    LinkedIn
+  </a>
+
+</div>
+```
 
   </footer>
 
-
 </body>
-
 </html>
-```
