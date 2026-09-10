@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What a Discovery Dashboard Should Actually Show a Product Leader — Jenny Park</title>
+  <meta name="description" content="A four-layer framework for unifying SEO, GEO, and ASO reporting into a single dashboard a product leader can actually act on.">
+
+  <meta property="og:title" content="What a Discovery Dashboard Should Actually Show a Product Leader">
+  <meta property="og:description" content="A four-layer framework for unifying SEO, GEO, and ASO reporting into a single dashboard a product leader can actually act on.">
+  <meta property="og:image" content="../images/08-open-graph.png">
+  <meta property="og:type" content="article">
+
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --surface: #FFFFFF;
+      --raised: #F2F1EE;
+      --ink: #0C0C0C;
+      --muted: #6F6C66;
+      --accent: #A85C13;
+      --on-accent: #FFFFFF;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Instrument Sans', system-ui, sans-serif;
+      --s1: 0.25rem; --s2: 0.5rem; --s3: 0.75rem; --s4: 1rem;
+      --s5: 1.5rem; --s6: 2rem; --s7: 3rem; --s8: 4rem; --s9: 6rem;
+      --line: 1px solid #E0DDD8;
+      --t-fast: 150ms;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--surface); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .wrap { max-width: 800px; margin-inline: auto; padding-inline: var(--s6); }
+
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--surface); border-bottom: var(--line); }
+    .site-header .wrap { max-width: 1200px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .wordmark { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; color: var(--ink); }
+    .header-back { display: inline-flex; align-items: center; gap: var(--s2); font-size: 0.875rem; font-weight: 500; color: var(--muted); transition: color var(--t-fast) var(--ease); }
+    .header-back:hover { color: var(--ink); }
+
+    .cs-hero { padding-block: var(--s8) var(--s7); border-bottom: var(--line); }
+    .cs-kicker { display: flex; align-items: center; gap: var(--s3); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s5); flex-wrap: wrap; }
+    .cs-kicker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+    .cs-hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; color: var(--ink); margin-bottom: var(--s5); max-width: 24ch; }
+    .cs-hero-lead { font-size: 1.0625rem; line-height: 1.7; color: var(--muted); max-width: 62ch; margin-bottom: var(--s6); }
+    .cs-meta-row { display: flex; flex-wrap: wrap; gap: var(--s5); padding-top: var(--s5); border-top: var(--line); }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .cs-meta-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .cs-meta-value { font-size: 0.9375rem; font-weight: 500; color: var(--ink); }
+
+    .stat-strip { background: var(--raised); border-bottom: var(--line); padding-block: var(--s6); }
+    .stat-strip .wrap { max-width: 800px; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s6); }
+    .stat-item { display: flex; flex-direction: column; gap: var(--s1); }
+    .stat-value { font-family: var(--font-display); font-size: 2.25rem; font-weight: 400; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.8125rem; color: var(--muted); line-height: 1.4; }
+
+    .cs-body { padding-block: var(--s8); }
+    .cs-section { margin-bottom: var(--s8); }
+    .cs-section:last-child { margin-bottom: 0; }
+    .cs-section-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s4); }
+    .cs-section h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.625rem; line-height: 1.2; color: var(--ink); margin-bottom: var(--s4); }
+    .cs-section h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: var(--s3); margin-top: var(--s5); }
+    .cs-section p { font-size: 1rem; line-height: 1.78; color: var(--muted); margin-bottom: var(--s4); }
+    .cs-section ul { list-style: none; margin-bottom: var(--s4); }
+    .cs-section ul li { font-size: 1rem; line-height: 1.7; color: var(--muted); padding-left: var(--s5); position: relative; margin-bottom: var(--s2); }
+    .cs-section ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+    .cs-section ul li strong, .cs-section p strong { color: var(--ink); font-weight: 600; }
+    .cs-section ol { margin: 0 0 var(--s4) var(--s5); }
+    .cs-section ol li { font-size: 1rem; line-height: 1.7; color: var(--muted); margin-bottom: var(--s2); padding-left: var(--s2); }
+
+    .problem-block { background: var(--raised); border-left: 3px solid var(--accent); padding: var(--s5) var(--s6); margin-bottom: var(--s5); }
+    .problem-block p { margin-bottom: 0; color: var(--ink); }
+    .problem-block p + p { margin-top: var(--s3); color: var(--muted); font-size: 0.9375rem; }
+
+    .table-wrapper { overflow-x: auto; margin-bottom: var(--s6); border: var(--line); }
+    .cs-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .cs-table thead { background: var(--raised); }
+    .cs-table th { text-align: left; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: var(--s3) var(--s4); border-bottom: var(--line); white-space: nowrap; }
+    .cs-table td { padding: var(--s3) var(--s4); border-bottom: var(--line); color: var(--muted); line-height: 1.4; }
+    .cs-table tr:last-child td { border-bottom: none; }
+    .cs-table td:first-child { color: var(--ink); font-weight: 500; }
+    .accent-val { color: var(--accent) !important; font-weight: 600; }
+    .green-val { color: #107C41 !important; font-weight: 600; }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; padding: 0.75rem 1.5rem; border: 1.5px solid transparent; cursor: pointer; }
+    .btn--primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    .btn--primary:hover { background: #924f10; border-color: #924f10; }
+    .btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn--secondary:hover { background: var(--ink); color: var(--surface); }
+
+    .cs-divider { border: none; border-top: var(--line); margin-block: var(--s7); }
+    .tech-tag { display: inline-block; font-size: 0.75rem; background: var(--raised); border: var(--line); padding: 0.25rem 0.75rem; margin: 0.25rem 0.25rem 0.25rem 0; font-weight: 500; color: var(--muted); }
+
+    .cs-footer-cta { background: var(--raised); border-top: var(--line); padding-block: var(--s7); }
+    .more-posts-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s4); }
+    .more-posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); margin-bottom: var(--s6); }
+    .more-post-card { border: var(--line); padding: var(--s5); background: var(--surface); transition: border-color var(--t-fast) var(--ease); }
+    .more-post-card:hover { border-color: var(--accent); }
+    .more-post-tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--s2); display: block; }
+    .more-post-title { font-size: 0.9375rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
+
+    .site-footer { padding-block: var(--s6); border-top: var(--line); }
+    .site-footer .wrap { max-width: 1200px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s4); }
+
+    @media (max-width: 640px) {
+      .stat-strip .wrap { grid-template-columns: 1fr; }
+      .cs-hero { padding-block: var(--s7) var(--s6); }
+      .wrap { padding-inline: var(--s5); }
+      .more-posts-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap" style="max-width:1200px;display:flex;align-items:center;justify-content:space-between;height:56px;">
+    <a href="../index.html" class="wordmark">Jenny Park</a>
+    <a href="index.html" class="header-back">← Blog</a>
+  </div>
+</header>
+
+<section class="cs-hero">
+  <div class="wrap">
+    <div class="cs-kicker">
+      <span>Dashboards</span>
+      <span class="cs-kicker-dot"></span>
+      <span>Practitioner Notes</span>
+    </div>
+    <h1>What a Discovery Dashboard Should Actually Show a Product Leader</h1>
+    <p class="cs-hero-lead">Most SEO dashboards are keyword tables wearing a leadership costume. A dashboard built for a product leader needs to answer one question first: is total organic reach growing revenue, or just growing?</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Published</span>
+        <span class="cs-meta-value">September 2026</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Read time</span>
+        <span class="cs-meta-value">6 min read</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Topic</span>
+        <span class="cs-meta-value">Dashboards</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stat-strip">
+  <div class="wrap">
+    <div class="stat-item">
+      <span class="stat-value">4</span>
+      <span class="stat-label">functional layers, from executive summary to real-time risk alerts</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">3</span>
+      <span class="stat-label">discovery surfaces most teams still report on separately</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">15%</span>
+      <span class="stat-label">Citation Share drop that should trigger an automatic volatility alert</span>
+    </div>
+  </div>
+</section>
+
+<main class="cs-body">
+  <div class="wrap">
+
+    <section class="cs-section">
+      <div class="cs-section-label">The Wrong Default</div>
+      <h2>Granular keyword tables are for the operator, not the leader</h2>
+      <p>The most common mistake in discovery reporting is optimizing the executive view for completeness instead of decision-usefulness. A product leader doesn't need every tracked keyword's position delta — they need to know whether the combined discovery motion across web search, AI answer engines, and app stores is growing, and whether it's converting.</p>
+      <p>I build these dashboards in four layers, each answering a different question for a different reader.</p>
+    </section>
+
+    <hr class="cs-divider">
+
+    <section class="cs-section">
+      <div class="cs-section-label">Layer 1</div>
+      <h2>Macro-discovery and revenue — four numbers, one screen</h2>
+      <ul>
+        <li><strong>Unified Organic Reach</strong> — combined impressions across Google SERP, AI answer engines, and App Store search views. One trend line instead of three.</li>
+        <li><strong>Blended Organic Conversion Volume</strong> — signups or purchases from organic web, the custom AI channel, and app installs, combined.</li>
+        <li><strong>AI Referral Cohort LTV</strong> — 30- and 90-day LTV for AI-sourced visitors against traditional organic and paid, side by side.</li>
+        <li><strong>Attribution Health Index</strong> — the percentage of traffic still sitting in the custom AI Search channel vs. leaking into unassigned or Direct, flagging referrer-stripping drift before it distorts everything downstream.</li>
+      </ul>
+    </section>
+
+    <hr class="cs-divider">
+
+    <section class="cs-section">
+      <div class="cs-section-label">Layer 2</div>
+      <h2>Surface-specific modules — where the operators actually live</h2>
+      <p>Below the summary, each surface gets its own module with its own vocabulary, because collapsing them into one KPI set is how nuance gets lost.</p>
+      <div class="table-wrapper">
+        <table class="cs-table">
+          <thead><tr><th>Module</th><th>Core KPIs</th></tr></thead>
+          <tbody>
+            <tr><td>GEO</td><td>Citation Share, AI SOV, Recommendation vs. Mention Rate, Linked Citation Frequency, source mix</td></tr>
+            <tr><td>SEO</td><td>Non-brand organic SOV, AI Overview inclusion rate, answer-capsule extraction rate, DOM indexation ratio</td></tr>
+            <tr><td>ASO</td><td>TTI, CPP conversion rate, Android Vitals health, keyword rank, D1/D30 retention curves</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr class="cs-divider">
+
+    <section class="cs-section">
+      <div class="cs-section-label">Layers 3 &amp; 4</div>
+      <h2>Competitive context, and the alerts that protect the pipeline</h2>
+      <p><strong>Layer 3 — competitive benchmarking.</strong> Head-to-head AI Share of Voice against the top three competitors, a prompt gap analysis surfacing exactly where they're recommended and you're absent, and app store keyword-rank deltas. This is what turns "we're doing fine" into "we're losing ground on comparison prompts specifically."</p>
+      <p><strong>Layer 4 — operational risk alerts.</strong> The layer most dashboards skip entirely, and the one that prevents silent damage: an Android Vitals threshold warning before demotion hits, an AI Model Volatility alert on any Citation Share drop greater than 15% following a model release, an LLM crawler accessibility monitor watching for 4xx/5xx errors or accidental robots.txt blocks, and an /llms.txt parsing health check confirming the markdown mirrors are still valid.</p>
+      <div class="problem-block">
+        <p><strong>The test I use for any dashboard row:</strong> would a specific person take a specific action differently because this number moved? If the answer is no, it belongs in the operator's tool, not the leader's screen.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<section class="cs-footer-cta">
+  <div class="wrap" style="max-width:800px;">
+
+    <div class="more-posts-label">More from the Blog</div>
+    <div class="more-posts-grid">
+      <a href="why-your-highest-converting-channel-is-invisible.html" class="more-post-card">
+        <span class="more-post-tag">Analytics</span>
+        <span class="more-post-title">Why Your Highest-Converting Channel Is Invisible in GA4</span>
+      </a>
+      <a href="five-metrics-for-ai-brand-visibility.html" class="more-post-card">
+        <span class="more-post-tag">GEO</span>
+        <span class="more-post-title">Five Metrics I Use to Measure Brand Visibility Inside AI Answers</span>
+      </a>
+      <a href="ranking-number-one-doesnt-matter-to-chatgpt.html" class="more-post-card">
+        <span class="more-post-tag">GEO</span>
+        <span class="more-post-title">Ranking #1 on Google Doesn't Mean ChatGPT Has Heard of You</span>
+      </a>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;padding-top:var(--s6);border-top:var(--line);">
+      <div>
+        <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.375rem;color:var(--ink);margin-bottom:0.5rem;">More on Jenny's work</h3>
+        <p style="font-size:0.9375rem;color:var(--muted);">Case studies in growth analytics, attribution, and product-led retention.</p>
+      </div>
+      <a href="../index.html#work" class="btn btn--primary">View Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap" style="max-width:1200px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <div>
+      <div style="font-size:0.9375rem;font-weight:600;color:var(--ink);">Jenny Park</div>
+      <div style="font-size:0.8125rem;color:var(--muted);">San Francisco Bay Area</div>
+    </div>
+    <a href="https://www.linkedin.com/in/jennypark7/" target="_blank" rel="noopener" style="font-size:0.8125rem;font-weight:500;color:var(--muted);">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>

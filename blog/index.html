@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Jenny Park</title>
+  <meta name="description" content="Practitioner notes on GEO, ASO, and AI-era discovery, from a data and growth analyst's working notebook.">
+
+  <meta property="og:title" content="Jenny Park — Blog">
+  <meta property="og:description" content="Practitioner notes on GEO, ASO, and AI-era discovery, from a data and growth analyst's working notebook.">
+  <meta property="og:image" content="../images/08-open-graph.png">
+  <meta property="og:type" content="article">
+
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --surface: #FFFFFF;
+      --raised: #F2F1EE;
+      --ink: #0C0C0C;
+      --muted: #6F6C66;
+      --accent: #A85C13;
+      --on-accent: #FFFFFF;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Instrument Sans', system-ui, sans-serif;
+      --s1: 0.25rem; --s2: 0.5rem; --s3: 0.75rem; --s4: 1rem;
+      --s5: 1.5rem; --s6: 2rem; --s7: 3rem; --s8: 4rem; --s9: 6rem;
+      --line: 1px solid #E0DDD8;
+      --t-fast: 150ms;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--surface); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .wrap { max-width: 800px; margin-inline: auto; padding-inline: var(--s6); }
+
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--surface); border-bottom: var(--line); }
+    .site-header .wrap { max-width: 1200px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .wordmark { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; color: var(--ink); }
+    .header-back { display: inline-flex; align-items: center; gap: var(--s2); font-size: 0.875rem; font-weight: 500; color: var(--muted); transition: color var(--t-fast) var(--ease); }
+    .header-back:hover { color: var(--ink); }
+
+    .cs-hero { padding-block: var(--s8) var(--s7); border-bottom: var(--line); }
+    .cs-kicker { display: flex; align-items: center; gap: var(--s3); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s5); flex-wrap: wrap; }
+    .cs-kicker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+    .cs-hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; color: var(--ink); margin-bottom: var(--s5); max-width: 24ch; }
+    .cs-hero-lead { font-size: 1.0625rem; line-height: 1.7; color: var(--muted); max-width: 62ch; margin-bottom: var(--s6); }
+    .cs-meta-row { display: flex; flex-wrap: wrap; gap: var(--s5); padding-top: var(--s5); border-top: var(--line); }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .cs-meta-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .cs-meta-value { font-size: 0.9375rem; font-weight: 500; color: var(--ink); }
+
+    .stat-strip { background: var(--raised); border-bottom: var(--line); padding-block: var(--s6); }
+    .stat-strip .wrap { max-width: 800px; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s6); }
+    .stat-item { display: flex; flex-direction: column; gap: var(--s1); }
+    .stat-value { font-family: var(--font-display); font-size: 2.25rem; font-weight: 400; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.8125rem; color: var(--muted); line-height: 1.4; }
+
+    .cs-body { padding-block: var(--s8); }
+    .cs-section { margin-bottom: var(--s8); }
+    .cs-section:last-child { margin-bottom: 0; }
+    .cs-section-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s4); }
+    .cs-section h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.625rem; line-height: 1.2; color: var(--ink); margin-bottom: var(--s4); }
+    .cs-section h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: var(--s3); margin-top: var(--s5); }
+    .cs-section p { font-size: 1rem; line-height: 1.78; color: var(--muted); margin-bottom: var(--s4); }
+    .cs-section ul { list-style: none; margin-bottom: var(--s4); }
+    .cs-section ul li { font-size: 1rem; line-height: 1.7; color: var(--muted); padding-left: var(--s5); position: relative; margin-bottom: var(--s2); }
+    .cs-section ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+    .cs-section ul li strong, .cs-section p strong { color: var(--ink); font-weight: 600; }
+    .cs-section ol { margin: 0 0 var(--s4) var(--s5); }
+    .cs-section ol li { font-size: 1rem; line-height: 1.7; color: var(--muted); margin-bottom: var(--s2); padding-left: var(--s2); }
+
+    .problem-block { background: var(--raised); border-left: 3px solid var(--accent); padding: var(--s5) var(--s6); margin-bottom: var(--s5); }
+    .problem-block p { margin-bottom: 0; color: var(--ink); }
+    .problem-block p + p { margin-top: var(--s3); color: var(--muted); font-size: 0.9375rem; }
+
+    .table-wrapper { overflow-x: auto; margin-bottom: var(--s6); border: var(--line); }
+    .cs-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .cs-table thead { background: var(--raised); }
+    .cs-table th { text-align: left; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: var(--s3) var(--s4); border-bottom: var(--line); white-space: nowrap; }
+    .cs-table td { padding: var(--s3) var(--s4); border-bottom: var(--line); color: var(--muted); line-height: 1.4; }
+    .cs-table tr:last-child td { border-bottom: none; }
+    .cs-table td:first-child { color: var(--ink); font-weight: 500; }
+    .accent-val { color: var(--accent) !important; font-weight: 600; }
+    .green-val { color: #107C41 !important; font-weight: 600; }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; padding: 0.75rem 1.5rem; border: 1.5px solid transparent; cursor: pointer; }
+    .btn--primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    .btn--primary:hover { background: #924f10; border-color: #924f10; }
+    .btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn--secondary:hover { background: var(--ink); color: var(--surface); }
+
+    .cs-divider { border: none; border-top: var(--line); margin-block: var(--s7); }
+    .tech-tag { display: inline-block; font-size: 0.75rem; background: var(--raised); border: var(--line); padding: 0.25rem 0.75rem; margin: 0.25rem 0.25rem 0.25rem 0; font-weight: 500; color: var(--muted); }
+
+    .cs-footer-cta { background: var(--raised); border-top: var(--line); padding-block: var(--s7); }
+    .more-posts-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s4); }
+    .more-posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); margin-bottom: var(--s6); }
+    .more-post-card { border: var(--line); padding: var(--s5); background: var(--surface); transition: border-color var(--t-fast) var(--ease); }
+    .more-post-card:hover { border-color: var(--accent); }
+    .more-post-tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--s2); display: block; }
+    .more-post-title { font-size: 0.9375rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
+
+    .site-footer { padding-block: var(--s6); border-top: var(--line); }
+    .site-footer .wrap { max-width: 1200px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s4); }
+
+    @media (max-width: 640px) {
+      .stat-strip .wrap { grid-template-columns: 1fr; }
+      .cs-hero { padding-block: var(--s7) var(--s6); }
+      .wrap { padding-inline: var(--s5); }
+      .more-posts-grid { grid-template-columns: 1fr; }
+    }
+
+    .index-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+    .index-card { display: block; padding: var(--s6) 0; border-bottom: var(--line); transition: opacity var(--t-fast) var(--ease); }
+    .index-card:hover { opacity: 0.72; }
+    .index-card:first-child { padding-top: 0; }
+    .index-card-top { display: flex; align-items: center; gap: var(--s3); margin-bottom: var(--s3); }
+    .index-card-tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+    .index-card-date { font-size: 0.75rem; color: var(--muted); }
+    .index-card-title { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; line-height: 1.25; color: var(--ink); margin-bottom: var(--s3); max-width: 34ch; }
+    .index-card-dek { font-size: 0.9375rem; line-height: 1.65; color: var(--muted); max-width: 58ch; margin-bottom: var(--s3); }
+    .index-card-read { font-size: 0.8125rem; font-weight: 600; color: var(--ink); }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap" style="max-width:1200px;display:flex;align-items:center;justify-content:space-between;height:56px;">
+    <a href="../index.html" class="wordmark">Jenny Park</a>
+    <a href="../index.html" class="header-back">← Portfolio</a>
+  </div>
+</header>
+
+<section class="cs-hero">
+  <div class="wrap">
+    <div class="cs-kicker">
+      <span>Notebook</span>
+      <span class="cs-kicker-dot"></span>
+      <span>GEO &middot; ASO &middot; AI Search</span>
+    </div>
+    <h1>Blog</h1>
+    <p class="cs-hero-lead">Working notes on how discovery is changing across AI answer engines, app stores, and traditional search &mdash; written while building the measurement and dashboards for it.</p>
+  </div>
+</section>
+
+<main class="cs-body">
+  <div class="wrap">
+    <div class="index-grid">
+
+      <a href="why-your-highest-converting-channel-is-invisible.html" class="index-card">
+        <div class="index-card-top">
+          <span class="index-card-tag">Analytics</span>
+          <span class="index-card-date">September 2026</span>
+        </div>
+        <h2 class="index-card-title">Why Your Highest-Converting Channel Is Invisible in GA4</h2>
+        <p class="index-card-dek">Somewhere between 35% and 70% of your AI-referred sessions are sitting inside “Direct” right now, converting at multiples of your organic rate, and nobody on the leadership team knows it exists.</p>
+        <span class="index-card-read">6 min read →</span>
+      </a>
+
+      <a href="five-metrics-for-ai-brand-visibility.html" class="index-card">
+        <div class="index-card-top">
+          <span class="index-card-tag">GEO</span>
+          <span class="index-card-date">September 2026</span>
+        </div>
+        <h2 class="index-card-title">Five Metrics I Use to Measure Brand Visibility Inside AI Answers</h2>
+        <p class="index-card-dek">A single ChatGPT prompt tells you almost nothing — the model is non-deterministic by design. Credible AI visibility measurement looks more like a sampling program than a rank checker.</p>
+        <span class="index-card-read">7 min read →</span>
+      </a>
+
+      <a href="ranking-number-one-doesnt-matter-to-chatgpt.html" class="index-card">
+        <div class="index-card-top">
+          <span class="index-card-tag">GEO</span>
+          <span class="index-card-date">September 2026</span>
+        </div>
+        <h2 class="index-card-title">Ranking #1 on Google Doesn't Mean ChatGPT Has Heard of You</h2>
+        <p class="index-card-dek">Search rank and AI citation are measuring two different retrieval systems. A well-cited competitor at position 4 can appear in 60% of AI answers while the position-1 holder appears in 8%.</p>
+        <span class="index-card-read">5 min read →</span>
+      </a>
+
+      <a href="the-android-vitals-threshold-nobody-watches.html" class="index-card">
+        <div class="index-card-top">
+          <span class="index-card-tag">ASO</span>
+          <span class="index-card-date">September 2026</span>
+        </div>
+        <h2 class="index-card-title">The Android Vitals Threshold Nobody Is Watching Until It's Too Late</h2>
+        <p class="index-card-dek">Google Play doesn't send a warning before it demotes an app from organic search. It just does it, algorithmically, the moment your ANR rate crosses 0.47% — and by the time impressions drop, the damage is already a week old.</p>
+        <span class="index-card-read">5 min read →</span>
+      </a>
+
+      <a href="what-a-discovery-dashboard-should-show-a-product-leader.html" class="index-card">
+        <div class="index-card-top">
+          <span class="index-card-tag">Dashboards</span>
+          <span class="index-card-date">September 2026</span>
+        </div>
+        <h2 class="index-card-title">What a Discovery Dashboard Should Actually Show a Product Leader</h2>
+        <p class="index-card-dek">Most SEO dashboards are keyword tables wearing a leadership costume. A dashboard built for a product leader needs to answer one question first: is total organic reach growing revenue, or just growing?</p>
+        <span class="index-card-read">6 min read →</span>
+      </a>
+
+      <a href="2026-seo-geo-aso-priority-matrix.html" class="index-card">
+        <div class="index-card-top">
+          <span class="index-card-tag">Strategy</span>
+          <span class="index-card-date">September 2026</span>
+        </div>
+        <h2 class="index-card-title">The 2026 Priority Matrix: What to Fix First Across SEO, GEO, and ASO</h2>
+        <p class="index-card-dek">Four initiatives take under a week each and fix the biggest blind spots most teams have. Two more take a quarter and build the moat. Everything else can wait — or should be avoided outright.</p>
+        <span class="index-card-read">6 min read →</span>
+      </a>
+
+      <a href="the-ai-visibility-tooling-landscape.html" class="index-card">
+        <div class="index-card-top">
+          <span class="index-card-tag">Tooling</span>
+          <span class="index-card-date">September 2026</span>
+        </div>
+        <h2 class="index-card-title">Mapping the AI Visibility Tooling Landscape, September 2026</h2>
+        <p class="index-card-dek">Organic discovery tooling has split into two ecosystems that don't talk to each other yet: mature index-management platforms, and a new generation of probabilistic entity monitors built for a search layer that answers instead of ranking.</p>
+        <span class="index-card-read">6 min read →</span>
+      </a>
+
+      <a href="simulating-an-ai-discovery-pipeline-with-synthetic-data.html" class="index-card">
+        <div class="index-card-top">
+          <span class="index-card-tag">Data Engineering</span>
+          <span class="index-card-date">September 2026</span>
+        </div>
+        <h2 class="index-card-title">How I Simulated an AI Search Discovery Pipeline With Synthetic Data</h2>
+        <p class="index-card-dek">No production GEO dataset was available to practice on, so I built one — five linked tables designed to reproduce the exact measurement failures that make this domain hard: referrer stripping, non-deterministic citations, and algorithmic ranking penalties.</p>
+        <span class="index-card-read">7 min read →</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<section class="cs-footer-cta">
+  <div class="wrap" style="max-width:800px;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+    <div>
+      <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.375rem;color:var(--ink);margin-bottom:0.5rem;">See the full case studies</h3>
+      <p style="font-size:0.9375rem;color:var(--muted);">Growth attribution, revenue analytics, and retention work.</p>
+    </div>
+    <a href="../index.html#work" class="btn btn--primary">View Portfolio</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap" style="max-width:1200px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <div>
+      <div style="font-size:0.9375rem;font-weight:600;color:var(--ink);">Jenny Park</div>
+      <div style="font-size:0.8125rem;color:var(--muted);">San Francisco Bay Area</div>
+    </div>
+    <a href="https://www.linkedin.com/in/jennypark7/" target="_blank" rel="noopener" style="font-size:0.8125rem;font-weight:500;color:var(--muted);">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>
