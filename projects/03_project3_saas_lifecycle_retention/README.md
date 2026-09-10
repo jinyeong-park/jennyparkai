@@ -8,6 +8,8 @@ A product analytics project that connects user behavior to activation, paid conv
 
 ![Overview](docs/screenshots/01_overview.png)
 
+**[Dashboard](https://jtnwnsmyjp6xkdcvuxbvqn.streamlit.app/)**
+
 ### Run locally
 
 ```bash
