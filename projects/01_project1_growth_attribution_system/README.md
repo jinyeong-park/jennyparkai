@@ -7,6 +7,8 @@
 
 An end-to-end marketing measurement system that evaluates **true campaign performance across Meta, Google Search, and TikTok**.
 
+**[Dashboard](https://jennypark-attribution-analytics.streamlit.app/)**
+
 The project combines:
 
 - Marketing Measurement
