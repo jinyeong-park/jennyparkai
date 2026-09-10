@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: int_deduped_touchpoints
+    description: >
+      Removes duplicate touchpoint events from stg_user_touchpoints.
+      Uses ROW_NUMBER() OVER (PARTITION BY user_id, event_timestamp, channel)
+      to keep the earliest event_id within each duplicate group.
+      Eliminates ~3% of rows. event_id is unique after this step.
+    columns:
+      - name: event_id
+        description: Globally unique event identifier after deduplication
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        tests:
+          - not_null
+      - name: event_timestamp
+        tests:
+          - not_null
+      - name: channel
+        tests:
+          - not_null
+
+  - name: int_pre_conversion_touchpoints
+    description: >
+      Core attribution dataset: deduped touchpoints joined to conversions,
+      filtered to the 90-day pre-conversion attribution window.
+      One row per (touchpoint, conversion) pair. All four attribution mart
+      models read directly from this table.
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+      - name: event_id
+        tests:
+          - not_null
+      - name: touchpoint_ts
+        description: Timestamp of the ad click or site visit
+        tests:
+          - not_null
+      - name: conversion_ts
+        description: Timestamp of the associated purchase
+        tests:
+          - not_null
+      - name: order_value_usd
+        description: Order value from ground-truth backend records
+        tests:
+          - not_null

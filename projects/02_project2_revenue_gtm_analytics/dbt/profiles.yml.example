@@ -1,0 +1,12 @@
+revenue_intelligence:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: your_postgres_username     # ← change this
+      password: your_postgres_password # ← change this
+      port: 5432
+      dbname: revenue_intelligence_db  # ← must exist in PostgreSQL
+      schema: public
+      threads: 4

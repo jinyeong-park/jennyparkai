@@ -1,0 +1,65 @@
+# ── macOS ──────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Python ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# ── Environment variables & secrets ────────────────────
+.env
+.env.*
+*.env
+secrets.yaml
+secrets.json
+
+# ── Jupyter Notebooks ──────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── Data files ─────────────────────────────────────────
+# Synthetic CSVs are committed intentionally (they are public by design).
+# Add real/sensitive data exports here if they ever appear locally.
+data/processed/
+data/exports/
+*.parquet
+*.feather
+*.pkl
+*.db
+*.sqlite
+
+# ── PostgreSQL ─────────────────────────────────────────
+*.sql.bak
+pg_dump/
+*.dump
+
+# ── Streamlit ──────────────────────────────────────────
+.streamlit/secrets.toml
+
+# ── IDE & editor ───────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Logs & temp files ──────────────────────────────────
+*.log
+*.tmp
+*.cache

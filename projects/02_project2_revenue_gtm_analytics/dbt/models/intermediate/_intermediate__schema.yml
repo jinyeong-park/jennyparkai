@@ -1,0 +1,132 @@
+version: 2
+
+models:
+
+  - name: int_customer_identity_map
+    description: >
+      Unified account-level identity map across CRM, Marketing, Billing, and Customer Success.
+      One row per account_id showing exactly which systems have a record for that account.
+      Used to detect coverage gaps and as the spine for all account-level reporting.
+    columns:
+      - name: account_id
+        description: Unique account identifier (from Salesforce, the system of record).
+        tests:
+          - unique
+          - not_null
+      - name: systems_present
+        description: Count of systems (1–4) where this account has data. 1 = CRM only.
+        tests:
+          - not_null
+      - name: is_in_crm
+        description: Always TRUE — accounts CTE is sourced from Salesforce.
+        tests:
+          - not_null
+      - name: max_lifecycle_stage
+        description: Furthest marketing funnel stage reached for this account.
+        tests:
+          - accepted_values:
+              values: ['Converted', 'SQL', 'MQL', 'Lead', 'No Lead']
+      - name: total_billed_usd
+        description: Total billing amount in USD (FX-normalized). 0 if no billing record.
+        tests:
+          - not_null
+      - name: total_collected_usd
+        description: Total cash collected in USD. Subset of total_billed_usd.
+        tests:
+          - not_null
+
+  - name: int_gtm_funnel
+    description: >
+      Account-level GTM funnel connecting Marketing leads to Salesforce opportunities.
+      One row per account with aggregated lead and opportunity metrics.
+      Includes funnel_stage classification (Lead → MQL → SQL → Opportunity → Closed-Won)
+      and velocity metrics (lead_to_opp_days, opp_to_close_days).
+      Note: 12 unmatched leads and 9 orphan opportunities exist in source but are
+      excluded from this model — they are flagged in staging for separate audit queries.
+    columns:
+      - name: account_id
+        description: Unique account identifier.
+        tests:
+          - unique
+          - not_null
+      - name: funnel_stage
+        description: Furthest stage reached across the GTM funnel for this account.
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                ['Closed-Won', 'Open Opportunity', 'Closed-Lost',
+                 'SQL', 'MQL', 'Lead', 'Account Only']
+      - name: lead_count
+        description: Number of marketing leads associated with this account. 0 if none.
+        tests:
+          - not_null
+      - name: opp_count
+        description: Number of non-orphan opportunities for this account. 0 if none.
+        tests:
+          - not_null
+      - name: total_won_amount
+        description: Sum of Closed-Won opportunity amounts in native currency. 0 if none.
+        tests:
+          - not_null
+      - name: lead_to_opp_days
+        description: >
+          Days from first lead date to first opportunity created date.
+          NULL if the account has no leads or no opportunities.
+
+  - name: int_revenue_lifecycle
+    description: >
+      Revenue recognition chain connecting Closed-Won opportunities to contracts to billing.
+      One row per won opportunity showing CRM bookings, contracted value, billed amount,
+      and collected cash — enabling the four-gap revenue reconciliation analysis.
+      Only canonical contracts are used (deduplicating the 4 conflicting contract records).
+    columns:
+      - name: opportunity_id
+        description: Unique won opportunity identifier.
+        tests:
+          - unique
+          - not_null
+      - name: account_id
+        description: Account this opportunity belongs to. Never NULL (orphans excluded).
+        tests:
+          - not_null
+      - name: crm_booking_amount
+        description: Opportunity amount as recorded by sales in Salesforce.
+        tests:
+          - not_null
+      - name: contract_value
+        description: >
+          Signed contract value. 0 if no contract exists for this opportunity.
+          Sourced only from is_canonical_record = TRUE to exclude duplicates.
+        tests:
+          - not_null
+      - name: total_billed_usd
+        description: Total invoiced amount in USD (FX-normalized). 0 if no invoices.
+        tests:
+          - not_null
+      - name: total_collected_usd
+        description: Total cash collected in USD. 0 if no paid invoices.
+        tests:
+          - not_null
+      - name: revenue_stage
+        description: Furthest stage reached in the revenue recognition chain.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Collected', 'Billed', 'Contracted', 'Booking Only']
+      - name: booking_to_contract_gap
+        description: >
+          crm_booking_amount - contract_value.
+          Positive = discount given at signing; Negative = contract exceeds booking.
+        tests:
+          - not_null
+      - name: billing_to_collected_gap
+        description: >
+          total_billed_usd - total_collected_usd.
+          Represents outstanding receivables (pending + failed payments).
+        tests:
+          - not_null
+      - name: cash_collection_rate
+        description: >
+          total_collected_usd / crm_booking_amount.
+          End-to-end collection efficiency. NULL if crm_booking_amount = 0.

@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Revenue Intelligence & GTM Analytics — Jenny Park</title>
+
+  <meta
+    name="description"
+    content="Case study: Building a five-page revenue intelligence system that traces the full B2B revenue lifecycle from first lead to collected cash, surfacing a $2.1M gap and flagging 136 zombie pipeline deals."
+  >
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root {
+      --surface: #FFFFFF;
+      --raised: #F2F1EE;
+      --ink: #0C0C0C;
+      --muted: #6F6C66;
+      --accent: #A85C13;
+      --on-accent: #FFFFFF;
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Instrument Sans', system-ui, sans-serif;
+
+      --s1: 0.25rem;
+      --s2: 0.5rem;
+      --s3: 0.75rem;
+      --s4: 1rem;
+      --s5: 1.5rem;
+      --s6: 2rem;
+      --s7: 3rem;
+      --s8: 4rem;
+      --s9: 6rem;
+      --s10: 8rem;
+
+      --radius: 0px;
+      --line: 1px solid #E0DDD8;
+      --t-fast: 150ms;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      max-width: 800px;
+      margin-inline: auto;
+      padding-inline: var(--s6);
+    }
+
+    /* HEADER */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: var(--line);
+    }
+
+    .site-header .wrap {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .wordmark {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .header-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--t-fast) var(--ease);
+    }
+
+    .header-back:hover { color: var(--ink); }
+
+    .header-back svg { flex-shrink: 0; }
+
+    /* HERO */
+
+    .cs-hero {
+      padding-block: var(--s8) var(--s7);
+      border-bottom: var(--line);
+    }
+
+    .cs-hero .wrap { max-width: 800px; }
+
+    .cs-kicker {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s5);
+    }
+
+    .cs-kicker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .cs-hero h1 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: var(--s5);
+      max-width: 22ch;
+    }
+
+    .cs-hero-lead {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 60ch;
+      margin-bottom: var(--s6);
+    }
+
+    .cs-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s5);
+      padding-top: var(--s5);
+      border-top: var(--line);
+    }
+
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cs-meta-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cs-meta-value {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* STAT STRIP */
+
+    .stat-strip {
+      background: var(--raised);
+      border-bottom: var(--line);
+      padding-block: var(--s6);
+    }
+
+    .stat-strip .wrap {
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s6);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* BODY */
+
+    .cs-body { padding-block: var(--s8); }
+
+    .cs-section { margin-bottom: var(--s8); }
+
+    .cs-section:last-child { margin-bottom: 0; }
+
+    .cs-section-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.625rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: var(--s3);
+      margin-top: var(--s5);
+    }
+
+    .cs-section p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section ul {
+      list-style: none;
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section ul li {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      padding-left: var(--s5);
+      position: relative;
+      margin-bottom: var(--s2);
+    }
+
+    .cs-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .cs-section ul li strong,
+    .cs-section p strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* PROBLEM BLOCK */
+
+    .problem-block {
+      background: var(--raised);
+      border-left: 3px solid var(--accent);
+      padding: var(--s5) var(--s6);
+      margin-bottom: var(--s4);
+    }
+
+    .problem-block p { margin-bottom: 0; color: var(--ink); }
+
+    /* TABLE */
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin-bottom: var(--s6);
+      border: var(--line);
+    }
+
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .cs-table thead { background: var(--raised); }
+
+    .cs-table th {
+      text-align: left;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: var(--s3) var(--s4);
+      border-bottom: var(--line);
+      white-space: nowrap;
+    }
+
+    .cs-table td {
+      padding: var(--s3) var(--s4);
+      border-bottom: var(--line);
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .cs-table tr:last-child td { border-bottom: none; }
+
+    .cs-table td:first-child {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .accent-val {
+      color: var(--accent) !important;
+      font-weight: 600;
+    }
+
+    /* REVENUE WATERFALL */
+
+    .rev-waterfall {
+      border: var(--line);
+      margin-block: var(--s6);
+      background: var(--surface);
+    }
+
+    .rev-waterfall-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--s4);
+      padding: var(--s4) var(--s5);
+      background: var(--raised);
+      border-bottom: var(--line);
+    }
+
+    .rev-waterfall-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .rev-waterfall-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .rev-waterfall-body { padding: var(--s5); }
+
+    .rev-row { margin-bottom: var(--s5); }
+
+    .rev-row:last-child { margin-bottom: 0; }
+
+    .rev-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--s2);
+    }
+
+    .rev-stage {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .rev-amount {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .rev-amount--gap { color: var(--accent); }
+
+    .rev-track {
+      width: 100%;
+      height: 8px;
+      background: var(--raised);
+      overflow: hidden;
+    }
+
+    .rev-bar { height: 100%; background: var(--ink); }
+
+    .rev-bar--accent { background: var(--accent); }
+
+    .rev-bar--green { background: #107C41; }
+
+    .rev-waterfall-summary {
+      border-top: var(--line);
+      padding: var(--s5);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      background: var(--raised);
+    }
+
+    .rev-summary-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+
+    .rev-summary-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .rev-summary-value--green { color: #107C41; }
+
+    .rev-summary-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* FUNNEL VISUAL */
+
+    .funnel-visual {
+      border: var(--line);
+      margin-block: var(--s6);
+      background: var(--surface);
+    }
+
+    .funnel-header {
+      padding: var(--s4) var(--s5);
+      background: var(--raised);
+      border-bottom: var(--line);
+    }
+
+    .funnel-header-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .funnel-body { padding: var(--s5); }
+
+    .funnel-row { margin-bottom: var(--s5); }
+
+    .funnel-row:last-child { margin-bottom: 0; }
+
+    .funnel-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--s2);
+    }
+
+    .funnel-stage {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .funnel-count {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .funnel-count--accent { color: var(--accent); }
+
+    .funnel-track {
+      width: 100%;
+      height: 8px;
+      background: var(--raised);
+      overflow: hidden;
+    }
+
+    .funnel-bar { height: 100%; background: var(--ink); }
+
+    .funnel-bar--accent { background: var(--accent); }
+
+    .funnel-badge {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--on-accent);
+      background: #C00000;
+      padding: 1px 7px;
+      margin-left: var(--s2);
+    }
+
+    .funnel-footer {
+      border-top: var(--line);
+      padding: var(--s4) var(--s5);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      background: var(--raised);
+    }
+
+    .funnel-metric {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+
+    .funnel-metric-val {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .funnel-metric-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* RISK COMPARISON */
+
+    .risk-comparison {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      margin-block: var(--s6);
+    }
+
+    .risk-card {
+      border: var(--line);
+      border-top: 3px solid var(--card-color, #E0DDD8);
+      padding: var(--s5);
+      background: var(--surface);
+    }
+
+    .risk-card--high  { --card-color: #C00000; }
+    .risk-card--med   { --card-color: #A15C00; }
+    .risk-card--green { --card-color: #107C41; }
+
+    .risk-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s3);
+    }
+
+    .risk-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: var(--s2);
+    }
+
+    .risk-desc {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    /* HEALTH GRID */
+
+    .health-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--s4);
+      margin-block: var(--s6);
+    }
+
+    .health-card {
+      border: var(--line);
+      padding: var(--s5);
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .health-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin: 0 auto var(--s3);
+    }
+
+    .health-value {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: var(--s2);
+    }
+
+    .health-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* IMPACT */
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      margin-bottom: var(--s6);
+    }
+
+    .impact-card {
+      border: var(--line);
+      padding: var(--s5);
+      background: var(--surface);
+    }
+
+    .impact-card .ic-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: var(--s2);
+    }
+
+    .impact-card .ic-label {
+      font-size: 0.875rem;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: var(--s1);
+    }
+
+    .impact-card .ic-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* TECH */
+
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2);
+    }
+
+    .tech-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--raised);
+      border: var(--line);
+      padding: var(--s1) var(--s3);
+      letter-spacing: 0.02em;
+    }
+
+    .cs-divider {
+      border: none;
+      border-top: var(--line);
+      margin-block: var(--s7);
+    }
+
+    /* FOOTER CTA */
+
+    .cs-footer-cta {
+      background: var(--raised);
+      border-top: var(--line);
+      padding-block: var(--s7);
+    }
+
+    .cs-footer-cta .wrap {
+      max-width: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s6);
+      flex-wrap: wrap;
+    }
+
+    .cs-footer-cta h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.375rem;
+      color: var(--ink);
+      margin-bottom: var(--s2);
+    }
+
+    .cs-footer-cta p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: var(--s3) var(--s5);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background var(--t-fast) var(--ease),
+                  color var(--t-fast) var(--ease),
+                  border-color var(--t-fast) var(--ease);
+      border: 1.5px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn--primary {
+      background: var(--accent);
+      color: var(--on-accent);
+      border-color: var(--accent);
+    }
+
+    .btn--primary:hover {
+      background: #924f10;
+      border-color: #924f10;
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .btn--secondary:hover {
+      background: var(--ink);
+      color: var(--surface);
+    }
+
+    /* SITE FOOTER */
+
+    .site-footer {
+      padding-block: var(--s6);
+      border-top: var(--line);
+    }
+
+    .site-footer .wrap {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s4);
+    }
+
+    .footer-name {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .footer-location {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 640px) {
+      .wrap { padding-inline: var(--s4); }
+      .stat-strip .wrap { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .risk-comparison { grid-template-columns: 1fr; }
+      .health-grid { grid-template-columns: repeat(2, 1fr); }
+      .cs-footer-cta .wrap { flex-direction: column; align-items: flex-start; }
+      .cs-hero { padding-block: var(--s6) var(--s5); }
+      .rev-waterfall-summary { grid-template-columns: 1fr; }
+      .funnel-footer { grid-template-columns: 1fr; }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="wordmark">Jenny Park</a>
+      <a href="index.html#work" class="header-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to work
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="wrap">
+
+      <p class="cs-kicker">
+        <span>B2B Revenue Analytics</span>
+        <span class="cs-kicker-dot" aria-hidden="true"></span>
+      </p>
+
+      <h1>Revenue Intelligence &amp; GTM Analytics</h1>
+
+      <p class="cs-hero-lead">
+        Built a five-page Streamlit intelligence layer that traces the full revenue lifecycle — from first marketing touch to collected cash — surfacing a $2.1M gap between bookings and realised revenue, diagnosing where the GTM funnel leaks, and flagging 136 zombie pipeline deals before the next forecast cycle.
+      </p>
+
+      <div class="cs-meta-row">
+
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Project</span>
+          <span class="cs-meta-value">Revenue Intelligence System</span>
+        </div>
+
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Revenue &amp; Marketing Analyst</span>
+        </div>
+
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Methods</span>
+          <span class="cs-meta-value">Revenue Reconciliation, GTM Funnel, Pipeline Risk, NRR</span>
+        </div>
+
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">SQL, Python, dbt, Streamlit, Plotly</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip" aria-label="Key results">
+    <div class="wrap">
+
+      <div class="stat-item">
+        <span class="stat-value">82%</span>
+        <span class="stat-label">Cash collection rate against CRM bookings</span>
+      </div>
+
+      <div class="stat-item">
+        <span class="stat-value">$2.1M</span>
+        <span class="stat-label">Revenue gap quantified across three causes</span>
+      </div>
+
+      <div class="stat-item">
+        <span class="stat-value">5 pages</span>
+        <span class="stat-label">Dashboard layers — Executive to Diagnostic</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <main class="cs-body">
+    <div class="wrap">
+
+      <!-- THE PROBLEM -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">The Problem</p>
+
+        <h2>Finance, RevOps, and CS Were Each Looking at a Different Number</h2>
+
+        <div class="problem-block">
+          <p>
+            <strong>Revenue Fragmentation:</strong>
+            Finance tracked CRM bookings ($11.8M). RevOps tracked weighted pipeline ($9.8M). Customer Success monitored NRR on the renewal base. No single view connected them, and no one could answer the CFO's question: how much of our booked revenue will we actually collect?
+          </p>
+        </div>
+
+        <div class="problem-block">
+          <p>
+            <strong>Invisible Pipeline Risk:</strong>
+            The CRM contained deals with no activity in 90+ days that were still counted in the forecast. $4.0M in pipeline carried two or more risk flags. Executives were using a raw pipeline number that overstated closeable revenue by over $23M.
+          </p>
+        </div>
+
+        <p>
+          The core problem was not a reporting gap. It was a structural one: four domains of revenue data (CRM, billing, pipeline, customer health) had never been joined into a single model. Every team was correct about their own slice. Nobody could see the whole picture.
+        </p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- APPROACH -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Approach</p>
+
+        <h2>dbt Staging → Mart → Streamlit Intelligence Layer</h2>
+
+        <h3>1. Three-Layer dbt Data Architecture</h3>
+
+        <p>
+          Raw tables (accounts, leads, opportunities, contracts, invoices, payments, usage, support) were standardised in dbt staging models with consistent types, field names, and null handling.
+        </p>
+
+        <ul>
+          <li><strong>Staging models:</strong> Type-cast raw tables, rename fields to a consistent convention, handle nulls.</li>
+          <li><strong>Intermediate models:</strong> Join across domains — match leads to accounts, score pipeline risk, compute lifecycle timelines, build customer health composites.</li>
+          <li><strong>Mart models:</strong> Pre-aggregated facts for each page: <code>fct_revenue_reconciliation</code>, <code>fct_gtm_funnel</code>, <code>fct_pipeline</code>, <code>fct_customer_health</code>.</li>
+        </ul>
+
+        <h3>2. Shared Dashboard Component System</h3>
+
+        <p>
+          All five Streamlit pages share a single <code>theme.py</code> that defines visual primitives: <code>hero()</code>, <code>kpi()</code>, <code>insight()</code>, <code>alert()</code>, <code>story_step()</code>, and <code>action_box()</code>. Each page uses the same primitives with different data — making the visual language consistent and the code maintainable.
+        </p>
+
+        <h3>3. Deterministic Risk Scoring</h3>
+
+        <p>
+          Rather than a black-box propensity model, pipeline risk was scored using three explicit boolean flags that RevOps could immediately verify and act on.
+        </p>
+
+        <ul>
+          <li><strong>is_past_due:</strong> Close date has passed without a stage change.</li>
+          <li><strong>is_stale:</strong> No activity recorded in 30+ days.</li>
+          <li><strong>has_repeated_slip:</strong> Close date has been moved at least twice.</li>
+        </ul>
+
+        <p>
+          Any deal with two or more flags becomes High Risk. Stage win rates (5% / 15% / 35% / 65%) were hard-coded as editable constants — the analytic pattern is correct; teams replace constants with historical actuals once they have enough closed-won history.
+        </p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- REVENUE RECONCILIATION -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Revenue Reconciliation</p>
+
+        <h2>$2.1M Disappears Between CRM Bookings and Collected Cash</h2>
+
+        <p>
+          The reconciliation page traces every dollar from booking to bank. Three distinct gaps emerge, each owned by a different team.
+        </p>
+
+        <div class="rev-waterfall" aria-label="Revenue reconciliation waterfall">
+
+          <div class="rev-waterfall-header">
+            <div>
+              <div class="rev-waterfall-title">CRM Bookings → Collected Cash</div>
+            </div>
+            <div class="rev-waterfall-note">
+              Each gap has a different owner<br>and a different fix
+            </div>
+          </div>
+
+          <div class="rev-waterfall-body">
+
+            <div class="rev-row">
+              <div class="rev-label-row">
+                <span class="rev-stage">CRM Bookings</span>
+                <span class="rev-amount">$11.8M</span>
+              </div>
+              <div class="rev-track"><div class="rev-bar" style="width:100%;"></div></div>
+            </div>
+
+            <div class="rev-row">
+              <div class="rev-label-row">
+                <span class="rev-stage">Contract Value <span style="font-size:0.75rem;font-weight:400;color:var(--muted);">after discounts</span></span>
+                <span class="rev-amount rev-amount--gap">−$0.1M &nbsp;<span style="font-weight:400;color:var(--muted);">→ $11.7M</span></span>
+              </div>
+              <div class="rev-track"><div class="rev-bar" style="width:99%;"></div></div>
+            </div>
+
+            <div class="rev-row">
+              <div class="rev-label-row">
+                <span class="rev-stage">Billed Revenue <span style="font-size:0.75rem;font-weight:400;color:var(--muted);">after unbilled amounts</span></span>
+                <span class="rev-amount rev-amount--gap">−$0.4M &nbsp;<span style="font-weight:400;color:var(--muted);">→ $11.4M</span></span>
+              </div>
+              <div class="rev-track"><div class="rev-bar" style="width:96%;"></div></div>
+            </div>
+
+            <div class="rev-row">
+              <div class="rev-label-row">
+                <span class="rev-stage">Collected Cash <span style="font-size:0.75rem;font-weight:400;color:var(--muted);">after payment risk</span></span>
+                <span class="rev-amount rev-amount--gap">−$1.7M &nbsp;<span style="font-weight:400;color:#107C41;">→ $9.7M</span></span>
+              </div>
+              <div class="rev-track"><div class="rev-bar rev-bar--green" style="width:82%;"></div></div>
+            </div>
+
+          </div>
+
+          <div class="rev-waterfall-summary">
+
+            <div class="rev-summary-item">
+              <span class="rev-summary-value">−$0.1M</span>
+              <span class="rev-summary-label">Discounts — owned by Sales Operations</span>
+            </div>
+
+            <div class="rev-summary-item">
+              <span class="rev-summary-value">−$0.4M</span>
+              <span class="rev-summary-label">Unbilled — owned by Finance / Billing</span>
+            </div>
+
+            <div class="rev-summary-item">
+              <span class="rev-summary-value rev-summary-value--green">−$1.7M</span>
+              <span class="rev-summary-label">Payment risk — owned by AR + Customer Success</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p>
+          The largest single gap is payment risk ($1.7M), concentrated in customers with low health scores and overdue invoices beyond 60 days. The unbilled amount ($0.4M) points to contracts won but never invoiced — a billing workflow problem, not a sales problem. Surfacing these three buckets separately gave each team a clear, actionable number they could own.
+        </p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- GTM FUNNEL -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">GTM Funnel Analysis</p>
+
+        <h2>Only 27% of Accounts Close as Won Revenue</h2>
+
+        <p>
+          The funnel page maps every account from first lead to closed-won. Joining lead data to accounts and tracking lifecycle stage progression revealed where the pipeline loses the most volume — and which lead sources convert most efficiently.
+        </p>
+
+        <div class="funnel-visual" aria-label="GTM funnel stage breakdown">
+
+          <div class="funnel-header">
+            <div class="funnel-header-title">Account Attrition by Funnel Stage</div>
+          </div>
+
+          <div class="funnel-body">
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">All Accounts</span>
+                <span class="funnel-count">1,200 &nbsp;·&nbsp; 100%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:100%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Has Lead</span>
+                <span class="funnel-count">1,122 &nbsp;·&nbsp; 94%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:93.5%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">
+                  MQL+
+                  <span class="funnel-badge">biggest drop</span>
+                </span>
+                <span class="funnel-count">943 &nbsp;·&nbsp; 79%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:78.6%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">SQL+</span>
+                <span class="funnel-count">651 &nbsp;·&nbsp; 54%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:54.3%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Has Opportunity</span>
+                <span class="funnel-count">922 &nbsp;·&nbsp; 77%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:76.8%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage" style="color:var(--accent);">Closed-Won</span>
+                <span class="funnel-count funnel-count--accent">325 &nbsp;·&nbsp; 27%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar funnel-bar--accent" style="width:27.1%;"></div></div>
+            </div>
+
+          </div>
+
+          <div class="funnel-footer">
+
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">27%</span>
+              <span class="funnel-metric-label">End-to-end win rate</span>
+            </div>
+
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">MQL+</span>
+              <span class="funnel-metric-label">Biggest single drop — priority fix stage</span>
+            </div>
+
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">14%</span>
+              <span class="funnel-metric-label">Leads with no account ID — invisible to pipeline</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p>
+          Lead source quality analysis showed that Referral had the highest win rate — flagging underinvestment in the highest-converting channel — while Paid Search generated the most volume with a below-average close rate. The signal: optimise MQL qualification criteria before increasing spend.
+        </p>
+
+        <p>
+          The analysis also surfaced two data quality problems that distorted funnel metrics before any insight could be trusted: 14% of leads had no <code>account_id</code> (marketing spend invisible to pipeline reporting), and a set of orphan opportunities referenced accounts that no longer existed in Salesforce.
+        </p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- PIPELINE -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Pipeline Risk Analysis</p>
+
+        <h2>Raw Pipeline Overstates Closeable Revenue — Risk Signals Tell the Real Story</h2>
+
+        <p>
+          Three deterministic risk signals generate a High / Medium / On Track classification for every open deal. This converts the pipeline from a single opaque number into an actionable priority list.
+        </p>
+
+        <div class="risk-comparison">
+
+          <div class="risk-card risk-card--high">
+            <div class="risk-label">High Risk</div>
+            <div class="risk-value">$4.0M</div>
+            <div class="risk-desc">136 deals with 2+ risk flags — past-due, stale, or repeated close date slippage.</div>
+          </div>
+
+          <div class="risk-card risk-card--med">
+            <div class="risk-label">Medium / On Track</div>
+            <div class="risk-value">$28.9M</div>
+            <div class="risk-desc">1,006 deals with zero or one risk flag — closeable with normal follow-up.</div>
+          </div>
+
+          <div class="risk-card risk-card--green">
+            <div class="risk-label">Weighted Forecast</div>
+            <div class="risk-value">$9.8M</div>
+            <div class="risk-desc">Probability-adjusted total. Use this for exec reporting, not the $32.9M raw figure.</div>
+          </div>
+
+        </div>
+
+        <p>
+          136 deals had no activity recorded in 90+ days — zombie deals still counted in the raw pipeline number but with near-zero probability of closing this quarter. Removing them from the active denominator immediately improves the weighted forecast ratio. The page surfaces these deals with histograms of deal age and days-since-last-activity, making the distribution visible for a weekly RevOps hygiene sweep.
+        </p>
+
+        <div class="table-wrapper">
+          <table class="cs-table" aria-label="Pipeline risk signal breakdown">
+            <thead>
+              <tr>
+                <th>Risk Signal</th>
+                <th>Deals</th>
+                <th>Pipeline Value</th>
+                <th>% of Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Past Due (close date passed)</td>
+                <td>89</td>
+                <td>$2.7M</td>
+                <td class="accent-val">8%</td>
+              </tr>
+              <tr>
+                <td>Stale (no activity 30+ days)</td>
+                <td>214</td>
+                <td>$6.5M</td>
+                <td class="accent-val">20%</td>
+              </tr>
+              <tr>
+                <td>Repeated Slip (close date moved 2×+)</td>
+                <td>156</td>
+                <td>$4.8M</td>
+                <td class="accent-val">15%</td>
+              </tr>
+              <tr>
+                <td>Zombie (90+ days no activity)</td>
+                <td>136</td>
+                <td>$4.0M</td>
+                <td class="accent-val">12%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- CUSTOMER HEALTH -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Customer Health &amp; NRR</p>
+
+        <h2>42 At-Risk Accounts Represent the NRR Floor</h2>
+
+        <p>
+          Customer health scoring joined three signals: product engagement (login frequency, feature adoption), support ticket volume (severity-weighted), and contract renewal proximity. Each account received a composite score bucketed into four tiers.
+        </p>
+
+        <div class="health-grid" aria-label="Customer health tier breakdown">
+
+          <div class="health-card">
+            <div class="health-dot" style="background:#107C41;"></div>
+            <div class="health-value">50%</div>
+            <div class="health-label">Healthy</div>
+          </div>
+
+          <div class="health-card">
+            <div class="health-dot" style="background:#A15C00;"></div>
+            <div class="health-value">~28%</div>
+            <div class="health-label">Needs Attention</div>
+          </div>
+
+          <div class="health-card">
+            <div class="health-dot" style="background:#C00000;"></div>
+            <div class="health-value">6%</div>
+            <div class="health-label">At Risk · 42 accounts</div>
+          </div>
+
+          <div class="health-card">
+            <div class="health-dot" style="background:#5C5C5C;"></div>
+            <div class="health-value">16%</div>
+            <div class="health-label">Churned</div>
+          </div>
+
+        </div>
+
+        <p>
+          The page also computes segment-level NRR, separating expansion revenue (upsells within existing accounts) from contraction and churn. This gave CS leadership a renewal priority list ranked by ARR at risk × health score — replacing the previous approach of prioritising accounts solely by size.
+        </p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- IMPACT -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Modelled Business Impact</p>
+
+        <h2>Recommendations by Team</h2>
+
+        <h3>Finance — Recover $0.4M in Unbilled Revenue</h3>
+
+        <div class="problem-block">
+          <p>
+            <strong>Unbilled → No Invoice → Revenue Lost</strong>: Enforce a 7-day billing SLA from contract execution. Audit all contracts signed in the last 90 days with no corresponding invoice.
+          </p>
+        </div>
+
+        <h3>RevOps — Zombie Sweep and Forecast Correction</h3>
+
+        <div class="problem-block">
+          <p>
+            <strong>136 Zombie Deals → Weekly Hygiene Sweep → Accurate Forecast</strong>: Mark as Lost or reassign. Switch exec reporting to $9.8M weighted forecast, not $32.9M raw. Set a 30-day activity SLA with auto-flag for manager review.
+          </p>
+        </div>
+
+        <h3>Customer Success — Intervene Before Renewal</h3>
+
+        <div class="problem-block">
+          <p>
+            <strong>42 At-Risk Accounts → QBR Queue → NRR Protection</strong>: Build a CS intervention queue ranked by ARR × (1 − health score). Assign QBRs to all at-risk accounts renewing in the next 90 days.
+          </p>
+        </div>
+
+        <h3>Marketing Ops — Fix Lead-to-Account Matching</h3>
+
+        <div class="problem-block">
+          <p>
+            <strong>14% Unmatched Leads → Enforce account_id at Form Capture → Full Attribution</strong>: Route unmatched leads through a matching workflow so marketing pipeline attribution is complete and spend is defensible.
+          </p>
+        </div>
+
+        <div class="impact-grid">
+
+          <div class="impact-card">
+            <div class="ic-value">$2.1M</div>
+            <div class="ic-label">Revenue Gap Identified</div>
+            <div class="ic-desc">
+              Across three causes — discounts, unbilled amounts, and payment risk — each with a distinct owner and fix.
+            </div>
+          </div>
+
+          <div class="impact-card">
+            <div class="ic-value">136</div>
+            <div class="ic-label">Zombie Deals Surfaced</div>
+            <div class="ic-desc">
+              $4.0M in pipeline with no activity in 90+ days, now visible for weekly RevOps hygiene sweeps.
+            </div>
+          </div>
+
+          <div class="impact-card">
+            <div class="ic-value">42</div>
+            <div class="ic-label">At-Risk Accounts Flagged</div>
+            <div class="ic-desc">
+              CS intervention queue ranked by ARR at risk, replacing the previous size-only prioritisation.
+            </div>
+          </div>
+
+        </div>
+
+        <p>
+          Beyond point-in-time numbers, the dashboard established a repeatable operating cadence: Finance reviews the reconciliation page at month-end, RevOps runs the pipeline page weekly, CS uses the health page for renewal planning. Replacing synthetic data with production dbt models requires only updating the <code>data_loader.py</code> connection — the analytic layer is unchanged.
+        </p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- TECH STACK -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Tech Stack</p>
+
+        <h2>Tools &amp; Methods</h2>
+
+        <div class="tech-grid">
+          <span class="tech-tag">Python 3.11</span>
+          <span class="tech-tag">pandas</span>
+          <span class="tech-tag">numpy</span>
+          <span class="tech-tag">dbt</span>
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">Window Functions</span>
+          <span class="tech-tag">CTEs</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Plotly</span>
+          <span class="tech-tag">Revenue Reconciliation</span>
+          <span class="tech-tag">GTM Funnel</span>
+          <span class="tech-tag">Pipeline Risk Scoring</span>
+          <span class="tech-tag">Customer Health Scoring</span>
+          <span class="tech-tag">NRR</span>
+          <span class="tech-tag">Lead Lifecycle Tracking</span>
+          <span class="tech-tag">Waterfall Analysis</span>
+          <span class="tech-tag">Deterministic Risk Flags</span>
+        </div>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- SOURCE CODE -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Source Code</p>
+
+        <h2>Code &amp; Documentation</h2>
+
+        <p>
+          Full dbt models, Streamlit app, data generation scripts, and synthetic dataset are available on GitHub. The README includes a quickstart to run the dashboard locally in under five minutes.
+        </p>
+
+        <a
+          href="https://github.com/jinyeong-park/revenue-gtm-analytics"
+          target="_blank"
+          rel="noopener"
+          class="btn btn--secondary"
+        >
+          View on GitHub
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER CTA -->
+  <section class="cs-footer-cta" aria-label="Contact">
+    <div class="wrap">
+
+      <div>
+        <h3>Interested in working together?</h3>
+        <p>
+          Open to Data Analyst, Growth Analyst, Marketing Analyst,
+          and Revenue Analytics roles in the Bay Area or remote.
+        </p>
+      </div>
+
+      <div style="display:flex; gap:var(--s3); flex-wrap:wrap;">
+        <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
+        <a href="index.html#work" class="btn btn--secondary">See more work</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+
+      <div>
+        <div class="footer-name">Jenny Park</div>
+        <div class="footer-location">San Francisco Bay Area</div>
+      </div>
+
+      <a
+        href="https://www.linkedin.com/in/jennypark7/"
+        target="_blank"
+        rel="noopener"
+        style="font-size:0.8125rem;font-weight:500;color:var(--muted);"
+      >
+        LinkedIn
+      </a>
+
+    </div>
+  </footer>
+
+</body>
+</html>

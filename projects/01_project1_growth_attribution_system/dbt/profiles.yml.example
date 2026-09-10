@@ -1,0 +1,18 @@
+# ─────────────────────────────────────────────────────────────
+#  profiles.yml.example
+#  Copy this file to ~/.dbt/profiles.yml and fill in your creds.
+#  Do NOT commit the real profiles.yml — it contains passwords.
+# ─────────────────────────────────────────────────────────────
+
+growth_attribution:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: your_postgres_username
+      password: your_postgres_password
+      port: 5432
+      dbname: growth_attribution_db
+      schema: public
+      threads: 4

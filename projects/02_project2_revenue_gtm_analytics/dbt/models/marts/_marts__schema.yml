@@ -1,0 +1,199 @@
+version: 2
+
+models:
+
+  - name: dim_account
+    description: >
+      Master account dimension. One row per account_id combining CRM attributes
+      with cross-system coverage flags and a pre-computed lifecycle_tier for
+      high-level segmentation. Used as the join key in all fct_* models.
+    columns:
+      - name: account_id
+        description: Unique account identifier.
+        tests:
+          - unique
+          - not_null
+      - name: segment
+        description: Account size segment from Salesforce.
+        tests:
+          - accepted_values:
+              values: ['SMB', 'Mid-Market', 'Enterprise', 'Unknown']
+      - name: account_status
+        tests:
+          - accepted_values:
+              values: ['Prospect', 'Customer', 'Churned']
+      - name: lifecycle_tier
+        description: Pre-computed segmentation combining account_status, funnel position, and billing.
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                ['Churned', 'Active Customer', 'Customer - No Billing',
+                 'Closed-Won Prospect', 'In Pipeline', 'Marketing Qualified',
+                 'Lead', 'Account Only']
+      - name: systems_present
+        description: Count of systems (1–4) where this account has data.
+        tests:
+          - not_null
+
+  - name: fct_pipeline
+    description: >
+      Open pipeline snapshot. One row per open opportunity (is_open = TRUE, is_orphan = FALSE)
+      with account context and risk signals. Refreshed on each dbt run as a point-in-time snapshot.
+      Use snapshot_date to track pipeline movement over time if snapshots are persisted.
+    columns:
+      - name: opportunity_id
+        description: Unique open opportunity identifier.
+        tests:
+          - unique
+          - not_null
+      - name: account_id
+        tests:
+          - not_null
+      - name: pipeline_amount
+        description: Opportunity amount in native CRM currency.
+        tests:
+          - not_null
+      - name: pipeline_risk
+        description: Risk classification based on past-due and stale signals.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['High Risk', 'Medium Risk', 'On Track']
+      - name: weighted_pipeline_amount
+        description: pipeline_amount × stage-based win rate proxy.
+        tests:
+          - not_null
+      - name: snapshot_date
+        description: Date this snapshot was generated (CURRENT_DATE at run time).
+        tests:
+          - not_null
+
+  - name: fct_bookings
+    description: >
+      Bookings-to-cash reconciliation. One row per closed-won opportunity showing
+      the full revenue chain: CRM booking → contract value → billed → collected.
+      The three gap columns (booking_to_contract_gap, contract_to_billing_gap,
+      billing_to_collected_gap) drive the revenue reconciliation analysis.
+    columns:
+      - name: opportunity_id
+        description: Unique closed-won opportunity identifier.
+        tests:
+          - unique
+          - not_null
+      - name: account_id
+        tests:
+          - not_null
+      - name: crm_booking_amount
+        description: Opportunity amount as recorded by sales.
+        tests:
+          - not_null
+      - name: contract_value
+        description: Signed contract value. 0 if no contract exists.
+        tests:
+          - not_null
+      - name: total_billed_usd
+        description: Total invoiced in USD. 0 if no invoices.
+        tests:
+          - not_null
+      - name: total_collected_usd
+        description: Total cash collected in USD. 0 if no paid invoices.
+        tests:
+          - not_null
+      - name: revenue_stage
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Collected', 'Billed', 'Contracted', 'Booking Only']
+      - name: discount_tier
+        description: Discount classification based on booking-to-contract gap percentage.
+        tests:
+          - accepted_values:
+              values:
+                ['Heavy Discount (>15%)', 'Moderate Discount (5-15%)',
+                 'Minor Discount (<5%)', 'Contract Exceeds Booking',
+                 'No Discount']
+      - name: collection_status
+        tests:
+          - not_null
+
+  - name: fct_revenue
+    description: >
+      Monthly billing-level revenue fact. One row per invoice (lowest grain).
+      Used for MRR trend analysis, NRR calculation, and payment collection reporting.
+      Contains both the raw billing amount (in original currency) and USD-normalized amount.
+    columns:
+      - name: invoice_id
+        description: Unique invoice identifier.
+        tests:
+          - unique
+          - not_null
+      - name: account_id
+        tests:
+          - not_null
+      - name: billing_date
+        tests:
+          - not_null
+      - name: billing_amount_usd
+        description: Billing amount normalized to USD using static FX rates.
+        tests:
+          - not_null
+      - name: payment_status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Paid', 'Pending', 'Failed']
+      - name: nrr_category
+        description: NRR bucket for this invoice's account (Churned / Expansion / Retained).
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Churned', 'Expansion', 'Retained']
+      - name: revenue_type
+        description: Recurring / Variable / Non-Recurring based on revenue_model.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Recurring', 'Variable', 'Non-Recurring', 'Other']
+
+  - name: fct_customer_lifecycle
+    description: >
+      Full B2B lifecycle. One row per account_id connecting every funnel stage
+      from first marketing touch through revenue collection and retention.
+      The single model to answer "what happened to this account end-to-end?"
+      lifecycle_completeness ranks how far through the B2B journey each account got.
+    columns:
+      - name: account_id
+        description: Unique account identifier.
+        tests:
+          - unique
+          - not_null
+      - name: funnel_stage
+        description: Furthest GTM funnel stage reached (from int_gtm_funnel).
+        tests:
+          - accepted_values:
+              values:
+                ['Closed-Won', 'Open Opportunity', 'Closed-Lost',
+                 'SQL', 'MQL', 'Lead', 'Account Only']
+      - name: nrr_category
+        description: Account-level NRR classification.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Churned', 'Expansion', 'Retained', 'No Revenue']
+      - name: lifecycle_completeness
+        description: >
+          Ordered lifecycle stage: 0-Pre-Pipeline through 6-Churned.
+          Sortable string so reports can rank accounts by how far they progressed.
+        tests:
+          - not_null
+      - name: lead_to_close_days
+        description: >
+          Days from first lead date to first Closed-Won date.
+          NULL if the account has no leads or has never closed a deal.
+      - name: total_crm_bookings
+        tests:
+          - not_null
+      - name: total_collected_usd
+        tests:
+          - not_null

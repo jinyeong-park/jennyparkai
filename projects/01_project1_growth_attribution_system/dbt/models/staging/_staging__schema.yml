@@ -1,0 +1,92 @@
+version: 2
+
+models:
+  - name: stg_ad_spend
+    description: >
+      Staging model for ad platform cost and reported performance data.
+      Simulates nightly Fivetran/Airbyte ETL from Meta, Google, and TikTok Ads APIs.
+      Contains daily spend and platform-self-reported conversions by channel and DMA.
+    columns:
+      - name: ad_date
+        description: Date of the ad run
+        tests:
+          - not_null
+      - name: channel
+        description: Canonical paid channel name
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Meta_Paid_Social', 'Google_Paid_Search', 'TikTok_Ads']
+      - name: dma_code
+        description: U.S. Designated Market Area code
+        tests:
+          - not_null
+      - name: spend_usd
+        description: Daily ad spend in USD
+        tests:
+          - not_null
+      - name: platform_reported_conversions
+        description: >
+          Conversions self-reported by the ad platform. Subject to self-attribution
+          bias — combined cross-platform totals exceed actual backend orders by ~34%.
+          Used only for platform vs. SQL ROAS comparison, not as ground truth.
+
+  - name: stg_user_touchpoints
+    description: >
+      Staging model for user clickstream and event logs.
+      Simulates GA4 BigQuery Export or Segment/Amplitude event stream.
+      Contains ~3% duplicate events (handled downstream in int_deduped_touchpoints).
+    columns:
+      - name: event_id
+        description: Raw event identifier — not yet deduplicated, not unique at this layer
+        tests:
+          - not_null
+      - name: user_id
+        description: User identifier — joins to stg_conversions for attribution
+        tests:
+          - not_null
+      - name: event_timestamp
+        description: UTC timestamp of the clickstream event
+        tests:
+          - not_null
+      - name: channel
+        description: Canonical channel (5 values including organic and CRM)
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Meta_Paid_Social'
+                - 'Google_Paid_Search'
+                - 'TikTok_Ads'
+                - 'Google_Organic'
+                - 'Email_CRM'
+      - name: utm_campaign
+        description: Lowercased, trimmed campaign name (was campaign_name in source)
+
+  - name: stg_conversions
+    description: >
+      Staging model for backend transaction records.
+      Ground-truth revenue data replicated from the production orders table via CDC.
+      order_value_usd is the definitive revenue figure for all ROAS calculations.
+    columns:
+      - name: conversion_id
+        description: Unique order identifier
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        description: Buyer identifier — joins to stg_user_touchpoints
+        tests:
+          - not_null
+      - name: converted_at
+        description: UTC timestamp of purchase completion
+        tests:
+          - not_null
+      - name: order_value_usd
+        description: Purchase value in USD — numerator in all ROAS calculations
+        tests:
+          - not_null
+      - name: dma_code
+        description: Buyer's geographic region — used in geo-holdout experiment
+        tests:
+          - not_null

@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: mrt_first_touch_attribution
+    description: >
+      First-Touch Attribution — 100% credit to the earliest touchpoint per user.
+      Best for top-of-funnel awareness measurement.
+    columns:
+      - name: channel
+        tests: [not_null, unique]
+      - name: attributed_conversions
+        tests: [not_null]
+      - name: attributed_revenue_usd
+        tests: [not_null]
+
+  - name: mrt_last_touch_attribution
+    description: >
+      Last-Touch Attribution — 100% credit to the touchpoint immediately before conversion.
+      Reflects the default model used by ad platforms; primary source of self-attribution bias.
+    columns:
+      - name: channel
+        tests: [not_null, unique]
+      - name: attributed_conversions
+        tests: [not_null]
+      - name: attributed_revenue_usd
+        tests: [not_null]
+
+  - name: mrt_linear_attribution
+    description: >
+      Linear Attribution — equal credit split across all touchpoints per user journey.
+      Balanced baseline; useful for sanity-checking other models.
+    columns:
+      - name: channel
+        tests: [not_null, unique]
+      - name: attributed_revenue_usd
+        tests: [not_null]
+
+  - name: mrt_time_decay_attribution
+    description: >
+      Time-Decay Attribution (primary model) — exponential decay with 7-day half-life.
+      More recent touchpoints receive proportionally more credit.
+    columns:
+      - name: channel
+        tests: [not_null, unique]
+      - name: attributed_conversions
+        tests: [not_null]
+      - name: attributed_revenue_usd
+        tests: [not_null]
+
+  - name: mrt_attribution_comparison
+    description: >
+      Executive comparison table. All four attribution models + platform-reported ROAS
+      side by side with total spend. Primary output for budget reallocation decisions.
+    columns:
+      - name: channel
+        tests: [not_null, unique]
+      - name: total_spend_usd
+        tests: [not_null]

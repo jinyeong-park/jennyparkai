@@ -1,0 +1,137 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: raw_salesforce_accounts
+      - name: raw_marketing_leads
+      - name: raw_salesforce_opportunities
+      - name: raw_contracts
+      - name: raw_billing
+      - name: raw_product_events
+      - name: raw_customer_success
+
+models:
+
+  - name: stg_salesforce_accounts
+    description: >
+      Deduplicated Salesforce account records. Source contains ~12 duplicate account_ids
+      (same ID, slightly different names). ROW_NUMBER() keeps the most recent record.
+      The had_duplicate_in_source flag is preserved for auditability.
+    columns:
+      - name: account_id
+        description: Unique account identifier after deduplication.
+        tests:
+          - unique
+          - not_null
+      - name: segment
+        description: Account size segment.
+        tests:
+          - accepted_values:
+              values: ['SMB', 'Mid-Market', 'Enterprise', 'Unknown']
+      - name: account_status
+        tests:
+          - accepted_values:
+              values: ['Prospect', 'Customer', 'Churned']
+
+  - name: stg_marketing_leads
+    description: >
+      Marketing leads from all acquisition channels. 12 leads have a missing account_id
+      (unmatched leads). These are retained and flagged with has_account = FALSE.
+    columns:
+      - name: lead_id
+        tests:
+          - unique
+          - not_null
+      - name: lifecycle_stage
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Lead', 'MQL', 'SQL', 'Converted', 'Unknown']
+      - name: lifecycle_stage_rank
+        description: Numeric rank for funnel ordering (1=Lead, 4=Converted).
+
+  - name: stg_salesforce_opportunities
+    description: >
+      Sales opportunities with pipeline health signals added as calculated fields.
+      Includes 9 orphan opportunities (account_id like 'ACC_ORPHAN_%') which are
+      flagged but retained so pipeline reporting can surface unmatched deals.
+    columns:
+      - name: opportunity_id
+        tests:
+          - unique
+          - not_null
+      - name: amount
+        tests:
+          - not_null
+      - name: opportunity_stage
+        tests:
+          - accepted_values:
+              values: ['Prospecting', 'Qualification', 'Proposal', 'Negotiation',
+                       'Closed-Won', 'Closed-Lost', 'Unknown']
+
+  - name: stg_contracts
+    description: >
+      Signed contracts linked to Closed-Won opportunities. Source contains 4 duplicate
+      contract_ids with slightly different values — a common reconciliation issue.
+      Both records are retained with has_duplicate_contract_id and is_canonical_record flags.
+      Use WHERE is_canonical_record = TRUE for revenue calculations.
+    columns:
+      - name: contract_id
+        description: Contract identifier. NOT unique in source — see has_duplicate_contract_id.
+      - name: contract_value
+        tests:
+          - not_null
+      - name: contract_status
+        tests:
+          - accepted_values:
+              values: ['Active', 'Amended', 'Cancelled']
+
+  - name: stg_billing
+    description: >
+      Monthly billing invoices linked to contracts. Includes multi-currency records
+      (USD / EUR / GBP) normalized to USD using static FX rates. Failed and pending
+      payments are flagged for the revenue reconciliation model.
+    columns:
+      - name: invoice_id
+        tests:
+          - unique
+          - not_null
+      - name: payment_status
+        tests:
+          - accepted_values:
+              values: ['Paid', 'Pending', 'Failed']
+      - name: billing_amount_usd
+        description: Billing amount converted to USD using static FX rates.
+        tests:
+          - not_null
+
+  - name: stg_product_events
+    description: >
+      Product usage events. Used for customer health scoring and lead engagement signals.
+      engagement_tier classifies events by their signal strength (High / Medium / Low).
+    columns:
+      - name: event_name
+        tests:
+          - accepted_values:
+              values: ['login', 'workspace_created', 'feature_used', 'report_created',
+                       'integration_connected', 'api_call', 'invite_user', 'activation_completed']
+
+  - name: stg_customer_success
+    description: >
+      Customer health scores, renewal dates, and churn reasons.
+      health_tier buckets the continuous health score into Healthy / Needs Attention / At Risk.
+    columns:
+      - name: account_id
+        tests:
+          - unique
+          - not_null
+      - name: renewal_status
+        tests:
+          - accepted_values:
+              values: ['Healthy', 'Needs Attention', 'At Risk', 'Churned']
+      - name: health_tier
+        tests:
+          - accepted_values:
+              values: ['Healthy', 'Needs Attention', 'At Risk', 'Unknown']

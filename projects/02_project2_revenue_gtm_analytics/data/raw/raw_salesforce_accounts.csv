@@ -1,0 +1,1213 @@
+account_id,account_name,company_size,segment,industry,sales_region,revenue_model,account_created_at,account_status
+ACC_00001,Cobalt Partners 0001,100-999,Mid-Market,Media,North America,Subscription,2024-01-05,Customer
+ACC_00002,Cobalt Networks 0002,1-99,SMB,Financial Services,North America,Subscription,2025-02-18,Customer
+ACC_00003,Atlas Labs 0003,1000+,Enterprise,Software,North America,Advertising,2025-06-29,Prospect
+ACC_00004,Summit Partners 0004,100-999,Mid-Market,Media,North America,Subscription,2025-02-06,Customer
+ACC_00005,Northstar Systems 0005,1-99,SMB,Professional Services,APAC,Subscription,2024-10-07,Customer
+ACC_00006,Pioneer Partners 0006,1000+,Enterprise,Software,EMEA,Advertising,2025-08-28,Customer
+ACC_00007,Cobalt Networks 0007,100-999,Mid-Market,Software,North America,Transactional,2024-09-28,Prospect
+ACC_00008,BluePeak Systems 0008,100-999,Mid-Market,Healthcare,EMEA,Usage-Based,2025-06-03,Customer
+ACC_00009,Pioneer Systems 0009,1-99,SMB,Software,North America,Transactional,2024-12-05,Prospect
+ACC_00010,Nova Partners 0010,1-99,SMB,Media,EMEA,Usage-Based,2024-01-20,Prospect
+ACC_00011,Summit Group 0011,1-99,SMB,Professional Services,North America,Transactional,2025-01-22,Prospect
+ACC_00012,Pioneer Solutions 0012,1000+,Enterprise,Media,EMEA,Transactional,2024-02-06,Customer
+ACC_00013,Atlas Partners 0013,100-999,Mid-Market,Financial Services,North America,Subscription,2025-11-11,Customer
+ACC_00014,Atlas Networks 0014,1000+,Enterprise,Financial Services,LATAM,Advertising,2025-03-15,Prospect
+ACC_00015,BluePeak Labs 0015,1-99,SMB,Media,North America,Subscription,2024-09-28,Customer
+ACC_00016,Apex Networks 0016,1-99,SMB,Software,North America,Subscription,2024-12-21,Customer
+ACC_00017,Nova Solutions 0017,100-999,Mid-Market,Healthcare,North America,Subscription,2025-03-28,Customer
+ACC_00018,Summit Systems 0018,1-99,SMB,Retail,North America,Usage-Based,2024-07-09,Customer
+ACC_00019,BluePeak Group 0019,1000+,Enterprise,Media,North America,Transactional,2024-07-29,Customer
+ACC_00020,Atlas Labs 0020,100-999,Mid-Market,Financial Services,EMEA,Enterprise Services,2024-11-02,Customer
+ACC_00021,Pioneer Group 0021,100-999,Mid-Market,Media,EMEA,Enterprise Services,2024-07-08,Churned
+ACC_00022,Pioneer Partners 0022,1-99,SMB,Media,North America,Usage-Based,2025-07-08,Customer
+ACC_00023,BluePeak Technologies 0023,1000+,Enterprise,Financial Services,EMEA,Subscription,2024-03-16,Customer
+ACC_00024,Vertex Technologies 0024,1000+,Enterprise,Retail,EMEA,Usage-Based,2025-08-27,Customer
+ACC_00025,Vertex Group 0025,100-999,Mid-Market,Software,North America,Usage-Based,2024-09-11,Customer
+ACC_00026,Atlas Systems 0026,1-99,SMB,Retail,North America,Usage-Based,2025-02-14,Prospect
+ACC_00027,Pioneer Labs 0027,1-99,SMB,Financial Services,North America,Subscription,2024-04-25,Customer
+ACC_00028,Apex Solutions 0028,1-99,SMB,Software,North America,Subscription,2024-10-08,Customer
+ACC_00029,Northstar Networks 0029,1-99,SMB,Healthcare,APAC,Enterprise Services,2025-07-05,Churned
+ACC_00030,Cobalt Group 0030,100-999,Mid-Market,Healthcare,LATAM,Subscription,2024-07-16,Customer
+ACC_00031,Atlas Partners 0031,100-999,Mid-Market,Software,EMEA,Subscription,2024-04-06,Customer
+ACC_00032,Pioneer Systems 0032,1000+,Enterprise,Financial Services,North America,Subscription,2025-01-16,Churned
+ACC_00033,Pioneer Labs 0033,1-99,SMB,Software,EMEA,Subscription,2024-04-28,Customer
+ACC_00034,Pioneer Labs 0034,1-99,SMB,Media,EMEA,Subscription,2024-08-18,Prospect
+ACC_00035,Vertex Solutions 0035,1-99,SMB,Retail,North America,Enterprise Services,2024-11-25,Prospect
+ACC_00036,Vertex Networks 0036,1-99,SMB,Software,APAC,Usage-Based,2025-02-16,Prospect
+ACC_00037,Nova Networks 0037,1-99,SMB,Financial Services,North America,Usage-Based,2025-04-12,Prospect
+ACC_00038,Harbor Systems 0038,1-99,SMB,Professional Services,North America,Subscription,2025-05-09,Customer
+ACC_00039,Pioneer Labs 0039,1-99,SMB,Financial Services,North America,Subscription,2025-09-09,Customer
+ACC_00040,BluePeak Networks 0040,100-999,Mid-Market,Media,North America,Subscription,2024-02-18,Customer
+ACC_00041,Apex Group 0041,1-99,SMB,Retail,APAC,Subscription,2024-09-21,Prospect
+ACC_00042,Summit Solutions 0042,1000+,Enterprise,Financial Services,North America,Subscription,2024-01-01,Customer
+ACC_00043,Cobalt Partners 0043,100-999,Mid-Market,Financial Services,North America,Transactional,2024-01-07,Prospect
+ACC_00044,Atlas Technologies 0044,1-99,SMB,Software,North America,Enterprise Services,2024-06-04,Churned
+ACC_00045,Pioneer Partners 0045,1000+,Enterprise,Media,North America,Advertising,2025-03-13,Prospect
+ACC_00046,Summit Solutions 0046,100-999,Mid-Market,Retail,North America,Subscription,2025-10-15,Customer
+ACC_00047,Vertex Technologies 0047,1-99,SMB,Retail,North America,Subscription,2025-07-19,Prospect
+ACC_00048,Pioneer Networks 0048,1-99,SMB,Software,EMEA,Subscription,2025-04-17,Customer
+ACC_00049,Cobalt Solutions 0049,100-999,Mid-Market,Media,North America,Subscription,2025-07-22,Prospect
+ACC_00050,Nova Labs 0050,1-99,SMB,Financial Services,APAC,Advertising,2024-05-05,Customer
+ACC_00051,Summit Solutions 0051,1-99,SMB,Healthcare,North America,Subscription,2025-09-05,Prospect
+ACC_00052,Atlas Systems 0052,1-99,SMB,Professional Services,EMEA,Advertising,2025-10-12,Customer
+ACC_00053,Apex Networks 0053,100-999,Mid-Market,Media,APAC,Usage-Based,2024-03-10,Customer
+ACC_00054,Northstar Partners 0054,100-999,Mid-Market,Healthcare,North America,Subscription,2024-12-09,Customer
+ACC_00055,Cobalt Networks 0055,100-999,Mid-Market,Professional Services,North America,Subscription,2025-08-29,Customer
+ACC_00056,Apex Technologies 0056,100-999,Mid-Market,Financial Services,LATAM,Subscription,2024-12-14,Churned
+ACC_00057,Atlas Networks 0057,1-99,SMB,Professional Services,North America,Subscription,2025-09-06,Prospect
+ACC_00058,Vertex Labs 0058,100-999,Mid-Market,Healthcare,EMEA,Advertising,2025-11-14,Prospect
+ACC_00059,Apex Labs 0059,1-99,SMB,Retail,North America,Usage-Based,2024-12-12,Prospect
+ACC_00060,BluePeak Labs 0060,1-99,SMB,Financial Services,North America,Usage-Based,2024-02-13,Prospect
+ACC_00061,Summit Networks 0061,100-999,Mid-Market,Media,North America,Advertising,2024-09-05,Customer
+ACC_00062,Apex Technologies 0062,1-99,SMB,Professional Services,APAC,Subscription,2024-06-06,Churned
+ACC_00063,Vertex Labs 0063,100-999,Mid-Market,Media,North America,Subscription,2024-12-12,Churned
+ACC_00064,Vertex Solutions 0064,100-999,Mid-Market,Software,APAC,Subscription,2025-03-04,Customer
+ACC_00065,Pioneer Group 0065,100-999,Mid-Market,Retail,EMEA,Subscription,2024-12-05,Customer
+ACC_00066,Northstar Technologies 0066,100-999,Mid-Market,Media,North America,Usage-Based,2024-05-22,Customer
+ACC_00067,Harbor Group 0067,100-999,Mid-Market,Retail,North America,Advertising,2024-08-08,Churned
+ACC_00068,Cobalt Labs 0068,1-99,SMB,Media,North America,Subscription,2025-05-11,Prospect
+ACC_00069,Vertex Partners 0069,1-99,SMB,Media,North America,Subscription,2024-01-20,Customer
+ACC_00070,Northstar Technologies 0070,1-99,SMB,Software,EMEA,Subscription,2024-06-05,Customer
+ACC_00071,Pioneer Systems 0071,1-99,SMB,Healthcare,North America,Usage-Based,2025-10-14,Prospect
+ACC_00072,BluePeak Solutions 0072,1-99,SMB,Financial Services,North America,Subscription,2024-03-13,Customer
+ACC_00073,Northstar Partners 0073,1000+,Enterprise,Retail,EMEA,Subscription,2024-10-30,Churned
+ACC_00074,BluePeak Partners 0074,1-99,SMB,Retail,EMEA,Subscription,2024-05-31,Churned
+ACC_00075,Northstar Solutions 0075,1-99,SMB,Media,North America,Usage-Based,2024-03-17,Customer
+ACC_00076,Northstar Solutions 0076,1-99,SMB,Professional Services,EMEA,Advertising,2024-11-05,Customer
+ACC_00077,Cobalt Group 0077,1-99,SMB,Retail,North America,Advertising,2025-01-16,Prospect
+ACC_00078,Northstar Networks 0078,100-999,Mid-Market,Healthcare,EMEA,Subscription,2024-05-08,Prospect
+ACC_00079,Northstar Networks 0079,100-999,Mid-Market,Healthcare,North America,Subscription,2024-02-26,Customer
+ACC_00080,Nova Labs 0080,100-999,Mid-Market,Healthcare,North America,Usage-Based,2024-04-08,Customer
+ACC_00081,Summit Labs 0081,100-999,Mid-Market,Healthcare,North America,Subscription,2025-04-21,Customer
+ACC_00082,Summit Systems 0082,1-99,SMB,Media,EMEA,Subscription,2025-09-20,Customer
+ACC_00083,Summit Networks 0083,100-999,Mid-Market,Professional Services,EMEA,Advertising,2024-05-11,Prospect
+ACC_00084,Pioneer Partners 0084,1-99,SMB,Media,North America,Subscription,2024-08-22,Customer
+ACC_00085,Apex Partners 0085,1-99,SMB,Software,APAC,Subscription,2024-09-08,Prospect
+ACC_00086,BluePeak Group 0086,1-99,SMB,Retail,APAC,Usage-Based,2024-09-20,Prospect
+ACC_00087,Harbor Labs 0087,100-999,Mid-Market,Retail,North America,Advertising,2024-06-27,Prospect
+ACC_00088,Atlas Technologies 0088,1-99,SMB,Healthcare,EMEA,Subscription,2024-02-10,Prospect
+ACC_00089,Nova Technologies 0089,1-99,SMB,Healthcare,North America,Subscription,2025-01-18,Customer
+ACC_00090,Nova Solutions 0090,100-999,Mid-Market,Media,LATAM,Transactional,2024-09-18,Customer
+ACC_00091,Pioneer Solutions 0091,1-99,SMB,Retail,North America,Subscription,2024-09-07,Prospect
+ACC_00092,Vertex Solutions 0092,100-999,Mid-Market,Financial Services,North America,Subscription,2024-07-12,Customer
+ACC_00093,Vertex Partners 0093,1-99,SMB,Retail,North America,Advertising,2025-11-10,Customer
+ACC_00094,Pioneer Solutions 0094,1-99,SMB,Professional Services,North America,Advertising,2025-03-22,Prospect
+ACC_00095,Vertex Technologies 0095,1-99,SMB,Financial Services,EMEA,Enterprise Services,2024-11-02,Prospect
+ACC_00096,Harbor Systems 0096,100-999,Mid-Market,Software,North America,Subscription,2024-05-30,Prospect
+ACC_00097,Summit Systems 0097,1-99,SMB,Professional Services,North America,Subscription,2025-08-08,Customer
+ACC_00098,Pioneer Group 0098,1-99,SMB,Financial Services,North America,Advertising,2025-10-11,Prospect
+ACC_00099,Cobalt Labs 0099,1-99,SMB,Healthcare,APAC,Advertising,2024-01-24,Prospect
+ACC_00100,Vertex Labs 0100,1000+,Enterprise,Media,APAC,Subscription,2025-11-10,Prospect
+ACC_00101,Harbor Solutions 0101,1000+,Enterprise,Financial Services,North America,Advertising,2025-05-26,Customer
+ACC_00102,Summit Labs 0102,100-999,Mid-Market,Retail,North America,Subscription,2024-03-13,Prospect
+ACC_00103,Northstar Solutions 0103,1-99,SMB,Financial Services,North America,Usage-Based,2025-07-04,Customer
+ACC_00104,Nova Partners 0104,1000+,Enterprise,Software,APAC,Usage-Based,2024-03-19,Prospect
+ACC_00105,Summit Networks 0105,100-999,Mid-Market,Software,EMEA,Subscription,2024-02-07,Customer
+ACC_00106,Northstar Networks 0106,100-999,Mid-Market,Financial Services,EMEA,Enterprise Services,2024-03-25,Customer
+ACC_00107,BluePeak Group 0107,1-99,SMB,Retail,APAC,Enterprise Services,2024-12-02,Customer
+ACC_00108,Nova Networks 0108,1-99,SMB,Healthcare,North America,Subscription,2025-03-28,Prospect
+ACC_00109,Atlas Labs 0109,1-99,SMB,Software,EMEA,Subscription,2024-10-24,Customer
+ACC_00110,Northstar Solutions 0110,1000+,Enterprise,Professional Services,North America,Advertising,2024-03-30,Customer
+ACC_00111,Summit Group 0111,1-99,SMB,Media,North America,Subscription,2024-05-25,Prospect
+ACC_00112,Cobalt Labs 0112,1-99,SMB,Software,North America,Subscription,2025-09-15,Prospect
+ACC_00113,Pioneer Networks 0113,1-99,SMB,Professional Services,North America,Subscription,2025-12-04,Customer
+ACC_00114,BluePeak Networks 0114,100-999,Mid-Market,Software,LATAM,Enterprise Services,2025-07-05,Customer
+ACC_00115,Northstar Technologies 0115,1-99,SMB,Healthcare,North America,Subscription,2024-03-16,Prospect
+ACC_00116,Atlas Networks 0116,1000+,Enterprise,Retail,APAC,Transactional,2025-08-22,Prospect
+ACC_00117,Vertex Labs 0117,100-999,Mid-Market,Healthcare,EMEA,Subscription,2025-05-20,Customer
+ACC_00118,Nova Networks 0118,100-999,Mid-Market,Professional Services,EMEA,Subscription,2025-01-19,Customer
+ACC_00119,Apex Labs 0119,1-99,SMB,Professional Services,LATAM,Usage-Based,2024-04-14,Customer
+ACC_00120,Harbor Labs 0120,100-999,Mid-Market,Financial Services,North America,Subscription,2025-12-29,Churned
+ACC_00121,Cobalt Labs 0121,100-999,Mid-Market,Healthcare,North America,Subscription,2024-11-19,Customer
+ACC_00122,Harbor Group 0122,100-999,Mid-Market,Professional Services,North America,Subscription,2024-02-02,Prospect
+ACC_00123,Apex Group 0123,1-99,SMB,Media,North America,Transactional,2024-06-02,Customer
+ACC_00124,Nova Technologies 0124,1-99,SMB,Professional Services,APAC,Subscription,2024-10-20,Prospect
+ACC_00125,Northstar Labs 0125,1-99,SMB,Retail,North America,Subscription,2024-02-15,Prospect
+ACC_00126,Cobalt Labs 0126,100-999,Mid-Market,Financial Services,North America,Subscription,2024-08-24,Prospect
+ACC_00127,Summit Technologies 0127,1-99,SMB,Healthcare,North America,Subscription,2024-12-08,Prospect
+ACC_00128,Summit Systems 0128,1-99,SMB,Media,North America,Subscription,2025-11-24,Customer
+ACC_00129,Cobalt Networks 0129,1-99,SMB,Professional Services,EMEA,Advertising,2024-03-04,Prospect
+ACC_00130,Nova Solutions 0130,100-999,Mid-Market,Media,North America,Subscription,2025-02-25,Customer
+ACC_00131,Vertex Group 0131,1-99,SMB,Media,APAC,Subscription,2025-10-31,Customer
+ACC_00132,Summit Solutions 0132,1000+,Enterprise,Healthcare,EMEA,Transactional,2025-08-12,Customer
+ACC_00133,BluePeak Systems 0133,100-999,Mid-Market,Financial Services,APAC,Transactional,2025-11-07,Customer
+ACC_00134,Cobalt Systems 0134,1-99,SMB,Retail,North America,Subscription,2024-05-04,Customer
+ACC_00135,Summit Partners 0135,100-999,Mid-Market,Retail,EMEA,Subscription,2025-08-08,Customer
+ACC_00136,BluePeak Partners 0136,1-99,SMB,Media,North America,Subscription,2025-12-16,Prospect
+ACC_00137,BluePeak Partners 0137,1000+,Enterprise,Healthcare,North America,Enterprise Services,2024-08-26,Customer
+ACC_00138,BluePeak Systems 0138,100-999,Mid-Market,Media,EMEA,Subscription,2024-12-30,Customer
+ACC_00139,Northstar Partners 0139,100-999,Mid-Market,Software,EMEA,Subscription,2025-01-23,Prospect
+ACC_00140,Northstar Group 0140,1-99,SMB,Media,North America,Subscription,2024-12-26,Prospect
+ACC_00141,Northstar Group 0141,100-999,Mid-Market,Healthcare,APAC,Subscription,2024-07-30,Prospect
+ACC_00142,BluePeak Labs 0142,100-999,Mid-Market,Professional Services,North America,Subscription,2025-12-10,Customer
+ACC_00143,Atlas Solutions 0143,1000+,Enterprise,Retail,EMEA,Subscription,2025-11-30,Prospect
+ACC_00144,Northstar Systems 0144,100-999,Mid-Market,Retail,LATAM,Transactional,2024-10-05,Prospect
+ACC_00145,Summit Partners 0145,1-99,SMB,Software,North America,Advertising,2025-08-11,Customer
+ACC_00146,Atlas Networks 0146,1-99,SMB,Media,APAC,Transactional,2024-10-17,Churned
+ACC_00147,Northstar Partners 0147,1-99,SMB,Media,EMEA,Transactional,2025-08-04,Prospect
+ACC_00148,Northstar Networks 0148,100-999,Mid-Market,Professional Services,APAC,Subscription,2025-03-03,Churned
+ACC_00149,Vertex Solutions 0149,1-99,SMB,Software,EMEA,Usage-Based,2024-12-09,Prospect
+ACC_00150,Summit Labs 0150,1-99,SMB,Financial Services,EMEA,Transactional,2024-04-03,Churned
+ACC_00151,Pioneer Systems 0151,1000+,Enterprise,Professional Services,North America,Usage-Based,2025-04-23,Churned
+ACC_00152,Vertex Networks 0152,1000+,Enterprise,Software,EMEA,Transactional,2024-08-22,Prospect
+ACC_00153,Pioneer Group 0153,1-99,SMB,Healthcare,North America,Subscription,2024-06-07,Customer
+ACC_00154,Apex Systems 0154,100-999,Mid-Market,Retail,LATAM,Subscription,2024-05-21,Churned
+ACC_00155,Pioneer Labs 0155,1-99,SMB,Professional Services,North America,Subscription,2025-12-18,Customer
+ACC_00156,Atlas Group 0156,100-999,Mid-Market,Professional Services,North America,Subscription,2024-03-16,Churned
+ACC_00157,Northstar Systems 0157,1-99,SMB,Professional Services,APAC,Subscription,2025-08-06,Customer
+ACC_00158,Apex Systems 0158,100-999,Mid-Market,Financial Services,North America,Subscription,2025-09-25,Prospect
+ACC_00159,Nova Solutions 0159,100-999,Mid-Market,Healthcare,North America,Subscription,2024-01-23,Customer
+ACC_00160,Atlas Group 0160,100-999,Mid-Market,Media,EMEA,Enterprise Services,2025-03-06,Customer
+ACC_00161,Nova Solutions 0161,1-99,SMB,Professional Services,North America,Transactional,2025-02-26,Customer
+ACC_00162,Vertex Solutions 0162,1000+,Enterprise,Software,North America,Advertising,2024-09-19,Prospect
+ACC_00163,Harbor Systems 0163,1-99,SMB,Professional Services,North America,Subscription,2025-05-02,Customer
+ACC_00164,Northstar Partners 0164,1-99,SMB,Retail,North America,Advertising,2024-10-25,Prospect
+ACC_00165,Northstar Networks 0165,100-999,Mid-Market,Software,North America,Usage-Based,2024-11-17,Customer
+ACC_00166,Northstar Networks 0166,1-99,SMB,Healthcare,North America,Transactional,2024-11-11,Prospect
+ACC_00167,Summit Systems 0167,1000+,Enterprise,Media,North America,Advertising,2025-08-08,Customer
+ACC_00168,Northstar Labs 0168,100-999,Mid-Market,Software,North America,Subscription,2025-04-07,Customer
+ACC_00169,BluePeak Systems 0169,1-99,SMB,Software,North America,Subscription,2024-10-04,Customer
+ACC_00170,Apex Networks 0170,1000+,Enterprise,Professional Services,EMEA,Transactional,2025-11-08,Customer
+ACC_00171,Summit Solutions 0171,1-99,SMB,Professional Services,EMEA,Enterprise Services,2025-08-09,Prospect
+ACC_00172,Cobalt Networks 0172,100-999,Mid-Market,Software,North America,Subscription,2025-11-12,Churned
+ACC_00173,Vertex Networks 0173,1-99,SMB,Professional Services,North America,Subscription,2025-06-17,Customer
+ACC_00174,BluePeak Solutions 0174,1000+,Enterprise,Professional Services,APAC,Subscription,2024-10-13,Prospect
+ACC_00175,Atlas Networks 0175,1-99,SMB,Professional Services,EMEA,Subscription,2025-07-19,Prospect
+ACC_00176,Pioneer Systems 0176,1-99,SMB,Financial Services,North America,Enterprise Services,2024-08-28,Prospect
+ACC_00177,Vertex Solutions 0177,1-99,SMB,Healthcare,North America,Transactional,2024-07-17,Customer
+ACC_00178,Nova Group 0178,1000+,Enterprise,Professional Services,North America,Subscription,2024-11-25,Churned
+ACC_00179,Cobalt Systems 0179,1000+,Enterprise,Professional Services,APAC,Subscription,2025-12-09,Customer
+ACC_00180,Northstar Technologies 0180,100-999,Mid-Market,Healthcare,LATAM,Subscription,2025-02-19,Prospect
+ACC_00181,Cobalt Solutions 0181,1000+,Enterprise,Financial Services,LATAM,Subscription,2024-10-07,Customer
+ACC_00182,Nova Labs 0182,1000+,Enterprise,Software,North America,Advertising,2024-12-03,Prospect
+ACC_00183,Apex Technologies 0183,100-999,Mid-Market,Financial Services,North America,Usage-Based,2024-07-31,Customer
+ACC_00184,Apex Labs 0184,1-99,SMB,Software,North America,Transactional,2025-04-26,Prospect
+ACC_00185,Northstar Systems 0185,100-999,Mid-Market,Financial Services,North America,Subscription,2024-09-13,Customer
+ACC_00186,Harbor Systems 0186,100-999,Mid-Market,Software,North America,Transactional,2025-02-09,Churned
+ACC_00187,Harbor Partners 0187,1-99,SMB,Media,EMEA,Transactional,2024-09-27,Prospect
+ACC_00188,Vertex Solutions 0188,1-99,SMB,Healthcare,North America,Subscription,2024-08-22,Customer
+ACC_00189,Vertex Labs 0189,100-999,Mid-Market,Healthcare,LATAM,Advertising,2025-12-10,Churned
+ACC_00190,BluePeak Group 0190,1-99,SMB,Media,North America,Advertising,2024-09-09,Prospect
+ACC_00191,Summit Labs 0191,1000+,Enterprise,Retail,North America,Usage-Based,2024-02-21,Prospect
+ACC_00192,Cobalt Systems 0192,1-99,SMB,Retail,APAC,Subscription,2024-10-03,Customer
+ACC_00193,Summit Technologies 0193,1-99,SMB,Financial Services,EMEA,Subscription,2025-01-23,Prospect
+ACC_00194,Atlas Networks 0194,1000+,Enterprise,Retail,North America,Advertising,2024-03-10,Prospect
+ACC_00195,Summit Networks 0195,1-99,SMB,Financial Services,EMEA,Subscription,2024-08-11,Customer
+ACC_00196,Nova Group 0196,1-99,SMB,Healthcare,North America,Subscription,2024-05-01,Customer
+ACC_00197,Summit Technologies 0197,100-999,Mid-Market,Professional Services,North America,Transactional,2024-12-31,Prospect
+ACC_00198,BluePeak Systems 0198,1000+,Enterprise,Healthcare,North America,Subscription,2025-06-12,Prospect
+ACC_00199,BluePeak Labs 0199,1-99,SMB,Financial Services,North America,Subscription,2025-12-08,Customer
+ACC_00200,BluePeak Solutions 0200,1-99,SMB,Media,EMEA,Enterprise Services,2024-10-11,Customer
+ACC_00201,BluePeak Partners 0201,100-999,Mid-Market,Media,North America,Advertising,2025-09-23,Customer
+ACC_00202,Pioneer Solutions 0202,1000+,Enterprise,Retail,EMEA,Advertising,2024-06-05,Customer
+ACC_00203,Apex Solutions 0203,100-999,Mid-Market,Financial Services,APAC,Advertising,2025-07-24,Churned
+ACC_00204,Nova Networks 0204,1-99,SMB,Media,North America,Subscription,2025-02-15,Customer
+ACC_00205,BluePeak Solutions 0205,1-99,SMB,Financial Services,North America,Subscription,2025-07-08,Prospect
+ACC_00206,Apex Group 0206,1-99,SMB,Professional Services,North America,Transactional,2025-07-06,Customer
+ACC_00207,Northstar Systems 0207,1-99,SMB,Financial Services,APAC,Subscription,2025-01-24,Customer
+ACC_00208,Summit Systems 0208,100-999,Mid-Market,Retail,EMEA,Subscription,2024-07-07,Prospect
+ACC_00209,Summit Systems 0209,1-99,SMB,Media,EMEA,Subscription,2025-01-19,Prospect
+ACC_00210,Harbor Systems 0210,100-999,Mid-Market,Software,North America,Usage-Based,2025-08-27,Customer
+ACC_00211,Cobalt Group 0211,100-999,Mid-Market,Financial Services,North America,Subscription,2025-12-10,Prospect
+ACC_00212,Vertex Networks 0212,100-999,Mid-Market,Software,North America,Transactional,2025-11-09,Prospect
+ACC_00213,Harbor Partners 0213,1-99,SMB,Retail,North America,Subscription,2024-05-12,Prospect
+ACC_00214,Harbor Networks 0214,100-999,Mid-Market,Healthcare,EMEA,Advertising,2025-03-12,Customer
+ACC_00215,Cobalt Labs 0215,100-999,Mid-Market,Financial Services,North America,Subscription,2024-03-17,Prospect
+ACC_00216,Apex Partners 0216,100-999,Mid-Market,Retail,North America,Subscription,2025-05-04,Customer
+ACC_00217,Summit Group 0217,1-99,SMB,Media,North America,Advertising,2025-12-26,Prospect
+ACC_00218,Cobalt Systems 0218,1-99,SMB,Professional Services,North America,Transactional,2024-02-08,Prospect
+ACC_00219,Apex Labs 0219,1000+,Enterprise,Software,EMEA,Subscription,2025-04-24,Customer
+ACC_00220,Northstar Group 0220,1-99,SMB,Healthcare,North America,Subscription,2025-11-22,Prospect
+ACC_00221,Apex Labs 0221,1-99,SMB,Software,LATAM,Subscription,2025-09-11,Customer
+ACC_00222,BluePeak Partners 0222,100-999,Mid-Market,Healthcare,APAC,Subscription,2024-10-13,Prospect
+ACC_00223,Northstar Partners 0223,100-999,Mid-Market,Professional Services,APAC,Advertising,2024-03-16,Prospect
+ACC_00224,Summit Networks 0224,1000+,Enterprise,Media,EMEA,Subscription,2025-11-06,Prospect
+ACC_00225,Vertex Systems 0225,1-99,SMB,Financial Services,EMEA,Advertising,2025-11-04,Customer
+ACC_00226,Nova Partners 0226,1000+,Enterprise,Financial Services,EMEA,Subscription,2025-02-27,Prospect
+ACC_00227,Harbor Networks 0227,1-99,SMB,Media,North America,Advertising,2025-12-16,Customer
+ACC_00228,Atlas Labs 0228,100-999,Mid-Market,Media,North America,Subscription,2024-01-04,Prospect
+ACC_00229,Summit Networks 0229,100-999,Mid-Market,Financial Services,EMEA,Subscription,2025-03-26,Customer
+ACC_00230,Pioneer Technologies 0230,1-99,SMB,Software,North America,Subscription,2024-01-29,Customer
+ACC_00231,Vertex Technologies 0231,1-99,SMB,Retail,North America,Usage-Based,2025-11-14,Prospect
+ACC_00232,Summit Systems 0232,1-99,SMB,Healthcare,APAC,Advertising,2025-05-12,Customer
+ACC_00233,Vertex Technologies 0233,1000+,Enterprise,Retail,North America,Usage-Based,2025-10-29,Prospect
+ACC_00234,Pioneer Systems 0234,100-999,Mid-Market,Professional Services,North America,Subscription,2025-02-15,Customer
+ACC_00235,BluePeak Labs 0235,1000+,Enterprise,Media,EMEA,Subscription,2024-03-01,Prospect
+ACC_00236,Northstar Systems 0236,100-999,Mid-Market,Media,North America,Subscription,2024-01-20,Customer
+ACC_00237,Atlas Solutions 0237,1-99,SMB,Software,APAC,Subscription,2024-09-02,Churned
+ACC_00238,Summit Labs 0238,100-999,Mid-Market,Professional Services,North America,Transactional,2025-06-27,Prospect
+ACC_00239,Summit Group 0239,1-99,SMB,Media,APAC,Usage-Based,2024-04-20,Customer
+ACC_00240,Nova Group 0240,1-99,SMB,Retail,APAC,Advertising,2025-09-14,Customer
+ACC_00241,Cobalt Solutions 0241,1000+,Enterprise,Healthcare,North America,Transactional,2024-06-24,Prospect
+ACC_00242,Harbor Technologies 0242,100-999,Mid-Market,Media,North America,Subscription,2024-12-28,Customer
+ACC_00243,Nova Solutions 0243,1-99,SMB,Professional Services,North America,Subscription,2024-05-28,Customer
+ACC_00244,Nova Group 0244,100-999,Mid-Market,Healthcare,North America,Transactional,2024-12-06,Churned
+ACC_00245,Vertex Systems 0245,100-999,Mid-Market,Software,North America,Subscription,2024-11-26,Churned
+ACC_00246,Apex Technologies 0246,1000+,Enterprise,Healthcare,LATAM,Subscription,2024-01-05,Prospect
+ACC_00247,Summit Group 0247,100-999,Mid-Market,Media,North America,Enterprise Services,2025-02-19,Customer
+ACC_00248,Summit Partners 0248,1-99,SMB,Software,APAC,Enterprise Services,2025-07-29,Customer
+ACC_00249,Cobalt Solutions 0249,1-99,SMB,Media,North America,Advertising,2025-11-15,Prospect
+ACC_00250,Pioneer Technologies 0250,1-99,SMB,Financial Services,LATAM,Subscription,2024-08-29,Prospect
+ACC_00251,Vertex Solutions 0251,100-999,Mid-Market,Professional Services,North America,Usage-Based,2025-10-05,Churned
+ACC_00252,BluePeak Technologies 0252,1000+,Enterprise,Healthcare,North America,Subscription,2025-10-04,Prospect
+ACC_00253,Atlas Labs 0253,1-99,SMB,Financial Services,EMEA,Subscription,2025-12-23,Customer
+ACC_00254,Harbor Technologies 0254,1-99,SMB,Software,North America,Subscription,2024-09-29,Customer
+ACC_00255,Cobalt Systems 0255,1-99,SMB,Software,APAC,Usage-Based,2025-09-14,Prospect
+ACC_00256,Summit Partners 0256,100-999,Mid-Market,Media,North America,Usage-Based,2025-02-17,Customer
+ACC_00257,Northstar Systems 0257,100-999,Mid-Market,Retail,North America,Transactional,2024-02-12,Churned
+ACC_00258,Apex Group 0258,1-99,SMB,Professional Services,North America,Subscription,2024-07-16,Customer
+ACC_00259,Summit Technologies 0259,1-99,SMB,Financial Services,EMEA,Advertising,2025-05-06,Prospect
+ACC_00260,Vertex Systems 0260,100-999,Mid-Market,Professional Services,North America,Subscription,2024-04-27,Prospect
+ACC_00261,Northstar Systems 0261,1-99,SMB,Professional Services,North America,Usage-Based,2024-11-13,Churned
+ACC_00262,Vertex Networks 0262,1000+,Enterprise,Software,North America,Subscription,2025-07-20,Prospect
+ACC_00263,Summit Systems 0263,1-99,SMB,Healthcare,North America,Subscription,2024-04-19,Customer
+ACC_00264,Northstar Technologies 0264,1-99,SMB,Professional Services,North America,Transactional,2024-12-29,Prospect
+ACC_00265,Apex Group 0265,1000+,Enterprise,Financial Services,LATAM,Subscription,2024-06-06,Customer
+ACC_00266,Northstar Labs 0266,1-99,SMB,Software,North America,Usage-Based,2025-01-27,Churned
+ACC_00267,Atlas Labs 0267,1-99,SMB,Professional Services,EMEA,Subscription,2024-06-24,Customer
+ACC_00268,Harbor Partners 0268,1-99,SMB,Retail,North America,Usage-Based,2025-12-06,Churned
+ACC_00269,Pioneer Solutions 0269,1-99,SMB,Software,North America,Subscription,2024-02-26,Prospect
+ACC_00270,Pioneer Systems 0270,1-99,SMB,Professional Services,North America,Subscription,2025-12-05,Customer
+ACC_00271,Harbor Solutions 0271,1-99,SMB,Media,North America,Subscription,2025-08-01,Customer
+ACC_00272,Pioneer Networks 0272,1-99,SMB,Software,North America,Subscription,2025-09-17,Customer
+ACC_00273,Vertex Networks 0273,1-99,SMB,Financial Services,North America,Advertising,2025-09-14,Prospect
+ACC_00274,Cobalt Networks 0274,100-999,Mid-Market,Software,North America,Subscription,2024-05-17,Customer
+ACC_00275,BluePeak Networks 0275,100-999,Mid-Market,Professional Services,LATAM,Subscription,2025-11-11,Prospect
+ACC_00276,BluePeak Partners 0276,1-99,SMB,Software,North America,Transactional,2025-03-10,Customer
+ACC_00277,Vertex Technologies 0277,1-99,SMB,Media,North America,Subscription,2025-12-04,Churned
+ACC_00278,Atlas Technologies 0278,100-999,Mid-Market,Healthcare,North America,Transactional,2025-10-03,Prospect
+ACC_00279,Vertex Group 0279,1000+,Enterprise,Healthcare,North America,Transactional,2025-02-27,Prospect
+ACC_00280,Harbor Systems 0280,1000+,Enterprise,Media,EMEA,Subscription,2024-09-30,Prospect
+ACC_00281,Cobalt Networks 0281,1-99,SMB,Professional Services,North America,Transactional,2024-03-26,Prospect
+ACC_00282,Atlas Systems 0282,1-99,SMB,Software,EMEA,Subscription,2024-03-14,Prospect
+ACC_00283,Northstar Labs 0283,1-99,SMB,Software,North America,Subscription,2024-10-11,Customer
+ACC_00284,Vertex Systems 0284,1-99,SMB,Software,North America,Subscription,2025-08-15,Prospect
+ACC_00285,Vertex Labs 0285,100-999,Mid-Market,Media,LATAM,Usage-Based,2025-01-04,Customer
+ACC_00286,Apex Networks 0286,1-99,SMB,Healthcare,North America,Advertising,2024-12-18,Prospect
+ACC_00287,Northstar Networks 0287,1-99,SMB,Software,APAC,Advertising,2024-06-27,Prospect
+ACC_00288,Vertex Group 0288,1-99,SMB,Financial Services,North America,Enterprise Services,2025-02-16,Prospect
+ACC_00289,Northstar Systems 0289,100-999,Mid-Market,Healthcare,LATAM,Subscription,2025-04-11,Customer
+ACC_00290,Vertex Technologies 0290,1-99,SMB,Media,North America,Usage-Based,2025-12-18,Customer
+ACC_00291,Atlas Group 0291,1000+,Enterprise,Retail,North America,Transactional,2025-06-17,Prospect
+ACC_00292,Cobalt Partners 0292,1-99,SMB,Professional Services,APAC,Enterprise Services,2025-03-19,Customer
+ACC_00293,Nova Networks 0293,1000+,Enterprise,Professional Services,North America,Usage-Based,2025-10-27,Customer
+ACC_00294,BluePeak Technologies 0294,1-99,SMB,Media,North America,Enterprise Services,2024-11-06,Prospect
+ACC_00295,Summit Technologies 0295,1000+,Enterprise,Retail,LATAM,Subscription,2025-11-14,Customer
+ACC_00296,Northstar Solutions 0296,1000+,Enterprise,Professional Services,EMEA,Transactional,2024-09-27,Prospect
+ACC_00297,Pioneer Partners 0297,1000+,Enterprise,Media,EMEA,Usage-Based,2024-04-03,Prospect
+ACC_00298,Harbor Technologies 0298,100-999,Mid-Market,Healthcare,EMEA,Transactional,2024-11-01,Customer
+ACC_00299,Apex Technologies 0299,100-999,Mid-Market,Retail,APAC,Subscription,2024-04-04,Prospect
+ACC_00300,Vertex Systems 0300,100-999,Mid-Market,Media,APAC,Enterprise Services,2024-03-27,Prospect
+ACC_00301,Vertex Solutions 0301,100-999,Mid-Market,Healthcare,EMEA,Subscription,2025-10-06,Customer
+ACC_00302,Atlas Group 0302,1-99,SMB,Financial Services,North America,Advertising,2025-08-03,Prospect
+ACC_00303,Atlas Labs 0303,100-999,Mid-Market,Professional Services,North America,Advertising,2024-06-10,Customer
+ACC_00304,Apex Solutions 0304,100-999,Mid-Market,Software,EMEA,Subscription,2025-09-04,Churned
+ACC_00305,Northstar Partners 0305,1000+,Enterprise,Media,APAC,Transactional,2024-02-20,Customer
+ACC_00306,Pioneer Systems 0306,1-99,SMB,Healthcare,North America,Subscription,2024-07-26,Customer
+ACC_00307,Harbor Systems 0307,1-99,SMB,Healthcare,North America,Transactional,2025-05-31,Customer
+ACC_00308,Summit Systems 0308,100-999,Mid-Market,Software,North America,Usage-Based,2024-08-10,Churned
+ACC_00309,Atlas Networks 0309,1-99,SMB,Retail,North America,Subscription,2025-06-17,Prospect
+ACC_00310,Pioneer Systems 0310,1-99,SMB,Professional Services,APAC,Transactional,2025-10-01,Prospect
+ACC_00311,Vertex Solutions 0311,1-99,SMB,Financial Services,North America,Subscription,2024-02-18,Customer
+ACC_00312,Apex Solutions 0312,1-99,SMB,Media,EMEA,Usage-Based,2024-01-18,Customer
+ACC_00313,BluePeak Technologies 0313,1-99,SMB,Professional Services,APAC,Enterprise Services,2025-11-18,Prospect
+ACC_00314,Nova Networks 0314,1-99,SMB,Professional Services,LATAM,Subscription,2025-01-15,Customer
+ACC_00315,Atlas Group 0315,1-99,SMB,Healthcare,North America,Transactional,2025-01-05,Prospect
+ACC_00316,Atlas Systems 0316,1-99,SMB,Financial Services,LATAM,Advertising,2024-12-04,Churned
+ACC_00317,Vertex Partners 0317,1-99,SMB,Media,EMEA,Advertising,2024-11-12,Prospect
+ACC_00318,Apex Systems 0318,100-999,Mid-Market,Retail,APAC,Transactional,2025-05-19,Prospect
+ACC_00319,Northstar Systems 0319,1-99,SMB,Healthcare,North America,Advertising,2025-02-27,Prospect
+ACC_00320,Nova Group 0320,1000+,Enterprise,Media,North America,Advertising,2024-04-29,Prospect
+ACC_00321,Pioneer Systems 0321,1000+,Enterprise,Media,EMEA,Subscription,2025-04-03,Prospect
+ACC_00322,Harbor Technologies 0322,100-999,Mid-Market,Financial Services,North America,Subscription,2025-05-03,Prospect
+ACC_00323,Nova Networks 0323,1-99,SMB,Media,North America,Usage-Based,2024-03-24,Prospect
+ACC_00324,Vertex Partners 0324,100-999,Mid-Market,Healthcare,EMEA,Subscription,2024-10-02,Prospect
+ACC_00325,BluePeak Networks 0325,1000+,Enterprise,Professional Services,EMEA,Advertising,2025-07-31,Prospect
+ACC_00326,Summit Partners 0326,100-999,Mid-Market,Healthcare,North America,Subscription,2025-03-28,Prospect
+ACC_00327,Harbor Group 0327,100-999,Mid-Market,Professional Services,North America,Usage-Based,2024-04-09,Prospect
+ACC_00328,Northstar Partners 0328,100-999,Mid-Market,Professional Services,North America,Advertising,2024-01-30,Prospect
+ACC_00329,Apex Technologies 0329,100-999,Mid-Market,Professional Services,LATAM,Subscription,2025-02-28,Prospect
+ACC_00330,BluePeak Labs 0330,1-99,SMB,Media,LATAM,Subscription,2024-12-03,Prospect
+ACC_00331,Northstar Solutions 0331,100-999,Mid-Market,Healthcare,North America,Subscription,2025-12-03,Prospect
+ACC_00332,Atlas Labs 0332,1-99,SMB,Software,North America,Enterprise Services,2025-01-16,Customer
+ACC_00333,Cobalt Systems 0333,100-999,Mid-Market,Retail,North America,Advertising,2025-11-11,Churned
+ACC_00334,Northstar Labs 0334,1000+,Enterprise,Retail,North America,Subscription,2024-06-05,Churned
+ACC_00335,Atlas Group 0335,1-99,SMB,Media,APAC,Transactional,2024-11-23,Customer
+ACC_00336,Vertex Group 0336,100-999,Mid-Market,Healthcare,North America,Subscription,2024-04-12,Customer
+ACC_00337,Pioneer Technologies 0337,1-99,SMB,Retail,North America,Subscription,2025-02-23,Prospect
+ACC_00338,BluePeak Solutions 0338,100-999,Mid-Market,Software,North America,Subscription,2024-05-17,Customer
+ACC_00339,Apex Group 0339,1-99,SMB,Media,North America,Subscription,2024-12-25,Customer
+ACC_00340,Harbor Technologies 0340,1000+,Enterprise,Retail,APAC,Transactional,2024-09-08,Customer
+ACC_00341,Vertex Group 0341,1-99,SMB,Software,EMEA,Usage-Based,2024-05-15,Customer
+ACC_00342,Nova Partners 0342,1000+,Enterprise,Financial Services,EMEA,Usage-Based,2024-03-11,Customer
+ACC_00343,Pioneer Labs 0343,100-999,Mid-Market,Professional Services,North America,Usage-Based,2025-01-09,Customer
+ACC_00344,Vertex Systems 0344,100-999,Mid-Market,Software,LATAM,Subscription,2025-11-23,Customer
+ACC_00345,Cobalt Technologies 0345,100-999,Mid-Market,Retail,North America,Subscription,2024-05-25,Prospect
+ACC_00346,Atlas Networks 0346,100-999,Mid-Market,Healthcare,APAC,Advertising,2024-10-23,Churned
+ACC_00347,Apex Partners 0347,1000+,Enterprise,Software,APAC,Enterprise Services,2024-06-13,Prospect
+ACC_00348,Vertex Networks 0348,1-99,SMB,Software,North America,Transactional,2025-08-14,Churned
+ACC_00349,Apex Partners 0349,100-999,Mid-Market,Professional Services,APAC,Advertising,2024-10-30,Customer
+ACC_00350,Pioneer Group 0350,1-99,SMB,Healthcare,North America,Transactional,2025-12-13,Prospect
+ACC_00351,Apex Systems 0351,100-999,Mid-Market,Financial Services,EMEA,Transactional,2024-06-28,Customer
+ACC_00352,BluePeak Systems 0352,1-99,SMB,Financial Services,North America,Usage-Based,2024-02-29,Prospect
+ACC_00353,Apex Systems 0353,100-999,Mid-Market,Retail,North America,Transactional,2025-03-01,Customer
+ACC_00354,Northstar Group 0354,100-999,Mid-Market,Media,North America,Subscription,2025-04-21,Customer
+ACC_00355,Summit Technologies 0355,1-99,SMB,Media,North America,Subscription,2025-12-25,Customer
+ACC_00356,Summit Group 0356,100-999,Mid-Market,Financial Services,North America,Advertising,2025-09-29,Customer
+ACC_00357,BluePeak Technologies 0357,100-999,Mid-Market,Media,North America,Subscription,2025-10-08,Prospect
+ACC_00358,Harbor Technologies 0358,100-999,Mid-Market,Professional Services,EMEA,Enterprise Services,2025-04-08,Prospect
+ACC_00359,BluePeak Networks 0359,100-999,Mid-Market,Financial Services,North America,Advertising,2024-09-20,Prospect
+ACC_00360,Vertex Networks 0360,100-999,Mid-Market,Software,North America,Subscription,2024-11-09,Prospect
+ACC_00361,Apex Group 0361,1000+,Enterprise,Professional Services,LATAM,Subscription,2024-04-07,Customer
+ACC_00362,Vertex Group 0362,1-99,SMB,Healthcare,LATAM,Advertising,2024-11-11,Prospect
+ACC_00363,Summit Networks 0363,1-99,SMB,Media,North America,Advertising,2024-09-23,Prospect
+ACC_00364,Apex Networks 0364,1-99,SMB,Financial Services,North America,Subscription,2024-01-27,Customer
+ACC_00365,Vertex Group 0365,100-999,Mid-Market,Financial Services,EMEA,Usage-Based,2024-05-29,Customer
+ACC_00366,Cobalt Group 0366,1-99,SMB,Financial Services,EMEA,Subscription,2025-01-25,Prospect
+ACC_00367,BluePeak Networks 0367,100-999,Mid-Market,Financial Services,North America,Subscription,2024-09-26,Customer
+ACC_00368,Pioneer Networks 0368,100-999,Mid-Market,Retail,EMEA,Subscription,2025-12-27,Customer
+ACC_00369,Pioneer Systems 0369,1-99,SMB,Software,North America,Advertising,2024-12-15,Prospect
+ACC_00370,Pioneer Technologies 0370,1000+,Enterprise,Professional Services,North America,Transactional,2025-12-01,Customer
+ACC_00371,Northstar Solutions 0371,100-999,Mid-Market,Healthcare,EMEA,Usage-Based,2025-04-27,Prospect
+ACC_00372,BluePeak Systems 0372,1-99,SMB,Professional Services,EMEA,Subscription,2024-01-30,Prospect
+ACC_00373,Apex Partners 0373,1-99,SMB,Healthcare,APAC,Enterprise Services,2024-05-28,Customer
+ACC_00374,Northstar Labs 0374,1-99,SMB,Financial Services,North America,Transactional,2025-05-30,Prospect
+ACC_00375,Pioneer Technologies 0375,1-99,SMB,Healthcare,North America,Subscription,2025-02-02,Prospect
+ACC_00376,Nova Group 0376,1-99,SMB,Software,North America,Subscription,2024-08-08,Customer
+ACC_00377,Cobalt Systems 0377,1000+,Enterprise,Media,North America,Subscription,2025-01-16,Prospect
+ACC_00378,Cobalt Solutions 0378,1-99,SMB,Media,North America,Usage-Based,2025-10-22,Customer
+ACC_00379,BluePeak Technologies 0379,1-99,SMB,Software,North America,Subscription,2024-10-11,Prospect
+ACC_00380,Summit Solutions 0380,100-999,Mid-Market,Healthcare,North America,Subscription,2024-02-02,Churned
+ACC_00381,Northstar Group 0381,100-999,Mid-Market,Healthcare,EMEA,Transactional,2024-08-15,Customer
+ACC_00382,Vertex Solutions 0382,1000+,Enterprise,Financial Services,North America,Usage-Based,2025-11-15,Churned
+ACC_00383,Atlas Solutions 0383,100-999,Mid-Market,Software,North America,Transactional,2025-07-10,Customer
+ACC_00384,Cobalt Technologies 0384,1-99,SMB,Media,EMEA,Transactional,2025-09-04,Prospect
+ACC_00385,BluePeak Labs 0385,1-99,SMB,Financial Services,North America,Subscription,2025-10-28,Customer
+ACC_00386,BluePeak Networks 0386,1000+,Enterprise,Healthcare,APAC,Usage-Based,2024-03-26,Prospect
+ACC_00387,Harbor Technologies 0387,100-999,Mid-Market,Financial Services,North America,Subscription,2024-07-25,Customer
+ACC_00388,Harbor Solutions 0388,1000+,Enterprise,Healthcare,North America,Subscription,2024-02-13,Customer
+ACC_00389,BluePeak Technologies 0389,1-99,SMB,Software,APAC,Enterprise Services,2024-01-04,Prospect
+ACC_00390,Vertex Labs 0390,1000+,Enterprise,Retail,EMEA,Subscription,2025-09-02,Churned
+ACC_00391,Apex Systems 0391,100-999,Mid-Market,Healthcare,EMEA,Subscription,2025-11-15,Prospect
+ACC_00392,Pioneer Networks 0392,1-99,SMB,Retail,EMEA,Advertising,2024-04-23,Customer
+ACC_00393,Summit Solutions 0393,100-999,Mid-Market,Healthcare,North America,Subscription,2025-06-11,Customer
+ACC_00394,Cobalt Systems 0394,100-999,Mid-Market,Financial Services,EMEA,Subscription,2025-01-26,Prospect
+ACC_00395,Summit Partners 0395,1-99,SMB,Retail,APAC,Advertising,2024-02-20,Customer
+ACC_00396,Apex Solutions 0396,1-99,SMB,Media,LATAM,Transactional,2025-10-31,Customer
+ACC_00397,Apex Systems 0397,1000+,Enterprise,Retail,North America,Transactional,2025-09-28,Prospect
+ACC_00398,Nova Systems 0398,1-99,SMB,Software,North America,Subscription,2025-02-18,Customer
+ACC_00399,Northstar Networks 0399,1-99,SMB,Professional Services,APAC,Advertising,2025-06-01,Prospect
+ACC_00400,Atlas Networks 0400,1-99,SMB,Media,North America,Usage-Based,2024-10-17,Customer
+ACC_00401,Apex Systems 0401,1-99,SMB,Media,North America,Subscription,2025-08-02,Prospect
+ACC_00402,BluePeak Partners 0402,1000+,Enterprise,Media,North America,Subscription,2024-11-21,Churned
+ACC_00403,Atlas Technologies 0403,100-999,Mid-Market,Media,North America,Subscription,2025-12-24,Customer
+ACC_00404,Atlas Solutions 0404,1-99,SMB,Media,North America,Advertising,2024-02-16,Prospect
+ACC_00405,Northstar Solutions 0405,1000+,Enterprise,Healthcare,North America,Subscription,2024-05-05,Prospect
+ACC_00406,Apex Partners 0406,1000+,Enterprise,Software,North America,Transactional,2025-12-09,Customer
+ACC_00407,Atlas Technologies 0407,1-99,SMB,Healthcare,North America,Enterprise Services,2024-07-30,Customer
+ACC_00408,Pioneer Labs 0408,1000+,Enterprise,Financial Services,LATAM,Subscription,2024-08-15,Customer
+ACC_00409,Apex Technologies 0409,1-99,SMB,Media,North America,Transactional,2025-08-01,Prospect
+ACC_00410,Nova Systems 0410,1000+,Enterprise,Retail,North America,Subscription,2024-05-18,Prospect
+ACC_00411,Nova Networks 0411,100-999,Mid-Market,Professional Services,North America,Subscription,2025-01-10,Churned
+ACC_00412,Harbor Systems 0412,100-999,Mid-Market,Healthcare,North America,Transactional,2024-07-28,Customer
+ACC_00413,BluePeak Technologies 0413,1-99,SMB,Healthcare,LATAM,Subscription,2024-05-24,Customer
+ACC_00414,BluePeak Systems 0414,1000+,Enterprise,Professional Services,LATAM,Enterprise Services,2025-12-05,Customer
+ACC_00415,Atlas Group 0415,1-99,SMB,Retail,North America,Advertising,2024-05-26,Churned
+ACC_00416,Cobalt Labs 0416,1-99,SMB,Retail,North America,Subscription,2024-03-09,Prospect
+ACC_00417,Atlas Networks 0417,1-99,SMB,Retail,North America,Subscription,2025-05-07,Prospect
+ACC_00418,Northstar Partners 0418,100-999,Mid-Market,Professional Services,North America,Subscription,2025-09-25,Churned
+ACC_00419,Nova Systems 0419,1-99,SMB,Media,North America,Usage-Based,2024-04-03,Churned
+ACC_00420,Northstar Partners 0420,1000+,Enterprise,Software,North America,Transactional,2025-06-01,Prospect
+ACC_00421,Summit Solutions 0421,100-999,Mid-Market,Retail,North America,Subscription,2025-01-30,Prospect
+ACC_00422,Atlas Group 0422,1-99,SMB,Retail,EMEA,Advertising,2025-08-29,Customer
+ACC_00423,Summit Networks 0423,1-99,SMB,Healthcare,North America,Transactional,2024-04-02,Prospect
+ACC_00424,Vertex Group 0424,1-99,SMB,Software,North America,Transactional,2025-12-14,Prospect
+ACC_00425,Pioneer Labs 0425,100-999,Mid-Market,Media,North America,Subscription,2025-03-28,Customer
+ACC_00426,Pioneer Technologies 0426,100-999,Mid-Market,Media,North America,Subscription,2025-09-07,Prospect
+ACC_00427,Cobalt Systems 0427,1-99,SMB,Financial Services,North America,Subscription,2024-09-21,Customer
+ACC_00428,Apex Solutions 0428,1000+,Enterprise,Software,North America,Subscription,2025-11-20,Prospect
+ACC_00429,Cobalt Solutions 0429,1-99,SMB,Healthcare,North America,Subscription,2025-04-02,Prospect
+ACC_00430,Atlas Partners 0430,100-999,Mid-Market,Financial Services,North America,Subscription,2024-04-02,Customer
+ACC_00431,Nova Technologies 0431,1000+,Enterprise,Professional Services,APAC,Subscription,2025-11-05,Prospect
+ACC_00432,Vertex Technologies 0432,100-999,Mid-Market,Media,LATAM,Subscription,2025-08-04,Customer
+ACC_00433,Harbor Solutions 0433,100-999,Mid-Market,Professional Services,North America,Subscription,2024-08-07,Prospect
+ACC_00434,Atlas Labs 0434,1000+,Enterprise,Healthcare,North America,Usage-Based,2025-02-02,Churned
+ACC_00435,Nova Systems 0435,1-99,SMB,Professional Services,EMEA,Advertising,2024-10-10,Customer
+ACC_00436,Vertex Technologies 0436,1-99,SMB,Software,EMEA,Subscription,2025-02-01,Customer
+ACC_00437,Harbor Group 0437,1-99,SMB,Financial Services,North America,Advertising,2025-12-06,Prospect
+ACC_00438,Atlas Group 0438,100-999,Mid-Market,Software,North America,Subscription,2025-10-19,Prospect
+ACC_00439,Atlas Systems 0439,100-999,Mid-Market,Media,North America,Usage-Based,2024-06-06,Prospect
+ACC_00440,BluePeak Networks 0440,100-999,Mid-Market,Healthcare,EMEA,Advertising,2025-12-11,Customer
+ACC_00441,Pioneer Labs 0441,1000+,Enterprise,Financial Services,North America,Advertising,2024-11-16,Prospect
+ACC_00442,Nova Labs 0442,1-99,SMB,Financial Services,North America,Usage-Based,2025-05-30,Prospect
+ACC_00443,Northstar Systems 0443,100-999,Mid-Market,Healthcare,North America,Usage-Based,2025-07-12,Prospect
+ACC_00444,Apex Group 0444,1-99,SMB,Financial Services,North America,Usage-Based,2024-12-19,Prospect
+ACC_00445,Vertex Solutions 0445,1-99,SMB,Healthcare,North America,Subscription,2024-11-29,Prospect
+ACC_00446,Vertex Group 0446,100-999,Mid-Market,Healthcare,EMEA,Subscription,2024-11-29,Prospect
+ACC_00447,Northstar Networks 0447,1000+,Enterprise,Financial Services,North America,Transactional,2025-09-22,Prospect
+ACC_00448,Cobalt Partners 0448,100-999,Mid-Market,Financial Services,North America,Subscription,2024-10-09,Customer
+ACC_00449,Summit Group 0449,1-99,SMB,Retail,North America,Transactional,2024-07-23,Prospect
+ACC_00450,Harbor Partners 0450,100-999,Mid-Market,Healthcare,APAC,Transactional,2024-09-21,Prospect
+ACC_00451,Northstar Networks 0451,1-99,SMB,Financial Services,North America,Subscription,2024-05-22,Customer
+ACC_00452,Apex Technologies 0452,1000+,Enterprise,Retail,North America,Subscription,2024-10-13,Customer
+ACC_00453,Cobalt Systems 0453,100-999,Mid-Market,Healthcare,North America,Advertising,2024-03-24,Prospect
+ACC_00454,Northstar Systems 0454,1-99,SMB,Financial Services,APAC,Subscription,2024-03-06,Customer
+ACC_00455,Vertex Solutions 0455,1-99,SMB,Healthcare,APAC,Transactional,2025-06-13,Churned
+ACC_00456,Cobalt Partners 0456,1-99,SMB,Software,APAC,Transactional,2024-02-26,Customer
+ACC_00457,Summit Solutions 0457,1000+,Enterprise,Software,EMEA,Subscription,2025-02-19,Customer
+ACC_00458,Vertex Solutions 0458,1-99,SMB,Financial Services,North America,Transactional,2025-07-24,Customer
+ACC_00459,Northstar Systems 0459,100-999,Mid-Market,Financial Services,North America,Advertising,2025-06-13,Prospect
+ACC_00460,Northstar Partners 0460,100-999,Mid-Market,Software,North America,Transactional,2024-11-22,Customer
+ACC_00461,Summit Technologies 0461,100-999,Mid-Market,Professional Services,EMEA,Subscription,2024-05-21,Customer
+ACC_00462,Atlas Partners 0462,1-99,SMB,Financial Services,EMEA,Transactional,2025-11-11,Churned
+ACC_00463,Pioneer Systems 0463,1000+,Enterprise,Media,North America,Transactional,2025-09-02,Customer
+ACC_00464,Pioneer Group 0464,1-99,SMB,Professional Services,APAC,Subscription,2025-03-23,Prospect
+ACC_00465,Nova Partners 0465,100-999,Mid-Market,Media,North America,Advertising,2024-03-04,Customer
+ACC_00466,Northstar Partners 0466,100-999,Mid-Market,Media,North America,Usage-Based,2024-01-26,Prospect
+ACC_00467,Northstar Networks 0467,100-999,Mid-Market,Software,North America,Subscription,2024-08-18,Customer
+ACC_00468,Pioneer Group 0468,1000+,Enterprise,Retail,APAC,Transactional,2024-04-25,Customer
+ACC_00469,Atlas Group 0469,1-99,SMB,Media,LATAM,Enterprise Services,2025-09-20,Customer
+ACC_00470,Nova Solutions 0470,100-999,Mid-Market,Healthcare,North America,Usage-Based,2024-05-30,Customer
+ACC_00471,Apex Technologies 0471,1-99,SMB,Software,LATAM,Subscription,2024-07-25,Customer
+ACC_00472,BluePeak Technologies 0472,1-99,SMB,Healthcare,APAC,Advertising,2025-12-14,Customer
+ACC_00473,Nova Technologies 0473,1-99,SMB,Media,APAC,Enterprise Services,2025-08-21,Customer
+ACC_00474,Atlas Group 0474,1-99,SMB,Media,APAC,Advertising,2024-06-08,Customer
+ACC_00475,Pioneer Technologies 0475,1-99,SMB,Retail,North America,Subscription,2024-10-07,Customer
+ACC_00476,Cobalt Technologies 0476,1-99,SMB,Financial Services,APAC,Subscription,2025-01-12,Prospect
+ACC_00477,Apex Partners 0477,1-99,SMB,Financial Services,EMEA,Transactional,2025-04-30,Customer
+ACC_00478,Atlas Solutions 0478,100-999,Mid-Market,Financial Services,EMEA,Subscription,2025-11-15,Prospect
+ACC_00479,Vertex Solutions 0479,100-999,Mid-Market,Retail,North America,Subscription,2025-09-28,Customer
+ACC_00480,Summit Technologies 0480,1-99,SMB,Financial Services,EMEA,Subscription,2025-12-15,Customer
+ACC_00481,Summit Technologies 0481,1-99,SMB,Retail,LATAM,Transactional,2024-01-30,Customer
+ACC_00482,Pioneer Networks 0482,1-99,SMB,Software,North America,Subscription,2024-06-21,Prospect
+ACC_00483,Northstar Partners 0483,100-999,Mid-Market,Financial Services,LATAM,Usage-Based,2025-02-15,Prospect
+ACC_00484,Harbor Technologies 0484,1-99,SMB,Financial Services,North America,Transactional,2024-02-05,Customer
+ACC_00485,BluePeak Networks 0485,1-99,SMB,Software,North America,Enterprise Services,2024-09-16,Prospect
+ACC_00486,Vertex Partners 0486,1-99,SMB,Professional Services,North America,Usage-Based,2024-04-22,Prospect
+ACC_00487,Summit Networks 0487,1-99,SMB,Media,APAC,Subscription,2025-11-12,Customer
+ACC_00488,Pioneer Partners 0488,1-99,SMB,Professional Services,EMEA,Transactional,2024-02-16,Customer
+ACC_00489,Nova Labs 0489,100-999,Mid-Market,Healthcare,North America,Subscription,2024-04-18,Prospect
+ACC_00490,Cobalt Technologies 0490,100-999,Mid-Market,Software,EMEA,Enterprise Services,2024-05-22,Prospect
+ACC_00491,Summit Networks 0491,100-999,Mid-Market,Professional Services,North America,Subscription,2024-04-18,Churned
+ACC_00492,Harbor Systems 0492,100-999,Mid-Market,Retail,North America,Transactional,2025-02-19,Customer
+ACC_00493,Harbor Partners 0493,100-999,Mid-Market,Media,APAC,Usage-Based,2024-09-23,Customer
+ACC_00494,BluePeak Networks 0494,1-99,SMB,Retail,EMEA,Subscription,2025-10-29,Prospect
+ACC_00495,Pioneer Systems 0495,100-999,Mid-Market,Retail,APAC,Usage-Based,2024-07-09,Prospect
+ACC_00496,BluePeak Partners 0496,100-999,Mid-Market,Retail,EMEA,Subscription,2025-01-27,Prospect
+ACC_00497,Summit Partners 0497,1-99,SMB,Financial Services,LATAM,Subscription,2025-04-27,Customer
+ACC_00498,Nova Partners 0498,100-999,Mid-Market,Healthcare,North America,Subscription,2025-04-02,Prospect
+ACC_00499,Pioneer Group 0499,1-99,SMB,Media,North America,Subscription,2025-08-05,Prospect
+ACC_00500,Atlas Partners 0500,100-999,Mid-Market,Software,North America,Advertising,2024-05-27,Customer
+ACC_00501,Harbor Group 0501,100-999,Mid-Market,Software,EMEA,Usage-Based,2025-01-05,Churned
+ACC_00502,Harbor Technologies 0502,1000+,Enterprise,Professional Services,EMEA,Subscription,2025-08-08,Customer
+ACC_00503,Pioneer Systems 0503,1000+,Enterprise,Healthcare,EMEA,Advertising,2025-09-22,Customer
+ACC_00504,Cobalt Networks 0504,100-999,Mid-Market,Professional Services,North America,Usage-Based,2025-03-27,Customer
+ACC_00505,Harbor Partners 0505,100-999,Mid-Market,Healthcare,North America,Transactional,2025-04-21,Customer
+ACC_00506,Northstar Technologies 0506,100-999,Mid-Market,Healthcare,EMEA,Subscription,2025-09-23,Prospect
+ACC_00507,Nova Technologies 0507,1-99,SMB,Professional Services,LATAM,Enterprise Services,2025-04-01,Customer
+ACC_00508,Atlas Partners 0508,1000+,Enterprise,Healthcare,North America,Subscription,2025-11-24,Customer
+ACC_00509,Cobalt Networks 0509,100-999,Mid-Market,Financial Services,North America,Advertising,2024-04-03,Customer
+ACC_00510,Atlas Labs 0510,1-99,SMB,Healthcare,North America,Advertising,2024-09-11,Customer
+ACC_00511,BluePeak Solutions 0511,1-99,SMB,Financial Services,North America,Transactional,2024-03-23,Churned
+ACC_00512,Cobalt Networks 0512,1000+,Enterprise,Retail,North America,Subscription,2024-03-07,Prospect
+ACC_00513,Vertex Solutions 0513,1-99,SMB,Media,North America,Subscription,2024-12-10,Prospect
+ACC_00514,Summit Solutions 0514,1-99,SMB,Software,EMEA,Transactional,2024-06-14,Prospect
+ACC_00515,Atlas Solutions 0515,1-99,SMB,Media,North America,Subscription,2024-10-24,Prospect
+ACC_00516,Apex Partners 0516,1-99,SMB,Healthcare,North America,Subscription,2024-11-16,Prospect
+ACC_00517,Harbor Networks 0517,1-99,SMB,Financial Services,North America,Transactional,2025-03-29,Prospect
+ACC_00518,Apex Labs 0518,100-999,Mid-Market,Software,LATAM,Transactional,2025-11-22,Customer
+ACC_00519,Northstar Technologies 0519,1-99,SMB,Media,North America,Subscription,2025-09-12,Customer
+ACC_00520,Apex Partners 0520,1000+,Enterprise,Media,North America,Subscription,2024-10-03,Churned
+ACC_00521,BluePeak Technologies 0521,1000+,Enterprise,Media,North America,Enterprise Services,2024-08-26,Prospect
+ACC_00522,Cobalt Solutions 0522,1-99,SMB,Retail,EMEA,Subscription,2025-07-17,Prospect
+ACC_00523,Apex Systems 0523,1-99,SMB,Healthcare,APAC,Subscription,2024-03-31,Prospect
+ACC_00524,BluePeak Group 0524,100-999,Mid-Market,Retail,North America,Subscription,2025-01-30,Prospect
+ACC_00525,Nova Technologies 0525,1-99,SMB,Retail,North America,Subscription,2024-11-05,Prospect
+ACC_00526,Harbor Technologies 0526,1-99,SMB,Financial Services,North America,Enterprise Services,2024-05-13,Churned
+ACC_00527,Cobalt Systems 0527,1000+,Enterprise,Financial Services,EMEA,Subscription,2025-03-26,Prospect
+ACC_00528,Harbor Labs 0528,1000+,Enterprise,Professional Services,LATAM,Subscription,2024-08-22,Prospect
+ACC_00529,Pioneer Partners 0529,100-999,Mid-Market,Healthcare,North America,Advertising,2024-05-15,Customer
+ACC_00530,Harbor Technologies 0530,1-99,SMB,Financial Services,North America,Subscription,2025-04-22,Customer
+ACC_00531,Atlas Systems 0531,100-999,Mid-Market,Professional Services,APAC,Subscription,2024-05-07,Customer
+ACC_00532,Harbor Systems 0532,100-999,Mid-Market,Software,EMEA,Enterprise Services,2025-05-06,Prospect
+ACC_00533,Northstar Technologies 0533,1-99,SMB,Healthcare,North America,Transactional,2024-04-28,Customer
+ACC_00534,Northstar Labs 0534,100-999,Mid-Market,Software,North America,Subscription,2024-11-13,Prospect
+ACC_00535,Cobalt Networks 0535,1-99,SMB,Retail,North America,Subscription,2025-08-13,Customer
+ACC_00536,Summit Partners 0536,1-99,SMB,Healthcare,APAC,Subscription,2024-06-16,Customer
+ACC_00537,Cobalt Labs 0537,100-999,Mid-Market,Professional Services,EMEA,Subscription,2025-07-15,Customer
+ACC_00538,Nova Networks 0538,1-99,SMB,Professional Services,EMEA,Advertising,2025-06-11,Prospect
+ACC_00539,Apex Labs 0539,1-99,SMB,Professional Services,APAC,Advertising,2025-10-21,Customer
+ACC_00540,Summit Group 0540,1000+,Enterprise,Financial Services,North America,Transactional,2024-05-03,Prospect
+ACC_00541,Pioneer Solutions 0541,1000+,Enterprise,Software,North America,Usage-Based,2025-06-06,Prospect
+ACC_00542,Nova Technologies 0542,100-999,Mid-Market,Professional Services,North America,Subscription,2025-11-15,Prospect
+ACC_00543,BluePeak Solutions 0543,1000+,Enterprise,Professional Services,APAC,Enterprise Services,2025-07-11,Customer
+ACC_00544,Atlas Labs 0544,1000+,Enterprise,Financial Services,EMEA,Advertising,2024-05-17,Prospect
+ACC_00545,Vertex Group 0545,1-99,SMB,Software,North America,Subscription,2025-08-23,Customer
+ACC_00546,Cobalt Technologies 0546,1-99,SMB,Healthcare,North America,Usage-Based,2024-03-19,Prospect
+ACC_00547,Atlas Technologies 0547,1-99,SMB,Software,EMEA,Subscription,2025-03-06,Customer
+ACC_00548,Harbor Solutions 0548,1-99,SMB,Software,EMEA,Advertising,2024-12-29,Customer
+ACC_00549,Vertex Systems 0549,100-999,Mid-Market,Professional Services,EMEA,Transactional,2025-01-23,Prospect
+ACC_00550,Summit Partners 0550,1-99,SMB,Retail,North America,Subscription,2025-01-14,Prospect
+ACC_00551,Atlas Solutions 0551,1-99,SMB,Software,LATAM,Usage-Based,2024-01-24,Prospect
+ACC_00552,Cobalt Technologies 0552,1-99,SMB,Healthcare,APAC,Subscription,2025-01-06,Customer
+ACC_00553,Summit Group 0553,1-99,SMB,Retail,EMEA,Usage-Based,2025-11-15,Prospect
+ACC_00554,Vertex Technologies 0554,1000+,Enterprise,Healthcare,EMEA,Subscription,2024-11-15,Customer
+ACC_00555,Summit Group 0555,1-99,SMB,Professional Services,LATAM,Subscription,2024-07-21,Customer
+ACC_00556,Northstar Partners 0556,1-99,SMB,Financial Services,LATAM,Subscription,2025-12-28,Customer
+ACC_00557,Harbor Technologies 0557,1-99,SMB,Healthcare,EMEA,Usage-Based,2024-03-13,Customer
+ACC_00558,BluePeak Solutions 0558,100-999,Mid-Market,Media,North America,Subscription,2024-12-21,Customer
+ACC_00559,BluePeak Networks 0559,100-999,Mid-Market,Retail,North America,Usage-Based,2025-01-09,Churned
+ACC_00560,Atlas Technologies 0560,100-999,Mid-Market,Professional Services,APAC,Subscription,2024-12-15,Prospect
+ACC_00561,BluePeak Networks 0561,1-99,SMB,Retail,EMEA,Subscription,2025-11-04,Customer
+ACC_00562,Cobalt Technologies 0562,1-99,SMB,Retail,North America,Subscription,2024-11-04,Prospect
+ACC_00563,Northstar Solutions 0563,1000+,Enterprise,Professional Services,North America,Subscription,2025-12-12,Customer
+ACC_00564,Apex Labs 0564,100-999,Mid-Market,Healthcare,LATAM,Enterprise Services,2024-02-18,Customer
+ACC_00565,Summit Solutions 0565,100-999,Mid-Market,Professional Services,APAC,Subscription,2025-06-20,Customer
+ACC_00566,Pioneer Partners 0566,100-999,Mid-Market,Media,LATAM,Transactional,2025-03-09,Customer
+ACC_00567,Nova Solutions 0567,100-999,Mid-Market,Media,North America,Advertising,2024-06-24,Prospect
+ACC_00568,Northstar Technologies 0568,1-99,SMB,Financial Services,APAC,Advertising,2024-06-15,Prospect
+ACC_00569,BluePeak Partners 0569,1-99,SMB,Retail,APAC,Advertising,2025-06-10,Prospect
+ACC_00570,Summit Group 0570,100-999,Mid-Market,Professional Services,North America,Usage-Based,2025-04-11,Customer
+ACC_00571,Vertex Partners 0571,1-99,SMB,Healthcare,North America,Transactional,2025-03-22,Customer
+ACC_00572,Harbor Systems 0572,1000+,Enterprise,Financial Services,LATAM,Advertising,2024-02-07,Prospect
+ACC_00573,Summit Group 0573,100-999,Mid-Market,Financial Services,North America,Transactional,2025-03-13,Prospect
+ACC_00574,Apex Technologies 0574,100-999,Mid-Market,Media,EMEA,Advertising,2025-12-18,Prospect
+ACC_00575,Summit Group 0575,1000+,Enterprise,Financial Services,EMEA,Subscription,2024-01-13,Prospect
+ACC_00576,BluePeak Group 0576,100-999,Mid-Market,Software,EMEA,Advertising,2024-12-08,Prospect
+ACC_00577,Vertex Partners 0577,1000+,Enterprise,Media,North America,Subscription,2024-12-27,Customer
+ACC_00578,Atlas Labs 0578,100-999,Mid-Market,Financial Services,EMEA,Transactional,2025-10-17,Customer
+ACC_00579,Nova Partners 0579,1000+,Enterprise,Media,North America,Enterprise Services,2024-07-25,Prospect
+ACC_00580,Vertex Systems 0580,1-99,SMB,Healthcare,APAC,Enterprise Services,2024-12-13,Customer
+ACC_00581,Northstar Partners 0581,100-999,Mid-Market,Professional Services,North America,Usage-Based,2025-06-08,Customer
+ACC_00582,Cobalt Partners 0582,100-999,Mid-Market,Healthcare,EMEA,Advertising,2024-02-14,Prospect
+ACC_00583,Cobalt Group 0583,1-99,SMB,Professional Services,APAC,Transactional,2025-08-08,Prospect
+ACC_00584,BluePeak Partners 0584,1-99,SMB,Professional Services,North America,Subscription,2025-08-24,Prospect
+ACC_00585,Pioneer Solutions 0585,1000+,Enterprise,Financial Services,North America,Subscription,2025-06-10,Prospect
+ACC_00586,Apex Partners 0586,100-999,Mid-Market,Professional Services,APAC,Subscription,2025-04-18,Customer
+ACC_00587,Harbor Group 0587,1-99,SMB,Media,North America,Subscription,2025-06-30,Churned
+ACC_00588,Vertex Technologies 0588,1-99,SMB,Software,North America,Enterprise Services,2025-07-25,Prospect
+ACC_00589,Nova Partners 0589,1-99,SMB,Software,North America,Usage-Based,2025-10-22,Customer
+ACC_00590,Pioneer Group 0590,1-99,SMB,Financial Services,LATAM,Advertising,2024-11-08,Prospect
+ACC_00591,Atlas Partners 0591,1000+,Enterprise,Software,EMEA,Subscription,2024-11-29,Customer
+ACC_00592,Northstar Group 0592,1-99,SMB,Retail,North America,Transactional,2025-04-11,Customer
+ACC_00593,Summit Partners 0593,1-99,SMB,Professional Services,LATAM,Subscription,2024-05-21,Prospect
+ACC_00594,Atlas Systems 0594,100-999,Mid-Market,Retail,North America,Usage-Based,2025-09-17,Prospect
+ACC_00595,Summit Systems 0595,1-99,SMB,Software,North America,Enterprise Services,2025-07-17,Customer
+ACC_00596,Atlas Solutions 0596,1-99,SMB,Retail,North America,Subscription,2025-04-06,Churned
+ACC_00597,BluePeak Solutions 0597,100-999,Mid-Market,Financial Services,North America,Subscription,2024-08-08,Prospect
+ACC_00598,Nova Solutions 0598,100-999,Mid-Market,Professional Services,North America,Subscription,2024-09-11,Prospect
+ACC_00599,Pioneer Solutions 0599,1000+,Enterprise,Software,EMEA,Subscription,2024-11-13,Prospect
+ACC_00600,Summit Technologies 0600,100-999,Mid-Market,Media,North America,Subscription,2025-04-29,Customer
+ACC_00601,Cobalt Group 0601,1-99,SMB,Retail,EMEA,Subscription,2025-07-22,Customer
+ACC_00602,Summit Systems 0602,100-999,Mid-Market,Software,North America,Subscription,2025-05-06,Customer
+ACC_00603,Northstar Technologies 0603,1000+,Enterprise,Media,North America,Subscription,2025-11-10,Customer
+ACC_00604,Harbor Labs 0604,100-999,Mid-Market,Retail,North America,Subscription,2025-12-03,Customer
+ACC_00605,Atlas Solutions 0605,1000+,Enterprise,Media,EMEA,Transactional,2025-05-30,Customer
+ACC_00606,Nova Systems 0606,100-999,Mid-Market,Healthcare,EMEA,Subscription,2024-09-28,Prospect
+ACC_00607,BluePeak Labs 0607,1000+,Enterprise,Media,North America,Usage-Based,2025-03-13,Customer
+ACC_00608,Summit Labs 0608,1-99,SMB,Retail,North America,Subscription,2024-11-06,Prospect
+ACC_00609,Cobalt Labs 0609,100-999,Mid-Market,Software,North America,Subscription,2025-04-04,Prospect
+ACC_00610,Summit Labs 0610,1-99,SMB,Software,APAC,Subscription,2025-08-16,Churned
+ACC_00611,Pioneer Networks 0611,100-999,Mid-Market,Retail,North America,Transactional,2024-09-26,Customer
+ACC_00612,Pioneer Group 0612,100-999,Mid-Market,Retail,APAC,Subscription,2025-01-04,Churned
+ACC_00613,BluePeak Networks 0613,1000+,Enterprise,Media,North America,Advertising,2024-02-03,Prospect
+ACC_00614,Northstar Solutions 0614,1000+,Enterprise,Retail,North America,Subscription,2025-06-22,Customer
+ACC_00615,Harbor Networks 0615,1-99,SMB,Professional Services,EMEA,Enterprise Services,2024-12-24,Customer
+ACC_00616,BluePeak Networks 0616,100-999,Mid-Market,Financial Services,North America,Subscription,2024-12-02,Prospect
+ACC_00617,Atlas Group 0617,100-999,Mid-Market,Retail,North America,Subscription,2025-01-24,Prospect
+ACC_00618,Pioneer Labs 0618,1-99,SMB,Media,LATAM,Usage-Based,2024-06-06,Customer
+ACC_00619,Apex Group 0619,1-99,SMB,Software,North America,Subscription,2025-03-13,Prospect
+ACC_00620,Summit Solutions 0620,1-99,SMB,Financial Services,North America,Subscription,2025-06-28,Churned
+ACC_00621,BluePeak Networks 0621,100-999,Mid-Market,Media,North America,Usage-Based,2024-09-12,Prospect
+ACC_00622,Summit Labs 0622,100-999,Mid-Market,Healthcare,North America,Subscription,2024-04-05,Prospect
+ACC_00623,Nova Technologies 0623,1000+,Enterprise,Media,APAC,Subscription,2024-10-09,Customer
+ACC_00624,Vertex Partners 0624,1-99,SMB,Healthcare,North America,Subscription,2024-05-25,Prospect
+ACC_00625,Atlas Networks 0625,1000+,Enterprise,Professional Services,LATAM,Subscription,2024-09-30,Customer
+ACC_00626,Pioneer Technologies 0626,1-99,SMB,Professional Services,EMEA,Usage-Based,2025-04-03,Customer
+ACC_00627,Nova Solutions 0627,100-999,Mid-Market,Professional Services,LATAM,Transactional,2024-03-23,Prospect
+ACC_00628,Summit Networks 0628,1-99,SMB,Software,APAC,Advertising,2025-06-30,Customer
+ACC_00629,Harbor Networks 0629,100-999,Mid-Market,Healthcare,LATAM,Subscription,2024-06-13,Customer
+ACC_00630,Vertex Labs 0630,100-999,Mid-Market,Software,EMEA,Transactional,2025-10-16,Customer
+ACC_00631,Summit Systems 0631,1000+,Enterprise,Financial Services,North America,Transactional,2025-06-19,Customer
+ACC_00632,Nova Solutions 0632,1000+,Enterprise,Financial Services,North America,Subscription,2024-07-18,Customer
+ACC_00633,BluePeak Networks 0633,1-99,SMB,Healthcare,EMEA,Usage-Based,2025-02-15,Customer
+ACC_00634,Nova Group 0634,1-99,SMB,Retail,North America,Advertising,2024-03-21,Prospect
+ACC_00635,Atlas Networks 0635,1-99,SMB,Professional Services,EMEA,Transactional,2024-03-13,Customer
+ACC_00636,Pioneer Systems 0636,1-99,SMB,Financial Services,North America,Subscription,2025-11-29,Churned
+ACC_00637,BluePeak Partners 0637,100-999,Mid-Market,Healthcare,APAC,Subscription,2025-08-09,Customer
+ACC_00638,Northstar Labs 0638,100-999,Mid-Market,Media,North America,Transactional,2024-04-22,Customer
+ACC_00639,Summit Partners 0639,100-999,Mid-Market,Professional Services,LATAM,Transactional,2024-07-25,Customer
+ACC_00640,BluePeak Technologies 0640,1000+,Enterprise,Financial Services,North America,Subscription,2024-05-24,Customer
+ACC_00641,Cobalt Labs 0641,100-999,Mid-Market,Media,North America,Subscription,2024-10-15,Churned
+ACC_00642,Nova Systems 0642,100-999,Mid-Market,Software,APAC,Usage-Based,2024-07-31,Prospect
+ACC_00643,Vertex Partners 0643,1-99,SMB,Healthcare,APAC,Subscription,2024-08-27,Prospect
+ACC_00644,Cobalt Labs 0644,1-99,SMB,Retail,EMEA,Subscription,2025-01-21,Customer
+ACC_00645,Atlas Systems 0645,100-999,Mid-Market,Professional Services,LATAM,Advertising,2024-05-18,Customer
+ACC_00646,Cobalt Partners 0646,1000+,Enterprise,Media,North America,Subscription,2025-10-07,Customer
+ACC_00647,Summit Group 0647,1-99,SMB,Professional Services,APAC,Subscription,2025-06-15,Prospect
+ACC_00648,Summit Group 0648,100-999,Mid-Market,Professional Services,North America,Subscription,2025-07-09,Prospect
+ACC_00649,Summit Labs 0649,100-999,Mid-Market,Retail,North America,Usage-Based,2024-05-03,Customer
+ACC_00650,Atlas Solutions 0650,1-99,SMB,Media,North America,Subscription,2025-06-01,Customer
+ACC_00651,Nova Group 0651,1-99,SMB,Software,North America,Transactional,2025-09-03,Customer
+ACC_00652,Harbor Labs 0652,1000+,Enterprise,Healthcare,EMEA,Enterprise Services,2024-05-08,Customer
+ACC_00653,Harbor Group 0653,100-999,Mid-Market,Software,EMEA,Transactional,2025-07-03,Customer
+ACC_00654,BluePeak Labs 0654,1-99,SMB,Media,North America,Advertising,2024-09-18,Customer
+ACC_00655,Nova Group 0655,1000+,Enterprise,Professional Services,LATAM,Advertising,2025-07-29,Customer
+ACC_00656,Apex Systems 0656,1-99,SMB,Media,North America,Subscription,2024-12-15,Customer
+ACC_00657,BluePeak Labs 0657,1000+,Enterprise,Professional Services,North America,Advertising,2025-08-09,Customer
+ACC_00658,Apex Group 0658,1-99,SMB,Financial Services,EMEA,Enterprise Services,2024-04-17,Prospect
+ACC_00659,Cobalt Solutions 0659,100-999,Mid-Market,Professional Services,North America,Transactional,2024-10-11,Prospect
+ACC_00660,BluePeak Systems 0660,1-99,SMB,Healthcare,North America,Subscription,2024-07-18,Customer
+ACC_00661,Summit Labs 0661,1-99,SMB,Media,EMEA,Subscription,2024-06-30,Customer
+ACC_00662,Harbor Solutions 0662,1000+,Enterprise,Media,North America,Usage-Based,2024-08-13,Customer
+ACC_00663,Atlas Solutions 0663,1-99,SMB,Healthcare,North America,Subscription,2024-10-06,Prospect
+ACC_00664,Summit Networks 0664,1-99,SMB,Financial Services,EMEA,Usage-Based,2024-04-03,Customer
+ACC_00665,Pioneer Labs 0665,1-99,SMB,Healthcare,North America,Subscription,2025-05-31,Prospect
+ACC_00666,Summit Group 0666,100-999,Mid-Market,Healthcare,APAC,Transactional,2025-02-06,Customer
+ACC_00667,Pioneer Labs 0667,100-999,Mid-Market,Professional Services,APAC,Usage-Based,2025-08-29,Customer
+ACC_00668,Pioneer Systems 0668,1000+,Enterprise,Retail,North America,Subscription,2025-05-30,Customer
+ACC_00669,Harbor Group 0669,1-99,SMB,Healthcare,North America,Subscription,2024-04-18,Customer
+ACC_00670,Vertex Networks 0670,1-99,SMB,Healthcare,North America,Usage-Based,2024-02-21,Prospect
+ACC_00671,Apex Group 0671,1-99,SMB,Software,EMEA,Subscription,2024-11-05,Customer
+ACC_00672,Apex Networks 0672,100-999,Mid-Market,Software,North America,Subscription,2024-12-17,Customer
+ACC_00673,Nova Group 0673,1000+,Enterprise,Software,LATAM,Advertising,2024-06-24,Customer
+ACC_00674,Northstar Group 0674,100-999,Mid-Market,Healthcare,North America,Subscription,2025-07-25,Customer
+ACC_00675,Harbor Partners 0675,100-999,Mid-Market,Retail,EMEA,Transactional,2025-03-01,Prospect
+ACC_00676,Nova Solutions 0676,1-99,SMB,Professional Services,North America,Subscription,2025-06-30,Prospect
+ACC_00677,Pioneer Group 0677,1000+,Enterprise,Media,North America,Subscription,2024-03-20,Prospect
+ACC_00678,Harbor Networks 0678,100-999,Mid-Market,Software,North America,Usage-Based,2025-08-18,Prospect
+ACC_00679,Summit Labs 0679,1-99,SMB,Software,EMEA,Subscription,2024-05-30,Prospect
+ACC_00680,Apex Systems 0680,1-99,SMB,Retail,LATAM,Subscription,2024-11-23,Churned
+ACC_00681,Northstar Partners 0681,1-99,SMB,Professional Services,North America,Transactional,2024-11-17,Customer
+ACC_00682,Northstar Labs 0682,1-99,SMB,Software,North America,Usage-Based,2025-08-22,Prospect
+ACC_00683,Harbor Group 0683,1-99,SMB,Financial Services,North America,Advertising,2024-07-21,Prospect
+ACC_00684,Nova Technologies 0684,1-99,SMB,Software,North America,Usage-Based,2024-06-24,Prospect
+ACC_00685,Northstar Labs 0685,100-999,Mid-Market,Retail,APAC,Subscription,2024-09-05,Customer
+ACC_00686,Nova Systems 0686,1-99,SMB,Professional Services,LATAM,Subscription,2024-09-20,Prospect
+ACC_00687,BluePeak Group 0687,1-99,SMB,Media,APAC,Enterprise Services,2024-05-12,Customer
+ACC_00688,Pioneer Solutions 0688,1000+,Enterprise,Retail,North America,Usage-Based,2024-05-08,Customer
+ACC_00689,Cobalt Networks 0689,100-999,Mid-Market,Software,North America,Advertising,2024-06-18,Prospect
+ACC_00690,Pioneer Group 0690,100-999,Mid-Market,Retail,EMEA,Subscription,2024-12-07,Customer
+ACC_00691,Cobalt Systems 0691,1-99,SMB,Healthcare,North America,Subscription,2024-09-07,Churned
+ACC_00692,Summit Networks 0692,1000+,Enterprise,Financial Services,EMEA,Subscription,2024-10-13,Prospect
+ACC_00693,Cobalt Systems 0693,1-99,SMB,Media,North America,Usage-Based,2025-06-09,Prospect
+ACC_00694,Nova Technologies 0694,1-99,SMB,Professional Services,North America,Usage-Based,2024-06-25,Churned
+ACC_00695,Summit Partners 0695,1000+,Enterprise,Financial Services,APAC,Subscription,2025-10-27,Customer
+ACC_00696,Harbor Group 0696,100-999,Mid-Market,Financial Services,North America,Subscription,2025-07-03,Customer
+ACC_00697,Summit Group 0697,100-999,Mid-Market,Software,LATAM,Subscription,2024-05-07,Customer
+ACC_00698,BluePeak Systems 0698,100-999,Mid-Market,Media,North America,Subscription,2024-08-17,Prospect
+ACC_00699,Atlas Systems 0699,100-999,Mid-Market,Retail,North America,Transactional,2024-05-14,Customer
+ACC_00700,Northstar Technologies 0700,1-99,SMB,Financial Services,North America,Advertising,2024-07-18,Customer
+ACC_00701,Nova Solutions 0701,1-99,SMB,Financial Services,North America,Subscription,2024-09-24,Prospect
+ACC_00702,Northstar Labs 0702,1-99,SMB,Software,North America,Advertising,2024-04-05,Customer
+ACC_00703,Atlas Networks 0703,1-99,SMB,Retail,North America,Enterprise Services,2024-01-11,Churned
+ACC_00704,Harbor Networks 0704,1000+,Enterprise,Media,EMEA,Subscription,2024-11-16,Customer
+ACC_00705,BluePeak Systems 0705,1-99,SMB,Financial Services,APAC,Subscription,2025-05-27,Prospect
+ACC_00706,Northstar Labs 0706,100-999,Mid-Market,Software,North America,Advertising,2024-08-09,Prospect
+ACC_00707,Cobalt Group 0707,100-999,Mid-Market,Retail,North America,Subscription,2025-09-20,Churned
+ACC_00708,Summit Networks 0708,100-999,Mid-Market,Media,North America,Advertising,2024-09-26,Churned
+ACC_00709,Apex Technologies 0709,1-99,SMB,Retail,APAC,Advertising,2025-10-20,Customer
+ACC_00710,Apex Partners 0710,1-99,SMB,Financial Services,EMEA,Subscription,2024-06-21,Customer
+ACC_00711,Nova Solutions 0711,1000+,Enterprise,Software,North America,Subscription,2025-01-29,Customer
+ACC_00712,Vertex Partners 0712,100-999,Mid-Market,Media,North America,Usage-Based,2025-07-11,Prospect
+ACC_00713,Harbor Solutions 0713,100-999,Mid-Market,Professional Services,North America,Subscription,2024-02-13,Prospect
+ACC_00714,BluePeak Partners 0714,1000+,Enterprise,Media,North America,Advertising,2025-11-10,Prospect
+ACC_00715,Apex Partners 0715,100-999,Mid-Market,Healthcare,North America,Advertising,2024-09-23,Prospect
+ACC_00716,Apex Partners 0716,1-99,SMB,Media,LATAM,Usage-Based,2024-12-29,Customer
+ACC_00717,Pioneer Partners 0717,100-999,Mid-Market,Retail,North America,Transactional,2025-04-04,Prospect
+ACC_00718,Atlas Partners 0718,1-99,SMB,Software,North America,Usage-Based,2025-04-15,Prospect
+ACC_00719,Apex Solutions 0719,100-999,Mid-Market,Retail,North America,Advertising,2024-01-18,Customer
+ACC_00720,BluePeak Technologies 0720,1000+,Enterprise,Media,EMEA,Subscription,2025-09-25,Prospect
+ACC_00721,Vertex Networks 0721,100-999,Mid-Market,Healthcare,North America,Subscription,2025-03-31,Prospect
+ACC_00722,BluePeak Technologies 0722,1-99,SMB,Professional Services,North America,Subscription,2025-12-31,Customer
+ACC_00723,Cobalt Partners 0723,1-99,SMB,Professional Services,North America,Subscription,2024-12-10,Prospect
+ACC_00724,Vertex Technologies 0724,1000+,Enterprise,Financial Services,EMEA,Subscription,2025-03-24,Customer
+ACC_00725,Nova Partners 0725,1-99,SMB,Software,North America,Subscription,2024-11-18,Churned
+ACC_00726,Nova Partners 0726,1-99,SMB,Financial Services,LATAM,Subscription,2025-10-12,Prospect
+ACC_00727,Apex Solutions 0727,1-99,SMB,Professional Services,North America,Subscription,2025-08-31,Churned
+ACC_00728,Cobalt Labs 0728,1-99,SMB,Media,North America,Subscription,2025-10-26,Customer
+ACC_00729,BluePeak Networks 0729,1-99,SMB,Software,LATAM,Transactional,2025-01-03,Customer
+ACC_00730,Vertex Partners 0730,100-999,Mid-Market,Software,APAC,Advertising,2025-08-01,Customer
+ACC_00731,BluePeak Solutions 0731,1-99,SMB,Healthcare,North America,Usage-Based,2024-09-19,Customer
+ACC_00732,Summit Solutions 0732,1-99,SMB,Healthcare,APAC,Advertising,2024-12-02,Customer
+ACC_00733,Atlas Networks 0733,1-99,SMB,Professional Services,North America,Usage-Based,2025-07-09,Customer
+ACC_00734,Cobalt Networks 0734,1-99,SMB,Media,North America,Transactional,2024-02-29,Prospect
+ACC_00735,Harbor Labs 0735,1-99,SMB,Financial Services,APAC,Subscription,2025-06-03,Churned
+ACC_00736,Nova Solutions 0736,100-999,Mid-Market,Software,APAC,Enterprise Services,2024-01-12,Customer
+ACC_00737,Summit Labs 0737,1-99,SMB,Healthcare,North America,Subscription,2025-02-28,Customer
+ACC_00738,Atlas Partners 0738,1-99,SMB,Healthcare,EMEA,Advertising,2024-12-14,Prospect
+ACC_00739,Harbor Partners 0739,1-99,SMB,Professional Services,North America,Transactional,2024-12-08,Prospect
+ACC_00740,Nova Technologies 0740,1-99,SMB,Healthcare,North America,Subscription,2024-12-27,Customer
+ACC_00741,Cobalt Labs 0741,1-99,SMB,Healthcare,LATAM,Advertising,2024-12-25,Customer
+ACC_00742,Atlas Labs 0742,1-99,SMB,Financial Services,North America,Subscription,2024-10-24,Customer
+ACC_00743,Northstar Partners 0743,1000+,Enterprise,Software,EMEA,Subscription,2024-11-25,Prospect
+ACC_00744,Apex Technologies 0744,1-99,SMB,Professional Services,EMEA,Subscription,2025-02-19,Prospect
+ACC_00745,Northstar Systems 0745,100-999,Mid-Market,Media,EMEA,Subscription,2025-07-12,Customer
+ACC_00746,Vertex Partners 0746,100-999,Mid-Market,Software,North America,Subscription,2025-02-07,Prospect
+ACC_00747,Summit Labs 0747,1-99,SMB,Media,LATAM,Advertising,2025-04-14,Churned
+ACC_00748,Apex Solutions 0748,1-99,SMB,Retail,EMEA,Advertising,2025-09-03,Prospect
+ACC_00749,Nova Group 0749,100-999,Mid-Market,Retail,EMEA,Subscription,2025-12-24,Prospect
+ACC_00750,BluePeak Labs 0750,1000+,Enterprise,Professional Services,North America,Transactional,2024-03-20,Prospect
+ACC_00751,Apex Systems 0751,1-99,SMB,Professional Services,North America,Subscription,2025-06-05,Customer
+ACC_00752,Nova Technologies 0752,1-99,SMB,Financial Services,North America,Subscription,2024-06-13,Customer
+ACC_00753,Nova Technologies 0753,1-99,SMB,Financial Services,North America,Transactional,2024-05-23,Customer
+ACC_00754,Vertex Partners 0754,1-99,SMB,Media,North America,Usage-Based,2025-08-02,Churned
+ACC_00755,Cobalt Technologies 0755,100-999,Mid-Market,Professional Services,EMEA,Subscription,2024-02-20,Prospect
+ACC_00756,Pioneer Group 0756,1-99,SMB,Software,APAC,Subscription,2025-09-11,Customer
+ACC_00757,Atlas Labs 0757,1-99,SMB,Professional Services,North America,Transactional,2025-07-17,Prospect
+ACC_00758,Summit Labs 0758,1000+,Enterprise,Retail,North America,Usage-Based,2025-12-28,Prospect
+ACC_00759,Northstar Solutions 0759,1-99,SMB,Healthcare,EMEA,Subscription,2025-05-03,Customer
+ACC_00760,Summit Labs 0760,1-99,SMB,Software,North America,Subscription,2025-09-30,Prospect
+ACC_00761,Vertex Solutions 0761,100-999,Mid-Market,Media,LATAM,Subscription,2024-03-27,Customer
+ACC_00762,Atlas Group 0762,1-99,SMB,Media,North America,Advertising,2025-10-12,Customer
+ACC_00763,Atlas Systems 0763,1-99,SMB,Healthcare,North America,Usage-Based,2024-04-27,Customer
+ACC_00764,Pioneer Labs 0764,1-99,SMB,Media,North America,Transactional,2024-08-17,Customer
+ACC_00765,Apex Systems 0765,1000+,Enterprise,Professional Services,LATAM,Subscription,2024-04-03,Customer
+ACC_00766,Atlas Partners 0766,1-99,SMB,Professional Services,North America,Transactional,2024-10-20,Prospect
+ACC_00767,Apex Technologies 0767,1-99,SMB,Media,EMEA,Usage-Based,2025-07-01,Prospect
+ACC_00768,Summit Group 0768,1-99,SMB,Professional Services,North America,Subscription,2024-07-14,Prospect
+ACC_00769,Summit Networks 0769,1-99,SMB,Media,North America,Usage-Based,2025-08-24,Customer
+ACC_00770,Summit Networks 0770,100-999,Mid-Market,Media,APAC,Subscription,2025-03-19,Churned
+ACC_00771,Cobalt Solutions 0771,1-99,SMB,Healthcare,North America,Subscription,2025-04-04,Prospect
+ACC_00772,Pioneer Solutions 0772,100-999,Mid-Market,Media,North America,Advertising,2025-11-17,Customer
+ACC_00773,Atlas Networks 0773,100-999,Mid-Market,Software,North America,Subscription,2024-11-11,Customer
+ACC_00774,Cobalt Partners 0774,1000+,Enterprise,Healthcare,APAC,Enterprise Services,2024-09-08,Customer
+ACC_00775,Atlas Partners 0775,1-99,SMB,Retail,North America,Advertising,2025-12-28,Customer
+ACC_00776,Pioneer Technologies 0776,1000+,Enterprise,Professional Services,North America,Subscription,2025-02-11,Customer
+ACC_00777,Atlas Networks 0777,100-999,Mid-Market,Software,LATAM,Subscription,2025-03-25,Customer
+ACC_00778,Cobalt Systems 0778,1-99,SMB,Healthcare,EMEA,Advertising,2024-08-04,Customer
+ACC_00779,Apex Partners 0779,100-999,Mid-Market,Financial Services,APAC,Subscription,2024-06-06,Prospect
+ACC_00780,Vertex Solutions 0780,1000+,Enterprise,Professional Services,APAC,Transactional,2024-05-04,Churned
+ACC_00781,Cobalt Systems 0781,1-99,SMB,Professional Services,EMEA,Subscription,2024-06-12,Prospect
+ACC_00782,Atlas Partners 0782,1000+,Enterprise,Financial Services,North America,Subscription,2024-05-22,Customer
+ACC_00783,Summit Solutions 0783,1-99,SMB,Professional Services,North America,Advertising,2025-06-29,Prospect
+ACC_00784,Atlas Labs 0784,100-999,Mid-Market,Retail,EMEA,Subscription,2024-02-12,Prospect
+ACC_00785,Pioneer Technologies 0785,1000+,Enterprise,Professional Services,EMEA,Transactional,2025-04-05,Prospect
+ACC_00786,Cobalt Solutions 0786,1-99,SMB,Media,LATAM,Advertising,2025-11-24,Customer
+ACC_00787,Vertex Solutions 0787,100-999,Mid-Market,Software,EMEA,Subscription,2025-07-13,Prospect
+ACC_00788,BluePeak Systems 0788,1-99,SMB,Financial Services,North America,Transactional,2024-10-21,Prospect
+ACC_00789,Harbor Group 0789,100-999,Mid-Market,Retail,North America,Transactional,2024-02-13,Customer
+ACC_00790,Cobalt Networks 0790,100-999,Mid-Market,Financial Services,EMEA,Usage-Based,2025-09-01,Prospect
+ACC_00791,Northstar Labs 0791,1-99,SMB,Software,North America,Subscription,2024-01-03,Customer
+ACC_00792,Cobalt Group 0792,1-99,SMB,Professional Services,APAC,Subscription,2025-05-13,Customer
+ACC_00793,Northstar Systems 0793,1-99,SMB,Professional Services,EMEA,Transactional,2025-05-05,Customer
+ACC_00794,Apex Labs 0794,1-99,SMB,Retail,North America,Advertising,2024-05-20,Prospect
+ACC_00795,Vertex Technologies 0795,1-99,SMB,Financial Services,EMEA,Advertising,2025-06-24,Prospect
+ACC_00796,Vertex Networks 0796,1-99,SMB,Financial Services,EMEA,Advertising,2024-05-08,Churned
+ACC_00797,BluePeak Networks 0797,1-99,SMB,Professional Services,LATAM,Transactional,2024-06-13,Prospect
+ACC_00798,Atlas Partners 0798,1-99,SMB,Financial Services,North America,Subscription,2025-08-16,Prospect
+ACC_00799,Cobalt Group 0799,100-999,Mid-Market,Software,EMEA,Advertising,2025-12-16,Churned
+ACC_00800,Northstar Labs 0800,100-999,Mid-Market,Retail,North America,Subscription,2024-07-12,Churned
+ACC_00801,Vertex Systems 0801,100-999,Mid-Market,Retail,North America,Subscription,2025-11-04,Prospect
+ACC_00802,Summit Labs 0802,1-99,SMB,Healthcare,North America,Transactional,2025-10-29,Customer
+ACC_00803,Northstar Group 0803,1000+,Enterprise,Retail,APAC,Advertising,2025-07-16,Customer
+ACC_00804,BluePeak Labs 0804,100-999,Mid-Market,Professional Services,LATAM,Subscription,2024-04-12,Customer
+ACC_00805,Summit Systems 0805,1-99,SMB,Healthcare,North America,Usage-Based,2024-08-06,Prospect
+ACC_00806,Northstar Labs 0806,1-99,SMB,Professional Services,EMEA,Transactional,2025-05-10,Prospect
+ACC_00807,Atlas Networks 0807,100-999,Mid-Market,Retail,North America,Advertising,2025-12-31,Customer
+ACC_00808,Nova Networks 0808,1-99,SMB,Healthcare,EMEA,Enterprise Services,2025-08-18,Prospect
+ACC_00809,Cobalt Solutions 0809,100-999,Mid-Market,Retail,North America,Subscription,2024-11-03,Customer
+ACC_00810,Summit Partners 0810,1000+,Enterprise,Media,EMEA,Transactional,2024-06-20,Prospect
+ACC_00811,Harbor Technologies 0811,1-99,SMB,Media,North America,Subscription,2025-12-03,Customer
+ACC_00812,Apex Systems 0812,1-99,SMB,Financial Services,EMEA,Subscription,2024-07-20,Customer
+ACC_00813,Apex Technologies 0813,1000+,Enterprise,Professional Services,North America,Subscription,2024-09-07,Customer
+ACC_00814,Summit Systems 0814,100-999,Mid-Market,Professional Services,EMEA,Subscription,2025-12-06,Customer
+ACC_00815,Nova Technologies 0815,1-99,SMB,Professional Services,EMEA,Advertising,2025-02-14,Prospect
+ACC_00816,Pioneer Group 0816,1000+,Enterprise,Financial Services,North America,Subscription,2024-07-12,Customer
+ACC_00817,Harbor Group 0817,1000+,Enterprise,Media,North America,Advertising,2024-01-04,Prospect
+ACC_00818,Northstar Labs 0818,100-999,Mid-Market,Software,APAC,Subscription,2024-11-10,Customer
+ACC_00819,Vertex Networks 0819,100-999,Mid-Market,Software,EMEA,Subscription,2025-12-21,Customer
+ACC_00820,Apex Partners 0820,1-99,SMB,Professional Services,North America,Enterprise Services,2024-11-12,Customer
+ACC_00821,Cobalt Partners 0821,1-99,SMB,Software,North America,Transactional,2025-05-26,Customer
+ACC_00822,Atlas Networks 0822,100-999,Mid-Market,Professional Services,North America,Enterprise Services,2024-07-03,Churned
+ACC_00823,Vertex Technologies 0823,1-99,SMB,Retail,EMEA,Advertising,2025-07-20,Prospect
+ACC_00824,BluePeak Systems 0824,100-999,Mid-Market,Financial Services,EMEA,Subscription,2025-07-21,Churned
+ACC_00825,BluePeak Partners 0825,1000+,Enterprise,Software,North America,Advertising,2025-03-20,Customer
+ACC_00826,Pioneer Technologies 0826,1-99,SMB,Media,EMEA,Advertising,2025-07-18,Customer
+ACC_00827,Summit Labs 0827,100-999,Mid-Market,Media,EMEA,Subscription,2025-02-27,Customer
+ACC_00828,Vertex Group 0828,1-99,SMB,Retail,APAC,Usage-Based,2024-10-03,Prospect
+ACC_00829,Apex Solutions 0829,1000+,Enterprise,Media,North America,Advertising,2025-06-23,Prospect
+ACC_00830,Cobalt Networks 0830,1-99,SMB,Financial Services,North America,Transactional,2025-09-02,Prospect
+ACC_00831,Cobalt Technologies 0831,100-999,Mid-Market,Healthcare,North America,Advertising,2025-09-06,Prospect
+ACC_00832,Atlas Networks 0832,100-999,Mid-Market,Financial Services,North America,Advertising,2024-06-04,Customer
+ACC_00833,Nova Group 0833,1-99,SMB,Healthcare,North America,Subscription,2025-05-09,Customer
+ACC_00834,BluePeak Technologies 0834,100-999,Mid-Market,Software,North America,Enterprise Services,2024-01-04,Customer
+ACC_00835,Summit Group 0835,100-999,Mid-Market,Retail,North America,Subscription,2025-02-22,Customer
+ACC_00836,Northstar Technologies 0836,100-999,Mid-Market,Healthcare,EMEA,Subscription,2025-02-21,Customer
+ACC_00837,Nova Networks 0837,100-999,Mid-Market,Healthcare,North America,Subscription,2024-09-22,Customer
+ACC_00838,Harbor Systems 0838,1000+,Enterprise,Retail,EMEA,Advertising,2025-12-27,Prospect
+ACC_00839,Nova Partners 0839,1-99,SMB,Healthcare,North America,Enterprise Services,2025-10-07,Customer
+ACC_00840,Atlas Labs 0840,100-999,Mid-Market,Healthcare,EMEA,Usage-Based,2024-01-29,Prospect
+ACC_00841,Pioneer Networks 0841,1-99,SMB,Financial Services,North America,Transactional,2024-06-01,Customer
+ACC_00842,Apex Networks 0842,100-999,Mid-Market,Financial Services,APAC,Enterprise Services,2024-06-01,Customer
+ACC_00843,BluePeak Networks 0843,100-999,Mid-Market,Healthcare,APAC,Transactional,2025-10-18,Customer
+ACC_00844,Northstar Networks 0844,1-99,SMB,Professional Services,North America,Subscription,2025-01-14,Customer
+ACC_00845,Northstar Solutions 0845,1-99,SMB,Media,EMEA,Advertising,2025-06-16,Prospect
+ACC_00846,Apex Technologies 0846,1000+,Enterprise,Healthcare,North America,Subscription,2025-08-15,Customer
+ACC_00847,Pioneer Partners 0847,1-99,SMB,Professional Services,EMEA,Subscription,2025-07-15,Customer
+ACC_00848,Cobalt Networks 0848,100-999,Mid-Market,Professional Services,North America,Subscription,2024-03-06,Customer
+ACC_00849,BluePeak Labs 0849,1-99,SMB,Healthcare,North America,Subscription,2024-04-12,Customer
+ACC_00850,Northstar Labs 0850,1000+,Enterprise,Software,North America,Enterprise Services,2024-10-15,Customer
+ACC_00851,BluePeak Group 0851,1-99,SMB,Healthcare,APAC,Enterprise Services,2024-09-04,Churned
+ACC_00852,BluePeak Labs 0852,1-99,SMB,Healthcare,North America,Subscription,2025-06-30,Customer
+ACC_00853,Harbor Group 0853,1000+,Enterprise,Financial Services,EMEA,Transactional,2024-04-24,Customer
+ACC_00854,Apex Group 0854,1000+,Enterprise,Professional Services,North America,Subscription,2024-09-28,Customer
+ACC_00855,Atlas Networks 0855,1-99,SMB,Professional Services,North America,Subscription,2024-06-21,Customer
+ACC_00856,Summit Labs 0856,1-99,SMB,Financial Services,North America,Subscription,2024-05-18,Churned
+ACC_00857,Pioneer Partners 0857,100-999,Mid-Market,Retail,LATAM,Subscription,2024-05-06,Prospect
+ACC_00858,Vertex Technologies 0858,1000+,Enterprise,Financial Services,APAC,Subscription,2024-05-22,Customer
+ACC_00859,Cobalt Networks 0859,1-99,SMB,Financial Services,North America,Subscription,2025-02-16,Prospect
+ACC_00860,Atlas Systems 0860,100-999,Mid-Market,Financial Services,EMEA,Subscription,2024-10-26,Prospect
+ACC_00861,Northstar Technologies 0861,100-999,Mid-Market,Retail,North America,Subscription,2024-11-14,Customer
+ACC_00862,Apex Systems 0862,100-999,Mid-Market,Financial Services,North America,Usage-Based,2024-12-16,Prospect
+ACC_00863,Apex Networks 0863,100-999,Mid-Market,Software,North America,Subscription,2025-06-25,Prospect
+ACC_00864,Northstar Group 0864,100-999,Mid-Market,Retail,North America,Subscription,2025-09-21,Prospect
+ACC_00865,Summit Solutions 0865,1-99,SMB,Healthcare,North America,Advertising,2025-01-19,Customer
+ACC_00866,BluePeak Group 0866,1000+,Enterprise,Financial Services,EMEA,Subscription,2025-04-14,Customer
+ACC_00867,Summit Technologies 0867,1000+,Enterprise,Healthcare,North America,Advertising,2025-06-23,Customer
+ACC_00868,Northstar Labs 0868,100-999,Mid-Market,Financial Services,APAC,Subscription,2025-05-19,Prospect
+ACC_00869,Vertex Networks 0869,1-99,SMB,Media,EMEA,Transactional,2024-04-08,Customer
+ACC_00870,Cobalt Technologies 0870,1-99,SMB,Healthcare,APAC,Advertising,2025-12-19,Customer
+ACC_00871,Vertex Group 0871,100-999,Mid-Market,Professional Services,EMEA,Transactional,2024-04-30,Customer
+ACC_00872,Apex Labs 0872,1-99,SMB,Software,APAC,Advertising,2024-10-28,Customer
+ACC_00873,Vertex Systems 0873,1000+,Enterprise,Professional Services,North America,Subscription,2025-04-22,Prospect
+ACC_00874,Apex Systems 0874,1-99,SMB,Retail,North America,Subscription,2024-10-21,Customer
+ACC_00875,BluePeak Solutions 0875,100-999,Mid-Market,Software,North America,Subscription,2024-06-26,Customer
+ACC_00876,Cobalt Group 0876,1000+,Enterprise,Media,LATAM,Advertising,2025-11-05,Customer
+ACC_00877,Summit Systems 0877,1-99,SMB,Financial Services,North America,Subscription,2024-02-22,Customer
+ACC_00878,Vertex Solutions 0878,1-99,SMB,Financial Services,EMEA,Subscription,2024-06-28,Customer
+ACC_00879,Vertex Systems 0879,100-999,Mid-Market,Professional Services,APAC,Transactional,2025-12-26,Customer
+ACC_00880,Apex Group 0880,100-999,Mid-Market,Financial Services,North America,Subscription,2025-06-17,Prospect
+ACC_00881,Pioneer Partners 0881,1-99,SMB,Healthcare,APAC,Subscription,2024-03-04,Customer
+ACC_00882,BluePeak Solutions 0882,100-999,Mid-Market,Financial Services,North America,Transactional,2025-07-05,Customer
+ACC_00883,Atlas Networks 0883,1000+,Enterprise,Software,North America,Subscription,2025-12-09,Prospect
+ACC_00884,Apex Technologies 0884,1-99,SMB,Software,EMEA,Usage-Based,2024-03-12,Customer
+ACC_00885,Summit Solutions 0885,1-99,SMB,Software,North America,Enterprise Services,2024-10-29,Prospect
+ACC_00886,Summit Systems 0886,1-99,SMB,Retail,North America,Enterprise Services,2024-12-08,Customer
+ACC_00887,BluePeak Solutions 0887,1-99,SMB,Retail,North America,Subscription,2024-04-05,Prospect
+ACC_00888,Northstar Partners 0888,1-99,SMB,Software,North America,Subscription,2024-05-26,Customer
+ACC_00889,Apex Solutions 0889,1-99,SMB,Retail,APAC,Advertising,2024-05-07,Prospect
+ACC_00890,Atlas Labs 0890,100-999,Mid-Market,Financial Services,APAC,Advertising,2024-05-15,Customer
+ACC_00891,BluePeak Systems 0891,1-99,SMB,Healthcare,North America,Advertising,2024-10-21,Churned
+ACC_00892,Apex Networks 0892,1000+,Enterprise,Professional Services,North America,Subscription,2024-12-05,Prospect
+ACC_00893,Atlas Technologies 0893,1-99,SMB,Media,North America,Subscription,2024-06-22,Customer
+ACC_00894,Nova Technologies 0894,1-99,SMB,Professional Services,APAC,Subscription,2024-07-30,Churned
+ACC_00895,Apex Solutions 0895,100-999,Mid-Market,Financial Services,EMEA,Subscription,2024-05-20,Customer
+ACC_00896,Harbor Networks 0896,1000+,Enterprise,Financial Services,North America,Subscription,2025-08-04,Prospect
+ACC_00897,Nova Group 0897,1-99,SMB,Media,North America,Enterprise Services,2024-06-03,Customer
+ACC_00898,Northstar Group 0898,1-99,SMB,Financial Services,LATAM,Subscription,2025-10-25,Prospect
+ACC_00899,Apex Systems 0899,1-99,SMB,Professional Services,APAC,Advertising,2025-01-28,Prospect
+ACC_00900,BluePeak Labs 0900,100-999,Mid-Market,Retail,North America,Enterprise Services,2025-08-09,Customer
+ACC_00901,Atlas Labs 0901,1-99,SMB,Financial Services,APAC,Subscription,2025-04-10,Customer
+ACC_00902,Nova Partners 0902,1-99,SMB,Professional Services,North America,Advertising,2024-07-13,Customer
+ACC_00903,Nova Networks 0903,1-99,SMB,Healthcare,North America,Transactional,2025-03-15,Prospect
+ACC_00904,Summit Technologies 0904,100-999,Mid-Market,Media,APAC,Subscription,2024-07-19,Customer
+ACC_00905,Vertex Group 0905,1000+,Enterprise,Retail,North America,Subscription,2024-03-27,Customer
+ACC_00906,BluePeak Networks 0906,100-999,Mid-Market,Software,North America,Usage-Based,2024-07-05,Customer
+ACC_00907,Northstar Partners 0907,100-999,Mid-Market,Media,LATAM,Transactional,2024-07-20,Customer
+ACC_00908,Atlas Solutions 0908,1-99,SMB,Software,APAC,Usage-Based,2024-04-08,Prospect
+ACC_00909,BluePeak Technologies 0909,1-99,SMB,Healthcare,North America,Enterprise Services,2024-01-18,Prospect
+ACC_00910,Cobalt Partners 0910,1-99,SMB,Retail,EMEA,Subscription,2025-11-20,Customer
+ACC_00911,Vertex Technologies 0911,100-999,Mid-Market,Media,APAC,Transactional,2025-01-10,Churned
+ACC_00912,Northstar Technologies 0912,1000+,Enterprise,Professional Services,EMEA,Advertising,2024-10-20,Prospect
+ACC_00913,Apex Solutions 0913,1000+,Enterprise,Retail,LATAM,Transactional,2025-11-10,Prospect
+ACC_00914,Summit Group 0914,1000+,Enterprise,Professional Services,EMEA,Transactional,2024-06-13,Prospect
+ACC_00915,BluePeak Group 0915,1000+,Enterprise,Software,North America,Transactional,2024-10-21,Customer
+ACC_00916,Vertex Group 0916,1000+,Enterprise,Software,North America,Usage-Based,2025-09-10,Prospect
+ACC_00917,Atlas Technologies 0917,1-99,SMB,Professional Services,APAC,Subscription,2025-04-07,Customer
+ACC_00918,Harbor Technologies 0918,1-99,SMB,Healthcare,LATAM,Transactional,2024-10-18,Churned
+ACC_00919,Pioneer Networks 0919,1-99,SMB,Retail,North America,Subscription,2024-07-06,Prospect
+ACC_00920,Nova Technologies 0920,100-999,Mid-Market,Software,North America,Advertising,2024-01-26,Customer
+ACC_00921,Atlas Labs 0921,1-99,SMB,Financial Services,APAC,Transactional,2024-03-03,Customer
+ACC_00922,Apex Solutions 0922,1000+,Enterprise,Media,North America,Transactional,2024-04-28,Customer
+ACC_00923,Vertex Group 0923,100-999,Mid-Market,Media,North America,Subscription,2025-07-29,Prospect
+ACC_00924,Summit Solutions 0924,100-999,Mid-Market,Professional Services,APAC,Advertising,2025-04-12,Prospect
+ACC_00925,Northstar Labs 0925,1-99,SMB,Retail,APAC,Subscription,2024-11-12,Prospect
+ACC_00926,Pioneer Technologies 0926,1-99,SMB,Retail,APAC,Subscription,2025-07-26,Customer
+ACC_00927,Summit Technologies 0927,1-99,SMB,Software,EMEA,Subscription,2024-04-27,Customer
+ACC_00928,Nova Partners 0928,1000+,Enterprise,Software,North America,Usage-Based,2024-06-03,Prospect
+ACC_00929,Northstar Systems 0929,100-999,Mid-Market,Retail,LATAM,Subscription,2024-10-14,Prospect
+ACC_00930,Northstar Solutions 0930,100-999,Mid-Market,Healthcare,North America,Enterprise Services,2025-11-01,Customer
+ACC_00931,Cobalt Technologies 0931,1-99,SMB,Software,North America,Subscription,2025-03-25,Prospect
+ACC_00932,Nova Networks 0932,1-99,SMB,Retail,APAC,Transactional,2025-09-14,Prospect
+ACC_00933,Summit Technologies 0933,1-99,SMB,Healthcare,EMEA,Advertising,2024-06-30,Customer
+ACC_00934,Nova Systems 0934,100-999,Mid-Market,Media,APAC,Transactional,2025-09-12,Prospect
+ACC_00935,Cobalt Technologies 0935,100-999,Mid-Market,Professional Services,North America,Transactional,2024-02-22,Prospect
+ACC_00936,Northstar Labs 0936,1-99,SMB,Retail,LATAM,Transactional,2024-06-15,Customer
+ACC_00937,Atlas Group 0937,1000+,Enterprise,Retail,EMEA,Usage-Based,2025-01-17,Prospect
+ACC_00938,Summit Networks 0938,1-99,SMB,Professional Services,EMEA,Advertising,2024-02-06,Customer
+ACC_00939,Atlas Technologies 0939,1000+,Enterprise,Media,LATAM,Subscription,2025-09-19,Customer
+ACC_00940,Nova Systems 0940,1-99,SMB,Financial Services,North America,Subscription,2025-09-26,Customer
+ACC_00941,Pioneer Systems 0941,1-99,SMB,Media,EMEA,Transactional,2025-01-30,Prospect
+ACC_00942,Harbor Labs 0942,1000+,Enterprise,Software,EMEA,Advertising,2024-08-11,Customer
+ACC_00943,Apex Labs 0943,1-99,SMB,Retail,APAC,Advertising,2024-03-13,Prospect
+ACC_00944,Pioneer Networks 0944,1-99,SMB,Financial Services,APAC,Advertising,2025-03-28,Customer
+ACC_00945,Apex Labs 0945,1-99,SMB,Professional Services,EMEA,Subscription,2025-01-28,Prospect
+ACC_00946,Summit Solutions 0946,1-99,SMB,Software,North America,Transactional,2025-07-09,Customer
+ACC_00947,Pioneer Labs 0947,100-999,Mid-Market,Professional Services,North America,Transactional,2025-03-16,Prospect
+ACC_00948,Nova Systems 0948,1000+,Enterprise,Financial Services,LATAM,Transactional,2024-04-03,Prospect
+ACC_00949,Apex Solutions 0949,1000+,Enterprise,Software,LATAM,Transactional,2024-03-30,Customer
+ACC_00950,Apex Group 0950,1-99,SMB,Healthcare,LATAM,Usage-Based,2025-07-24,Prospect
+ACC_00951,Vertex Group 0951,100-999,Mid-Market,Media,North America,Advertising,2024-04-26,Prospect
+ACC_00952,Pioneer Solutions 0952,1-99,SMB,Software,North America,Enterprise Services,2025-11-17,Customer
+ACC_00953,Cobalt Solutions 0953,1-99,SMB,Software,APAC,Subscription,2024-03-18,Customer
+ACC_00954,Nova Partners 0954,1-99,SMB,Software,APAC,Advertising,2025-06-16,Prospect
+ACC_00955,Vertex Systems 0955,1000+,Enterprise,Retail,North America,Transactional,2025-12-13,Customer
+ACC_00956,Northstar Networks 0956,1000+,Enterprise,Software,EMEA,Subscription,2024-11-18,Customer
+ACC_00957,Summit Solutions 0957,100-999,Mid-Market,Media,North America,Subscription,2024-02-11,Customer
+ACC_00958,Vertex Solutions 0958,100-999,Mid-Market,Software,North America,Advertising,2025-10-02,Customer
+ACC_00959,Cobalt Systems 0959,100-999,Mid-Market,Media,North America,Subscription,2024-05-16,Customer
+ACC_00960,Northstar Group 0960,100-999,Mid-Market,Professional Services,North America,Usage-Based,2025-01-20,Customer
+ACC_00961,Pioneer Group 0961,100-999,Mid-Market,Media,North America,Subscription,2025-12-20,Customer
+ACC_00962,BluePeak Systems 0962,1-99,SMB,Professional Services,LATAM,Subscription,2025-06-28,Churned
+ACC_00963,Vertex Networks 0963,1-99,SMB,Professional Services,EMEA,Advertising,2024-02-03,Prospect
+ACC_00964,Harbor Labs 0964,1-99,SMB,Software,LATAM,Subscription,2025-08-22,Prospect
+ACC_00965,Harbor Group 0965,1000+,Enterprise,Retail,North America,Subscription,2024-04-27,Prospect
+ACC_00966,Pioneer Systems 0966,100-999,Mid-Market,Media,North America,Advertising,2025-07-01,Churned
+ACC_00967,Atlas Technologies 0967,1000+,Enterprise,Retail,North America,Advertising,2025-03-29,Customer
+ACC_00968,Cobalt Labs 0968,1-99,SMB,Media,EMEA,Subscription,2024-07-29,Customer
+ACC_00969,Vertex Technologies 0969,100-999,Mid-Market,Media,North America,Advertising,2024-11-05,Customer
+ACC_00970,Northstar Labs 0970,1-99,SMB,Professional Services,EMEA,Advertising,2024-03-27,Churned
+ACC_00971,Cobalt Solutions 0971,1-99,SMB,Financial Services,APAC,Transactional,2025-12-22,Prospect
+ACC_00972,BluePeak Labs 0972,1-99,SMB,Retail,APAC,Subscription,2024-06-23,Customer
+ACC_00973,Harbor Technologies 0973,1-99,SMB,Software,North America,Subscription,2024-08-13,Customer
+ACC_00974,Nova Labs 0974,1000+,Enterprise,Financial Services,North America,Enterprise Services,2025-01-02,Prospect
+ACC_00975,BluePeak Systems 0975,1-99,SMB,Financial Services,North America,Advertising,2025-05-06,Customer
+ACC_00976,Cobalt Labs 0976,100-999,Mid-Market,Retail,North America,Subscription,2025-01-04,Prospect
+ACC_00977,Harbor Systems 0977,1-99,SMB,Retail,EMEA,Usage-Based,2025-01-04,Customer
+ACC_00978,Cobalt Systems 0978,1-99,SMB,Professional Services,North America,Subscription,2025-03-01,Customer
+ACC_00979,Cobalt Technologies 0979,100-999,Mid-Market,Media,EMEA,Transactional,2025-09-18,Prospect
+ACC_00980,Harbor Networks 0980,1-99,SMB,Media,North America,Transactional,2024-10-15,Prospect
+ACC_00981,Pioneer Systems 0981,1000+,Enterprise,Software,LATAM,Enterprise Services,2025-08-31,Prospect
+ACC_00982,BluePeak Technologies 0982,100-999,Mid-Market,Retail,LATAM,Enterprise Services,2025-07-29,Prospect
+ACC_00983,Northstar Networks 0983,100-999,Mid-Market,Media,North America,Subscription,2025-12-03,Customer
+ACC_00984,Summit Labs 0984,1-99,SMB,Financial Services,APAC,Transactional,2025-10-29,Prospect
+ACC_00985,Northstar Group 0985,1-99,SMB,Retail,North America,Subscription,2025-08-06,Prospect
+ACC_00986,Summit Systems 0986,1000+,Enterprise,Media,EMEA,Advertising,2024-06-29,Customer
+ACC_00987,Atlas Labs 0987,1-99,SMB,Media,APAC,Advertising,2025-07-20,Customer
+ACC_00988,Vertex Technologies 0988,1-99,SMB,Professional Services,APAC,Subscription,2025-06-22,Customer
+ACC_00989,Northstar Solutions 0989,1-99,SMB,Retail,APAC,Subscription,2024-07-30,Churned
+ACC_00990,Atlas Solutions 0990,100-999,Mid-Market,Retail,North America,Subscription,2025-05-10,Prospect
+ACC_00991,Apex Solutions 0991,100-999,Mid-Market,Retail,APAC,Subscription,2024-07-03,Customer
+ACC_00992,BluePeak Group 0992,100-999,Mid-Market,Media,EMEA,Subscription,2025-01-17,Prospect
+ACC_00993,Nova Systems 0993,100-999,Mid-Market,Retail,North America,Usage-Based,2025-08-05,Customer
+ACC_00994,Apex Group 0994,1-99,SMB,Retail,North America,Advertising,2024-05-17,Churned
+ACC_00995,Northstar Labs 0995,1000+,Enterprise,Financial Services,APAC,Transactional,2024-09-03,Customer
+ACC_00996,Summit Systems 0996,1-99,SMB,Retail,EMEA,Usage-Based,2025-08-04,Customer
+ACC_00997,Cobalt Systems 0997,100-999,Mid-Market,Financial Services,North America,Transactional,2024-11-27,Customer
+ACC_00998,Apex Technologies 0998,1-99,SMB,Healthcare,LATAM,Subscription,2025-12-03,Prospect
+ACC_00999,Nova Group 0999,1000+,Enterprise,Professional Services,EMEA,Usage-Based,2024-01-06,Customer
+ACC_01000,Vertex Labs 1000,1-99,SMB,Media,North America,Transactional,2025-06-11,Customer
+ACC_01001,Cobalt Partners 1001,1-99,SMB,Retail,North America,Transactional,2025-08-18,Churned
+ACC_01002,Summit Group 1002,1-99,SMB,Professional Services,EMEA,Usage-Based,2025-11-01,Customer
+ACC_01003,Harbor Partners 1003,1-99,SMB,Professional Services,APAC,Advertising,2024-04-24,Prospect
+ACC_01004,Atlas Labs 1004,1-99,SMB,Retail,EMEA,Advertising,2025-12-20,Customer
+ACC_01005,Pioneer Technologies 1005,100-999,Mid-Market,Media,North America,Usage-Based,2024-10-13,Prospect
+ACC_01006,BluePeak Labs 1006,1-99,SMB,Retail,EMEA,Subscription,2024-09-14,Prospect
+ACC_01007,Northstar Technologies 1007,1000+,Enterprise,Professional Services,EMEA,Usage-Based,2024-09-16,Prospect
+ACC_01008,Nova Labs 1008,1-99,SMB,Retail,APAC,Subscription,2025-04-11,Customer
+ACC_01009,Atlas Labs 1009,100-999,Mid-Market,Financial Services,North America,Subscription,2025-04-26,Prospect
+ACC_01010,Summit Networks 1010,1-99,SMB,Software,APAC,Advertising,2024-12-12,Prospect
+ACC_01011,Summit Labs 1011,100-999,Mid-Market,Professional Services,North America,Subscription,2024-02-21,Prospect
+ACC_01012,Harbor Labs 1012,100-999,Mid-Market,Financial Services,North America,Enterprise Services,2025-12-22,Customer
+ACC_01013,Vertex Solutions 1013,1-99,SMB,Media,EMEA,Subscription,2024-06-11,Customer
+ACC_01014,BluePeak Systems 1014,1000+,Enterprise,Software,EMEA,Transactional,2024-03-09,Prospect
+ACC_01015,Atlas Technologies 1015,1-99,SMB,Healthcare,North America,Subscription,2025-03-12,Prospect
+ACC_01016,Summit Technologies 1016,1-99,SMB,Retail,APAC,Enterprise Services,2024-10-28,Customer
+ACC_01017,Cobalt Labs 1017,100-999,Mid-Market,Retail,North America,Subscription,2025-03-25,Prospect
+ACC_01018,Apex Technologies 1018,1000+,Enterprise,Financial Services,North America,Subscription,2025-10-02,Customer
+ACC_01019,Harbor Systems 1019,1-99,SMB,Software,North America,Subscription,2024-03-12,Customer
+ACC_01020,Pioneer Partners 1020,1-99,SMB,Retail,North America,Advertising,2024-07-26,Churned
+ACC_01021,Apex Labs 1021,1000+,Enterprise,Retail,EMEA,Enterprise Services,2025-01-12,Prospect
+ACC_01022,Harbor Labs 1022,100-999,Mid-Market,Media,APAC,Enterprise Services,2025-07-29,Customer
+ACC_01023,Atlas Group 1023,1000+,Enterprise,Retail,EMEA,Subscription,2025-03-15,Prospect
+ACC_01024,Atlas Solutions 1024,100-999,Mid-Market,Financial Services,North America,Advertising,2024-10-06,Churned
+ACC_01025,Nova Partners 1025,100-999,Mid-Market,Financial Services,North America,Subscription,2025-03-21,Churned
+ACC_01026,Summit Solutions 1026,1-99,SMB,Healthcare,North America,Advertising,2025-12-17,Customer
+ACC_01027,Atlas Networks 1027,1000+,Enterprise,Retail,EMEA,Advertising,2024-12-16,Customer
+ACC_01028,Cobalt Networks 1028,1-99,SMB,Professional Services,North America,Subscription,2025-10-07,Prospect
+ACC_01029,Cobalt Technologies 1029,100-999,Mid-Market,Retail,North America,Advertising,2025-07-24,Customer
+ACC_01030,Cobalt Solutions 1030,1-99,SMB,Healthcare,APAC,Usage-Based,2024-08-08,Customer
+ACC_01031,Pioneer Technologies 1031,100-999,Mid-Market,Software,EMEA,Subscription,2024-07-01,Prospect
+ACC_01032,Vertex Group 1032,100-999,Mid-Market,Financial Services,North America,Subscription,2025-07-17,Customer
+ACC_01033,Nova Networks 1033,100-999,Mid-Market,Professional Services,North America,Subscription,2024-05-31,Customer
+ACC_01034,Summit Technologies 1034,1000+,Enterprise,Retail,EMEA,Subscription,2024-09-03,Customer
+ACC_01035,Apex Systems 1035,1-99,SMB,Retail,North America,Subscription,2024-06-21,Customer
+ACC_01036,Northstar Group 1036,100-999,Mid-Market,Healthcare,North America,Advertising,2025-03-19,Customer
+ACC_01037,Cobalt Group 1037,1-99,SMB,Software,APAC,Subscription,2024-08-03,Customer
+ACC_01038,Apex Partners 1038,1-99,SMB,Healthcare,North America,Transactional,2025-04-26,Prospect
+ACC_01039,BluePeak Group 1039,1-99,SMB,Retail,North America,Usage-Based,2025-11-14,Prospect
+ACC_01040,Northstar Partners 1040,1-99,SMB,Software,North America,Enterprise Services,2025-08-29,Prospect
+ACC_01041,Apex Technologies 1041,1-99,SMB,Retail,North America,Transactional,2025-11-23,Customer
+ACC_01042,BluePeak Partners 1042,100-999,Mid-Market,Retail,North America,Subscription,2024-01-18,Customer
+ACC_01043,Cobalt Systems 1043,100-999,Mid-Market,Financial Services,North America,Subscription,2024-11-28,Customer
+ACC_01044,Cobalt Solutions 1044,100-999,Mid-Market,Healthcare,EMEA,Subscription,2024-06-09,Prospect
+ACC_01045,Nova Technologies 1045,1-99,SMB,Media,North America,Enterprise Services,2025-11-01,Prospect
+ACC_01046,BluePeak Labs 1046,1-99,SMB,Financial Services,APAC,Enterprise Services,2025-06-04,Customer
+ACC_01047,Cobalt Labs 1047,1-99,SMB,Professional Services,LATAM,Subscription,2024-08-22,Prospect
+ACC_01048,Pioneer Labs 1048,100-999,Mid-Market,Healthcare,North America,Subscription,2025-02-15,Prospect
+ACC_01049,Pioneer Group 1049,1000+,Enterprise,Media,North America,Advertising,2025-03-18,Customer
+ACC_01050,Northstar Partners 1050,1-99,SMB,Software,APAC,Subscription,2024-12-28,Prospect
+ACC_01051,Atlas Solutions 1051,100-999,Mid-Market,Media,LATAM,Enterprise Services,2024-12-12,Prospect
+ACC_01052,Vertex Networks 1052,1-99,SMB,Retail,APAC,Subscription,2024-02-10,Customer
+ACC_01053,Vertex Technologies 1053,1-99,SMB,Media,North America,Subscription,2024-11-26,Customer
+ACC_01054,Atlas Technologies 1054,1-99,SMB,Media,North America,Subscription,2024-09-11,Prospect
+ACC_01055,Cobalt Partners 1055,1-99,SMB,Financial Services,North America,Subscription,2025-08-21,Customer
+ACC_01056,Pioneer Partners 1056,100-999,Mid-Market,Financial Services,APAC,Subscription,2025-09-24,Churned
+ACC_01057,Vertex Group 1057,1000+,Enterprise,Software,EMEA,Usage-Based,2025-07-02,Customer
+ACC_01058,Pioneer Solutions 1058,1-99,SMB,Healthcare,North America,Subscription,2024-01-23,Customer
+ACC_01059,Vertex Group 1059,100-999,Mid-Market,Media,EMEA,Advertising,2025-09-06,Customer
+ACC_01060,Atlas Partners 1060,100-999,Mid-Market,Retail,North America,Subscription,2024-10-16,Customer
+ACC_01061,Atlas Solutions 1061,1000+,Enterprise,Software,EMEA,Subscription,2024-10-31,Prospect
+ACC_01062,Nova Networks 1062,100-999,Mid-Market,Financial Services,North America,Subscription,2025-11-21,Customer
+ACC_01063,Nova Labs 1063,1-99,SMB,Retail,EMEA,Subscription,2025-09-25,Prospect
+ACC_01064,Atlas Networks 1064,100-999,Mid-Market,Professional Services,EMEA,Subscription,2024-02-07,Prospect
+ACC_01065,Summit Systems 1065,1-99,SMB,Software,EMEA,Subscription,2024-09-20,Prospect
+ACC_01066,Vertex Partners 1066,1000+,Enterprise,Retail,North America,Usage-Based,2025-07-02,Prospect
+ACC_01067,Cobalt Labs 1067,1-99,SMB,Healthcare,APAC,Transactional,2025-01-28,Prospect
+ACC_01068,Nova Networks 1068,100-999,Mid-Market,Financial Services,EMEA,Enterprise Services,2024-07-07,Customer
+ACC_01069,Apex Solutions 1069,1-99,SMB,Professional Services,North America,Subscription,2025-01-18,Churned
+ACC_01070,Apex Labs 1070,1-99,SMB,Professional Services,North America,Transactional,2025-09-25,Prospect
+ACC_01071,Nova Group 1071,1000+,Enterprise,Retail,EMEA,Transactional,2024-06-12,Customer
+ACC_01072,Atlas Networks 1072,100-999,Mid-Market,Media,North America,Subscription,2025-06-29,Customer
+ACC_01073,Cobalt Group 1073,1-99,SMB,Media,North America,Subscription,2025-06-21,Prospect
+ACC_01074,Harbor Labs 1074,1000+,Enterprise,Media,North America,Advertising,2025-10-09,Prospect
+ACC_01075,Northstar Systems 1075,1000+,Enterprise,Financial Services,North America,Transactional,2024-08-05,Prospect
+ACC_01076,Apex Group 1076,1-99,SMB,Software,North America,Subscription,2024-06-06,Prospect
+ACC_01077,Atlas Networks 1077,100-999,Mid-Market,Retail,EMEA,Subscription,2025-02-04,Prospect
+ACC_01078,Atlas Networks 1078,100-999,Mid-Market,Software,North America,Enterprise Services,2025-01-23,Prospect
+ACC_01079,Northstar Labs 1079,100-999,Mid-Market,Financial Services,EMEA,Subscription,2024-10-26,Customer
+ACC_01080,Harbor Technologies 1080,1-99,SMB,Healthcare,North America,Enterprise Services,2025-07-23,Prospect
+ACC_01081,Vertex Group 1081,1-99,SMB,Healthcare,North America,Usage-Based,2025-08-07,Prospect
+ACC_01082,Pioneer Labs 1082,1000+,Enterprise,Financial Services,North America,Usage-Based,2024-06-28,Prospect
+ACC_01083,Summit Partners 1083,1000+,Enterprise,Software,APAC,Transactional,2025-08-04,Customer
+ACC_01084,Vertex Group 1084,1000+,Enterprise,Financial Services,LATAM,Subscription,2024-06-17,Prospect
+ACC_01085,Atlas Technologies 1085,1000+,Enterprise,Retail,North America,Advertising,2024-10-24,Customer
+ACC_01086,Apex Solutions 1086,100-999,Mid-Market,Media,North America,Transactional,2024-01-20,Prospect
+ACC_01087,Summit Technologies 1087,100-999,Mid-Market,Retail,North America,Transactional,2024-09-05,Prospect
+ACC_01088,Northstar Networks 1088,100-999,Mid-Market,Financial Services,North America,Subscription,2025-12-01,Churned
+ACC_01089,Vertex Systems 1089,100-999,Mid-Market,Healthcare,APAC,Subscription,2024-11-19,Prospect
+ACC_01090,Cobalt Labs 1090,1-99,SMB,Software,North America,Subscription,2025-06-03,Prospect
+ACC_01091,Atlas Systems 1091,1-99,SMB,Financial Services,LATAM,Subscription,2024-03-19,Prospect
+ACC_01092,Nova Partners 1092,100-999,Mid-Market,Software,EMEA,Advertising,2025-04-09,Churned
+ACC_01093,BluePeak Partners 1093,1-99,SMB,Healthcare,North America,Usage-Based,2024-09-28,Customer
+ACC_01094,Atlas Labs 1094,1-99,SMB,Retail,APAC,Transactional,2025-06-27,Customer
+ACC_01095,Vertex Labs 1095,100-999,Mid-Market,Healthcare,North America,Transactional,2025-11-09,Churned
+ACC_01096,Summit Group 1096,1-99,SMB,Healthcare,APAC,Subscription,2025-01-23,Prospect
+ACC_01097,Summit Networks 1097,1-99,SMB,Retail,North America,Subscription,2024-03-16,Churned
+ACC_01098,Vertex Networks 1098,100-999,Mid-Market,Professional Services,APAC,Subscription,2024-12-14,Prospect
+ACC_01099,Pioneer Networks 1099,1000+,Enterprise,Professional Services,North America,Subscription,2024-03-30,Customer
+ACC_01100,BluePeak Solutions 1100,1-99,SMB,Software,North America,Subscription,2024-11-24,Customer
+ACC_01101,Atlas Group 1101,1-99,SMB,Professional Services,APAC,Subscription,2024-02-14,Prospect
+ACC_01102,BluePeak Networks 1102,1-99,SMB,Financial Services,North America,Subscription,2025-04-13,Churned
+ACC_01103,Atlas Technologies 1103,100-999,Mid-Market,Financial Services,North America,Advertising,2024-08-14,Prospect
+ACC_01104,Atlas Group 1104,1000+,Enterprise,Healthcare,APAC,Subscription,2024-05-27,Churned
+ACC_01105,Pioneer Solutions 1105,1-99,SMB,Software,North America,Subscription,2024-01-13,Prospect
+ACC_01106,Cobalt Systems 1106,100-999,Mid-Market,Retail,APAC,Subscription,2025-10-11,Customer
+ACC_01107,Harbor Networks 1107,1-99,SMB,Financial Services,EMEA,Transactional,2025-09-03,Churned
+ACC_01108,Northstar Partners 1108,1-99,SMB,Retail,EMEA,Advertising,2025-08-16,Prospect
+ACC_01109,BluePeak Solutions 1109,1000+,Enterprise,Media,North America,Subscription,2024-02-12,Churned
+ACC_01110,Atlas Technologies 1110,1-99,SMB,Professional Services,North America,Subscription,2024-09-12,Customer
+ACC_01111,Pioneer Group 1111,1-99,SMB,Financial Services,LATAM,Enterprise Services,2025-12-11,Customer
+ACC_01112,Cobalt Partners 1112,1-99,SMB,Healthcare,North America,Advertising,2025-02-26,Prospect
+ACC_01113,Apex Partners 1113,100-999,Mid-Market,Retail,North America,Transactional,2024-04-03,Customer
+ACC_01114,Cobalt Technologies 1114,1000+,Enterprise,Retail,North America,Advertising,2024-04-13,Customer
+ACC_01115,Pioneer Partners 1115,1000+,Enterprise,Healthcare,North America,Usage-Based,2024-07-11,Customer
+ACC_01116,Pioneer Labs 1116,1-99,SMB,Professional Services,EMEA,Usage-Based,2025-12-11,Prospect
+ACC_01117,Apex Networks 1117,1-99,SMB,Retail,APAC,Subscription,2024-05-03,Prospect
+ACC_01118,Pioneer Solutions 1118,100-999,Mid-Market,Software,APAC,Transactional,2025-10-22,Customer
+ACC_01119,Harbor Group 1119,1-99,SMB,Professional Services,APAC,Subscription,2025-05-10,Prospect
+ACC_01120,BluePeak Technologies 1120,1000+,Enterprise,Professional Services,North America,Transactional,2025-11-04,Customer
+ACC_01121,Nova Solutions 1121,100-999,Mid-Market,Financial Services,North America,Subscription,2025-08-26,Churned
+ACC_01122,BluePeak Partners 1122,1-99,SMB,Healthcare,North America,Subscription,2024-08-30,Prospect
+ACC_01123,BluePeak Solutions 1123,1000+,Enterprise,Professional Services,EMEA,Enterprise Services,2025-08-28,Prospect
+ACC_01124,Atlas Group 1124,1-99,SMB,Healthcare,North America,Usage-Based,2024-05-03,Customer
+ACC_01125,Atlas Solutions 1125,1-99,SMB,Retail,EMEA,Subscription,2024-07-31,Prospect
+ACC_01126,Cobalt Labs 1126,100-999,Mid-Market,Professional Services,North America,Enterprise Services,2024-06-03,Customer
+ACC_01127,Northstar Technologies 1127,100-999,Mid-Market,Media,APAC,Subscription,2024-04-07,Customer
+ACC_01128,Apex Technologies 1128,100-999,Mid-Market,Healthcare,APAC,Subscription,2024-03-06,Customer
+ACC_01129,BluePeak Partners 1129,100-999,Mid-Market,Software,APAC,Usage-Based,2024-05-16,Prospect
+ACC_01130,BluePeak Solutions 1130,1000+,Enterprise,Retail,North America,Subscription,2024-03-28,Customer
+ACC_01131,Cobalt Partners 1131,1000+,Enterprise,Media,LATAM,Subscription,2024-10-05,Customer
+ACC_01132,Nova Networks 1132,100-999,Mid-Market,Financial Services,North America,Transactional,2024-02-22,Prospect
+ACC_01133,Northstar Group 1133,1-99,SMB,Healthcare,North America,Subscription,2024-02-14,Customer
+ACC_01134,Vertex Technologies 1134,100-999,Mid-Market,Healthcare,North America,Subscription,2025-12-24,Customer
+ACC_01135,Vertex Technologies 1135,1000+,Enterprise,Software,North America,Subscription,2024-03-05,Customer
+ACC_01136,Pioneer Systems 1136,1-99,SMB,Healthcare,EMEA,Transactional,2024-02-24,Customer
+ACC_01137,Vertex Technologies 1137,1-99,SMB,Media,North America,Subscription,2024-01-23,Prospect
+ACC_01138,Northstar Partners 1138,1-99,SMB,Financial Services,North America,Subscription,2024-04-06,Prospect
+ACC_01139,Nova Networks 1139,1-99,SMB,Healthcare,EMEA,Transactional,2025-01-20,Prospect
+ACC_01140,Vertex Partners 1140,100-999,Mid-Market,Media,APAC,Subscription,2025-08-27,Prospect
+ACC_01141,Cobalt Group 1141,1-99,SMB,Software,EMEA,Subscription,2025-06-21,Churned
+ACC_01142,Northstar Technologies 1142,100-999,Mid-Market,Healthcare,EMEA,Transactional,2025-02-28,Prospect
+ACC_01143,Nova Systems 1143,1000+,Enterprise,Financial Services,North America,Transactional,2024-03-03,Customer
+ACC_01144,Northstar Group 1144,1000+,Enterprise,Retail,APAC,Subscription,2025-07-20,Prospect
+ACC_01145,BluePeak Technologies 1145,1-99,SMB,Healthcare,North America,Usage-Based,2024-01-28,Prospect
+ACC_01146,Atlas Labs 1146,1-99,SMB,Software,North America,Transactional,2025-04-06,Prospect
+ACC_01147,Northstar Systems 1147,100-999,Mid-Market,Software,North America,Subscription,2024-10-26,Prospect
+ACC_01148,Northstar Networks 1148,100-999,Mid-Market,Retail,EMEA,Transactional,2025-10-06,Customer
+ACC_01149,Nova Technologies 1149,100-999,Mid-Market,Professional Services,North America,Transactional,2024-08-12,Churned
+ACC_01150,Northstar Group 1150,1000+,Enterprise,Software,EMEA,Advertising,2025-04-11,Customer
+ACC_01151,Harbor Labs 1151,1-99,SMB,Media,North America,Advertising,2024-11-17,Prospect
+ACC_01152,Atlas Technologies 1152,1000+,Enterprise,Software,North America,Transactional,2025-01-16,Customer
+ACC_01153,Pioneer Technologies 1153,1-99,SMB,Retail,North America,Enterprise Services,2025-11-17,Prospect
+ACC_01154,Atlas Technologies 1154,1-99,SMB,Retail,North America,Advertising,2025-06-05,Churned
+ACC_01155,Nova Networks 1155,100-999,Mid-Market,Retail,North America,Usage-Based,2024-10-30,Customer
+ACC_01156,Northstar Systems 1156,1-99,SMB,Software,EMEA,Transactional,2024-11-23,Prospect
+ACC_01157,Atlas Solutions 1157,1-99,SMB,Media,North America,Usage-Based,2025-05-30,Prospect
+ACC_01158,Northstar Systems 1158,1-99,SMB,Financial Services,North America,Enterprise Services,2024-09-09,Prospect
+ACC_01159,Cobalt Technologies 1159,1-99,SMB,Media,EMEA,Subscription,2024-05-02,Prospect
+ACC_01160,Summit Labs 1160,100-999,Mid-Market,Healthcare,North America,Subscription,2024-12-07,Churned
+ACC_01161,Cobalt Technologies 1161,1-99,SMB,Healthcare,North America,Advertising,2024-02-19,Customer
+ACC_01162,Cobalt Labs 1162,100-999,Mid-Market,Financial Services,North America,Subscription,2024-05-04,Churned
+ACC_01163,BluePeak Solutions 1163,1000+,Enterprise,Healthcare,North America,Advertising,2024-11-03,Prospect
+ACC_01164,Pioneer Group 1164,1-99,SMB,Professional Services,North America,Transactional,2025-08-05,Customer
+ACC_01165,Vertex Networks 1165,1-99,SMB,Professional Services,EMEA,Enterprise Services,2025-07-25,Prospect
+ACC_01166,Northstar Labs 1166,1000+,Enterprise,Professional Services,North America,Subscription,2024-07-09,Customer
+ACC_01167,Nova Systems 1167,1000+,Enterprise,Financial Services,APAC,Transactional,2024-11-04,Prospect
+ACC_01168,Harbor Group 1168,100-999,Mid-Market,Healthcare,North America,Subscription,2024-04-22,Prospect
+ACC_01169,Pioneer Technologies 1169,100-999,Mid-Market,Retail,EMEA,Advertising,2025-07-06,Customer
+ACC_01170,Cobalt Technologies 1170,1-99,SMB,Professional Services,APAC,Subscription,2024-06-29,Prospect
+ACC_01171,Apex Solutions 1171,1-99,SMB,Professional Services,North America,Advertising,2025-08-07,Customer
+ACC_01172,Summit Networks 1172,100-999,Mid-Market,Professional Services,North America,Advertising,2025-09-07,Customer
+ACC_01173,Pioneer Solutions 1173,1-99,SMB,Software,North America,Transactional,2025-05-18,Prospect
+ACC_01174,Summit Group 1174,100-999,Mid-Market,Financial Services,LATAM,Transactional,2024-08-29,Churned
+ACC_01175,Nova Partners 1175,100-999,Mid-Market,Media,LATAM,Subscription,2025-11-27,Customer
+ACC_01176,Vertex Technologies 1176,100-999,Mid-Market,Media,North America,Subscription,2025-05-16,Customer
+ACC_01177,Pioneer Networks 1177,1-99,SMB,Retail,APAC,Subscription,2025-04-17,Customer
+ACC_01178,BluePeak Solutions 1178,1-99,SMB,Software,North America,Enterprise Services,2025-09-18,Customer
+ACC_01179,Harbor Networks 1179,1-99,SMB,Software,North America,Enterprise Services,2025-10-06,Customer
+ACC_01180,Cobalt Solutions 1180,1-99,SMB,Media,EMEA,Subscription,2024-02-26,Customer
+ACC_01181,Vertex Partners 1181,100-999,Mid-Market,Retail,North America,Subscription,2025-10-06,Customer
+ACC_01182,Nova Systems 1182,1-99,SMB,Retail,North America,Subscription,2025-07-13,Prospect
+ACC_01183,Apex Networks 1183,1-99,SMB,Media,APAC,Transactional,2024-05-30,Prospect
+ACC_01184,Pioneer Technologies 1184,1-99,SMB,Software,North America,Subscription,2024-08-12,Customer
+ACC_01185,Atlas Solutions 1185,1-99,SMB,Media,EMEA,Subscription,2025-07-04,Prospect
+ACC_01186,Harbor Partners 1186,1000+,Enterprise,Financial Services,North America,Subscription,2024-06-07,Prospect
+ACC_01187,Cobalt Systems 1187,1-99,SMB,Professional Services,North America,Subscription,2024-11-26,Prospect
+ACC_01188,Harbor Systems 1188,1000+,Enterprise,Professional Services,North America,Subscription,2025-05-18,Customer
+ACC_01189,Vertex Systems 1189,1-99,SMB,Healthcare,LATAM,Subscription,2025-04-20,Prospect
+ACC_01190,Harbor Technologies 1190,100-999,Mid-Market,Financial Services,North America,Transactional,2025-10-27,Customer
+ACC_01191,Summit Systems 1191,1-99,SMB,Financial Services,North America,Advertising,2024-03-22,Customer
+ACC_01192,Atlas Partners 1192,1-99,SMB,Financial Services,EMEA,Subscription,2024-08-03,Customer
+ACC_01193,Harbor Technologies 1193,1000+,Enterprise,Professional Services,LATAM,Advertising,2025-12-20,Prospect
+ACC_01194,Cobalt Partners 1194,1000+,Enterprise,Financial Services,LATAM,Advertising,2025-02-19,Customer
+ACC_01195,Harbor Labs 1195,1000+,Enterprise,Retail,EMEA,Transactional,2024-06-30,Customer
+ACC_01196,Harbor Technologies 1196,1-99,SMB,Retail,North America,Enterprise Services,2024-07-30,Customer
+ACC_01197,Harbor Systems 1197,1-99,SMB,Media,EMEA,Subscription,2024-09-04,Customer
+ACC_01198,Northstar Solutions 1198,100-999,Mid-Market,Professional Services,APAC,Usage-Based,2025-02-09,Prospect
+ACC_01199,Cobalt Labs 1199,1-99,SMB,Healthcare,APAC,Transactional,2024-07-27,Churned
+ACC_01200,Apex Systems 1200,100-999,Mid-Market,Media,APAC,Transactional,2025-03-30,Prospect
+ACC_01179,Harbor Networks 1179 Duplicate,1-99,SMB,Software,North America,Enterprise Services,2025-10-06,Customer
+ACC_00866,BluePeak Group 0866 Duplicate,1000+,Enterprise,Financial Services,EMEA,Subscription,2025-04-14,Customer
+ACC_00102,Summit Labs 0102 Duplicate,100-999,Mid-Market,Retail,North America,Subscription,2024-03-13,Prospect
+ACC_00440,BluePeak Networks 0440 Duplicate,100-999,Mid-Market,Healthcare,EMEA,Advertising,2025-12-11,Customer
+ACC_00059,Apex Labs 0059 Duplicate,1-99,SMB,Retail,North America,Usage-Based,2024-12-12,Prospect
+ACC_01121,Nova Solutions 1121 Duplicate,100-999,Mid-Market,Financial Services,North America,Subscription,2025-08-26,Churned
+ACC_00324,Vertex Partners 0324 Duplicate,100-999,Mid-Market,Healthcare,EMEA,Subscription,2024-10-02,Prospect
+ACC_00975,BluePeak Systems 0975 Duplicate,1-99,SMB,Financial Services,North America,Advertising,2025-05-06,Customer
+ACC_00412,Harbor Systems 0412 Duplicate,100-999,Mid-Market,Healthcare,North America,Transactional,2024-07-28,Customer
+ACC_00856,Summit Labs 0856 Duplicate,1-99,SMB,Financial Services,North America,Subscription,2024-05-18,Churned
+ACC_00821,Cobalt Partners 0821 Duplicate,1-99,SMB,Software,North America,Transactional,2025-05-26,Customer
+ACC_00045,Pioneer Partners 0045 Duplicate,1000+,Enterprise,Media,North America,Advertising,2025-03-13,Prospect

@@ -1,0 +1,43 @@
+name: 'growth_attribution'
+version: '1.0.0'
+config-version: 2
+
+profile: 'growth_attribution'
+
+model-paths: ["models"]
+seed-paths: ["../data/raw"]   # points to existing CSVs — no duplication
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+seeds:
+  growth_attribution:
+    +schema: raw
+    raw_ad_spend:
+      +column_types:
+        date: date
+        daily_spend_usd: numeric
+        platform_reported_conversions: integer
+    raw_user_touchpoints:
+      +column_types:
+        timestamp: timestamp
+    raw_conversions:
+      +column_types:
+        converted_at: timestamp
+        order_value_usd: numeric
+
+models:
+  growth_attribution:
+    staging:
+      +materialized: view       # views: fast to build, always up to date
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table      # tables: pre-computed for dashboard queries
+      +schema: marts
