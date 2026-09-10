@@ -1,7 +1,8 @@
 Site: Jenny Park Portfolio, San Jose CA
-Style: Studio Mono   Palette: P10 Ochre Gallery   Slots: 9   Filled: 9
+Style: Studio Mono Palette: P10 Ochre Gallery Slots: 9 Filled: 9
 
 HOW TO FILL A SLOT
+
 1. Copy the prompt for the slot.
 2. Paste it into fal.ai, Higgsfield, or ChatGPT. Same prompt, no rewrite needed.
 3. Generate at the pixel size in the row, or larger. Do not upscale a small image.
@@ -14,18 +15,18 @@ Box 5 stays OPEN until Filled matches Slots.
 
 ---
 
-| #   | File                              | Pixels     | Ratio  | Where                          | Source       | Status |
-|-----|-----------------------------------|------------|--------|-------------------------------|--------------|--------|
-| 01  | 01-hero-data.png                  | 1920x1080  | 16 / 9 | Hero, full bleed desktop       | generate     | filled |
-| 01m | 01-hero-data-mobile.png           | 828x1104   | 3 / 4  | Hero under 640px               | generate     | filled |
-| 02  | 02-cs-hyundai.png                 | 1200x675   | 16 / 9 | Work card 1, Hyundai           | generate     | filled |
-| 03  | 03-cs-jynlab.png                  | 1200x900   | 4 / 3  | Work card 2, JYNLAB            | generate     | filled |
-| 04  | 04-cs-firsthome.png               | 1200x675   | 16 / 9 | Work card 3, First Home BA     | generate     | filled |
-| 05  | 05-cs-medspa.png                  | 1200x675   | 16 / 9 | Work card 4, Med Spa Guide     | generate     | filled |
-| 06  | 06-cs-admade.png                  | 1200x675   | 16 / 9 | Work card 5, Admade            | generate     | filled |
-| 07  | Jenny Park.png                    | source PNG | 4 / 5  | About section, portrait        | CLIENT PHOTO | filled |
-| 08  | 08-open-graph.png                 | 1200x630   | 40 / 21| Link preview (OG image)        | generate     | filled |
-| 09  | favicon.svg                       | vector     | 1 / 1  | Browser tab                    | letter mark  | filled |
+| #   | File                    | Pixels     | Ratio   | Where                      | Source       | Status |
+| --- | ----------------------- | ---------- | ------- | -------------------------- | ------------ | ------ |
+| 01  | 01-hero-data.png        | 1920x1080  | 16 / 9  | Hero, full bleed desktop   | generate     | filled |
+| 01m | 01-hero-data-mobile.png | 828x1104   | 3 / 4   | Hero under 640px           | generate     | filled |
+| 02  | 02-cs-hyundai.png       | 1200x675   | 16 / 9  | Work card 1, Hyundai       | generate     | filled |
+| 03  | 03-cs-jynlab.png        | 1200x900   | 4 / 3   | Work card 2, JYNLAB        | generate     | filled |
+| 04  | 04-cs-firsthome.png     | 1200x675   | 16 / 9  | Work card 3, First Home BA | generate     | filled |
+| 05  | 05-cs-medspa.png        | 1200x675   | 16 / 9  | Work card 4, Med Spa Guide | generate     | filled |
+| 06  | 06-cs-admade.png        | 1200x675   | 16 / 9  | Work card 5, Admade        | generate     | filled |
+| 07  | Jenny Park.png          | source PNG | 4 / 5   | About section, portrait    | CLIENT PHOTO | filled |
+| 08  | 08-open-graph.png       | 1200x630   | 40 / 21 | Link preview (OG image)    | generate     | filled |
+| 09  | favicon.svg             | vector     | 1 / 1   | Browser tab                | letter mark  | filled |
 
 ---
 
@@ -110,6 +111,9 @@ laptop open on a wooden desk with a glass of water beside it. Shot from a low an
 level, natural window light from the left. Shot on a phone, slight grain. No people in the
 frame, no readable domain names, no logos, no branded colours.
 ```
+
+---
+
 
 ---
 
@@ -232,4 +236,31 @@ If no logo exists: set the letter J in Instrument Serif, white on the accent col
 from it. Note this decision in client.md so a real mark can replace it later.
 
 A generated logo is a trademark problem. Use a real mark or a letter mark only.
+```
+
+
+### 10. Case study thumbnail — Product-Led SaaS Lifecycle & Retention Analytics
+
+File `images/09-cs-product-led-retention.png`
+Size 1200x900
+Ratio 4 / 3
+Where Selected work card, Product-Led SaaS Lifecycle & Retention Analytics
+Alt `A SaaS product analytics dashboard showing lifecycle funnel, activation metrics, cohort retention curves, and churn risk segments`
+Source generate
+Status filled
+
+```
+A clean, light-mode SaaS product analytics dashboard open on a laptop screen, showing six
+data panels arranged in a grid: a top row of four KPI cards with signup, activation, paid
+customer, and revenue numbers and small percentage-change badges; below left a vertical bar
+funnel chart with four stages in navy and teal; centre a two-metric activation panel showing
+a large percentage and a time-to-activate number in days; upper right a cohort retention
+curve chart with multiple fading lines descending from top-left in different teal shades;
+lower left a compact A/B experiment results table with variant rows and coloured win/loss
+indicators; lower centre an upward-trending line chart for net revenue retention; lower right
+a donut chart in green, yellow, orange, and coral churn-risk tiers. White card backgrounds,
+light grey panel borders, navy and teal as primary accent colours. The laptop sits on a plain
+light desk, shot from above at a slight angle, natural daylight from the side, no glare on
+the screen. Shot on a phone, slight grain. No people in the frame, no readable company names,
+domain names, or logos.
 ```
