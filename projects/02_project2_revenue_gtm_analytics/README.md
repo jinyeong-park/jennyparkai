@@ -10,19 +10,21 @@
 
 A 5-page Streamlit dashboard built on synthetic B2B data, designed as an executive-grade revenue intelligence tool.
 
+link: https://jennyparkai-revenue-gtm-analytics.streamlit.app/
+
 ```bash
 cd app
 pip install -r requirements.txt
 streamlit run Summary.py
 ```
 
-| Page | Story | Key Questions |
-|---|---|---|
-| **Summary** | Only 82% of CRM bookings reach the bank — $2.2M disappears across three structural gaps | Where does revenue disappear? Is the pipeline closeable? Is the customer base healthy? |
-| **GTM Funnel** | 27% end-to-end win rate — biggest drop at Closed-Won (922 → 325 accounts) | Where does the funnel break? Which lead sources create quality pipeline? |
-| **Revenue Reconciliation** | Bookings ≠ Billed ≠ Collected — three distinct gaps with different owners | What is the discount rate? How much is unbilled? Where are failed payments? |
-| **Pipeline** | 12% of pipeline is high-risk; 30%+ of deals have gone silent 90+ days | Which deals need action now? What is the realistic forecast? |
-| **Customer Health** | 50% healthy accounts; 16% churned; NRR driven by expansion in Enterprise | Who needs CS outreach? Where is expansion opportunity? |
+| Page                       | Story                                                                                   | Key Questions                                                                          |
+| -------------------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **Summary**                | Only 82% of CRM bookings reach the bank — $2.2M disappears across three structural gaps | Where does revenue disappear? Is the pipeline closeable? Is the customer base healthy? |
+| **GTM Funnel**             | 27% end-to-end win rate — biggest drop at Closed-Won (922 → 325 accounts)               | Where does the funnel break? Which lead sources create quality pipeline?               |
+| **Revenue Reconciliation** | Bookings ≠ Billed ≠ Collected — three distinct gaps with different owners               | What is the discount rate? How much is unbilled? Where are failed payments?            |
+| **Pipeline**               | 12% of pipeline is high-risk; 30%+ of deals have gone silent 90+ days                   | Which deals need action now? What is the realistic forecast?                           |
+| **Customer Health**        | 50% healthy accounts; 16% churned; NRR driven by expansion in Enterprise                | Who needs CS outreach? Where is expansion opportunity?                                 |
 
 ---
 
