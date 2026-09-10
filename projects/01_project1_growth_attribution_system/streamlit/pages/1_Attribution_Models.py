@@ -2,11 +2,10 @@
 Attribution Models page.
 
 Key insight: the attribution model you choose changes which channel looks best.
-First-Touch favors TikTok. Last-Touch favors Meta. Time-Decay gives a more
-balanced view. Showing all four side by side prevents model bias.
+First-Touch favors TikTok. Last-Touch favors Meta. Time-Decay gives the most
+balanced view — and it shows Meta's weakness most clearly.
 """
 
-import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 import pandas as pd
@@ -19,124 +18,127 @@ from utils.data_loader import (
     get_attribution_long,
     get_roas_table,
 )
+from utils.theme import (
+    C_MUTED, C_NAVY, C_GREEN, C_RED, C_AMBER, C_BORDER,
+    action_box, alert, base_layout, hero, inject_css, insight, kpi, story_step,
+)
 
 st.set_page_config(page_title="Attribution Models", layout="wide")
+inject_css(st)
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Header
-# ─────────────────────────────────────────────────────────────────────────────
+with st.sidebar:
+    st.markdown("## Growth Attribution System")
+    st.markdown("Multi-Touch Attribution & Geo-Incrementality")
 
-st.title("📐 Attribution Models")
-st.markdown(
-    "#### The channel that looks best depends entirely on which attribution "
-    "model you use. Here's why that matters."
-)
-st.markdown("---")
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Load
-# ─────────────────────────────────────────────────────────────────────────────
-
+# ── Load ───────────────────────────────────────────────────────────────────────
 agg      = compute_attribution()
 long_df  = get_attribution_long()
 roas_tbl = get_roas_table()
 
-paid_agg = agg[agg["channel"].isin(PAID_CHANNELS)].copy()
+paid_agg  = agg[agg["channel"].isin(PAID_CHANNELS)].copy()
 paid_long = long_df[long_df["channel"].isin(PAID_CHANNELS)].copy()
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Model explainer cards
-# ─────────────────────────────────────────────────────────────────────────────
+# ── Hero ───────────────────────────────────────────────────────────────────────
+st.title("Attribution Models")
 
-c1, c2, c3, c4 = st.columns(4)
+meta_ft  = paid_agg.loc[paid_agg["channel"] == "Meta Paid Social", "first_touch_revenue"].values[0]
+meta_lt  = paid_agg.loc[paid_agg["channel"] == "Meta Paid Social", "last_touch_revenue"].values[0]
+meta_td  = paid_agg.loc[paid_agg["channel"] == "Meta Paid Social", "time_decay_revenue"].values[0]
+tiktok_ft = paid_agg.loc[paid_agg["channel"] == "TikTok Ads", "first_touch_revenue"].values[0]
 
-model_info = {
-    "First-Touch": {
-        "icon": "🥇",
-        "color": MODEL_COLORS["First-Touch"],
-        "desc": "100% credit to the **first** touchpoint. Favors awareness channels (TikTok, top-of-funnel).",
-        "bias": "Ignores what closed the deal.",
-    },
-    "Last-Touch": {
-        "icon": "🏁",
-        "color": MODEL_COLORS["Last-Touch"],
-        "desc": "100% credit to the **last** touchpoint before conversion. Favors retargeting (Meta).",
-        "bias": "Ignores what introduced the user.",
-    },
-    "Linear": {
-        "icon": "⚖️",
-        "color": MODEL_COLORS["Linear"],
-        "desc": "Equal credit split across **all** touchpoints. Simple and unbiased.",
-        "bias": "Treats all touches as equally important.",
-    },
-    "Time-Decay": {
-        "icon": "⏱️",
-        "color": MODEL_COLORS["Time-Decay"],
-        "desc": "Exponential credit, heavier near conversion. 7-day half-life.",
-        "bias": "Penalizes long-cycle discovery channels.",
-    },
-}
+st.markdown(hero(
+    headline=(
+        "The channel that looks best depends entirely on the attribution model. "
+        "Meta leads under Last-Touch. TikTok leads under First-Touch. "
+        "Time-Decay — the most balanced model — reveals Meta's weakest result."
+    ),
+    metric=(
+        f"Meta: ${meta_lt:,.0f} Last-Touch  →  ${meta_td:,.0f} Time-Decay  "
+        f"·  TikTok: ${tiktok_ft:,.0f} First-Touch"
+    ),
+    subtext=(
+        "None of these models measures true causal impact — that requires a geo-holdout experiment. "
+        "But comparing models side-by-side exposes where each platform captures vs creates demand."
+    ),
+), unsafe_allow_html=True)
 
-for col, (model, info) in zip([c1, c2, c3, c4], model_info.items()):
+st.markdown("---")
+
+# ── 01 Model overview ─────────────────────────────────────────────────────────
+st.markdown(story_step("01", "What does each attribution model reward — and what does it miss?"), unsafe_allow_html=True)
+
+model_info = [
+    ("First-Touch",  "Credits the first touchpoint 100%. Reveals awareness channels. Misses what closed the deal.", C_MUTED),
+    ("Last-Touch",   "Credits the last touchpoint 100%. Favors retargeting (Meta). Ignores the full journey.",       C_MUTED),
+    ("Linear",       "Equal credit across all touchpoints. Simple and unbiased. Treats all touches as equal.",        C_MUTED),
+    ("Time-Decay",   "Exponential credit toward conversion (7-day half-life). Best for diagnosing closing channels.", C_NAVY),
+]
+
+cols = st.columns(4)
+for col, (model, desc, color) in zip(cols, model_info):
     with col:
+        border_style = f"border-left: 4px solid {color}; padding: 14px 16px; background: #F7F8FA; border-radius: 0 4px 4px 0; min-height: 130px;"
+        label_color  = color if color == C_NAVY else "#6B7788"
         st.markdown(
-            f"""
-            <div style="border-left: 4px solid {info['color']}; padding: 12px 16px;
-                        background: #fafafa; border-radius: 4px; height: 160px;">
-                <div style="font-size:22px;">{info['icon']}</div>
-                <div style="font-weight:700; font-size:15px; margin:6px 0;">{model}</div>
-                <div style="font-size:13px; color:#444;">{info['desc']}</div>
-                <div style="font-size:12px; color:#888; margin-top:6px;">⚠ {info['bias']}</div>
-            </div>
-            """,
+            f'<div style="{border_style}">'
+            f'<div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:{label_color};margin-bottom:6px;">{model}</div>'
+            f'<div style="font-size:0.82rem;color:#4E5B6B;line-height:1.5;">{desc}</div>'
+            f'</div>',
             unsafe_allow_html=True,
         )
 
 st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("---")
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Revenue comparison — all models side by side
-# ─────────────────────────────────────────────────────────────────────────────
+# ── 02 All-models comparison ───────────────────────────────────────────────────
+st.markdown(story_step("02", "How does attributed revenue shift across models for each channel?"), unsafe_allow_html=True)
 
-st.markdown("### Attributed Revenue by Channel — All Models")
-st.caption(
-    "Same conversions, same data — different revenue allocations depending on the model. "
-    "Notice how Meta dominates Last-Touch but shrinks under Time-Decay."
-)
+st.markdown(insight(
+    "<b>Time-Decay (navy) is the recommended reference model</b> — it penalizes early-funnel touches less than Last-Touch "
+    "and gives more credit to channels that genuinely assist conversion. All other models are muted for comparison."
+), unsafe_allow_html=True)
 
-fig = px.bar(
-    paid_long,
-    x="channel",
-    y="attributed_revenue",
-    color="model",
+# "Highlight the exception": Time-Decay = C_NAVY, others = C_MUTED
+MODEL_DISPLAY_COLORS = {
+    "First-Touch": C_MUTED,
+    "Last-Touch":  C_MUTED,
+    "Linear":      "#B0BCCC",  # slightly visible
+    "Time-Decay":  C_NAVY,
+}
+
+fig = go.Figure()
+for model in ["First-Touch", "Last-Touch", "Linear", "Time-Decay"]:
+    model_data = paid_long[paid_long["model"] == model].sort_values("channel")
+    fig.add_trace(go.Bar(
+        name=model,
+        x=model_data["channel"],
+        y=model_data["attributed_revenue"],
+        marker_color=MODEL_DISPLAY_COLORS[model],
+        opacity=1.0 if model == "Time-Decay" else 0.65,
+        text=[f"${v:,.0f}" for v in model_data["attributed_revenue"]],
+        textposition="outside",
+        textfont=dict(size=10),
+    ))
+layout_all = base_layout(height=360, margin=dict(t=48, b=20, l=8, r=100))
+layout_all.update(dict(
+    title="Time-Decay cuts Meta's attributed revenue most sharply — exposing its late-funnel bias",
     barmode="group",
-    color_discrete_map=MODEL_COLORS,
-    labels={
-        "attributed_revenue": "Attributed Revenue (USD)",
-        "channel": "",
-        "model": "Attribution Model",
-    },
-    height=380,
-)
-fig.update_layout(
-    plot_bgcolor="white",
-    paper_bgcolor="white",
-    yaxis_tickprefix="$",
-    yaxis_tickformat=",",
-    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
-    margin=dict(t=40, b=10),
-)
+    yaxis=dict(title="Attributed Revenue (USD)", tickprefix="$", tickformat=",",
+               gridcolor=C_BORDER, zeroline=False),
+))
+fig.update_layout(layout_all)
 st.plotly_chart(fig, use_container_width=True)
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Single-model deep dive
-# ─────────────────────────────────────────────────────────────────────────────
+st.markdown("---")
 
-st.markdown("### Single-Model View")
+# ── 03 Single-model deep dive ──────────────────────────────────────────────────
+st.markdown(story_step("03", "Which channel looks best under each individual model?"), unsafe_allow_html=True)
+
 selected_model = st.radio(
-    "Select a model to inspect:",
+    "Select a model:",
     options=["First-Touch", "Last-Touch", "Linear", "Time-Decay"],
     horizontal=True,
+    index=3,  # default to Time-Decay
 )
 
 model_col_map = {
@@ -147,93 +149,62 @@ model_col_map = {
 }
 rev_col = model_col_map[selected_model]
 
-single = paid_agg[["channel", rev_col, "total_conversions"]].copy()
-single = single.sort_values(rev_col, ascending=False)
+single = paid_agg[["channel", rev_col]].copy()
+single = single.sort_values(rev_col, ascending=True)  # ascending for horizontal bar (best on top)
 single["share_pct"] = (single[rev_col] / single[rev_col].sum() * 100).round(1)
 
-left, right = st.columns([1.2, 1], gap="large")
+# "Highlight the exception" — focal bar = highest revenue channel
+top_ch = single.iloc[-1]["channel"]
+bar_colors = [C_NAVY if ch == top_ch else C_MUTED for ch in single["channel"]]
 
-with left:
-    fig2 = px.bar(
-        single,
-        x=rev_col,
-        y="channel",
-        orientation="h",
-        color="channel",
-        color_discrete_map=CHANNEL_COLORS,
-        text=single[rev_col].apply(lambda v: f"${v:,.0f}"),
-        labels={rev_col: "Attributed Revenue (USD)", "channel": ""},
-        height=280,
-    )
-    fig2.update_traces(textposition="outside")
-    fig2.update_layout(
-        plot_bgcolor="white",
-        paper_bgcolor="white",
-        showlegend=False,
-        xaxis_tickprefix="$",
-        xaxis_tickformat=",",
-        margin=dict(t=20, b=10, l=10, r=80),
-    )
-    st.plotly_chart(fig2, use_container_width=True)
-
-with right:
-    fig3 = px.pie(
-        single,
-        names="channel",
-        values=rev_col,
-        color="channel",
-        color_discrete_map=CHANNEL_COLORS,
-        hole=0.5,
-        height=280,
-    )
-    fig3.update_traces(textposition="outside", textinfo="label+percent")
-    fig3.update_layout(
-        showlegend=False,
-        margin=dict(t=20, b=10, l=10, r=10),
-    )
-    st.plotly_chart(fig3, use_container_width=True)
-
-# ─────────────────────────────────────────────────────────────────────────────
-# ROAS table
-# ─────────────────────────────────────────────────────────────────────────────
-
-st.markdown("### ROAS by Channel × Model")
-st.caption(
-    "Platform ROAS uses each platform's own reported conversions × $160 avg order value. "
-    "SQL-model ROAS uses actual backend conversions distributed by attribution logic."
-)
-
-display_tbl = roas_tbl[roas_tbl["channel"].isin(PAID_CHANNELS)].copy()
-display_tbl["total_spend"] = display_tbl["total_spend"].apply(lambda v: f"${v:,.0f}")
-
-roas_cols = ["Platform ROAS", "First-Touch ROAS", "Last-Touch ROAS", "Linear ROAS", "Time-Decay ROAS"]
-
-
-def color_roas(val):
-    try:
-        v = float(val)
-        if v >= 2.5:
-            return "background-color: #d4edda; color: #155724"
-        elif v >= 1.5:
-            return "background-color: #fff3cd; color: #856404"
-        else:
-            return "background-color: #f8d7da; color: #721c24"
-    except (ValueError, TypeError):
-        return ""
-
-
-st.dataframe(
-    display_tbl.rename(columns={"total_spend": "Total Spend"})
-    .style.applymap(color_roas, subset=roas_cols)
-    .format({c: "{:.2f}x" for c in roas_cols}),
-    use_container_width=True,
-    hide_index=True,
-)
+fig2 = go.Figure(go.Bar(
+    x=single[rev_col],
+    y=single["channel"],
+    orientation="h",
+    marker_color=bar_colors,
+    text=[f"${v:,.0f}  ({p:.0f}%)" for v, p in zip(single[rev_col], single["share_pct"])],
+    textposition="outside",
+))
+layout2 = base_layout(height=240, margin=dict(t=48, b=20, l=8, r=160), show_legend=False)
+layout2.update(dict(
+    title=f"{selected_model}: '{top_ch}' receives the most credited revenue ({single.iloc[-1]['share_pct']:.0f}% share)",
+    xaxis=dict(title="Attributed Revenue (USD)", tickprefix="$", tickformat=",",
+               gridcolor=C_BORDER, zeroline=False),
+    yaxis=dict(title=""),
+))
+fig2.update_layout(layout2)
+st.plotly_chart(fig2, use_container_width=True)
 
 st.markdown("---")
-st.info(
-    "**Key takeaway:** Meta looks like the top channel under Last-Touch (highest ROAS) "
-    "but drops to the bottom under Time-Decay. Platform-reported ROAS consistently "
-    "overstates all channels. → See **Geo-Holdout** to find out Meta's true incremental ROAS.",
-    icon="💡",
-)
+
+# ── 04 ROAS table ─────────────────────────────────────────────────────────────
+st.markdown(story_step("04", "How does ROAS change across models — and what does platform-reporting hide?"), unsafe_allow_html=True)
+
+st.markdown(insight(
+    "Platform ROAS is systematically higher than any SQL-computed model. "
+    "<b>Meta's platform ROAS (3.25x) vs Time-Decay ROAS (lowest) illustrates the biggest gap</b> — "
+    "platform reporting claims credit for conversions that attribution models can't justify. "
+    "True incrementality is only measurable through a geo-holdout experiment (see next page)."
+), unsafe_allow_html=True)
+
+display_tbl = roas_tbl[roas_tbl["channel"].isin(PAID_CHANNELS)].copy()
+display_tbl["Total Spend"] = display_tbl["total_spend"].apply(lambda v: f"${v:,.0f}")
+
+roas_cols = ["Platform ROAS", "First-Touch ROAS", "Last-Touch ROAS", "Linear ROAS", "Time-Decay ROAS"]
+show_cols = ["channel", "Total Spend"] + roas_cols
+
+display_out = display_tbl[show_cols].rename(columns={"channel": "Channel"}).copy()
+for c in roas_cols:
+    display_out[c] = display_out[c].apply(lambda v: f"{v:.2f}x")
+
+st.dataframe(display_out, use_container_width=True, hide_index=True)
+st.caption("Platform ROAS = platform-reported conversions × $160 avg order value ÷ spend. SQL ROAS = backend conversions distributed by model ÷ spend.")
+
+st.markdown("---")
+
+st.markdown(action_box([
+    "Use Time-Decay as the default reporting model — it best reflects the full conversion journey.",
+    "Do not optimize budget toward Last-Touch ROAS — it systematically over-credits Meta retargeting.",
+    "Platform ROAS numbers are inadmissible as budget evidence — they count the same conversion multiple times.",
+    "Run a geo-holdout experiment (see next page) to measure true incremental ROAS before shifting budget.",
+]), unsafe_allow_html=True)
