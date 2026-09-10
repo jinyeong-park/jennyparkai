@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product-Led SaaS Lifecycle & Retention Analytics — Jenny Park</title>
+  <meta name="description" content="Case study: Connecting signup, onboarding, activation, trial conversion, paid retention, churn, and NRR into one product analytics framework for B2B SaaS.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────────
+       TOKENS — shared with portfolio
+    ───────────────────────────────────────────── */
+    :root {
+      --surface:    #FFFFFF;
+      --raised:     #F2F1EE;
+      --ink:        #0C0C0C;
+      --muted:      #6F6C66;
+      --accent:     #A85C13;
+      --on-accent:  #FFFFFF;
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body:    'Instrument Sans', system-ui, sans-serif;
+
+      --s1: 0.25rem;  --s2: 0.5rem;   --s3: 0.75rem;  --s4: 1rem;
+      --s5: 1.5rem;   --s6: 2rem;     --s7: 3rem;     --s8: 4rem;
+      --s9: 6rem;     --s10: 8rem;
+
+      --radius: 0px;
+      --line: 1px solid #E0DDD8;
+      --t-fast: 150ms;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: 800px;
+      margin-inline: auto;
+      padding-inline: var(--s6);
+    }
+
+    /* ─────────────────────────────────────────────
+       HEADER
+    ───────────────────────────────────────────── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: var(--line);
+    }
+    .site-header .wrap {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .wordmark {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .header-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--t-fast) var(--ease);
+    }
+    .header-back:hover { color: var(--ink); }
+    .header-back svg { flex-shrink: 0; }
+
+    /* ─────────────────────────────────────────────
+       CASE STUDY HERO
+    ───────────────────────────────────────────── */
+    .cs-hero {
+      padding-block: var(--s8) var(--s7);
+      border-bottom: var(--line);
+    }
+    .cs-hero .wrap { max-width: 800px; }
+
+    .cs-kicker {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s5);
+    }
+    .cs-kicker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .cs-hero h1 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: var(--s5);
+      max-width: 24ch;
+    }
+
+    .cs-hero-lead {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 60ch;
+      margin-bottom: var(--s6);
+    }
+
+    .cs-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s5);
+      padding-top: var(--s5);
+      border-top: var(--line);
+    }
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cs-meta-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .cs-meta-value {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ─────────────────────────────────────────────
+       STAT STRIP
+    ───────────────────────────────────────────── */
+    .stat-strip {
+      background: var(--raised);
+      border-bottom: var(--line);
+      padding-block: var(--s6);
+    }
+    .stat-strip .wrap {
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s6);
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .cs-note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: var(--s5);
+      padding-top: var(--s5);
+      border-top: var(--line);
+    }
+
+    /* ─────────────────────────────────────────────
+       BODY CONTENT
+    ───────────────────────────────────────────── */
+    .cs-body {
+      padding-block: var(--s8);
+    }
+    .cs-body .wrap { max-width: 800px; }
+
+    .cs-section {
+      margin-bottom: var(--s8);
+    }
+    .cs-section:last-child { margin-bottom: 0; }
+
+    .cs-section-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.625rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: var(--s3);
+      margin-top: var(--s5);
+    }
+
+    .cs-section p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: var(--s4);
+    }
+    .cs-section ul li {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      padding-left: var(--s5);
+      position: relative;
+      margin-bottom: var(--s2);
+    }
+    .cs-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    .cs-section ul li strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────────
+       PROBLEM BLOCK
+    ───────────────────────────────────────────── */
+    .problem-block {
+      background: var(--raised);
+      border-left: 3px solid var(--accent);
+      padding: var(--s5) var(--s6);
+      margin-bottom: var(--s4);
+    }
+    .problem-block p {
+      margin-bottom: 0;
+      color: var(--ink);
+    }
+
+    /* ─────────────────────────────────────────────
+       LIFECYCLE FLOW
+    ───────────────────────────────────────────── */
+    .flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--s2);
+      margin: var(--s5) 0 var(--s6);
+    }
+    .flow-node {
+      padding: var(--s2) var(--s4);
+      border: var(--line);
+      background: var(--raised);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .flow-arrow {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    /* ─────────────────────────────────────────────
+       DATA TABLE
+    ───────────────────────────────────────────── */
+    .table-wrapper {
+      overflow-x: auto;
+      margin-bottom: var(--s6);
+      border: var(--line);
+    }
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .cs-table thead {
+      background: var(--raised);
+    }
+    .cs-table th {
+      text-align: left;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: var(--s3) var(--s4);
+      border-bottom: var(--line);
+      white-space: nowrap;
+    }
+    .cs-table td {
+      padding: var(--s3) var(--s4);
+      border-bottom: var(--line);
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .cs-table tr:last-child td { border-bottom: none; }
+    .cs-table td:first-child { color: var(--ink); font-weight: 500; }
+    .cs-table .highlight-row td {
+      background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .cs-table .accent-val {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────────
+       IMPACT CARDS
+    ───────────────────────────────────────────── */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      margin-bottom: var(--s6);
+    }
+    .impact-card {
+      border: var(--line);
+      padding: var(--s5);
+      background: var(--surface);
+    }
+    .impact-card .ic-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: var(--s2);
+    }
+    .impact-card .ic-label {
+      font-size: 0.875rem;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: var(--s1);
+    }
+    .impact-card .ic-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────────────
+       TECH STACK
+    ───────────────────────────────────────────── */
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2);
+    }
+    .tech-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--raised);
+      border: var(--line);
+      padding: var(--s1) var(--s3);
+      letter-spacing: 0.02em;
+    }
+
+    /* ─────────────────────────────────────────────
+       DIVIDER
+    ───────────────────────────────────────────── */
+    .cs-divider {
+      border: none;
+      border-top: var(--line);
+      margin-block: var(--s7);
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER CTA
+    ───────────────────────────────────────────── */
+    .cs-footer-cta {
+      background: var(--raised);
+      border-top: var(--line);
+      padding-block: var(--s7);
+    }
+    .cs-footer-cta .wrap {
+      max-width: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s6);
+      flex-wrap: wrap;
+    }
+    .cs-footer-cta h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.375rem;
+      color: var(--ink);
+      margin-bottom: var(--s2);
+    }
+    .cs-footer-cta p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: var(--s3) var(--s5);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+      border: 1.5px solid transparent;
+      white-space: nowrap;
+    }
+    .btn--primary {
+      background: var(--accent);
+      color: var(--on-accent);
+      border-color: var(--accent);
+    }
+    .btn--primary:hover { background: #924f10; border-color: #924f10; }
+    .btn--secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn--secondary:hover { background: var(--ink); color: var(--surface); }
+
+    /* ─────────────────────────────────────────────
+       SITE FOOTER
+    ───────────────────────────────────────────── */
+    .site-footer {
+      padding-block: var(--s6);
+      border-top: var(--line);
+    }
+    .site-footer .wrap {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s4);
+    }
+    .footer-name {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .footer-location {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .wrap { padding-inline: var(--s4); }
+      .stat-strip .wrap { grid-template-columns: 1fr 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .cs-footer-cta .wrap { flex-direction: column; align-items: flex-start; }
+      .cs-hero { padding-block: var(--s6) var(--s5); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ───────────────── HEADER ───────────────── -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="wordmark">Jenny Park</a>
+      <a href="index.html#work" class="header-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to work
+      </a>
+    </div>
+  </header>
+
+  <!-- ───────────────── HERO ───────────────── -->
+  <section class="cs-hero">
+    <div class="wrap">
+      <p class="cs-kicker">
+        <span>Product Analytics</span>
+        <span class="cs-kicker-dot" aria-hidden="true"></span>
+        <span>B2B SaaS</span>
+      </p>
+      <h1>Product-Led SaaS Lifecycle &amp; Retention Analytics</h1>
+      <p class="cs-hero-lead">
+        B2B SaaS activation, experimentation, and retention analysis. Connecting signup, onboarding,
+        activation, trial conversion, paid retention, churn, and NRR into one product analytics
+        framework — built to identify which early customer behaviors causally drive long-term
+        growth, and to test those behaviors with real experiments rather than assume the correlation.
+      </p>
+
+      <div class="cs-meta-row">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Scope</span>
+          <span class="cs-meta-value">B2B SaaS Activation &amp; Retention</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Product &amp; Growth Analyst</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Methods</span>
+          <span class="cs-meta-value">Lifecycle Funnel, A/B Experiment, Cohort Retention, Churn Risk Scoring, NRR</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">Python, Streamlit, Plotly, pytest</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── STAT STRIP ───────────────── -->
+  <div class="stat-strip" aria-label="Key results">
+    <div class="wrap">
+      <div class="stat-item">
+        <span class="stat-value">+18.6 pp</span>
+        <span class="stat-label">Activation lift from guided onboarding — two-proportion z-test p &lt; 0.001</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">$96K</span>
+        <span class="stat-label">MRR exposed in 1,112 medium-risk accounts flagged before churn occurs</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">93.5%</span>
+        <span class="stat-label">60-day retention for eligible paid accounts across 2,500 organizations</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────────────── BODY ───────────────── -->
+  <main class="cs-body">
+    <div class="wrap">
+
+      <!-- Problem -->
+      <section class="cs-section">
+        <p class="cs-section-label">The Problem</p>
+        <h2>One Customer Journey, Five Disconnected Systems</h2>
+        <div class="problem-block">
+          <p>
+            <strong>A Fragmented Lifecycle:</strong> Signup and onboarding events live in the product
+            analytics tool, trial state and plan changes live in billing, and churn reasons live in
+            support notes — so no single query can answer "what actually happened to this customer,
+            from signup to today."
+          </p>
+        </div>
+        <div class="problem-block">
+          <p>
+            <strong>Correlation Mistaken for Causation:</strong> Teams could see that certain early
+            behaviors correlated with retention, but had no way to tell whether those behaviors
+            caused retention, or simply selected for users who were already going to stick around.
+          </p>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Lifecycle -->
+      <section class="cs-section">
+        <p class="cs-section-label">Framework</p>
+        <h2>The Connected Product Lifecycle</h2>
+        <p>
+          The model follows a single account and user from first touch through renewal, treating
+          activation, trial conversion, paid retention, churn, and NRR as stages of one lifecycle
+          rather than metrics owned by separate teams.
+        </p>
+        <div class="flow">
+          <span class="flow-node">Signup</span><span class="flow-arrow">→</span>
+          <span class="flow-node">Onboarding</span><span class="flow-arrow">→</span>
+          <span class="flow-node">Activation</span><span class="flow-arrow">→</span>
+          <span class="flow-node">Trial Conversion</span><span class="flow-arrow">→</span>
+          <span class="flow-node">Paid Retention</span><span class="flow-arrow">→</span>
+          <span class="flow-node">Churn / Expansion</span><span class="flow-arrow">→</span>
+          <span class="flow-node">NRR</span>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Approach -->
+      <section class="cs-section">
+        <p class="cs-section-label">Approach</p>
+        <h2>A Lifecycle Data Model &amp; Experimentation Framework</h2>
+
+        <h3>1. Unified Lifecycle Model (SQL + dbt)</h3>
+        <p>
+          Modeled signup, onboarding events, trial state, subscription/billing status, and
+          churn/support signals into one account-and-user-level lifecycle mart in dbt — with
+          clearly defined activation, trial-conversion, and churn events so every downstream
+          analysis uses the same definitions.
+        </p>
+
+        <h3>2. Activation Definition &amp; Experimentation (Amplitude + Python)</h3>
+        <ul>
+          <li><strong>Candidate Activation Milestones:</strong> Tested early actions — completing the core workflow, inviting a teammate, connecting an integration — for their relationship to 90-day retention.</li>
+          <li><strong>A/B Tested Onboarding:</strong> Ran controlled experiments on onboarding flows (guided setup vs. self-serve) to validate which nudges causally move activation and trial conversion, rather than relying on cohort correlation alone.</li>
+        </ul>
+
+        <h3>3. Cohort &amp; Survival Analysis (Python)</h3>
+        <ul>
+          <li><strong>Kaplan-Meier Retention Curves:</strong> Modeled retention by cohort and activation tier to identify where and when accounts are most likely to churn.</li>
+          <li><strong>NRR Waterfall:</strong> Decomposed net revenue retention into expansion, contraction, and churn by cohort to connect product behavior back to revenue.</li>
+        </ul>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Findings -->
+      <section class="cs-section">
+        <p class="cs-section-label">Key Findings</p>
+        <h2>Guided Onboarding Lifted Activation — But Paid Conversion Stayed Flat</h2>
+
+        <p>
+          The lifecycle funnel across 2,500 accounts identified two primary drop-off points:
+          35% of signups never created a workspace, and of those that did, fewer than half
+          completed a qualifying key product action within 7 days. These two gaps — before and
+          during onboarding — were the highest-leverage intervention points.
+        </p>
+
+        <div class="table-wrapper">
+          <table class="cs-table" aria-label="Lifecycle funnel by stage">
+            <thead>
+              <tr>
+                <th>Lifecycle Stage</th>
+                <th>Accounts</th>
+                <th>Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Signups</td>
+                <td>2,500</td>
+                <td>100%</td>
+              </tr>
+              <tr>
+                <td>Workspace Created</td>
+                <td>1,615</td>
+                <td>65%</td>
+              </tr>
+              <tr>
+                <td>Activated (7-day window)</td>
+                <td>1,106</td>
+                <td>44%</td>
+              </tr>
+              <tr>
+                <td>Trial Started</td>
+                <td>738</td>
+                <td>30%</td>
+              </tr>
+              <tr>
+                <td>Paid Customers</td>
+                <td>766</td>
+                <td>31%</td>
+              </tr>
+              <tr>
+                <td>Retained 60-Day</td>
+                <td class="accent-val">~716</td>
+                <td class="accent-val">93.5% of eligible</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          The A/B experiment (<code>onboarding_guided_v1</code>) measured the guided flow against
+          the existing onboarding across all 2,500 accounts. The activation lift was large and
+          statistically significant — but the downstream check revealed a more nuanced picture.
+        </p>
+
+        <div class="table-wrapper">
+          <table class="cs-table" aria-label="A/B experiment results">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Control</th>
+                <th>Variant</th>
+                <th>Difference</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Accounts</td>
+                <td>1,212</td>
+                <td>1,288</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Activation rate</td>
+                <td>34.7%</td>
+                <td>53.3%</td>
+                <td class="accent-val">+18.6 pp</td>
+              </tr>
+              <tr>
+                <td>Paid conversion rate</td>
+                <td>38.8%</td>
+                <td>38.7%</td>
+                <td>−0.1 pp</td>
+              </tr>
+              <tr>
+                <td>60-day retention</td>
+                <td>94.3%</td>
+                <td>92.8%</td>
+                <td>−1.5 pp</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Segment-level analysis showed that SMB and Mid-Market accounts drove the bulk of the
+          activation lift, while Enterprise showed a smaller, less certain response. The flat paid
+          conversion result (−0.1 pp) was the key downstream check: activation lift that does not
+          translate into monetization may reflect surface engagement rather than genuine product value.
+        </p>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Impact -->
+      <section class="cs-section">
+        <p class="cs-section-label">From Insight to Action</p>
+        <h2>Four Decisions the Analysis Enables</h2>
+
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="ic-value">+18.6 pp</div>
+            <div class="ic-label">Activation Lift Quantified</div>
+            <div class="ic-desc">Guided onboarding significantly improved activation for SMB and Mid-Market — with a constrained rollout recommendation for Enterprise until paid conversion is confirmed.</div>
+          </div>
+          <div class="impact-card">
+            <div class="ic-value">$96K</div>
+            <div class="ic-label">MRR Risk Surfaced</div>
+            <div class="ic-desc">1,112 medium-risk accounts with active MRR identified through rules-based churn scoring — before any churn occurs, with CS actions mapped per segment.</div>
+          </div>
+          <div class="impact-card">
+            <div class="ic-value">Teammate Invite</div>
+            <div class="ic-label">Strongest Retention Signal</div>
+            <div class="ic-desc">Accounts that invite teammates show the highest 60-day retention. Moving this prompt earlier in onboarding turns a downstream signal into an activation driver.</div>
+          </div>
+        </div>
+
+        <ul>
+          <li><strong>Product — Roll out guided onboarding to SMB and Mid-Market immediately.</strong> Keep Enterprise in a separate, implementation-led path — the activation lift is weaker and paid conversion remains unconfirmed at the enterprise level.</li>
+          <li><strong>Product — Move teammate invite to before workspace setup completes.</strong> Collaboration adoption is the single strongest behavioral predictor of long-term retention in the data.</li>
+          <li><strong>Analytics — Add paid conversion as a co-primary metric.</strong> Activation lift alone does not guarantee monetization. The experiment should not be declared a success until conversion holds.</li>
+          <li><strong>Customer Success — Prioritize 1,112 medium-risk accounts.</strong> Run a scaled re-engagement sequence: use-case reminder, training offer, and product-adoption review. $96K in MRR is recoverable if intervened early.</li>
+        </ul>
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- Tech Stack -->
+      <section class="cs-section">
+        <p class="cs-section-label">Tech Stack</p>
+        <h2>Tools &amp; Methods</h2>
+        <div class="tech-grid">
+          <span class="tech-tag">Python 3.12</span>
+          <span class="tech-tag">pandas</span>
+          <span class="tech-tag">numpy</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Plotly</span>
+          <span class="tech-tag">pytest</span>
+          <span class="tech-tag">Lifecycle Funnel Analysis</span>
+          <span class="tech-tag">A/B Experiment Analysis</span>
+          <span class="tech-tag">Two-Proportion Z-Test</span>
+          <span class="tech-tag">Cohort Retention</span>
+          <span class="tech-tag">NRR Modeling</span>
+          <span class="tech-tag">Churn Risk Scoring</span>
+          <span class="tech-tag">HTE Segmentation</span>
+          <span class="tech-tag">Event-Based Product Analytics</span>
+          <span class="tech-tag">Deterministic Synthetic Data</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ───────────────── FOOTER CTA ───────────────── -->
+  <section class="cs-footer-cta" aria-label="Contact">
+    <div class="wrap">
+      <div>
+        <h3>Interested in working together?</h3>
+        <p>Open to Data Analyst, Growth Analyst, and Marketing Analytics roles in the Bay Area or remote.</p>
+      </div>
+      <div style="display:flex; gap: var(--s3); flex-wrap: wrap;">
+        <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
+        <a href="index.html#work" class="btn btn--secondary">See more work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── FOOTER ───────────────── -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <div class="footer-name">Jenny Park</div>
+        <div class="footer-location">San Francisco Bay Area</div>
+      </div>
+      <a href="https://www.linkedin.com/in/jennypark7/" target="_blank" rel="noopener"
+         style="font-size:0.8125rem; font-weight:500; color:var(--muted);">LinkedIn</a>
+    </div>
+  </footer>
+
+</body>
+</html>
