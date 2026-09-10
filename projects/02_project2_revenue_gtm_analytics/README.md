@@ -10,7 +10,7 @@
 
 A 5-page Streamlit dashboard built on synthetic B2B data, designed as an executive-grade revenue intelligence tool.
 
-link: https://jennyparkai-revenue-gtm-analytics.streamlit.app/
+**[Dashboard](https://jennyparkai-revenue-gtm-analytics.streamlit.app/)**
 
 ```bash
 cd app
