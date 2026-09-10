@@ -1,562 +1,1465 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Revenue Intelligence &amp; GTM Analytics — Case Study</title>
-<style>
-:root{
-  --bg:#f7f8fa; --surface:#fff; --ink:#17202a; --muted:#66727d;
-  --line:#e2e6ea; --accent:#1769e0; --accent-soft:#edf4ff;
-  --dark:#111827; --code:#f3f5f7;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
-  line-height:1.68}
-a{color:var(--accent);text-decoration:none}
-.page{max-width:1180px;margin:0 auto;background:var(--surface);min-height:100vh}
-.hero{padding:76px 82px 68px;background:var(--dark);color:#fff}
-.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:750;color:#aebbd0}
-h1{font-size:56px;line-height:1.04;letter-spacing:-.045em;margin:18px 0 22px}
-.hero p{max-width:850px;font-size:20px;line-height:1.55;color:#d8e0ea;margin:0}
-.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
-.tag{border:1px solid #445168;border-radius:999px;padding:6px 12px;font-size:12px;color:#dce5f0}
-main{padding:62px 82px 90px}
-section{margin:0 0 62px}
-h2{font-size:31px;line-height:1.2;letter-spacing:-.025em;margin:0 0 17px}
-h3{font-size:19px;line-height:1.3;margin:26px 0 7px}
-p{margin:8px 0 15px}
-.lead{font-size:18px;color:#3e4a55}
-hr{border:0;border-top:1px solid var(--line);margin:55px 0}
-.callout{background:var(--accent-soft);border-left:4px solid var(--accent);padding:19px 22px;margin:22px 0}
-.quote{font-size:22px;line-height:1.5;font-weight:650;border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);padding:27px 0;margin:25px 0}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:22px}
-.card{border:1px solid var(--line);border-radius:10px;padding:21px;background:#fff}
-.card b{display:block;font-size:18px;margin-bottom:6px}
-.card span{font-size:14px;color:var(--muted)}
-.flow{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:26px 0}
-.node{padding:9px 12px;border:1px solid var(--line);background:#fafbfc;border-radius:7px;font-size:13px;font-weight:650}
-.arrow{color:#89949e}
-.diagram{background:var(--code);border:1px solid var(--line);border-radius:10px;
-  padding:23px 25px;overflow:auto;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-ul{padding-left:22px;margin-top:9px}
-li{margin:6px 0}
-table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
-th,td{text-align:left;border-bottom:1px solid var(--line);padding:12px 10px;vertical-align:top}
-th{background:#f8fafb;font-weight:700}
-.step{display:grid;grid-template-columns:44px 1fr;gap:15px;margin:22px 0}
-.num{width:38px;height:38px;border-radius:50%;background:var(--dark);color:#fff;
-  display:grid;place-items:center;font-weight:750}
-.step h3{margin:0 0 4px}
-.note{color:var(--muted);font-size:13px}
-footer{background:#f1f3f5;color:#68737d;padding:28px 82px;font-size:13px}
-@media(max-width:800px){
-  .hero,main,footer{padding-left:26px;padding-right:26px}
-  h1{font-size:40px}.grid,.two{grid-template-columns:1fr}
-}
-@media print{
-  body{background:#fff}.page{max-width:none}.hero{padding:45px}
-  main{padding:40px 45px}footer{padding:25px 45px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Revenue Intelligence & GTM Analytics — Jenny Park</title>
+
+  <meta
+    name="description"
+    content="Case study: Building a five-page revenue intelligence system that traces the full B2B revenue lifecycle from first lead to collected cash, surfacing a $2.1M gap and flagging 136 zombie pipeline deals."
+  >
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root {
+      --surface: #FFFFFF;
+      --raised: #F2F1EE;
+      --ink: #0C0C0C;
+      --muted: #6F6C66;
+      --accent: #A85C13;
+      --on-accent: #FFFFFF;
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Instrument Sans', system-ui, sans-serif;
+
+      --s1: 0.25rem;
+      --s2: 0.5rem;
+      --s3: 0.75rem;
+      --s4: 1rem;
+      --s5: 1.5rem;
+      --s6: 2rem;
+      --s7: 3rem;
+      --s8: 4rem;
+      --s9: 6rem;
+      --s10: 8rem;
+
+      --radius: 0px;
+      --line: 1px solid #E0DDD8;
+      --t-fast: 150ms;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      max-width: 800px;
+      margin-inline: auto;
+      padding-inline: var(--s6);
+    }
+
+    /* HEADER */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: var(--line);
+    }
+
+    .site-header .wrap {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .wordmark {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .header-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--t-fast) var(--ease);
+    }
+
+    .header-back:hover { color: var(--ink); }
+
+    .header-back svg { flex-shrink: 0; }
+
+    /* HERO */
+
+    .cs-hero {
+      padding-block: var(--s8) var(--s7);
+      border-bottom: var(--line);
+    }
+
+    .cs-hero .wrap { max-width: 800px; }
+
+    .cs-kicker {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s5);
+    }
+
+    .cs-kicker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .cs-hero h1 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: var(--s5);
+      max-width: 22ch;
+    }
+
+    .cs-hero-lead {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 60ch;
+      margin-bottom: var(--s6);
+    }
+
+    .cs-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s5);
+      padding-top: var(--s5);
+      border-top: var(--line);
+    }
+
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cs-meta-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cs-meta-value {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* STAT STRIP */
+
+    .stat-strip {
+      background: var(--raised);
+      border-bottom: var(--line);
+      padding-block: var(--s6);
+    }
+
+    .stat-strip .wrap {
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s6);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* BODY */
+
+    .cs-body { padding-block: var(--s8); }
+
+    .cs-section { margin-bottom: var(--s8); }
+
+    .cs-section:last-child { margin-bottom: 0; }
+
+    .cs-section-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.625rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: var(--s3);
+      margin-top: var(--s5);
+    }
+
+    .cs-section p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section ul {
+      list-style: none;
+      margin-bottom: var(--s4);
+    }
+
+    .cs-section ul li {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      padding-left: var(--s5);
+      position: relative;
+      margin-bottom: var(--s2);
+    }
+
+    .cs-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .cs-section ul li strong,
+    .cs-section p strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* PROBLEM BLOCK */
+
+    .problem-block {
+      background: var(--raised);
+      border-left: 3px solid var(--accent);
+      padding: var(--s5) var(--s6);
+      margin-bottom: var(--s4);
+    }
+
+    .problem-block p { margin-bottom: 0; color: var(--ink); }
+
+    /* TABLE */
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin-bottom: var(--s6);
+      border: var(--line);
+    }
+
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .cs-table thead { background: var(--raised); }
+
+    .cs-table th {
+      text-align: left;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: var(--s3) var(--s4);
+      border-bottom: var(--line);
+      white-space: nowrap;
+    }
+
+    .cs-table td {
+      padding: var(--s3) var(--s4);
+      border-bottom: var(--line);
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .cs-table tr:last-child td { border-bottom: none; }
+
+    .cs-table td:first-child {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .accent-val {
+      color: var(--accent) !important;
+      font-weight: 600;
+    }
+
+    /* REVENUE WATERFALL */
+
+    .rev-waterfall {
+      border: var(--line);
+      margin-block: var(--s6);
+      background: var(--surface);
+    }
+
+    .rev-waterfall-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--s4);
+      padding: var(--s4) var(--s5);
+      background: var(--raised);
+      border-bottom: var(--line);
+    }
+
+    .rev-waterfall-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .rev-waterfall-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .rev-waterfall-body { padding: var(--s5); }
+
+    .rev-row { margin-bottom: var(--s5); }
+
+    .rev-row:last-child { margin-bottom: 0; }
+
+    .rev-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--s2);
+    }
+
+    .rev-stage {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .rev-amount {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .rev-amount--gap { color: var(--accent); }
+
+    .rev-track {
+      width: 100%;
+      height: 8px;
+      background: var(--raised);
+      overflow: hidden;
+    }
+
+    .rev-bar { height: 100%; background: var(--ink); }
+
+    .rev-bar--accent { background: var(--accent); }
+
+    .rev-bar--green { background: #107C41; }
+
+    .rev-waterfall-summary {
+      border-top: var(--line);
+      padding: var(--s5);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      background: var(--raised);
+    }
+
+    .rev-summary-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+
+    .rev-summary-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .rev-summary-value--green { color: #107C41; }
+
+    .rev-summary-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* FUNNEL VISUAL */
+
+    .funnel-visual {
+      border: var(--line);
+      margin-block: var(--s6);
+      background: var(--surface);
+    }
+
+    .funnel-header {
+      padding: var(--s4) var(--s5);
+      background: var(--raised);
+      border-bottom: var(--line);
+    }
+
+    .funnel-header-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .funnel-body { padding: var(--s5); }
+
+    .funnel-row { margin-bottom: var(--s5); }
+
+    .funnel-row:last-child { margin-bottom: 0; }
+
+    .funnel-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--s2);
+    }
+
+    .funnel-stage {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .funnel-count {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .funnel-count--accent { color: var(--accent); }
+
+    .funnel-track {
+      width: 100%;
+      height: 8px;
+      background: var(--raised);
+      overflow: hidden;
+    }
+
+    .funnel-bar { height: 100%; background: var(--ink); }
+
+    .funnel-bar--accent { background: var(--accent); }
+
+    .funnel-badge {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--on-accent);
+      background: #C00000;
+      padding: 1px 7px;
+      margin-left: var(--s2);
+    }
+
+    .funnel-footer {
+      border-top: var(--line);
+      padding: var(--s4) var(--s5);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      background: var(--raised);
+    }
+
+    .funnel-metric {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+
+    .funnel-metric-val {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .funnel-metric-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* RISK COMPARISON */
+
+    .risk-comparison {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      margin-block: var(--s6);
+    }
+
+    .risk-card {
+      border: var(--line);
+      border-top: 3px solid var(--card-color, #E0DDD8);
+      padding: var(--s5);
+      background: var(--surface);
+    }
+
+    .risk-card--high  { --card-color: #C00000; }
+    .risk-card--med   { --card-color: #A15C00; }
+    .risk-card--green { --card-color: #107C41; }
+
+    .risk-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--s3);
+    }
+
+    .risk-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: var(--s2);
+    }
+
+    .risk-desc {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    /* HEALTH GRID */
+
+    .health-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--s4);
+      margin-block: var(--s6);
+    }
+
+    .health-card {
+      border: var(--line);
+      padding: var(--s5);
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .health-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin: 0 auto var(--s3);
+    }
+
+    .health-value {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: var(--s2);
+    }
+
+    .health-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* IMPACT */
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+      margin-bottom: var(--s6);
+    }
+
+    .impact-card {
+      border: var(--line);
+      padding: var(--s5);
+      background: var(--surface);
+    }
+
+    .impact-card .ic-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: var(--s2);
+    }
+
+    .impact-card .ic-label {
+      font-size: 0.875rem;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: var(--s1);
+    }
+
+    .impact-card .ic-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* TECH */
+
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2);
+    }
+
+    .tech-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--raised);
+      border: var(--line);
+      padding: var(--s1) var(--s3);
+      letter-spacing: 0.02em;
+    }
+
+    .cs-divider {
+      border: none;
+      border-top: var(--line);
+      margin-block: var(--s7);
+    }
+
+    /* FOOTER CTA */
+
+    .cs-footer-cta {
+      background: var(--raised);
+      border-top: var(--line);
+      padding-block: var(--s7);
+    }
+
+    .cs-footer-cta .wrap {
+      max-width: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s6);
+      flex-wrap: wrap;
+    }
+
+    .cs-footer-cta h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.375rem;
+      color: var(--ink);
+      margin-bottom: var(--s2);
+    }
+
+    .cs-footer-cta p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: var(--s3) var(--s5);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background var(--t-fast) var(--ease),
+                  color var(--t-fast) var(--ease),
+                  border-color var(--t-fast) var(--ease);
+      border: 1.5px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn--primary {
+      background: var(--accent);
+      color: var(--on-accent);
+      border-color: var(--accent);
+    }
+
+    .btn--primary:hover {
+      background: #924f10;
+      border-color: #924f10;
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .btn--secondary:hover {
+      background: var(--ink);
+      color: var(--surface);
+    }
+
+    /* SITE FOOTER */
+
+    .site-footer {
+      padding-block: var(--s6);
+      border-top: var(--line);
+    }
+
+    .site-footer .wrap {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s4);
+    }
+
+    .footer-name {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .footer-location {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 640px) {
+      .wrap { padding-inline: var(--s4); }
+      .stat-strip .wrap { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .risk-comparison { grid-template-columns: 1fr; }
+      .health-grid { grid-template-columns: repeat(2, 1fr); }
+      .cs-footer-cta .wrap { flex-direction: column; align-items: flex-start; }
+      .cs-hero { padding-block: var(--s6) var(--s5); }
+      .rev-waterfall-summary { grid-template-columns: 1fr; }
+      .funnel-footer { grid-template-columns: 1fr; }
+    }
+
+  </style>
+
 </head>
+
 <body>
-<div class="page">
 
-<header class="hero">
-  <div class="kicker">Portfolio Case Study · B2B Revenue Analytics</div>
-  <h1>Revenue Intelligence<br>&amp; GTM Analytics</h1>
-  <p>
-    A business-first analytical framework connecting fragmented GTM activity to
-    pipeline, bookings, billing, recognized revenue, expansion, churn, and customer value.
-  </p>
-  <div class="tags">
-    <span class="tag">Python</span>
-    <span class="tag">SQL</span>
-    <span class="tag">BigQuery</span>
-    <span class="tag">dbt</span>
-    <span class="tag">Streamlit</span>
-    <span class="tag">Data Quality</span>
-    <span class="tag">Revenue Reconciliation</span>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="wordmark">Jenny Park</a>
+      <a href="index.html#work" class="header-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to work
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="wrap">
+
+      <p class="cs-kicker">
+        <span>B2B Revenue Analytics</span>
+        <span class="cs-kicker-dot" aria-hidden="true"></span>
+      </p>
+
+      <h1>Revenue Intelligence &amp; GTM Analytics</h1>
+
+      <p class="cs-hero-lead">
+        Built a five-page Streamlit intelligence layer that traces the full revenue lifecycle — from first marketing touch to collected cash — surfacing a $2.1M gap between bookings and realised revenue, diagnosing where the GTM funnel leaks, and flagging 136 zombie pipeline deals before the next forecast cycle.
+      </p>
+
+      <div class="cs-meta-row">
+
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Project</span>
+          <span class="cs-meta-value">Revenue Intelligence System</span>
+        </div>
+
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Revenue &amp; Marketing Analyst</span>
+        </div>
+
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Methods</span>
+          <span class="cs-meta-value">Revenue Reconciliation, GTM Funnel, Pipeline Risk, NRR</span>
+        </div>
+
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">SQL, Python, dbt, Streamlit, Plotly</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip" aria-label="Key results">
+    <div class="wrap">
+
+      <div class="stat-item">
+        <span class="stat-value">82%</span>
+        <span class="stat-label">Cash collection rate against CRM bookings</span>
+      </div>
+
+      <div class="stat-item">
+        <span class="stat-value">$2.1M</span>
+        <span class="stat-label">Revenue gap quantified across three causes</span>
+      </div>
+
+      <div class="stat-item">
+        <span class="stat-value">5 pages</span>
+        <span class="stat-label">Dashboard layers — Executive to Diagnostic</span>
+      </div>
+
+    </div>
   </div>
-</header>
 
-<main>
+  <!-- BODY -->
+  <main class="cs-body">
+    <div class="wrap">
 
-<section>
-<h2>Overview</h2>
-<p class="lead">
-Revenue data rarely lives in one system. Marketing owns leads and campaigns, Sales owns
-accounts and opportunities, Finance owns billing and revenue, Product owns usage, and
-Customer Success owns renewal, expansion, and churn.
-</p>
-<p>
-Each system answers a different question. The harder question is how to connect the entire
-customer lifecycle into one trusted view of revenue.
-</p>
-<div class="quote">
-“Connect GTM activity to revenue — from the first lead to pipeline, bookings, billing,
-recognized revenue, and retention.”
-</div>
-<p>
-This project builds a Revenue Intelligence &amp; GTM Analytics framework for a scaling B2B
-technology company. The model is intentionally designed around a common revenue lifecycle
-rather than a single source system or one narrow business model.
-</p>
-</section>
+      <!-- THE PROBLEM -->
+      <section class="cs-section">
 
-<section>
-<h2>Business Problem</h2>
-<p>
-A scaling B2B organization can have multiple teams reporting on the same commercial
-performance while using different source systems and definitions.
-</p>
-<div class="grid">
-  <div class="card"><b>Marketing</b><span>Which campaigns generate qualified demand?</span></div>
-  <div class="card"><b>Sales</b><span>How much pipeline exists and how likely is it to convert?</span></div>
-  <div class="card"><b>Finance</b><span>Why do bookings, billings, and recognized revenue differ?</span></div>
-  <div class="card"><b>Product</b><span>Does product adoption correlate with customer value?</span></div>
-  <div class="card"><b>Customer Success</b><span>Which accounts expand, renew, or churn?</span></div>
-  <div class="card"><b>Leadership</b><span>Where should GTM resources be allocated next?</span></div>
-</div>
-<div class="callout">
-<strong>The analytical challenge:</strong> build a trusted foundation that preserves the
-differences between commercial metrics instead of forcing every source into one “revenue” number.
-</div>
-</section>
+        <p class="cs-section-label">The Problem</p>
 
-<section>
-<h2>Business Objective</h2>
-<p>
-The objective is not to build another dashboard. It is to create a trusted analytical
-foundation that allows GTM, Sales, Finance, and leadership teams to answer:
-</p>
-<ul>
-<li>Where is revenue coming from?</li>
-<li>Where does the GTM funnel break?</li>
-<li>Which pipeline is most likely to convert?</li>
-<li>Why are bookings and revenue different?</li>
-<li>Which customers and segments create the most long-term value?</li>
-<li>What should the business do next?</li>
-</ul>
-</section>
+        <h2>Finance, RevOps, and CS Were Each Looking at a Different Number</h2>
 
-<section>
-<h2>The Core Revenue Lifecycle</h2>
-<p>
-The analytical model follows a common B2B lifecycle and explicitly separates concepts that
-are often incorrectly treated as the same metric.
-</p>
-<div class="diagram">Marketing / Demand Generation
-              ↓
-            Lead
-              ↓
-           Account
-              ↓
-        Opportunity
-              ↓
-      Contract / Order
-              ↓
-           Billing
-          ↙       ↘
-     Bookings    Billings
-          ↘       ↙
-       Recognized Revenue
-              ↓
-       Expansion / Churn
-              ↓
-       Customer Value / NRR</div>
-<table>
-<tr><th>Metric</th><th>Business meaning</th><th>Why it matters</th></tr>
-<tr><td>Pipeline</td><td>Potential future business</td><td>Measures future commercial opportunity.</td></tr>
-<tr><td>Bookings</td><td>Contracted / won business</td><td>Measures committed commercial value.</td></tr>
-<tr><td>Billings</td><td>Customer invoicing</td><td>Measures amounts billed to customers.</td></tr>
-<tr><td>Recognized Revenue</td><td>Revenue recognized for financial reporting</td><td>Provides the financial performance view.</td></tr>
-<tr><td>Expansion</td><td>Additional value from existing customers</td><td>Shows growth within the installed base.</td></tr>
-<tr><td>Churn</td><td>Lost customer value</td><td>Shows retention leakage and NRR pressure.</td></tr>
-</table>
-</section>
+        <div class="problem-block">
+          <p>
+            <strong>Revenue Fragmentation:</strong>
+            Finance tracked CRM bookings ($11.8M). RevOps tracked weighted pipeline ($9.8M). Customer Success monitored NRR on the renewal base. No single view connected them, and no one could answer the CFO's question: how much of our booked revenue will we actually collect?
+          </p>
+        </div>
 
-<section>
-<h2>Revenue Model Coverage</h2>
-<p>
-The framework is designed to be business-model agnostic. The same analytical lifecycle can
-be adapted to different B2B revenue structures.
-</p>
-<div class="grid">
-  <div class="card"><b>Subscription</b><span>Contract → subscription → billing → MRR / ARR → recognized revenue.</span></div>
-  <div class="card"><b>Advertising</b><span>Advertiser → campaign/order → media spend → delivered revenue.</span></div>
-  <div class="card"><b>Transactional</b><span>Buyer/account → transaction → order value → take-rate revenue.</span></div>
-</div>
-<div class="callout">
-The current synthetic dataset includes multiple revenue-model values so the analytical
-framework can be tested beyond a single commercial motion.
-</div>
-</section>
+        <div class="problem-block">
+          <p>
+            <strong>Invisible Pipeline Risk:</strong>
+            The CRM contained deals with no activity in 90+ days that were still counted in the forecast. $4.0M in pipeline carried two or more risk flags. Executives were using a raw pipeline number that overstated closeable revenue by over $23M.
+          </p>
+        </div>
 
-<section>
-<h2>Business Questions</h2>
-<div class="two">
-<div>
-<h3>GTM &amp; Pipeline</h3>
-<ul>
-<li>Which channels generate the strongest pipeline?</li>
-<li>Where does the lead-to-opportunity funnel leak?</li>
-<li>Which stages have the weakest conversion?</li>
-<li>How does sales-cycle length vary by segment?</li>
-<li>Which opportunities show explainable risk signals?</li>
-</ul>
-</div>
-<div>
-<h3>Revenue &amp; Customer</h3>
-<ul>
-<li>How do bookings, billings, and revenue reconcile?</li>
-<li>Which segments contribute the most revenue?</li>
-<li>Which customers expand after initial conversion?</li>
-<li>Which accounts show churn or renewal risk?</li>
-<li>How should GTM capacity be prioritized?</li>
-</ul>
-</div>
-</div>
-</section>
+        <p>
+          The core problem was not a reporting gap. It was a structural one: four domains of revenue data (CRM, billing, pipeline, customer health) had never been joined into a single model. Every team was correct about their own slice. Nobody could see the whole picture.
+        </p>
 
-<section>
-<h2>Data Sources</h2>
-<p>
-The first implementation step is a Python synthetic-data generator that creates reproducible,
-production-like source data. The generator produces seven raw datasets.
-</p>
-<table>
-<tr><th>Dataset</th><th>Primary entities / fields</th><th>Analytical purpose</th></tr>
-<tr><td>Marketing Leads</td><td>Lead, account, source, campaign, lifecycle stage</td><td>Demand generation and funnel analysis</td></tr>
-<tr><td>Salesforce Accounts</td><td>Account, segment, industry, region, status</td><td>Customer identity and segmentation</td></tr>
-<tr><td>Salesforce Opportunities</td><td>Opportunity, stage, amount, close dates, owner</td><td>Pipeline and forecast analysis</td></tr>
-<tr><td>Contracts</td><td>Contract, opportunity, value, term, revenue model</td><td>Bookings and commercial reconciliation</td></tr>
-<tr><td>Billing</td><td>Invoice, contract, amount, date, payment status</td><td>Billings and reconciliation</td></tr>
-<tr><td>Product Events</td><td>Account, event, feature, active users</td><td>Adoption and customer-value signals</td></tr>
-<tr><td>Customer Success</td><td>Health score, renewal, expansion, churn reason</td><td>Retention and lifecycle analysis</td></tr>
-</table>
-</section>
+      </section>
 
-<section>
-<h2>Synthetic Data Strategy</h2>
-<p>
-Synthetic data is used to reproduce the analytical conditions of a fragmented revenue
-environment without depending on confidential company data.
-</p>
-<p>
-The generator intentionally creates imperfect records so the project can demonstrate
-data investigation, validation, reconciliation, and governance rather than only clean-table
-aggregation.
-</p>
-<div class="grid">
-  <div class="card"><b>Identity Issues</b><span>Duplicate account records, missing account IDs, and orphan opportunities.</span></div>
-  <div class="card"><b>Commercial Issues</b><span>Duplicate contract IDs and billing amount/timing mismatches.</span></div>
-  <div class="card"><b>Lifecycle Issues</b><span>Close-date changes, failed/pending payments, and incomplete relationships.</span></div>
-</div>
-</section>
+      <hr class="cs-divider">
 
-<section>
-<h2>Data Quality &amp; Identity Resolution</h2>
-<p>
-Data quality is treated as part of analytics rather than a separate engineering concern.
-Before metrics reach a dashboard, the model should establish reliable keys, expected
-relationships, valid amounts, and defensible grain.
-</p>
-<div class="two">
-<div>
-<h3>Identity resolution</h3>
-<ul>
-<li>Identify duplicate account records.</li>
-<li>Resolve customer/account relationships across sources.</li>
-<li>Flag records with missing or orphaned identifiers.</li>
-<li>Prevent duplicate customer records from inflating metrics.</li>
-</ul>
-</div>
-<div>
-<h3>Metric integrity</h3>
-<ul>
-<li>Validate opportunity → contract relationships.</li>
-<li>Compare contract values with billing activity.</li>
-<li>Investigate invoice timing and amount mismatches.</li>
-<li>Separate data exceptions from legitimate business variation.</li>
-</ul>
-</div>
-</div>
-</section>
+      <!-- APPROACH -->
+      <section class="cs-section">
 
-<section>
-<h2>Analytical Architecture</h2>
-<p>
-The transformation layer follows a dbt-style architecture that separates source cleanup,
-reusable business logic, and business-facing models.
-</p>
-<div class="diagram">Raw Sources
-    ↓
-Staging
-    ↓
-Intermediate Business Logic
-    ↓
-Facts + Dimensions
-    ↓
-Business Marts
-    ↓
-Dashboard / Analysis / AI</div>
-<div class="grid">
-  <div class="card"><b>Staging</b><span>Standardize names, data types, dates, identifiers, and source conventions.</span></div>
-  <div class="card"><b>Intermediate</b><span>Resolve identities and lifecycle relationships; prepare reusable logic.</span></div>
-  <div class="card"><b>Marts</b><span>Expose pipeline, bookings, billing, revenue, funnel, and customer lifecycle metrics.</span></div>
-</div>
-</section>
+        <p class="cs-section-label">Approach</p>
 
-<section>
-<h2>Revenue Reconciliation</h2>
-<p>
-Revenue reconciliation is designed as an investigation framework. The objective is not to
-force all numbers to match, but to explain why different commercial layers legitimately
-differ or where data-quality issues exist.
-</p>
-<table>
-<tr><th>Comparison</th><th>Investigation</th></tr>
-<tr><td>Opportunity → Contract</td><td>Closed-won opportunity value versus contract value.</td></tr>
-<tr><td>Contract → Billing</td><td>Expected commercial value versus invoiced amounts and timing.</td></tr>
-<tr><td>Billing → Revenue</td><td>Invoice activity versus the applicable recognition period.</td></tr>
-<tr><td>Customer Lifecycle</td><td>Expansion and churn movements versus the customer revenue base.</td></tr>
-</table>
-</section>
+        <h2>dbt Staging → Mart → Streamlit Intelligence Layer</h2>
 
-<section>
-<h2>GTM Funnel &amp; Pipeline Intelligence</h2>
-<p>
-Pipeline risk is not determined by one CRM field. The analysis combines operational and
-historical signals to produce an explainable view of opportunity risk.
-</p>
-<div class="flow">
-<span class="node">Lead Volume</span><span class="arrow">→</span>
-<span class="node">MQL / SQL</span><span class="arrow">→</span>
-<span class="node">Opportunity</span><span class="arrow">→</span>
-<span class="node">Pipeline</span><span class="arrow">→</span>
-<span class="node">Win Rate</span><span class="arrow">→</span>
-<span class="node">Revenue</span>
-</div>
-<p>Potential risk signals include:</p>
-<ul>
-<li>Days in current stage</li>
-<li>Total days open</li>
-<li>Close-date changes</li>
-<li>Time since last activity</li>
-<li>Deal size</li>
-<li>Historical stage conversion</li>
-<li>Account segment</li>
-<li>Product engagement</li>
-</ul>
-<div class="callout">
-<strong>Example decision:</strong> rather than simply reporting a large enterprise pipeline,
-identify whether the opportunities have sufficient activity, realistic close dates, healthy
-stage progression, and historical conversion support.
-</div>
-</section>
+        <h3>1. Three-Layer dbt Data Architecture</h3>
 
-<section>
-<h2>Semantic Layer</h2>
-<p>
-A reliable analytics platform requires more than clean tables. It requires consistent
-business definitions.
-</p>
-<div class="diagram">Raw Data
-   ↓
-Business Logic
-   ↓
-Validated Metrics
-   ↓
-Semantic Layer
-   ↙      ↓       ↘
-Dashboard Analysis  AI</div>
-<p>
-The semantic layer should document metric name, business definition, calculation logic,
-filters, grain, source, ownership, valid use cases, and known limitations.
-</p>
-<p>
-This creates a shared analytical language across Sales, Finance, GTM Strategy, Leadership,
-BI, and AI workflows.
-</p>
-</section>
+        <p>
+          Raw tables (accounts, leads, opportunities, contracts, invoices, payments, usage, support) were standardised in dbt staging models with consistent types, field names, and null handling.
+        </p>
 
-<section>
-<h2>AI-Ready Analytics</h2>
-<p>
-AI is treated as a consumer of governed business data, not as a replacement for the
-analytical foundation.
-</p>
-<div class="diagram">Business Question
-       ↓
-Semantic Context
-       ↓
-Validated Metrics
-       ↓
-Approved SQL
-       ↓
-Warehouse
-       ↓
-Results
-       ↓
-Business Insight
-       ↓
-Recommendation</div>
-<p>
-The objective is to make the revenue data foundation AI-ready by providing consistent
-metric definitions, business context, validated calculations, controlled data access,
-and explainable analytical results.
-</p>
-</section>
+        <ul>
+          <li><strong>Staging models:</strong> Type-cast raw tables, rename fields to a consistent convention, handle nulls.</li>
+          <li><strong>Intermediate models:</strong> Join across domains — match leads to accounts, score pipeline risk, compute lifecycle timelines, build customer health composites.</li>
+          <li><strong>Mart models:</strong> Pre-aggregated facts for each page: <code>fct_revenue_reconciliation</code>, <code>fct_gtm_funnel</code>, <code>fct_pipeline</code>, <code>fct_customer_health</code>.</li>
+        </ul>
 
-<section>
-<h2>Dashboard Strategy</h2>
-<div class="grid">
-<div class="card"><b>1. Executive Revenue</b><span>Bookings, billings, recognized revenue, pipeline, coverage, forecast versus actual, growth, and segment performance.</span></div>
-<div class="card"><b>2. Pipeline &amp; Forecast</b><span>Open pipeline, stage mix, segment concentration, coverage, at-risk opportunities, stalled deals, and expected close.</span></div>
-<div class="card"><b>3. GTM Performance</b><span>Funnel conversion, pipeline generated, win rate, sales cycle, channel, segment, rep performance, and revenue contribution.</span></div>
-</div>
-</section>
+        <h3>2. Shared Dashboard Component System</h3>
 
-<section>
-<h2>Business-First Analytical Workflow</h2>
-<div class="step"><div class="num">1</div><div><h3>Business Problem</h3><p>Identify the decision the organization needs to make.</p></div></div>
-<div class="step"><div class="num">2</div><div><h3>Business Question</h3><p>Translate the problem into measurable analytical questions.</p></div></div>
-<div class="step"><div class="num">3</div><div><h3>Metric Definition</h3><p>Define the metric, grain, population, period, and business rules.</p></div></div>
-<div class="step"><div class="num">4</div><div><h3>Data Requirement</h3><p>Map the required entities, fields, keys, timestamps, and source systems.</p></div></div>
-<div class="step"><div class="num">5</div><div><h3>Data Model</h3><p>Build validated, reusable transformations rather than one-off analysis.</p></div></div>
-<div class="step"><div class="num">6</div><div><h3>Analysis</h3><p>Investigate drivers, conversion gaps, revenue movements, and exceptions.</p></div></div>
-<div class="step"><div class="num">7</div><div><h3>Finding → Recommendation</h3><p>Convert analytical findings into an actionable business recommendation.</p></div></div>
-<div class="step"><div class="num">8</div><div><h3>Measurement</h3><p>Define how the recommendation will be monitored after implementation.</p></div></div>
-</section>
+        <p>
+          All five Streamlit pages share a single <code>theme.py</code> that defines visual primitives: <code>hero()</code>, <code>kpi()</code>, <code>insight()</code>, <code>alert()</code>, <code>story_step()</code>, and <code>action_box()</code>. Each page uses the same primitives with different data — making the visual language consistent and the code maintainable.
+        </p>
 
-<section>
-<h2>Business Impact Framework</h2>
-<table>
-<tr><th>Area</th><th>Potential business outcome</th><th>Measurement examples</th></tr>
-<tr><td>Revenue Growth</td><td>Improve conversion and customer expansion.</td><td>Win rate, revenue per account, expansion, NRR.</td></tr>
-<tr><td>GTM Efficiency</td><td>Allocate sales and marketing capacity more effectively.</td><td>Pipeline velocity, sales cycle, channel quality.</td></tr>
-<tr><td>Forecast Quality</td><td>Improve visibility into pipeline confidence.</td><td>Coverage, close-date movement, risk classification.</td></tr>
-<tr><td>Data Trust</td><td>Reduce conflicting numbers across teams.</td><td>Data-quality tests, reconciliation exceptions, metric consistency.</td></tr>
-</table>
-</section>
+        <h3>3. Deterministic Risk Scoring</h3>
 
-<section>
-<h2>Project Deliverables</h2>
-<div class="grid">
-<div class="card"><b>Trusted Revenue Model</b><span>Unified account → opportunity → contract → billing → revenue foundation.</span></div>
-<div class="card"><b>GTM Funnel Analysis</b><span>Conversion gaps and pipeline leakage across the commercial funnel.</span></div>
-<div class="card"><b>Pipeline Intelligence</b><span>Pipeline health, coverage, and explainable opportunity risk.</span></div>
-<div class="card"><b>Revenue Reconciliation</b><span>Investigation of differences across CRM, contract, billing, and revenue layers.</span></div>
-<div class="card"><b>Semantic Layer</b><span>Consistent definitions for reusable business metrics.</span></div>
-<div class="card"><b>Decision Support</b><span>Business recommendations connected to measurable outcomes.</span></div>
-</div>
-</section>
+        <p>
+          Rather than a black-box propensity model, pipeline risk was scored using three explicit boolean flags that RevOps could immediately verify and act on.
+        </p>
 
-<section>
-<h2>Technical Stack</h2>
-<table>
-<tr><th>Layer</th><th>Technology</th></tr>
-<tr><td>Programming</td><td>Python</td></tr>
-<tr><td>Analytics</td><td>SQL + Python</td></tr>
-<tr><td>Data Warehouse</td><td>BigQuery</td></tr>
-<tr><td>Transformation</td><td>dbt</td></tr>
-<tr><td>Visualization</td><td>Streamlit</td></tr>
-<tr><td>BI / Semantic Modeling</td><td>Looker-ready architecture</td></tr>
-<tr><td>Data Quality</td><td>dbt Tests</td></tr>
-<tr><td>AI</td><td>AI-assisted analytical workflow</td></tr>
-</table>
-<p class="note">
-Looker is treated as a target BI / semantic-layer architecture unless an actual Looker
-deployment is included in the repository.
-</p>
-</section>
+        <ul>
+          <li><strong>is_past_due:</strong> Close date has passed without a stage change.</li>
+          <li><strong>is_stale:</strong> No activity recorded in 30+ days.</li>
+          <li><strong>has_repeated_slip:</strong> Close date has been moved at least twice.</li>
+        </ul>
 
-<section>
-<h2>Repository Structure</h2>
-<div class="diagram">.
-├── data/
-│   └── raw/
-│       ├── raw_marketing_leads.csv
-│       ├── raw_salesforce_accounts.csv
-│       ├── raw_salesforce_opportunities.csv
-│       ├── raw_contracts.csv
-│       ├── raw_billing.csv
-│       ├── raw_product_events.csv
-│       └── raw_customer_success.csv
-│
-├── dbt/
-│   └── models/
-│       ├── staging/
-│       ├── intermediate/
-│       └── marts/
-│
-├── scripts/
-│   ├── generate_synthetic_data.py
-│   ├── run_revenue_reconciliation.py
-│   ├── run_pipeline_analysis.py
-│   ├── detect_pipeline_risk.py
-│   └── generate_ai_insights.py
-│
-├── app/
-│   └── app.py
-│
-├── docs/
-│   ├── business_requirements.md
-│   ├── metric_definitions.md
-│   ├── data_dictionary.md
-│   ├── revenue_mapping.md
-│   ├── semantic_layer.md
-│   └── analysis_findings.md
-│
-├── requirements.txt
-└── README.md</div>
-</section>
+        <p>
+          Any deal with two or more flags becomes High Risk. Stage win rates (5% / 15% / 35% / 65%) were hard-coded as editable constants — the analytic pattern is correct; teams replace constants with historical actuals once they have enough closed-won history.
+        </p>
 
-<section>
-<h2>Quickstart</h2>
-<div class="step"><div class="num">1</div><div><h3>Generate Synthetic Data</h3><div class="diagram">python scripts/generate_synthetic_data.py</div></div></div>
-<div class="step"><div class="num">2</div><div><h3>Run dbt</h3><div class="diagram">dbt run</div></div></div>
-<div class="step"><div class="num">3</div><div><h3>Run Data Quality Tests</h3><div class="diagram">dbt test</div></div></div>
-<div class="step"><div class="num">4</div><div><h3>Run Revenue Reconciliation</h3><div class="diagram">python scripts/run_revenue_reconciliation.py</div></div></div>
-<div class="step"><div class="num">5</div><div><h3>Run Pipeline Analysis</h3><div class="diagram">python scripts/run_pipeline_analysis.py</div></div></div>
-<div class="step"><div class="num">6</div><div><h3>Launch Dashboard</h3><div class="diagram">streamlit run app/app.py</div></div></div>
-</section>
+      </section>
 
-<section>
-<h2>Current Scope &amp; Limitations</h2>
-<p>
-This portfolio project uses synthetic production-like data. The generated data is intended
-to demonstrate analytical architecture, data-quality investigation, revenue modeling, and
-decision workflows; it does not represent actual company performance.
-</p>
-<p>
-At the current stage, this case study describes the analytical framework and intended
-decision outputs. Quantitative business findings should be added only after the raw data,
-transformations, reconciliation logic, and analyses have been executed and validated.
-</p>
-</section>
+      <hr class="cs-divider">
 
-<section>
-<h2>Key Takeaway</h2>
-<div class="quote">
-The goal is not to build a complicated data pipeline.
-The goal is to create a trusted analytical foundation that helps the business make better
-revenue decisions.
-</div>
+      <!-- REVENUE RECONCILIATION -->
+      <section class="cs-section">
 
-</section>
+        <p class="cs-section-label">Revenue Reconciliation</p>
 
-</main>
+        <h2>$2.1M Disappears Between CRM Bookings and Collected Cash</h2>
 
-<footer>
-<strong>Revenue Intelligence &amp; GTM Analytics</strong><br>
-</footer>
-</div>
+        <p>
+          The reconciliation page traces every dollar from booking to bank. Three distinct gaps emerge, each owned by a different team.
+        </p>
+
+        <div class="rev-waterfall" aria-label="Revenue reconciliation waterfall">
+
+          <div class="rev-waterfall-header">
+            <div>
+              <div class="rev-waterfall-title">CRM Bookings → Collected Cash</div>
+            </div>
+            <div class="rev-waterfall-note">
+              Each gap has a different owner<br>and a different fix
+            </div>
+          </div>
+
+          <div class="rev-waterfall-body">
+
+            <div class="rev-row">
+              <div class="rev-label-row">
+                <span class="rev-stage">CRM Bookings</span>
+                <span class="rev-amount">$11.8M</span>
+              </div>
+              <div class="rev-track"><div class="rev-bar" style="width:100%;"></div></div>
+            </div>
+
+            <div class="rev-row">
+              <div class="rev-label-row">
+                <span class="rev-stage">Contract Value <span style="font-size:0.75rem;font-weight:400;color:var(--muted);">after discounts</span></span>
+                <span class="rev-amount rev-amount--gap">−$0.1M &nbsp;<span style="font-weight:400;color:var(--muted);">→ $11.7M</span></span>
+              </div>
+              <div class="rev-track"><div class="rev-bar" style="width:99%;"></div></div>
+            </div>
+
+            <div class="rev-row">
+              <div class="rev-label-row">
+                <span class="rev-stage">Billed Revenue <span style="font-size:0.75rem;font-weight:400;color:var(--muted);">after unbilled amounts</span></span>
+                <span class="rev-amount rev-amount--gap">−$0.4M &nbsp;<span style="font-weight:400;color:var(--muted);">→ $11.4M</span></span>
+              </div>
+              <div class="rev-track"><div class="rev-bar" style="width:96%;"></div></div>
+            </div>
+
+            <div class="rev-row">
+              <div class="rev-label-row">
+                <span class="rev-stage">Collected Cash <span style="font-size:0.75rem;font-weight:400;color:var(--muted);">after payment risk</span></span>
+                <span class="rev-amount rev-amount--gap">−$1.7M &nbsp;<span style="font-weight:400;color:#107C41;">→ $9.7M</span></span>
+              </div>
+              <div class="rev-track"><div class="rev-bar rev-bar--green" style="width:82%;"></div></div>
+            </div>
+
+          </div>
+
+          <div class="rev-waterfall-summary">
+
+            <div class="rev-summary-item">
+              <span class="rev-summary-value">−$0.1M</span>
+              <span class="rev-summary-label">Discounts — owned by Sales Operations</span>
+            </div>
+
+            <div class="rev-summary-item">
+              <span class="rev-summary-value">−$0.4M</span>
+              <span class="rev-summary-label">Unbilled — owned by Finance / Billing</span>
+            </div>
+
+            <div class="rev-summary-item">
+              <span class="rev-summary-value rev-summary-value--green">−$1.7M</span>
+              <span class="rev-summary-label">Payment risk — owned by AR + Customer Success</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p>
+          The largest single gap is payment risk ($1.7M), concentrated in customers with low health scores and overdue invoices beyond 60 days. The unbilled amount ($0.4M) points to contracts won but never invoiced — a billing workflow problem, not a sales problem. Surfacing these three buckets separately gave each team a clear, actionable number they could own.
+        </p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- GTM FUNNEL -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">GTM Funnel Analysis</p>
+
+        <h2>Only 27% of Accounts Close as Won Revenue</h2>
+
+        <p>
+          The funnel page maps every account from first lead to closed-won. Joining lead data to accounts and tracking lifecycle stage progression revealed where the pipeline loses the most volume — and which lead sources convert most efficiently.
+        </p>
+
+        <div class="funnel-visual" aria-label="GTM funnel stage breakdown">
+
+          <div class="funnel-header">
+            <div class="funnel-header-title">Account Attrition by Funnel Stage</div>
+          </div>
+
+          <div class="funnel-body">
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">All Accounts</span>
+                <span class="funnel-count">1,200 &nbsp;·&nbsp; 100%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:100%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Has Lead</span>
+                <span class="funnel-count">1,122 &nbsp;·&nbsp; 94%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:93.5%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">
+                  MQL+
+                  <span class="funnel-badge">biggest drop</span>
+                </span>
+                <span class="funnel-count">943 &nbsp;·&nbsp; 79%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:78.6%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">SQL+</span>
+                <span class="funnel-count">651 &nbsp;·&nbsp; 54%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:54.3%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Has Opportunity</span>
+                <span class="funnel-count">922 &nbsp;·&nbsp; 77%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:76.8%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage" style="color:var(--accent);">Closed-Won</span>
+                <span class="funnel-count funnel-count--accent">325 &nbsp;·&nbsp; 27%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar funnel-bar--accent" style="width:27.1%;"></div></div>
+            </div>
+
+          </div>
+
+          <div class="funnel-footer">
+
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">27%</span>
+              <span class="funnel-metric-label">End-to-end win rate</span>
+            </div>
+
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">MQL+</span>
+              <span class="funnel-metric-label">Biggest single drop — priority fix stage</span>
+            </div>
+
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">14%</span>
+              <span class="funnel-metric-label">Leads with no account ID — invisible to pipeline</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p>
+          Lead source quality analysis showed that Referral had the highest win rate — flagging underinvestment in the highest-converting channel — while Paid Search generated the most volume with a below-average close rate. The signal: optimise MQL qualification criteria before increasing spend.
+        </p>
+
+        <p>
+          The analysis also surfaced two data quality problems that distorted funnel metrics before any insight could be trusted: 14% of leads had no <code>account_id</code> (marketing spend invisible to pipeline reporting), and a set of orphan opportunities referenced accounts that no longer existed in Salesforce.
+        </p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- PIPELINE -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Pipeline Risk Analysis</p>
+
+        <h2>Raw Pipeline Overstates Closeable Revenue — Risk Signals Tell the Real Story</h2>
+
+        <p>
+          Three deterministic risk signals generate a High / Medium / On Track classification for every open deal. This converts the pipeline from a single opaque number into an actionable priority list.
+        </p>
+
+        <div class="risk-comparison">
+
+          <div class="risk-card risk-card--high">
+            <div class="risk-label">High Risk</div>
+            <div class="risk-value">$4.0M</div>
+            <div class="risk-desc">136 deals with 2+ risk flags — past-due, stale, or repeated close date slippage.</div>
+          </div>
+
+          <div class="risk-card risk-card--med">
+            <div class="risk-label">Medium / On Track</div>
+            <div class="risk-value">$28.9M</div>
+            <div class="risk-desc">1,006 deals with zero or one risk flag — closeable with normal follow-up.</div>
+          </div>
+
+          <div class="risk-card risk-card--green">
+            <div class="risk-label">Weighted Forecast</div>
+            <div class="risk-value">$9.8M</div>
+            <div class="risk-desc">Probability-adjusted total. Use this for exec reporting, not the $32.9M raw figure.</div>
+          </div>
+
+        </div>
+
+        <p>
+          136 deals had no activity recorded in 90+ days — zombie deals still counted in the raw pipeline number but with near-zero probability of closing this quarter. Removing them from the active denominator immediately improves the weighted forecast ratio. The page surfaces these deals with histograms of deal age and days-since-last-activity, making the distribution visible for a weekly RevOps hygiene sweep.
+        </p>
+
+        <div class="table-wrapper">
+          <table class="cs-table" aria-label="Pipeline risk signal breakdown">
+            <thead>
+              <tr>
+                <th>Risk Signal</th>
+                <th>Deals</th>
+                <th>Pipeline Value</th>
+                <th>% of Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Past Due (close date passed)</td>
+                <td>89</td>
+                <td>$2.7M</td>
+                <td class="accent-val">8%</td>
+              </tr>
+              <tr>
+                <td>Stale (no activity 30+ days)</td>
+                <td>214</td>
+                <td>$6.5M</td>
+                <td class="accent-val">20%</td>
+              </tr>
+              <tr>
+                <td>Repeated Slip (close date moved 2×+)</td>
+                <td>156</td>
+                <td>$4.8M</td>
+                <td class="accent-val">15%</td>
+              </tr>
+              <tr>
+                <td>Zombie (90+ days no activity)</td>
+                <td>136</td>
+                <td>$4.0M</td>
+                <td class="accent-val">12%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- CUSTOMER HEALTH -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Customer Health &amp; NRR</p>
+
+        <h2>42 At-Risk Accounts Represent the NRR Floor</h2>
+
+        <p>
+          Customer health scoring joined three signals: product engagement (login frequency, feature adoption), support ticket volume (severity-weighted), and contract renewal proximity. Each account received a composite score bucketed into four tiers.
+        </p>
+
+        <div class="health-grid" aria-label="Customer health tier breakdown">
+
+          <div class="health-card">
+            <div class="health-dot" style="background:#107C41;"></div>
+            <div class="health-value">50%</div>
+            <div class="health-label">Healthy</div>
+          </div>
+
+          <div class="health-card">
+            <div class="health-dot" style="background:#A15C00;"></div>
+            <div class="health-value">~28%</div>
+            <div class="health-label">Needs Attention</div>
+          </div>
+
+          <div class="health-card">
+            <div class="health-dot" style="background:#C00000;"></div>
+            <div class="health-value">6%</div>
+            <div class="health-label">At Risk · 42 accounts</div>
+          </div>
+
+          <div class="health-card">
+            <div class="health-dot" style="background:#5C5C5C;"></div>
+            <div class="health-value">16%</div>
+            <div class="health-label">Churned</div>
+          </div>
+
+        </div>
+
+        <p>
+          The page also computes segment-level NRR, separating expansion revenue (upsells within existing accounts) from contraction and churn. This gave CS leadership a renewal priority list ranked by ARR at risk × health score — replacing the previous approach of prioritising accounts solely by size.
+        </p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- IMPACT -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Modelled Business Impact</p>
+
+        <h2>Recommendations by Team</h2>
+
+        <h3>Finance — Recover $0.4M in Unbilled Revenue</h3>
+
+        <div class="problem-block">
+          <p>
+            <strong>Unbilled → No Invoice → Revenue Lost</strong>: Enforce a 7-day billing SLA from contract execution. Audit all contracts signed in the last 90 days with no corresponding invoice.
+          </p>
+        </div>
+
+        <h3>RevOps — Zombie Sweep and Forecast Correction</h3>
+
+        <div class="problem-block">
+          <p>
+            <strong>136 Zombie Deals → Weekly Hygiene Sweep → Accurate Forecast</strong>: Mark as Lost or reassign. Switch exec reporting to $9.8M weighted forecast, not $32.9M raw. Set a 30-day activity SLA with auto-flag for manager review.
+          </p>
+        </div>
+
+        <h3>Customer Success — Intervene Before Renewal</h3>
+
+        <div class="problem-block">
+          <p>
+            <strong>42 At-Risk Accounts → QBR Queue → NRR Protection</strong>: Build a CS intervention queue ranked by ARR × (1 − health score). Assign QBRs to all at-risk accounts renewing in the next 90 days.
+          </p>
+        </div>
+
+        <h3>Marketing Ops — Fix Lead-to-Account Matching</h3>
+
+        <div class="problem-block">
+          <p>
+            <strong>14% Unmatched Leads → Enforce account_id at Form Capture → Full Attribution</strong>: Route unmatched leads through a matching workflow so marketing pipeline attribution is complete and spend is defensible.
+          </p>
+        </div>
+
+        <div class="impact-grid">
+
+          <div class="impact-card">
+            <div class="ic-value">$2.1M</div>
+            <div class="ic-label">Revenue Gap Identified</div>
+            <div class="ic-desc">
+              Across three causes — discounts, unbilled amounts, and payment risk — each with a distinct owner and fix.
+            </div>
+          </div>
+
+          <div class="impact-card">
+            <div class="ic-value">136</div>
+            <div class="ic-label">Zombie Deals Surfaced</div>
+            <div class="ic-desc">
+              $4.0M in pipeline with no activity in 90+ days, now visible for weekly RevOps hygiene sweeps.
+            </div>
+          </div>
+
+          <div class="impact-card">
+            <div class="ic-value">42</div>
+            <div class="ic-label">At-Risk Accounts Flagged</div>
+            <div class="ic-desc">
+              CS intervention queue ranked by ARR at risk, replacing the previous size-only prioritisation.
+            </div>
+          </div>
+
+        </div>
+
+        <p>
+          Beyond point-in-time numbers, the dashboard established a repeatable operating cadence: Finance reviews the reconciliation page at month-end, RevOps runs the pipeline page weekly, CS uses the health page for renewal planning. Replacing synthetic data with production dbt models requires only updating the <code>data_loader.py</code> connection — the analytic layer is unchanged.
+        </p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- TECH STACK -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Tech Stack</p>
+
+        <h2>Tools &amp; Methods</h2>
+
+        <div class="tech-grid">
+          <span class="tech-tag">Python 3.11</span>
+          <span class="tech-tag">pandas</span>
+          <span class="tech-tag">numpy</span>
+          <span class="tech-tag">dbt</span>
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">Window Functions</span>
+          <span class="tech-tag">CTEs</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Plotly</span>
+          <span class="tech-tag">Revenue Reconciliation</span>
+          <span class="tech-tag">GTM Funnel</span>
+          <span class="tech-tag">Pipeline Risk Scoring</span>
+          <span class="tech-tag">Customer Health Scoring</span>
+          <span class="tech-tag">NRR</span>
+          <span class="tech-tag">Lead Lifecycle Tracking</span>
+          <span class="tech-tag">Waterfall Analysis</span>
+          <span class="tech-tag">Deterministic Risk Flags</span>
+        </div>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- SOURCE CODE -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Source Code</p>
+
+        <h2>Code &amp; Documentation</h2>
+
+        <p>
+          Full dbt models, Streamlit app, data generation scripts, and synthetic dataset are available on GitHub. The README includes a quickstart to run the dashboard locally in under five minutes.
+        </p>
+
+        <a
+          href="https://github.com/jinyeong-park/revenue-gtm-analytics"
+          target="_blank"
+          rel="noopener"
+          class="btn btn--secondary"
+        >
+          View on GitHub
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER CTA -->
+  <section class="cs-footer-cta" aria-label="Contact">
+    <div class="wrap">
+
+      <div>
+        <h3>Interested in working together?</h3>
+        <p>
+          Open to Data Analyst, Growth Analyst, Marketing Analyst,
+          and Revenue Analytics roles in the Bay Area or remote.
+        </p>
+      </div>
+
+      <div style="display:flex; gap:var(--s3); flex-wrap:wrap;">
+        <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
+        <a href="index.html#work" class="btn btn--secondary">See more work</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+
+      <div>
+        <div class="footer-name">Jenny Park</div>
+        <div class="footer-location">San Francisco Bay Area</div>
+      </div>
+
+      <a
+        href="https://www.linkedin.com/in/jennypark7/"
+        target="_blank"
+        rel="noopener"
+        style="font-size:0.8125rem;font-weight:500;color:var(--muted);"
+      >
+        LinkedIn
+      </a>
+
+    </div>
+  </footer>
+
 </body>
 </html>
