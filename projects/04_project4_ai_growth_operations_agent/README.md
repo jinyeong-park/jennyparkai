@@ -4,7 +4,7 @@ An end-to-end portfolio project demonstrating how a B2B SaaS growth team can use
 
 The simulated company is **Tablr** — an AI-powered growth OS for independent restaurant owners. The system generates structured creative concepts, prepares draft campaigns, analyzes simulated performance data, recommends actions, and converts findings into the next round of testable hypotheses.
 
-**[Dashboard](https://jtnwnsmyjp6xkdcvuxbvqn.streamlit.app/)**
+**[Dashboard](https://jennypark-growth-operation-agent.streamlit.app/)**
 
 > **Portfolio disclosure:** This is an independently built portfolio simulation using synthetic data and a hypothetical company (Tablr). It demonstrates how a growth team could structure creative generation, campaign operations, experimentation, and performance analysis. It must not be presented as evidence of managing a real ad budget unless supported by verifiable professional experience.
 
@@ -262,18 +262,18 @@ Live mutations must be idempotent, logged, reversible where possible, and protec
 
 Folders and files are created incrementally by phase. The table below shows what exists after each phase completes.
 
-| Phase | What gets created |
-|-------|------------------|
-| 0 (Strategy) | `README.md`, `docs/PROJECT_BRIEF.md`, `docs/PHASES.md`, `docs/ARCHITECTURE.md`, `docs/AGENTS.md` |
-| 1 (Synthetic data) | `scripts/generate_synthetic_data.py`, `data/synthetic/`, `data/data_dictionary.md`, `tests/data/` |
+| Phase                 | What gets created                                                                                                                                                    |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0 (Strategy)          | `README.md`, `docs/PROJECT_BRIEF.md`, `docs/PHASES.md`, `docs/ARCHITECTURE.md`, `docs/AGENTS.md`                                                                     |
+| 1 (Synthetic data)    | `scripts/generate_synthetic_data.py`, `data/synthetic/`, `data/data_dictionary.md`, `tests/data/`                                                                    |
 | 2 (Creative strategy) | `data/config/`, `docs/message_map.md`, `docs/hook_taxonomy.md`, `docs/creative_testing_matrix.md`, `docs/creative_qc_checklist.md`, `docs/examples/creative_briefs/` |
-| 3 (AI generation) | `docs/prompts/`, `docs/evals/`, `tests/unit/test_creative_generator.py` |
-| 4 (Experiments) | `data/config/experiments.yaml`, `docs/experiment_playbook.md`, `docs/experiment_readout.md` |
-| 5 (Analytics) | `scripts/sql/`, `docs/notebooks/01_acquisition_analysis.ipynb`, `docs/reports/` |
-| 6 (Retention / LTV) | `docs/notebooks/02_retention_ltv.ipynb`, `docs/examples/budget_recommendation.json` |
-| 7 (Decision agent) | `docs/prompts/performance_diagnosis.md` |
-| 8 (Orchestration) | `scripts/run_pipeline.py` |
-| 9 (Dashboard / Demo) | `app/`, `docs/CASE_STUDY.md`, `docs/DEMO.md` |
+| 3 (AI generation)     | `docs/prompts/`, `docs/evals/`, `tests/unit/test_creative_generator.py`                                                                                              |
+| 4 (Experiments)       | `data/config/experiments.yaml`, `docs/experiment_playbook.md`, `docs/experiment_readout.md`                                                                          |
+| 5 (Analytics)         | `scripts/sql/`, `docs/notebooks/01_acquisition_analysis.ipynb`, `docs/reports/`                                                                                      |
+| 6 (Retention / LTV)   | `docs/notebooks/02_retention_ltv.ipynb`, `docs/examples/budget_recommendation.json`                                                                                  |
+| 7 (Decision agent)    | `docs/prompts/performance_diagnosis.md`                                                                                                                              |
+| 8 (Orchestration)     | `scripts/run_pipeline.py`                                                                                                                                            |
+| 9 (Dashboard / Demo)  | `app/`, `docs/CASE_STUDY.md`, `docs/DEMO.md`                                                                                                                         |
 
 ```text
 ├── README.md                          # start here
