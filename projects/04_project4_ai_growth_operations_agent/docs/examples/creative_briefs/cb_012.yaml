@@ -1,0 +1,32 @@
+brief_id: cb_012
+creative_id: cr_tiktok_013_002
+experiment_id: exp_008
+persona: community_focused
+channel: TIKTOK
+format: UGC_VIDEO
+
+awareness_stage: unaware
+messaging_territory: "Built for owners, not marketers"
+primary_pain: "I don't want to lose what makes my restaurant special by running generic marketing. My regulars are my business."
+desired_outcome: "Automate loyalty and review requests in a way that feels personal — get more neighborhood discovery without sacrificing identity."
+primary_barrier: "Fears that Tablr will make their brand feel corporate and alienate regulars who value authenticity."
+
+hook_type: SOCIAL_PROOF
+primary_hook: "I've been running this place for 11 years. When someone told me about a marketing tool, I almost didn't listen. But the owner who told me had a restaurant just like mine — and she said it never once felt like she was using software."
+opening_3_seconds: "Chef-owner (50s, warm, in an apron that's been washed a hundred times) is behind a prep table. They look directly at the phone propped up against a pot. They start talking the way they'd talk to a regular who asked them a question: 'I almost didn't try it, honestly. But Elena from the place on Clement Street told me to.'"
+supporting_claim: "Tablr lets you set the tone. Your restaurant's voice, your messaging, your regulars — the platform works around what makes you, you."
+proof_type: SOCIAL_PROOF_OWNER
+
+visual_concept: "UGC-style video, completely unpolished. Chef-owner in their kitchen or dining room before or after service. They speak to camera as if telling a story to a regular who asked about marketing. Real restaurant sounds in background — not suppressed. No graphics. No product screenshots until the very end (optional, brief). The proof is in the tone of the owner speaking — they feel like someone the viewer would trust."
+headline: null
+primary_text: "For the restaurant owners who've been doing this for years and don't want to lose what makes them different. Tablr adapts to your voice — not the other way around. #restaurantowner #localrestaurant #chefowner"
+cta: learn_more
+landing_page_message: "Your restaurant stays yours. Tablr helps independent chef-owners automate loyalty and marketing without losing the authenticity that makes regulars keep coming back."
+
+hypothesis: "SOCIAL_PROOF hook delivered by a peer chef-owner in UGC format will outperform the same creative on Meta (see exp_008) for community_focused persona on activation rate — but TikTok will show higher CTR with lower downstream quality because algorithmic reach on TikTok exposes this content to a broader, less-targeted audience than Meta's interest-based targeting."
+variable_tested: channel
+control_id: null
+compliance_notes: "Elena is a hypothetical restaurant owner — not a real person. Clement Street reference is a neighborhood name used for authenticity framing — no specific real restaurant should be implied. 'Never once felt like she was using software' is a qualitative peer claim, not a performance claim. Results may vary required on landing page."
+
+activation_hypothesis: "Community_focused owners who respond to a peer story from a similar chef-owner arrive with a high trust baseline but a long decision cycle. CTR will be modest (this persona is skeptical of ads) but owners who do click are genuinely interested. Activation rate may be lower within 14 days because this persona takes longer to evaluate tools — but those who do activate show the highest M3 retention in the portfolio."
+expected_quality: medium

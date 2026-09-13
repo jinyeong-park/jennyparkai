@@ -1,0 +1,75 @@
+{
+  "scenario_name": "Q4 2026 Baseline \u2014 CPAO Efficiency + Exploration Reserve",
+  "total_budget_usd": 150000,
+  "exploration_reserve_usd": 15000.0,
+  "optimize_by": "cpao",
+  "data_origin": "SYNTHETIC",
+  "recommend_only": true,
+  "allocations": [
+    {
+      "channel": "TIKTOK",
+      "cpao_usd": 143.0,
+      "score": 0.006993,
+      "recommended_spend_usd": 75363.0,
+      "recommended_pct": 0.558,
+      "expected_activated_owners": 527.0,
+      "is_exploration": false
+    },
+    {
+      "channel": "GOOGLE_SEARCH",
+      "cpao_usd": 248.0,
+      "score": 0.004032,
+      "recommended_spend_usd": 43455.0,
+      "recommended_pct": 0.322,
+      "expected_activated_owners": 175.2,
+      "is_exploration": false
+    },
+    {
+      "channel": "META",
+      "cpao_usd": 666.0,
+      "score": 0.001502,
+      "recommended_spend_usd": 16182.0,
+      "recommended_pct": 0.120,
+      "expected_activated_owners": 24.3,
+      "is_exploration": false
+    },
+    {
+      "channel": "LINKEDIN",
+      "cpao_usd": null,
+      "score": 0.0,
+      "recommended_spend_usd": 7500.0,
+      "recommended_pct": 0.05,
+      "expected_activated_owners": null,
+      "is_exploration": true
+    },
+    {
+      "channel": "UNKNOWN",
+      "cpao_usd": null,
+      "score": 0.0,
+      "recommended_spend_usd": 7500.0,
+      "recommended_pct": 0.05,
+      "expected_activated_owners": null,
+      "is_exploration": true
+    }
+  ],
+  "notes": [
+    "LINKEDIN excluded from efficiency calc (no paid spend or 0 activations in data) \u2014 assigned to exploration budget.",
+    "UNKNOWN excluded from efficiency calc (no paid spend or 0 activations in data) \u2014 assigned to exploration budget.",
+    "RECOMMEND_ONLY: This allocation is a data-informed recommendation. It does not imply causal certainty. Validate with incrementality tests before committing budget changes."
+  ],
+  "methodology": {
+    "efficiency_budget": 135000.0,
+    "efficiency_budget_pct": 0.90,
+    "allocation_method": "Proportional to 1/CPAO (lower CPAO = higher weight)",
+    "constraints_applied": [
+      {"channel": "META", "min_pct": 0.10, "max_pct": 0.50},
+      {"channel": "GOOGLE_SEARCH", "min_pct": 0.10, "max_pct": 0.50},
+      {"channel": "TIKTOK", "min_pct": 0.05, "max_pct": 0.60},
+      {"channel": "LINKEDIN", "min_pct": 0.00, "max_pct": 0.20}
+    ],
+    "exploration_allocation": "Equal share among channels with no paid conversion data",
+    "cpao_source": "fact_daily_performance.parquet spend / activated owners from fact_product_events.parquet",
+    "activation_definition": "CAMPAIGN_LAUNCHED within 14 days of TRIAL_SIGNUP",
+    "simulation_period": "2026-01-05 to 2026-03-29"
+  }
+}

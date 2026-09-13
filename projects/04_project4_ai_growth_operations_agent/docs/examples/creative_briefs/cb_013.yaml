@@ -1,0 +1,32 @@
+brief_id: cb_013
+creative_id: cr_google_025_001
+experiment_id: exp_007
+persona: scrappy_independent
+channel: GOOGLE_SEARCH
+format: STATIC_IMAGE
+
+awareness_stage: solution_aware
+messaging_territory: "Stop losing to the chains"
+primary_pain: "I don't have time to learn another platform. Marketing always takes longer than I expect and I never know if it's working."
+desired_outcome: "Get more new customers without spending hours each week managing campaigns."
+primary_barrier: "Believes marketing software is built for people with marketing degrees, not restaurant owners."
+
+hook_type: CONTRAST
+primary_hook: "Restaurant marketing software built for owners, not agencies"
+opening_3_seconds: null
+supporting_claim: "Set up your first campaign in under an hour. No marketing degree required."
+proof_type: SIMPLICITY_DEMO
+
+visual_concept: "Google Search ad — text only. Three headlines and two descriptions within character limits. Ad appears for queries like 'restaurant marketing software', 'how to get more restaurant customers', 'restaurant loyalty program'. Landing page features the matched message: 'Stop losing customers to chains — here's how independent restaurants fight back.'"
+headline: "Restaurant Marketing for Indie Owners | Tablr"
+primary_text: "Ad copy (Headline 1, 30 chars): Restaurant Marketing App | (Headline 2, 29 chars): Built for Independent Owners | (Headline 3, 28 chars): Start Free — No Marketing Team | (Description 1, 89 chars): Stop competing blind against national chains. Tablr automates campaigns for indie owners. | (Description 2, 88 chars): Launch your first campaign in under an hour. Free 14-day trial. No credit card needed."
+cta: start_free_trial
+landing_page_message: "Stop losing customers to national chains. Tablr gives independent restaurant owners the same marketing infrastructure as national brands — without a marketing team. Start free."
+
+hypothesis: "Message match between the ad (CONTRAST hook: 'Stop competing blind against national chains') and the landing page (same CONTRAST framing) will produce higher trial signup CVR than a mismatched control where the same CONTRAST ad leads to a generic Tablr homepage — because cognitive continuity reduces friction and confirms the owner arrived in the right place for their specific problem."
+variable_tested: landing_page_message_match
+control_id: null
+compliance_notes: "Google Search character limits are hard limits — all headlines must be under 30 characters, all descriptions under 90 characters. Count spaces. Do not use competitor brand names in any ad copy (Google policy). 'National chains' is acceptable generic framing. Free trial terms must be consistent with current offer. No superlatives (#1, best) without verification."
+
+activation_hypothesis: "Restaurant owners searching 'restaurant marketing software' are in active evaluation mode — they have already identified a need and are comparing solutions. This is the highest-intent traffic channel in the portfolio. Message match between the ad and landing page removes the 'did I click the right thing?' uncertainty, allowing the owner to evaluate Tablr immediately rather than re-orienting after the click. Expect high trial signup CVR and above-average onboarding completion."
+expected_quality: high

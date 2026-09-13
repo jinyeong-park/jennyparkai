@@ -1,0 +1,32 @@
+brief_id: cb_004
+creative_id: cr_meta_004_003
+experiment_id: exp_002
+persona: new_owner
+channel: META
+format: SHORT_FORM_VIDEO
+
+awareness_stage: problem_aware
+messaging_territory: "Your first 100 loyal customers"
+primary_pain: "I've put everything into opening this restaurant. I need people through the door now and I don't know how to reach them beyond posting on Instagram."
+desired_outcome: "Build a base of loyal regulars in my first year and run promotions without wasting money I don't have."
+primary_barrier: "Budget anxiety — afraid of spending money on marketing before the restaurant is cash-flow positive."
+
+hook_type: SOCIAL_PROOF
+primary_hook: "Priya opened her first restaurant 8 months ago. She didn't have a mailing list. She didn't know how to run ads. She started with Tablr and had 90 loyalty members before her 6-month anniversary."
+opening_3_seconds: "Close-up of a restaurant owner's hands prepping food — rings, worn apron, real kitchen. Her voice starts: 'I opened eight months ago and I had no idea how to get customers.' Cut to her face, looking at camera from her dining room. She's calm, confident."
+supporting_claim: "Tablr works even when you're starting from zero — no existing customer list, no ad experience needed."
+proof_type: TESTIMONIAL
+
+visual_concept: "UGC-style video. Owner (female, 28-35, realistic small restaurant setting — not a franchise, not a food hall) speaks to camera in her own restaurant before or after service. She explains where she was 8 months ago and where she is now. No professional lighting or crew — smartphone quality preferred to signal authenticity. Show her phone with Tablr loyalty screen briefly. End with empty tables in background starting to fill."
+headline: "She built 90 loyal regulars in 8 months"
+primary_text: "Priya had no mailing list. No ad experience. No marketing team. She opened 8 months ago and now has 90 loyalty members who come back regularly. She used Tablr. You can too. Free 14-day trial — no credit card, no complexity."
+cta: get_your_first_100_customers
+landing_page_message: "New restaurant owners are building their first loyal base with Tablr — even before they have a customer list. See how it works in your first 14 days. Free trial."
+
+hypothesis: "SOCIAL_PROOF hook will outperform CONTRAST hook (cb_003) for new_owner on activation quality because new owners rely heavily on peer evidence before making any spending decision. Seeing a real-seeming owner who was in their exact situation and succeeded removes the primary barrier ('I'm not ready yet') and creates a concrete, believable benchmark ('90 loyalty members in 8 months')."
+variable_tested: hook_type
+control_id: cb_003
+compliance_notes: "Priya is a hypothetical owner — not a real person. The 90 loyalty members figure is a hypothetical example. Results may vary qualifier required in final asset. UGC format should feel authentic — not staged. Do not use real restaurant names or real people without consent. Free trial terms must be current."
+
+activation_hypothesis: "Owners who click after seeing a peer story arrive with a clear mental model: 'someone like me did this and it worked.' This reduces skepticism and lowers the psychological barrier to completing onboarding. The specific milestone (90 loyalty members, 8 months) gives them a concrete goal to work toward, which increases the likelihood that they'll complete setup and launch their first campaign within 14 days."
+expected_quality: high

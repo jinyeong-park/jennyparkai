@@ -1,0 +1,123 @@
+channels:
+
+  - channel_id: META
+    role: >
+      Primary channel for scaled creative testing and broad audience discovery. Largest
+      reach into independent restaurant owners across Facebook and Instagram. Best for
+      testing creative hypotheses at volume and running controlled experiments.
+    funnel_stage: awareness
+    best_personas:
+      - scrappy_independent
+      - new_owner
+      - delivery_heavy
+      - community_focused
+    best_formats:
+      - SHORT_FORM_VIDEO
+      - STATIC_IMAGE
+      - CAROUSEL
+      - UGC_VIDEO
+      - PRODUCT_DEMO
+    typical_cpc_usd_range:
+      min: 1.20
+      max: 3.80
+    typical_ctr_range:
+      min: 0.8
+      max: 2.4
+    minimum_clicks_per_variant: 300
+    evaluation_window_days: 14
+    mock_connector_available: true
+    notes: >
+      Highest volume channel in the synthetic dataset. Primary channel for hook type
+      and message territory experiments. Meta's detailed targeting allows persona
+      hypothesis testing (restaurant owner interest segments, behavior signals).
+      Watch for creative fatigue after week 6 — refresh cycles should be 3–4 weeks
+      for top-performing concepts. Attribution window: 7-day click, 1-day view.
+
+  - channel_id: TIKTOK
+    role: >
+      Native short-form discovery and rapid creative learning. TikTok's algorithm surfaces
+      content to cold audiences based on engagement signals, making it ideal for testing
+      raw hook appeal and organic-to-paid candidates.
+    funnel_stage: awareness
+    best_personas:
+      - scrappy_independent
+      - new_owner
+      - delivery_heavy
+    best_formats:
+      - SHORT_FORM_VIDEO
+      - UGC_VIDEO
+      - PRODUCT_DEMO
+    typical_cpc_usd_range:
+      min: 0.80
+      max: 2.50
+    typical_ctr_range:
+      min: 0.6
+      max: 3.2
+    minimum_clicks_per_variant: 300
+    evaluation_window_days: 14
+    mock_connector_available: true
+    notes: >
+      High creative velocity channel. Content that performs organically should be
+      tested as paid Spark Ads before producing dedicated paid creative. UGC and
+      owner-led video performs significantly better than polished brand content on
+      TikTok. Monitor hook rate (first 3 seconds) as the primary creative signal.
+      COMMUNITY_FOCUSED persona is lower fit due to demographic skew on platform.
+
+  - channel_id: GOOGLE_SEARCH
+    role: >
+      Capture existing intent from restaurant owners actively searching for solutions.
+      Higher purchase intent than social channels — users searching 'restaurant marketing
+      software' or 'get more restaurant customers' are often in active evaluation mode.
+    funnel_stage: acquisition
+    best_personas:
+      - growth_minded
+      - delivery_heavy
+      - scrappy_independent
+    best_formats:
+      - STATIC_IMAGE
+      - PRODUCT_DEMO
+    typical_cpc_usd_range:
+      min: 3.50
+      max: 9.00
+    typical_ctr_range:
+      min: 2.5
+      max: 6.0
+    minimum_clicks_per_variant: 200
+    evaluation_window_days: 21
+    mock_connector_available: false
+    notes: >
+      Higher CPC but higher intent — users are actively looking for a solution.
+      Primary keyword themes: 'restaurant marketing software', 'restaurant loyalty
+      program', 'get more restaurant customers', 'restaurant owner marketing tools'.
+      Message match between ad copy and landing page is critical. Branded search
+      serves retention and consideration. Non-branded captures new demand. Do not
+      use competitor brand names in ad copy.
+
+  - channel_id: LINKEDIN
+    role: >
+      Reach growth-minded multi-location operators and restaurant group decision-makers.
+      LinkedIn's professional context shifts the framing to business growth and ROI.
+      Lower volume but higher consideration quality for expansion-track personas.
+    funnel_stage: consideration
+    best_personas:
+      - growth_minded
+      - delivery_heavy
+    best_formats:
+      - STATIC_IMAGE
+      - CAROUSEL
+      - PRODUCT_DEMO
+    typical_cpc_usd_range:
+      min: 5.00
+      max: 14.00
+    typical_ctr_range:
+      min: 0.3
+      max: 0.9
+    minimum_clicks_per_variant: 150
+    evaluation_window_days: 21
+    mock_connector_available: false
+    notes: >
+      Most expensive channel by CPC. Best suited for GROWTH_MINDED persona targeting
+      restaurant group operators, food service entrepreneurs, and multi-location decision
+      makers. Professional tone required — conversational UGC formats underperform.
+      Use ROI and efficiency messaging. COMMUNITY_FOCUSED and NEW_OWNER personas are
+      weak fits for this channel. Budget conservatively and test before scaling.

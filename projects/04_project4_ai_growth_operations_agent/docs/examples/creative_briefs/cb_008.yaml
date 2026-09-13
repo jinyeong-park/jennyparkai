@@ -1,0 +1,32 @@
+brief_id: cb_008
+creative_id: cr_tiktok_016_002
+experiment_id: exp_004
+persona: scrappy_independent
+channel: TIKTOK
+format: SHORT_FORM_VIDEO
+
+awareness_stage: problem_aware
+messaging_territory: "Marketing that runs itself"
+primary_pain: "Marketing always takes longer than I expect and I never know if it's actually working."
+desired_outcome: "Get more new customers walking through the door without spending hours each week on campaigns."
+primary_barrier: "Has a strong prior belief that tools add work rather than reduce it."
+
+hook_type: OUTCOME
+primary_hook: "I set this up in one afternoon. Now it runs while I'm on the line. Tablr sent my loyalty campaign to 110 customers last Tuesday. I was making pasta."
+opening_3_seconds: "Owner is in the kitchen, mid-service. Plating a dish. Narration over the kitchen footage: 'Tuesday night I had no time to think about marketing. My phone lit up anyway.' Cut to screen recording on phone: Tablr notification — 'Campaign sent: 110 loyalty members.' Back to kitchen. Owner grins."
+supporting_claim: "Set up once, then let Tablr handle the campaigns while you focus on the food."
+proof_type: SIMPLICITY_DEMO
+
+visual_concept: "Vertical video, 20-25 seconds. Split between kitchen action (authentic, busy, real restaurant) and phone screen showing Tablr campaign notifications firing automatically. The narrative arc: 'I was too busy to do marketing — then I realized I didn't have to.' Ends with brief Tablr dashboard view showing automated campaign schedule. Owner voice-over throughout. No polished brand elements — raw TikTok energy."
+headline: null
+primary_text: "Marketing that runs while you cook. Set up in one afternoon, then let it go. For independent restaurant owners who don't have time for another tool. #restaurantowner #restaurantmarketing #tablr"
+cta: start_free_trial
+landing_page_message: "Marketing that runs itself — so you can stay in the kitchen. Tablr automates your campaigns, loyalty, and customer outreach. Free 14-day trial for independent restaurant owners."
+
+hypothesis: "OUTCOME/simplicity messaging ('marketing that runs itself') will produce lower CPAO than CONTRAST ('stop losing to the chains') on TikTok for scrappy_independent because TikTok's native content format rewards immediate payoff and discovery — the simplicity hook delivers a concrete, tangible outcome (it ran while I was cooking) that is more visceral and credible in a 25-second TikTok format than a competitive framing that requires context."
+variable_tested: messaging_territory
+control_id: cb_007
+compliance_notes: "'110 customers last Tuesday' is a hypothetical example — must be framed as such and accompanied by 'results may vary' either in caption or landing page. Do not present hypothetical automation figures as guaranteed outcomes. Pasta reference is a creative detail — ensure the restaurant type feels broadly applicable and not niche-specific."
+
+activation_hypothesis: "Owners who click on the 'it ran while I was cooking' hook arrive with a specific mental image of what success looks like for them — the product running in the background while they do their real job. This clarity reduces friction in onboarding because the owner knows exactly what behavior they want to unlock (automated campaign delivery). Expect strong onboarding completion from this traffic."
+expected_quality: high

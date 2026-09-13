@@ -1,0 +1,102 @@
+# Evaluation cases for creative generation
+# Each case has an input brief excerpt and expected output properties.
+#
+# These cases are used to verify:
+#   - Correct hook type and channel handling
+#   - Prohibited claim detection
+#   - Channel copy length enforcement
+#   - Mock provider determinism
+#   - Hypothesis and brief_id preservation
+#
+# DATA_ORIGIN: SYNTHETIC — all examples are hypothetical
+
+cases:
+  - case_id: eval_001
+    description: "CONTRAST hook for scrappy_independent on META should produce punchy headline"
+    brief_id: cb_001
+    expected:
+      hook_type: CONTRAST
+      headline_max_chars: 40
+      must_not_contain: ["guaranteed", "100%"]
+      must_contain_one_of: ["chain", "compete", "Tablr", "level", "stop"]
+    expected_quality: pass
+
+  - case_id: eval_002
+    description: "Prohibited claim detection — injected text must trigger a finding"
+    inject_text: "Guaranteed to increase your revenue by 50%"
+    expected:
+      claim_finding_detected: true
+      finding_contains: "Prohibited claim"
+    expected_quality: fail
+
+  - case_id: eval_003
+    description: "LinkedIn copy must be under 150 chars for primary_text"
+    brief_id: cb_014
+    expected:
+      channel: LINKEDIN
+      primary_text_max_chars: 150
+    expected_quality: pass
+
+  - case_id: eval_004
+    description: "Mock provider must be deterministic — same brief produces same output across two runs"
+    brief_id: cb_001
+    run_twice: true
+    expected:
+      variant_ids_identical: true
+      headlines_identical: true
+      providers_identical: true
+    expected_quality: pass
+
+  - case_id: eval_005
+    description: "Variant must preserve hypothesis and brief_id from source brief"
+    brief_id: cb_002
+    expected:
+      hypothesis_not_empty: true
+      brief_id_matches: true
+      variable_tested_not_empty: true
+    expected_quality: pass
+
+  - case_id: eval_006
+    description: "Variant IDs must follow {brief_id}_v{n} convention"
+    brief_id: cb_001
+    n_variants: 3
+    expected:
+      variant_id_pattern: "^cb_001_v[0-9]+$"
+      variant_ids: ["cb_001_v1", "cb_001_v2", "cb_001_v3"]
+    expected_quality: pass
+
+  - case_id: eval_007
+    description: "Provenance fields must all be present on every variant"
+    brief_id: cb_001
+    expected:
+      required_provenance_fields:
+        - prompt_template_version
+        - provider
+        - run_id
+        - generation_timestamp
+        - brief_version
+        - data_origin
+    expected_quality: pass
+
+  - case_id: eval_008
+    description: "Mock provider never returns empty headline or primary_text"
+    brief_id: cb_001
+    expected:
+      headline_not_empty: true
+      primary_text_not_empty: true
+    expected_quality: pass
+
+  - case_id: eval_009
+    description: "OUTCOME hook mock copy should not contain prohibited claim phrases"
+    brief_id: cb_002
+    expected:
+      must_not_contain: ["guaranteed", "increase revenue by", "#1 restaurant", "results guaranteed"]
+    expected_quality: pass
+
+  - case_id: eval_010
+    description: "AnthropicProvider raises ProviderError when API key is absent"
+    inject_missing_key: true
+    expected:
+      raises_provider_error: true
+      error_message_contains: "ANTHROPIC_API_KEY"
+    expected_quality: pass

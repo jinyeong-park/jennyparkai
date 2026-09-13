@@ -1,0 +1,32 @@
+brief_id: cb_010
+creative_id: cr_meta_009_002
+experiment_id: exp_005
+persona: new_owner
+channel: META
+format: SHORT_FORM_VIDEO
+
+awareness_stage: problem_aware
+messaging_territory: "Your first 100 loyal customers"
+primary_pain: "I've put everything into opening this restaurant. I need people through the door now."
+desired_outcome: "Build a base of loyal regulars in my first year without wasting money I don't have."
+primary_barrier: "Budget anxiety — afraid of spending money on marketing before the restaurant is cash-flow positive."
+
+hook_type: CONTRAST
+primary_hook: "The restaurants that survive year one aren't the ones with the biggest budgets. They're the ones who started building loyal customers before they thought they were ready."
+opening_3_seconds: "Side-by-side montage: one new restaurant at a quiet table with a stressed owner on the phone, another new restaurant humming with activity and a confident owner reviewing their phone screen. Text over each side: 'Same month they opened.' Owner voice: 'The difference was when they started building their list.'"
+supporting_claim: "Tablr helps new owners get their first loyalty program running in under an hour — no existing customer list required."
+proof_type: SIMPLICITY_DEMO
+
+visual_concept: "Short montage-style video, 20 seconds. Contrast between two new restaurant scenarios (same aesthetic, different energy). Then transition to a simple screen capture: new owner creates a Tablr account, sets up a loyalty program, sends their first campaign. Final shot: loyalty member count at 1, then 10, then 47 — time-lapse style. Warm, encouraging tone."
+headline: "Get your first 100 customers"
+primary_text: "Your first 100 loyal customers change everything. Build your base from day one with Tablr's new owner starter program. Set up in under an hour. Results may vary. Free 14-day trial."
+cta: get_your_first_100_customers
+landing_page_message: "Get your first 100 loyal customers — starting today. Tablr helps new restaurant owners build their base from scratch. Free trial, no experience needed."
+
+hypothesis: "The 'get_your_first_100_customers' CTA will outperform 'start_free_trial' (cb_009) for new_owner because it replaces a generic commitment decision with a specific milestone invitation — the owner isn't being asked to try a tool, they're being invited to pursue a concrete goal they already care about. This specificity lowers psychological friction and attracts higher-intent clicks."
+variable_tested: cta
+control_id: cb_009
+compliance_notes: "The loyalty member count growth (1 → 10 → 47) must be framed as a hypothetical illustrative example, not as a guaranteed outcome. Results may vary is included in primary text. No specific timeline promised. '100 loyal customers' is a milestone goal, not a guarantee. Free trial terms must be current."
+
+activation_hypothesis: "Owners who click 'get your first 100 customers' arrive with a specific goal already in mind — they're not evaluating whether to commit, they're already thinking about the milestone. This goal-orientation carries through to onboarding: they're more likely to complete setup and launch their first campaign within 14 days because the CTA already framed what day 14 success looks like."
+expected_quality: high

@@ -1,0 +1,32 @@
+brief_id: cb_014
+creative_id: cr_linkedin_030_001
+experiment_id: exp_009
+persona: growth_minded
+channel: LINKEDIN
+format: STATIC_IMAGE
+
+awareness_stage: solution_aware
+messaging_territory: "Marketing that runs itself"
+primary_pain: "I'm spending money on multiple marketing tools and an agency I'm not sure I trust. I can't tell which channel is actually driving customers."
+desired_outcome: "Consolidate to one platform that gives me a clear picture of what's working and lets me run smarter campaigns without adding headcount."
+primary_barrier: "Switching costs — worried about breaking what's already working, retraining staff, and losing data from existing tools."
+
+hook_type: DEMONSTRATION
+primary_hook: "See the full picture: campaigns, loyalty, customer revenue, and location-by-location performance — in one dashboard. This is what restaurant operators with 2-4 locations are using to cut their marketing tool spend."
+opening_3_seconds: null
+supporting_claim: "Tablr gives multi-location restaurant operators one unified view of marketing performance — so you know which campaigns, which locations, and which customer segments are driving real revenue."
+proof_type: PRODUCT_WALKTHROUGH
+
+visual_concept: "Static LinkedIn image ad. Full-bleed product screenshot of the Tablr multi-location dashboard — clean, data-forward. Shows: four location tabs, a 30-day active loyalty member chart, a campaign performance table with impression-to-activation path, and a blended CPAO metric. Tablr logo in top-left corner. Minimal text overlay. Professional design — no lifestyle elements. The product is the proof."
+headline: "One platform for every location. See Tablr."
+primary_text: "Multi-location restaurant operators: running campaigns, loyalty programs, and customer analytics on three different tools means you're always working from incomplete data. Tablr unifies everything in one dashboard. See the full picture of what's driving customers and revenue — across every location. Request your product walkthrough."
+cta: see_how_it_works
+landing_page_message: "Multi-location restaurant marketing, simplified. Tablr gives operators running 2-4 locations a single view of campaigns, loyalty, and customer revenue. Schedule a 20-minute product walkthrough."
+
+hypothesis: "DEMONSTRATION hook (showing the product dashboard directly) will outperform OUTCOME hook for growth_minded operators on LinkedIn because this persona is in evaluation mode — they want to see capability before committing. A direct product image communicates what the tool does more efficiently than a benefit statement alone, and LinkedIn's professional context rewards specificity over emotional resonance."
+variable_tested: hook_type
+control_id: null
+compliance_notes: "Dashboard screenshot must represent features available in the current product. No demo features that aren't available in the trial. CPAO metric shown in dashboard is a synthetic/illustrative example — must be labeled as such. LinkedIn ad policies prohibit certain financial claims — avoid specific ROI percentages. Results may vary on any implied performance."
+
+activation_hypothesis: "Growth_minded operators who click a product dashboard image on LinkedIn are in active evaluation — they want to see what the tool does before investing time in a demo. This intent is among the highest-quality signals in the portfolio. Activation within 14 days may be lower than Meta (longer consideration cycle), but M1 and M3 retention for growth_minded operators who do activate is the highest of any persona segment."
+expected_quality: high

@@ -1,0 +1,18 @@
+{
+  "seed": 20260913,
+  "generation_timestamp": "2026-09-13T22:24:25.133640Z",
+  "start_date": "2026-01-05",
+  "end_date": "2026-03-29",
+  "n_weeks": 12,
+  "n_trials_target": 2000,
+  "record_counts": {
+    "dim_creatives": 90,
+    "fact_daily_performance": 7560,
+    "dim_trial_accounts": 2000,
+    "fact_product_events": 4707,
+    "fact_subscriptions": 264,
+    "fact_revenue_events": 255
+  },
+  "data_origin": "SYNTHETIC",
+  "version": "1.0.0"
+}

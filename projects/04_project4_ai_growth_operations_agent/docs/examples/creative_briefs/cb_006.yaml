@@ -1,0 +1,32 @@
+brief_id: cb_006
+creative_id: cr_meta_004_002
+experiment_id: exp_003
+persona: growth_minded
+channel: META
+format: PRODUCT_DEMO
+
+awareness_stage: solution_aware
+messaging_territory: "Marketing that runs itself"
+primary_pain: "I'm spending money on multiple marketing tools and an agency I'm not sure I trust. I can't tell which channel is actually driving customers."
+desired_outcome: "Consolidate to one platform that gives me a clear picture of what's working across all my locations and lets me run smarter campaigns without adding headcount."
+primary_barrier: "Switching costs — worried about breaking what's already working, retraining staff, and losing data from existing tools."
+
+hook_type: OUTCOME
+primary_hook: "You're running four locations. You're paying for three marketing tools and an agency retainer. You're still not sure which one is actually bringing customers in the door. There's a faster way."
+opening_3_seconds: "Screen recording begins immediately — no intro. Tablr dashboard opens showing four location tabs. Cursor navigates to 'Campaign Performance' view. A filter is applied: 'last 30 days, by location.' The data loads. The payoff is visible immediately — one location is clearly outperforming the others. Voice over: 'Within 10 minutes of connecting your locations, you'll know exactly where to put your next dollar.'"
+supporting_claim: "Tablr's unified attribution view shows you which campaign type, which location, and which customer segment is actually driving revenue — not just which one gets the most clicks."
+proof_type: PRODUCT_WALKTHROUGH
+
+visual_concept: "Product demo video, 20-25 seconds. Screen recording of actual Tablr dashboard — clean, unscripted navigation. The story in the video is: operator connects two locations, runs a comparison view, sees a clear performance gap, and makes a budget decision in real time. Voice over from a multi-location operator persona. No staged studio. The video ends with the operator (off-screen voice) saying: 'I cancelled two marketing tools the week after I saw this.' Cut to Tablr logo."
+headline: "Know exactly which marketing works"
+primary_text: "Stop guessing which channel, which campaign, which location is driving customers. Tablr gives multi-location restaurant operators unified marketing analytics and campaign management in one place. See it working in 90 seconds — then start your free trial."
+cta: see_how_it_works
+landing_page_message: "Multi-location restaurant operators: stop paying for tools that can't talk to each other. See how Tablr unifies your marketing, loyalty, and analytics in a live product demo."
+
+hypothesis: "SHORT_FORM_VIDEO product demo will outperform STATIC_IMAGE (cb_005) for growth_minded operators on Meta by producing higher engagement time and better pre-qualification — operators who watch a product demo for 15+ seconds arrive at the landing page with clearer expectations, leading to higher onboarding completion and trial activation despite potentially lower raw CTR."
+variable_tested: creative_format
+control_id: cb_005
+compliance_notes: "Product demo must show features that exist in the actual trial tier. Do not demo capabilities not available to trial users. The 'cancelled two marketing tools' quote is hypothetical and must be framed as such. No specific revenue figures. Attribution claims must be qualified — Tablr's attribution window is 7-day click, 1-day view."
+
+activation_hypothesis: "Operators who watch a product walkthrough video have already self-qualified — they spent 20+ seconds evaluating the tool before clicking. This is the highest-intent acquisition signal in the creative portfolio. Expect lower click volume but significantly higher onboarding completion and a faster path to campaign launch, because the operator already knows what they're signing up for."
+expected_quality: high

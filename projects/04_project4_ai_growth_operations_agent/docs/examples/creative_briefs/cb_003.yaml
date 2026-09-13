@@ -1,0 +1,32 @@
+brief_id: cb_003
+creative_id: cr_meta_005_001
+experiment_id: exp_002
+persona: new_owner
+channel: META
+format: SHORT_FORM_VIDEO
+
+awareness_stage: problem_aware
+messaging_territory: "Your first 100 loyal customers"
+primary_pain: "I've put everything into opening this restaurant. I need people through the door now and I don't know how to reach them beyond posting on Instagram."
+desired_outcome: "Build a base of loyal regulars in my first year and run promotions without wasting money I don't have."
+primary_barrier: "Budget anxiety — afraid of spending money on marketing before the restaurant is cash-flow positive."
+
+hook_type: CONTRAST
+primary_hook: "Every other new restaurant in your neighborhood is fighting for the same first-time customers on the same apps. The ones that build a loyal base in year one aren't the ones with the biggest marketing budgets — they're the ones who started earlier."
+opening_3_seconds: "Drone shot of a restaurant neighborhood at night — lights on, people walking, multiple restaurants visible. Text: 'Your neighbors opened the same week you did.' Cut to interior of a warm, full restaurant vs. empty one. Voice over begins."
+supporting_claim: "New restaurant owners who build their loyalty program in year one have measurably better retention than those who wait until year two."
+proof_type: OUTCOME_VISUAL
+
+visual_concept: "Two timelines shown side by side as the camera pans across a restaurant interior. Timeline A: a new owner posting manually on Instagram, looking stressed, slow nights. Timeline B: an owner setting up Tablr, then sitting relaxed while notification bubbles appear. The story ends with Timeline B owner looking at a full dining room. Real restaurant setting, warm lighting, no actors — owner talent preferred."
+headline: "Start building your loyal base now"
+primary_text: "The restaurants that survive year one aren't lucky — they start building loyalty before they think they're ready. Tablr helps new owners get their first 100 regulars with tools that set up in under an hour. Free 14-day trial. No credit card."
+cta: get_your_first_100_customers
+landing_page_message: "Your first 100 loyal customers are closer than you think. Tablr helps new restaurant owners build a loyal base from day one — without wasting money on ads that don't work."
+
+hypothesis: "CONTRAST hook for new_owner will generate click volume by creating competitive urgency ('the restaurants that survive year one started earlier'), but SOCIAL_PROOF (see cb_004) will outperform on downstream activation quality because new owners respond more strongly to seeing a peer succeed than to abstract competitive framing — this CONTRAST hook may drive clicks from owners who are motivated by fear rather than genuine fit."
+variable_tested: hook_type
+control_id: null
+compliance_notes: "No specific survival statistics used — framing is 'measurably better' which is directional without a specific number. No real restaurants referenced. Free trial terms (14 days, no credit card) must be current and accurate. Results may vary qualifier required."
+
+activation_hypothesis: "New owners who respond to competitive framing arrive with urgency but may not have a clear picture of what Tablr specifically does for them. This could depress onboarding completion relative to SOCIAL_PROOF. Monitor carefully — if onboarding drops below 40% for this creative, the hook is attracting the wrong intent."
+expected_quality: medium

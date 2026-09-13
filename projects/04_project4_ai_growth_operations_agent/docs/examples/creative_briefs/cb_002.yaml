@@ -1,0 +1,32 @@
+brief_id: cb_002
+creative_id: cr_meta_006_003
+experiment_id: exp_001
+persona: scrappy_independent
+channel: META
+format: SHORT_FORM_VIDEO
+
+awareness_stage: problem_aware
+messaging_territory: "Marketing that runs itself"
+primary_pain: "I don't have time to learn another marketing platform, and I never know if it's actually working."
+desired_outcome: "Get more new customers walking through the door without spending hours each week on campaigns."
+primary_barrier: "Believes marketing software is built for people with marketing degrees, not restaurant owners."
+
+hook_type: OUTCOME
+primary_hook: "What if your marketing ran while you were on the line? On Wednesday, 34 new loyalty members joined Marco's kitchen. He was cooking. Tablr was running."
+opening_3_seconds: "Time-lapse of a busy kitchen during dinner service. Pans sizzling, tickets printing, chef moving fast. Text overlay appears: '34 new loyalty members joined tonight.' Then cut to the chef's face — surprised, satisfied. He's looking at his phone after service."
+supporting_claim: "Tablr automates your campaigns so you can focus on the food and the floor — not the dashboard."
+proof_type: OUTCOME_VISUAL
+
+visual_concept: "Follow an owner through a service — chaotic, real, no staging. Intercut with phone notifications appearing on their screen showing Tablr activity (new loyalty member, a promotion that auto-sent, a review request that went out). The reveal at the end: the restaurant was running marketing while the owner was completely focused on service. Warm, authentic kitchen environment."
+headline: "Your marketing runs while you cook"
+primary_text: "What if your restaurant ran its own marketing campaigns — automatically? Tablr handles new customer acquisition, loyalty, and review requests so you can stay on the line. Start free. No credit card. No marketing degree."
+cta: start_free_trial
+landing_page_message: "Marketing that runs itself. Set up once, then stay in the kitchen where you belong. Free 14-day trial for independent restaurant owners."
+
+hypothesis: "OUTCOME hook will attract owners who are motivated by the end-state vision (marketing running without them) and may produce slightly lower CTR than CONTRAST but comparable or better onboarding completion because the promise is concrete and directly tied to the product's core function — making it easier for owners to visualize the value before signing up."
+variable_tested: hook_type
+control_id: cb_001
+compliance_notes: "Marco is a hypothetical owner — not a real person. The '34 new loyalty members' figure is a hypothetical example and must be accompanied by 'results may vary' in final asset. No specific revenue claims. Fictional restaurant name — do not use real restaurant names."
+
+activation_hypothesis: "Owners who click an OUTCOME hook for 'marketing that runs itself' arrive with a clear picture of what success looks like — they can already imagine the value. This visualization reduces the cognitive effort needed during onboarding, which should improve completion rates. The hook filters for owners who are motivated by simplicity and autonomy, which correlates with higher activation for Tablr's core use case."
+expected_quality: high

@@ -1,0 +1,32 @@
+brief_id: cb_005
+creative_id: cr_meta_006_001
+experiment_id: exp_003
+persona: growth_minded
+channel: META
+format: STATIC_IMAGE
+
+awareness_stage: solution_aware
+messaging_territory: "Marketing that runs itself"
+primary_pain: "I'm spending money on multiple marketing tools and an agency I'm not sure I trust. I can't tell which channel is actually driving customers."
+desired_outcome: "Consolidate to one platform that gives me a clear picture of what's working across all my locations and lets me run smarter campaigns without adding headcount."
+primary_barrier: "Switching costs — worried about breaking what's already working, retraining staff, and losing data from existing tools."
+
+hook_type: OUTCOME
+primary_hook: "One dashboard. All four locations. Every campaign, every loyalty member, every revenue dollar tracked. This is what marketing clarity looks like."
+opening_3_seconds: null
+supporting_claim: "Growth-minded operators use Tablr to consolidate their marketing stack and see which channels are actually driving paying customers — not just clicks."
+proof_type: PRODUCT_WALKTHROUGH
+
+visual_concept: "Static image: clean Tablr dashboard screenshot showing multi-location performance view — four location cards, each with active loyalty member count, recent campaign performance, and a simple revenue attribution chart. Minimal surrounding design. Tablr logo top-left. The dashboard itself is the hero. Headline overlaid on dark background band at bottom. Not a lifestyle photo — show the actual product."
+headline: "See what's working. Across all locations."
+primary_text: "Running 2-4 locations without a unified marketing view means you're guessing. Tablr gives growth-minded operators one dashboard for campaigns, loyalty, and customer analytics — across every location. Start your free 14-day trial."
+cta: see_how_it_works
+landing_page_message: "Multi-location restaurant marketing, unified. One dashboard to manage campaigns, loyalty programs, and customer data across all your locations. See how operators like you are using Tablr to scale without adding headcount."
+
+hypothesis: "STATIC_IMAGE format will generate lower CTR than SHORT_FORM_VIDEO for growth_minded operators, but may produce comparable or better activation rates for solution-aware audiences because a clear product screenshot communicates what the tool does immediately without requiring video engagement — and growth_minded operators in an evaluation mindset may find static product images more trustworthy than a produced video."
+variable_tested: creative_format
+control_id: null
+compliance_notes: "Dashboard shown must reflect actual Tablr product capabilities — no features shown that don't exist in the trial tier. No specific revenue claims in copy. Multi-location framing is accurate to the product positioning. Results may vary qualifier required for any outcome language."
+
+activation_hypothesis: "Growth_minded operators who click a static product dashboard image arrive in active evaluation mode — they clicked because they wanted to see the product, not because a video caught their eye. This intent signal is strong and correlates with higher onboarding completion and trial engagement depth."
+expected_quality: high

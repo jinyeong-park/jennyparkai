@@ -1,0 +1,130 @@
+{
+  "data_origin": "SYNTHETIC",
+  "generated_at": "2026-09-13",
+  "model": "deterministic_policy + mock_analyst_llm",
+  "note": "TikTok: SCALE_CANDIDATE (LTV:CAC 2.03x, M6 37.5%, CPAO $143). META: HOLD (LTV:CAC 0.48x, between 0.20-0.50 HOLD band, CPAO $666).",
+  "channels": [
+    {
+      "channel": "TIKTOK",
+      "recommendation_state": "SCALE_CANDIDATE",
+      "confidence": "HIGH",
+      "evidence_flags": [
+        "trials=1005",
+        "cpao_usd=143.00",
+        "m1_retention=0.799",
+        "m3_retention=0.576",
+        "m6_retention=0.375",
+        "ltv_cac_ratio=2.034",
+        "cpao_efficiency_vs_baseline=53.0%"
+      ],
+      "guardrail_violations": [],
+      "is_mature": true,
+      "decided_at": "2026-09-13",
+      "evidence": {
+        "trials": 1005,
+        "activated_owners": 262,
+        "spend_usd": 37490.0,
+        "cpao_usd": 143.0,
+        "trial_cac_usd": 12.0,
+        "m1_retention_rate": 0.799,
+        "m3_retention_rate": 0.576,
+        "m6_retention_rate": 0.375,
+        "m6_is_mature": true,
+        "observed_ltv_usd": 291.0,
+        "ltv_cac_ratio": 2.034
+      },
+      "narrative_rationale": "TikTok is the strongest-performing channel by unit economics. The deterministic policy\nassigned SCALE_CANDIDATE because LTV:CAC ratio of 2.03x exceeded the 1.0x threshold\nand CPAO efficiency is well above baseline. TikTok's low CPM ($5) drives high reach\nper dollar, producing 262 activated owners at a CPAO of $143 — the lowest across all\nchannels. These metrics were computed by the policy engine — this narrative does not\nalter them.",
+      "tradeoff": "Scaling TikTok spend will increase absolute spend and require additional creative\nproduction to avoid ad fatigue on a frequency-sensitive platform. The gain is a\nlower blended CPAO and a higher proportion of high-LTV owners in the acquired cohort.",
+      "risk": "TikTok's algorithm is opaque and audience reach for the restaurant owner segment is\nnarrower than Meta. Over-scaling into a shallow audience pool risks CPM inflation and\nCTR decay. Creative refresh cadence must be maintained to sustain performance.",
+      "next_experiment_hypothesis": "Hypothesis: A SOCIAL_PROOF hook featuring real independent restaurant owners on TikTok\nwill improve 14-day activation rate by 15+ percentage points versus the current\nCONTRAST hook control.\nvariable_tested: hook_type\nprimary_metric: cpao_usd\nguardrail_metric: m1_retention_rate\nminimum_trials: 300",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "reviewer_notes": "",
+      "recommend_only": true,
+      "data_origin": "SYNTHETIC"
+    },
+    {
+      "channel": "META",
+      "recommendation_state": "HOLD",
+      "confidence": "HIGH",
+      "evidence_flags": [
+        "trials=379",
+        "cpao_usd=666.00",
+        "m1_retention=0.825",
+        "m3_retention=0.550",
+        "m6_retention=0.450",
+        "ltv_cac_ratio=0.477",
+        "cpao_efficiency_vs_baseline=-78.0%"
+      ],
+      "guardrail_violations": [],
+      "is_mature": true,
+      "decided_at": "2026-09-13",
+      "evidence": {
+        "trials": 379,
+        "activated_owners": 90,
+        "spend_usd": 59974.0,
+        "cpao_usd": 666.0,
+        "trial_cac_usd": 52.0,
+        "m1_retention_rate": 0.825,
+        "m3_retention_rate": 0.550,
+        "m6_retention_rate": 0.450,
+        "m6_is_mature": true,
+        "observed_ltv_usd": 318.0,
+        "ltv_cac_ratio": 0.477
+      },
+      "narrative_rationale": "META is held due to weak unit economics relative to spend. The deterministic policy\nassigned HOLD because LTV:CAC ratio of 0.48x falls below the 0.50x OBSERVE threshold,\nmaking it ineligible for scaling. META receives 40% of total budget but produces only\n90 activated owners at a CPAO of $666 — 4.7x more expensive than TikTok. Despite\nreceiving the highest absolute spend ($59,974), META produces the fewest activated\nowners. These metrics were computed by the policy engine — this narrative does not\nalter them.",
+      "tradeoff": "Maintaining minimal META spend preserves retargeting reach and brand visibility for\nrestaurant owners who discovered Tablr through other channels. Cutting META entirely\nremoves a full-funnel channel that may contribute to assisted conversions.",
+      "risk": "Continuing META spend without improvement risks budget dilution. META's high CPM ($18)\nrelative to TikTok ($5) means fewer impressions per dollar, fewer clicks, and fewer\nsignups — the reversal story is structural, not creative-driven alone.",
+      "next_experiment_hypothesis": "Hypothesis: A DEMONSTRATION hook on META (showing the Tablr dashboard setup process)\nwill reduce trial CAC by 20%+ versus the current CONTRAST hook, by targeting owners\nwho are in active evaluation mode rather than awareness mode.\nvariable_tested: hook_type\nprimary_metric: trial_cac_usd\nguardrail_metric: m1_retention_rate\nminimum_trials: 200",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "reviewer_notes": "",
+      "recommend_only": true,
+      "data_origin": "SYNTHETIC"
+    }
+  ],
+  "audit_trail": [
+    {
+      "audit_id": "21143867-4e0d-4bbb-a7ba-f4e88efde9a7",
+      "timestamp": "2026-09-13T21:33:54.927431",
+      "entity_type": "channel_recommendation",
+      "entity_id": "TIKTOK",
+      "previous_state": "",
+      "new_state": "SCALE_CANDIDATE",
+      "actor": "policy_engine",
+      "rationale": "Deterministic policy evaluated 1005 trials, cpao=$143.0, ltv_cac=2.034, m6_mature=True. Flags: trials=1005; cpao_usd=143.00; m1_retention=0.799; m3_retention=0.576; m6_retention=0.375; ltv_cac_ratio=2.034; cpao_efficiency_vs_baseline=53.0%",
+      "data_origin": "SYNTHETIC"
+    },
+    {
+      "audit_id": "dce4c210-b690-4a7a-ba27-bb88b7c86e2d",
+      "timestamp": "2026-09-13T21:33:54.927963",
+      "entity_type": "channel_recommendation",
+      "entity_id": "TIKTOK",
+      "previous_state": "SCALE_CANDIDATE",
+      "new_state": "SCALE_CANDIDATE",
+      "actor": "llm_agent",
+      "rationale": "LLM wrote narrative rationale. Recommendation state unchanged.",
+      "data_origin": "SYNTHETIC"
+    },
+    {
+      "audit_id": "d7bf1b84-69b2-40d7-893c-4e18e20d8a88",
+      "timestamp": "2026-09-13T21:33:54.927990",
+      "entity_type": "channel_recommendation",
+      "entity_id": "META",
+      "previous_state": "",
+      "new_state": "HOLD",
+      "actor": "policy_engine",
+      "rationale": "Deterministic policy evaluated 379 trials, cpao=$666.0, ltv_cac=0.477, m6_mature=True. Flags: trials=379; cpao_usd=666.00; m1_retention=0.825; m3_retention=0.550; m6_retention=0.450; ltv_cac_ratio=0.477; cpao_efficiency_vs_baseline=-78.0%",
+      "data_origin": "SYNTHETIC"
+    },
+    {
+      "audit_id": "fb270ea6-eb92-45f4-b8a9-1123e54bb058",
+      "timestamp": "2026-09-13T21:33:54.928074",
+      "entity_type": "channel_recommendation",
+      "entity_id": "META",
+      "previous_state": "HOLD",
+      "new_state": "HOLD",
+      "actor": "llm_agent",
+      "rationale": "LLM wrote narrative rationale. Recommendation state unchanged.",
+      "data_origin": "SYNTHETIC"
+    }
+  ]
+}

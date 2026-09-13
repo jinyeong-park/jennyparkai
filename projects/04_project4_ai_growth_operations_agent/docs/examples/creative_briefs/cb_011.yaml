@@ -1,0 +1,32 @@
+brief_id: cb_011
+creative_id: cr_meta_007_002
+experiment_id: exp_006
+persona: delivery_heavy
+channel: META
+format: PRODUCT_DEMO
+
+awareness_stage: problem_aware
+messaging_territory: "Own your customer relationship"
+primary_pain: "I'm giving away 25-30% of every delivery order to the apps. They own my customers and I can't market to them directly."
+desired_outcome: "Move enough customers to direct ordering to meaningfully reduce platform commissions and build a loyalty program I actually own."
+primary_barrier: "Doesn't believe they can win customers back from the apps — thinks customers use the delivery apps for the experience, not the restaurant."
+
+hook_type: CONTRAST
+primary_hook: "Every order you get through a delivery app costs you 28%. Every order through your own channel costs you nothing in commission. Tablr helps you start moving customers over — without losing the ones you have."
+opening_3_seconds: "Close-up of a restaurant receipt printer. Delivery app tickets come through, one after another — DoorDash, Uber. Text overlaid on each: '-28%', '-30%'. Owner's voice: 'I did the math. Last month I gave away $3,800 in commissions.' Pause. 'I started moving customers to direct ordering in January.'"
+supporting_claim: "Tablr's direct ordering and loyalty tools give you a path to own your customer relationship — and reduce what you pay third-party apps over time."
+proof_type: OUTCOME_VISUAL
+
+visual_concept: "Product demo with contextual story, 25-30 seconds. Opens with the commission math story (owner voice, kitchen setting). Then transitions to product: screen recording of Tablr's 'own your customer' setup — direct ordering link created, loyalty incentive configured ('10% off your first direct order'), first customer win-back campaign drafted. Ends with: '14 direct orders in the first week. All mine.' Delivery app logo equivalents shown as generic placeholder icons, not real brands."
+headline: "Stop paying commission on your own customers"
+primary_text: "Every delivery order is costing you 25-30% in commission — on customers who came to you for your food. Tablr helps restaurant owners build direct ordering and loyalty that they actually own. Start your free 14-day trial."
+cta: start_free_trial
+landing_page_message: "Own your customer relationship. Stop giving 28% of every order to the apps. Tablr helps delivery-heavy restaurant owners build direct ordering and loyalty. Free 14-day trial."
+
+hypothesis: "CONTRAST hook framing the delivery app commission math will produce higher CTR and comparable or better CPAO for delivery_heavy audience vs. the same creative delivered to scrappy_independent audience, because delivery_heavy owners have a specific, quantifiable pain point (commission percentage) that makes the contrast immediately personal and motivating — unlike scrappy_independent for whom the competitive framing is more abstract."
+variable_tested: persona_targeting
+control_id: null
+compliance_notes: "Do not name real delivery apps (DoorDash, Uber Eats, Grubhub) in the creative. Use generic framing: 'delivery apps,' 'third-party platforms.' The 28-30% commission range is a commonly cited industry figure but must be framed as an approximate range, not a specific claim about any named platform. The $3,800 figure is a hypothetical example — must be labeled as such."
+
+activation_hypothesis: "Delivery-heavy owners who respond to the commission math hook have a specific, urgent use case — they know what they want to accomplish (move customers to direct ordering). This clarity of intent leads to high onboarding completion because the activation path (set up direct ordering, launch win-back campaign) is directly aligned with what attracted them. Expect above-average campaign_launched event rate for this segment."
+expected_quality: high

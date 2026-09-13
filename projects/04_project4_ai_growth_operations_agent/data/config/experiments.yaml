@@ -1,0 +1,136 @@
+# config/experiments.yaml
+# [SYNTHETIC] — all experiments are simulated for portfolio purposes.
+# DRY_RUN=true, RECOMMEND_ONLY=true. No real campaign data is referenced.
+
+experiments:
+  - experiment_id: "exp_001"
+    name: "Hook Type: Contrast vs Outcome — META, scrappy_independent"
+    hypothesis: "A contrast hook (before/after framing) will drive higher activation rate than an outcome hook for scrappy independent owners who are skeptical of new tools."
+    variable_tested: "hook_type"
+    primary_metric:
+      name: "activation_rate"
+      direction: "HIGHER_IS_BETTER"
+      minimum_detectable_effect: 0.03
+      is_guardrail: false
+    guardrail_metrics:
+      - name: "m1_retention_rate"
+        direction: "HIGHER_IS_BETTER"
+        minimum_detectable_effect: 0.05
+        is_guardrail: true
+    arms:
+      - arm_id: "exp_001_ctrl"
+        name: "Outcome hook (control)"
+        creative_brief_ids: ["cb_002"]
+        is_control: true
+        description: "Outcome hook: focus on revenue results"
+      - arm_id: "exp_001_trt"
+        name: "Contrast hook (treatment)"
+        creative_brief_ids: ["cb_001"]
+        is_control: false
+        description: "Contrast hook: before/after framing for skeptics"
+    state: "RUNNING"
+    evaluation_window_days: 14
+    minimum_trials_per_arm: 200
+    start_date: "2026-01-12"
+    end_date: null
+    notes: "Primary creative test for scrappy_independent persona on META."
+    data_origin: "SYNTHETIC"
+
+  - experiment_id: "exp_002"
+    name: "Messaging Territory: Social Proof vs FOMO — META, growth_minded"
+    hypothesis: "Social proof messaging (peer restaurant success) will outperform FOMO messaging on activation rate for growth-minded owners who respond to evidence over urgency."
+    variable_tested: "messaging_territory"
+    primary_metric:
+      name: "activation_rate"
+      direction: "HIGHER_IS_BETTER"
+      minimum_detectable_effect: 0.025
+      is_guardrail: false
+    guardrail_metrics:
+      - name: "cpao_usd"
+        direction: "LOWER_IS_BETTER"
+        minimum_detectable_effect: 15.0
+        is_guardrail: true
+    arms:
+      - arm_id: "exp_002_ctrl"
+        name: "FOMO messaging (control)"
+        creative_brief_ids: ["cb_005"]
+        is_control: true
+        description: "FOMO: competitors are already using Tablr"
+      - arm_id: "exp_002_trt"
+        name: "Social proof (treatment)"
+        creative_brief_ids: ["cb_004"]
+        is_control: false
+        description: "Social proof: real restaurant success stories"
+    state: "RUNNING"
+    evaluation_window_days: 14
+    minimum_trials_per_arm: 200
+    start_date: "2026-01-19"
+    end_date: null
+    notes: "Tests whether evidence-based messaging outperforms urgency for growth-minded segment."
+    data_origin: "SYNTHETIC"
+
+  - experiment_id: "exp_003"
+    name: "Creative Format: UGC Video vs Static — TikTok, new_owner"
+    hypothesis: "UGC-style short-form video showing a new restaurant owner's first 30 days on Tablr will achieve higher CTR than static image for the new_owner persona on TikTok."
+    variable_tested: "creative_format"
+    primary_metric:
+      name: "ctr"
+      direction: "HIGHER_IS_BETTER"
+      minimum_detectable_effect: 0.005
+      is_guardrail: false
+    guardrail_metrics:
+      - name: "activation_rate"
+        direction: "HIGHER_IS_BETTER"
+        minimum_detectable_effect: 0.02
+        is_guardrail: true
+    arms:
+      - arm_id: "exp_003_ctrl"
+        name: "Static image (control)"
+        creative_brief_ids: ["cb_009"]
+        is_control: true
+        description: "Static: product screenshot with headline"
+      - arm_id: "exp_003_trt"
+        name: "UGC video (treatment)"
+        creative_brief_ids: ["cb_010"]
+        is_control: false
+        description: "UGC: new owner 30-day story format"
+    state: "RUNNING"
+    evaluation_window_days: 7
+    minimum_trials_per_arm: 300
+    start_date: "2026-02-02"
+    end_date: null
+    notes: "Format test. High CTR not the only goal — activation guardrail prevents optimizing for empty clicks."
+    data_origin: "SYNTHETIC"
+
+  - experiment_id: "exp_004"
+    name: "Channel Test: LinkedIn vs META — delivery_heavy persona"
+    hypothesis: "LinkedIn targeting by job title (restaurant owner, F&B operator) will produce lower CPAO than META lookalike targeting for the delivery-heavy persona, despite higher CPM."
+    variable_tested: "channel"
+    primary_metric:
+      name: "cpao_usd"
+      direction: "LOWER_IS_BETTER"
+      minimum_detectable_effect: 20.0
+      is_guardrail: false
+    guardrail_metrics:
+      - name: "activation_rate"
+        direction: "HIGHER_IS_BETTER"
+        minimum_detectable_effect: 0.02
+        is_guardrail: true
+    arms:
+      - arm_id: "exp_004_ctrl"
+        name: "META lookalike (control)"
+        creative_brief_ids: ["cb_006"]
+        is_control: true
+        description: "META lookalike audience from existing Tablr customers"
+      - arm_id: "exp_004_trt"
+        name: "LinkedIn job-title targeting (treatment)"
+        creative_brief_ids: ["cb_014"]
+        is_control: false
+        description: "LinkedIn: restaurant owner / F&B operator by title"
+    state: "EVALUATING"
+    evaluation_window_days: 21
+    minimum_trials_per_arm: 150
+    start_date: "2026-01-26"
+    end_date: "2026-02-16"
+    notes: "Channel comparison. LinkedIn CPM is 3-4x META but targeting precision hypothesis may offset cost."
+    data_origin: "SYNTHETIC"

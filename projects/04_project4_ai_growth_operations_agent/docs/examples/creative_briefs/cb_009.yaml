@@ -1,0 +1,32 @@
+brief_id: cb_009
+creative_id: cr_meta_002_001
+experiment_id: exp_005
+persona: new_owner
+channel: META
+format: PRODUCT_DEMO
+
+awareness_stage: problem_aware
+messaging_territory: "Your first 100 loyal customers"
+primary_pain: "I've put everything into opening this restaurant. I need people through the door now and I don't know how to reach them."
+desired_outcome: "Build a base of loyal regulars in my first year without wasting money I don't have."
+primary_barrier: "Budget anxiety — afraid of spending money on marketing before the restaurant is cash-flow positive."
+
+hook_type: OUTCOME
+primary_hook: "What does 100 loyal regulars actually look like? It looks like knowing someone's name when they walk in. Tablr helps you build that — starting from zero."
+opening_3_seconds: "Restaurant owner (early 30s, warm, clearly proud of their space) stands at the host stand. They greet a customer by name as they walk in. The customer beams. Owner turns to camera: 'Three months ago I didn't know anyone who came through that door.' Then cut to: 'Here's how I built my first 100 regulars.'"
+supporting_claim: "Tablr helps new restaurant owners build their loyalty base from scratch — even with no existing customer list."
+proof_type: OUTCOME_VISUAL
+
+visual_concept: "Short product demo hybrid — 50% owner story, 50% product walkthrough. First 10 seconds: owner warmly greeting regulars, real restaurant atmosphere. Next 10 seconds: screen recording of Tablr's new customer campaign setup — loyalty program creation in 3 clicks, first campaign sent. Last 5 seconds: loyalty member notification count growing. End with CTA: 'Start your free trial.'"
+headline: "Build your first 100 loyal regulars"
+primary_text: "Opening a restaurant is the hard part. Building loyal regulars doesn't have to be. Tablr helps new owners launch their first loyalty program and customer campaign in under an hour — even if you're starting from zero. Free 14-day trial."
+cta: start_free_trial
+landing_page_message: "Your first 100 loyal customers are closer than you think. Tablr helps new restaurant owners build a loyal base from day one. Free trial, no credit card required."
+
+hypothesis: "The control CTA 'start_free_trial' will underperform 'get_your_first_100_customers' for new_owner because 'start free trial' is a generic conversion action that does not connect to the persona's specific emotional goal — it implies a commitment decision while the outcome-specific CTA implies a journey toward a meaningful milestone, which is more compelling for a risk-averse new owner."
+variable_tested: cta
+control_id: null
+compliance_notes: "The '100 loyal regulars' framing is a goal-setting frame, not a guarantee. Final asset must include results may vary qualifier. No specific timeline promised for reaching 100 regulars. Owner character is hypothetical. Do not use the greeting-by-name scene with a real restaurant or real customers."
+
+activation_hypothesis: "New owners who click a 'start free trial' CTA arrive with a generic commitment mindset — they're evaluating whether to commit to a tool. This tends to produce more deliberate but potentially more hesitant onboarding behavior. Activation is dependent on whether the onboarding experience quickly connects to the '100 loyal customers' promise they saw in the ad."
+expected_quality: medium

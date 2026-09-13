@@ -2,13 +2,13 @@
 
 A product analytics project that connects user behavior to activation, paid conversion, retention, and revenue outcomes — built to mirror the work of a Data Analyst III, Product Analyst, or Growth Analyst at a B2B SaaS company.
 
+**[Dashboard](https://jtnwnsmyjp6xkdcvuxbvqn.streamlit.app/)**
+
 ---
 
 ## Dashboard
 
 ![Overview](docs/screenshots/01_overview.png)
-
-**[Dashboard](https://jtnwnsmyjp6xkdcvuxbvqn.streamlit.app/)**
 
 ### Run locally
 

@@ -1,0 +1,32 @@
+brief_id: cb_001
+creative_id: cr_meta_001_001
+experiment_id: exp_001
+persona: scrappy_independent
+channel: META
+format: SHORT_FORM_VIDEO
+
+awareness_stage: problem_aware
+messaging_territory: "Stop losing to the chains"
+primary_pain: "I don't have time to learn another marketing platform, and I never know if it's actually working."
+desired_outcome: "Get more new customers walking through the door without spending hours each week on campaigns."
+primary_barrier: "Believes marketing software is built for people with marketing degrees, not restaurant owners."
+
+hook_type: CONTRAST
+primary_hook: "The chain down the street has a loyalty app, a marketing team, and automated campaigns running right now. You have Instagram and a Tuesday night. That's about to change."
+opening_3_seconds: "Split screen opens: left side shows a polished chain restaurant loyalty app notification on a customer's phone ('Earn 2x points this weekend!'). Right side shows a blank phone screen with the Notes app open. Owner's voice over: 'I knew they had the advantage. I just didn't know I could level it.'"
+supporting_claim: "Independent restaurants using Tablr launch their first campaign in under an hour — no marketing team required."
+proof_type: SIMPLICITY_DEMO
+
+visual_concept: "Owner (30s-40s, behind the counter of a small family restaurant) speaks directly to camera in their own space. B-roll intercuts: their phone showing Tablr dashboard, a notification of a new loyalty member, and a time-lapse of tables filling during dinner service. Warm lighting, lived-in restaurant environment — not a studio. No stock photos."
+headline: "Stop losing customers to chains"
+primary_text: "National brands have loyalty apps, marketing teams, and automated campaigns. Independent restaurants have Tablr. Set up in under an hour. No marketing degree required. Start your free 14-day trial."
+cta: start_free_trial
+landing_page_message: "The marketing infrastructure that chains take for granted — built for independent restaurants. Set up your first campaign today. No credit card required."
+
+hypothesis: "CONTRAST hook will produce higher CTR than OUTCOME hook for scrappy_independent on Meta, because this persona identifies with competitive frustration and responds to a clear problem-solution frame that names who they are competing with — but downstream activation quality will be comparable or higher for CONTRAST because the hook self-selects for owners who are motivated to act."
+variable_tested: hook_type
+control_id: null
+compliance_notes: "Does not name real restaurant chains. Uses 'the chain down the street' as generic framing. No specific revenue or customer count claims. Results may vary qualifier required in final asset. Free trial terms (14 days, no credit card) must be accurate."
+
+activation_hypothesis: "Owners who respond to the CONTRAST hook are already aware of the competitive gap and are actively frustrated by it — this implies a motivated mindset that is more likely to complete onboarding to prove to themselves that the platform works. The hook self-selects for owners who are ready to act, not just those who are curious."
+expected_quality: high

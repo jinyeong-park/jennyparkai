@@ -1,0 +1,230 @@
+personas:
+
+  - persona_id: scrappy_independent
+    name: "The Scrappy Independent Owner"
+    description: >
+      Runs 1–2 locations, often as the sole operator of their marketing. Does everything
+      from line cooking to social media. Has tried tools before and been burned by complexity
+      or promises that didn't pan out. Responds to proof of simplicity and real results from
+      owners who look like them.
+    demographics:
+      business_size: "1–2 locations"
+      years_in_operation: "3–10 years"
+      tech_comfort: "low to moderate — uses smartphone apps daily but avoids software with steep learning curves"
+      typical_staff: "2–8 employees"
+      revenue_range_annual_usd: "$300,000–$800,000"
+    primary_pain: >
+      I don't have time to learn another platform. Marketing always takes longer than I expect
+      and I never know if it's actually working.
+    desired_outcome: >
+      Get more new customers walking through the door without spending hours each week managing
+      campaigns or hiring someone I can't afford.
+    primary_barrier: >
+      Believes marketing software is built for people with marketing degrees, not restaurant owners.
+      Has a strong prior belief that tools add work rather than reduce it.
+    secondary_barriers:
+      - "Skeptical of ROI after past experiences with Yelp ads or Google campaigns that felt wasted"
+      - "Concerned about monthly subscription cost cutting into already thin margins"
+      - "Doesn't have someone to train or delegate marketing to"
+    awareness_stage: problem_aware
+    message_sensitivity:
+      resonates: >
+        Honest simplicity claims with specifics ('launch in under an hour'), peer-like social
+        proof from other indie owners, direct language that acknowledges how hard restaurant
+        ownership is, no-nonsense CTAs.
+      turns_off: >
+        Marketing-speak, dashboards with too many features in the hero, claims that feel too
+        good to be true, enterprise software vibes, anything that implies they need a team.
+    best_channels: [META, TIKTOK]
+    hook_types_that_work: [CONTRAST, SOCIAL_PROOF, FEAR_OF_MISSING_OUT]
+    activation_likelihood: high
+    ltv_profile: medium
+    synthetic_pattern_notes: >
+      Largest volume segment in dim_users.csv. High trial signup volume but requires
+      simplicity in onboarding to convert. FEAR_OF_MISSING_OUT and CONTRAST hooks show
+      highest CTR for this segment in synthetic performance data. Moderate LTV due to
+      single-location cap on expansion revenue.
+
+  - persona_id: growth_minded
+    name: "The Growth-Minded Operator"
+    description: >
+      Runs 2–4 locations, already spending money on digital marketing. Uses Google Ads,
+      email platforms, and maybe an agency or part-time marketing coordinator. Wants to
+      consolidate tools and get more from the budget they already have. Evaluates tools
+      like a business operator, not a technologist.
+    demographics:
+      business_size: "2–4 locations"
+      years_in_operation: "5–15 years"
+      tech_comfort: "moderate to high — comfortable with digital marketing dashboards and business software"
+      typical_staff: "10–30 employees across locations"
+      revenue_range_annual_usd: "$1,000,000–$3,500,000"
+    primary_pain: >
+      I'm spending money on multiple marketing tools and an agency I'm not sure I trust.
+      I can't tell which channel is actually driving customers and which is just burning budget.
+    desired_outcome: >
+      Consolidate to one platform that gives me a clear picture of what's working across
+      all my locations and lets me run smarter campaigns without adding headcount.
+    primary_barrier: >
+      Switching costs — worried about breaking what's already working, retraining staff,
+      and losing data from existing tools during migration.
+    secondary_barriers:
+      - "Concerned Tablr won't integrate with their existing POS or reservation system"
+      - "Needs buy-in from a manager or spouse who controls the budget"
+      - "Skeptical that an AI tool will understand the nuance of their specific market"
+    awareness_stage: solution_aware
+    message_sensitivity:
+      resonates: >
+        ROI framing, consolidation efficiency, competitive intelligence, specific feature
+        depth, integration stories. Responds to metrics and comparisons. Wants to see
+        the business case clearly.
+      turns_off: >
+        Oversimplified 'just press a button' positioning, anything that implies it won't
+        scale past one location, vague promises without proof.
+    best_channels: [META, LINKEDIN, GOOGLE_SEARCH]
+    hook_types_that_work: [OUTCOME, CONTRAST, DEMONSTRATION]
+    activation_likelihood: medium
+    ltv_profile: high
+    synthetic_pattern_notes: >
+      Second-highest LTV segment. Multi-location expansion (location_added events) concentrated
+      here. Longer decision cycle means lower activation rate within 14 days — more likely to
+      convert after nurture. OUTCOME and CONTRAST hooks perform well on META and LINKEDIN.
+
+  - persona_id: new_owner
+    name: "The New Restaurant Owner"
+    description: >
+      Opened within the last 6–18 months, still building their initial customer base.
+      Urgently needs to drive awareness and first-time visits. Emotionally invested in
+      their concept but nervous about survival. The '100 loyal customers' framing speaks
+      directly to where they are in their journey.
+    demographics:
+      business_size: "1 location"
+      years_in_operation: "0–1.5 years"
+      tech_comfort: "moderate — comfortable with Instagram and ordering apps, may be new to ad platforms"
+      typical_staff: "2–6 employees"
+      revenue_range_annual_usd: "$150,000–$400,000 (early stage)"
+    primary_pain: >
+      I've put everything into opening this restaurant. I need people through the door now,
+      and I don't know how to reach them beyond posting on Instagram.
+    desired_outcome: >
+      Build a base of loyal regulars in my first year, get found online by people nearby,
+      and run promotions without wasting money I don't have.
+    primary_barrier: >
+      Budget anxiety — afraid of spending money on marketing before the restaurant is cash-flow
+      positive. Worried about wasting their limited startup runway.
+    secondary_barriers:
+      - "Overwhelmed by too many things to do at once — doesn't want to add complexity"
+      - "Unsure if they have enough customer data to make a marketing tool useful"
+      - "May not have connected a POS or loyalty system yet"
+    awareness_stage: problem_aware
+    message_sensitivity:
+      resonates: >
+        Concrete milestone framing ('your first 100 loyal customers'), validation from other
+        new owners who made it work, low-cost entry, and proof that it works even without
+        a large customer list to start.
+      turns_off: >
+        Enterprise language, pricing that feels high relative to their current revenue,
+        tools that assume existing data and systems they don't have yet.
+    best_channels: [META, TIKTOK]
+    hook_types_that_work: [OUTCOME, SOCIAL_PROOF, FEAR_OF_MISSING_OUT]
+    activation_likelihood: high
+    ltv_profile: low
+    synthetic_pattern_notes: >
+      High trial signup rate with moderate activation. Some churn risk in M3 if the owner
+      closes or pivots. OUTCOME hooks resonate strongly on both META and TIKTOK. Lower LTV
+      due to single location and early churn risk, but new owners who activate and launch
+      campaigns in the first 30 days show better retention signals.
+
+  - persona_id: delivery_heavy
+    name: "The Delivery-Heavy Owner"
+    description: >
+      Heavily dependent on DoorDash or Uber Eats for a significant portion of revenue —
+      often 30–60%. Has built a customer base through the apps but realizes those customers
+      belong to the platform, not to them. Worried about the commission drain and wants to
+      build direct ordering and loyalty that survives if the delivery apps change their terms.
+    demographics:
+      business_size: "1–3 locations"
+      years_in_operation: "2–8 years"
+      tech_comfort: "moderate — already managing multiple app dashboards, understands digital ordering"
+      typical_staff: "4–15 employees"
+      revenue_range_annual_usd: "$400,000–$1,200,000"
+    primary_pain: >
+      I'm giving away 25–30% of every delivery order to the apps. They own my customers
+      and I can't market to them directly. If DoorDash changes the algorithm or their
+      pricing, my business changes overnight.
+    desired_outcome: >
+      Move enough customers to direct ordering to meaningfully reduce platform commissions
+      and build a loyalty program I actually own.
+    primary_barrier: >
+      Doesn't believe they can win customers back from the apps. Thinks customers use DoorDash
+      because they prefer the app experience, not because of the restaurant.
+    secondary_barriers:
+      - "Worried about the operational complexity of managing another ordering channel"
+      - "Not sure their current customers would switch without a meaningful incentive"
+      - "Fear of cannibalizing delivery volume during transition"
+    awareness_stage: problem_aware
+    message_sensitivity:
+      resonates: >
+        Direct, economic framing — show the commission math, 'own your customer relationship',
+        stories from owners who reduced their dependency on third-party apps. Numbers-forward
+        messaging works well. Platform independence as a risk-reduction story.
+      turns_off: >
+        Abstract value propositions, anything that sounds like it adds more tech complexity
+        to an already complicated operation, general marketing language that ignores delivery.
+    best_channels: [META, TIKTOK, GOOGLE_SEARCH]
+    hook_types_that_work: [CONTRAST, OUTCOME, FEAR_OF_MISSING_OUT]
+    activation_likelihood: high
+    ltv_profile: medium
+    synthetic_pattern_notes: >
+      Strong response to 'own your customer' messaging in synthetic CTR data. High activation
+      rate once they start a trial because the use case is specific and urgent. Direct ordering
+      setup is a fast activation path. Mid-range LTV — lower than GROWTH_MINDED but higher
+      than NEW_OWNER due to clearer use case and activation momentum.
+
+  - persona_id: community_focused
+    name: "The Community-Focused Chef-Owner"
+    description: >
+      Chef-owner with a strong local identity and a core of loyal regulars. Often a beloved
+      neighborhood spot. Suspicious of anything that might make their brand feel corporate,
+      generic, or like every other restaurant. Values authenticity deeply. Regulars are not
+      just customers — they're community.
+    demographics:
+      business_size: "1–2 locations"
+      years_in_operation: "4–20 years"
+      tech_comfort: "low to moderate — active on Instagram but skeptical of ad tech and data tracking"
+      typical_staff: "5–20 employees"
+      revenue_range_annual_usd: "$500,000–$1,500,000"
+    primary_pain: >
+      I don't want to lose what makes my restaurant special by running generic marketing.
+      My regulars are my business — but I'm not doing anything to nurture that loyalty
+      systematically, and I worry about what happens if they stop coming in.
+    desired_outcome: >
+      Automate loyalty and review requests in a way that feels personal, not automated.
+      Get more neighborhood discovery without sacrificing the identity that makes the
+      restaurant a community institution.
+    primary_barrier: >
+      Fears that Tablr will make their brand feel corporate and alienate regulars who
+      value authenticity. Worried that AI-generated marketing will be generic.
+    secondary_barriers:
+      - "Doesn't want to over-automate the personal touch that differentiates them"
+      - "Concerned about data privacy and what happens to their customer list"
+      - "May be resistant to any tool that requires consistent weekly time investment"
+    awareness_stage: unaware
+    message_sensitivity:
+      resonates: >
+        Neighborhood-specific social proof, personal stories from owner-operators like them,
+        messaging that explicitly acknowledges their fear of going generic, loyalty framing
+        over acquisition framing, 'your restaurant stays yours' positioning.
+      turns_off: >
+        Aggressive acquisition language, anything that sounds like scale-focused tech,
+        corporate creative with stock photos, promises that sound too universal to apply
+        to an authentic local restaurant.
+    best_channels: [META, TIKTOK]
+    hook_types_that_work: [SOCIAL_PROOF, DEMONSTRATION, CONTRAST]
+    activation_likelihood: low
+    ltv_profile: high
+    synthetic_pattern_notes: >
+      Highest LTV segment: M3 retention 78%, LTV $1,450 in synthetic data. But hardest
+      to acquire — low CTR because they're skeptical of ads and require more trust-building.
+      SOCIAL_PROOF hooks from real owner stories outperform other hook types. Loyalty program
+      setup is the primary activation path. Low activation_likelihood reflects the long
+      consideration cycle, not low eventual value. Once activated, retention is exceptional.

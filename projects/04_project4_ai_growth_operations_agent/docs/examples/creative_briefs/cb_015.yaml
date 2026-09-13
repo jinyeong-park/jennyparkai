@@ -1,0 +1,32 @@
+brief_id: cb_015
+creative_id: cr_linkedin_030_003
+experiment_id: exp_010
+persona: growth_minded
+channel: LINKEDIN
+format: SHORT_FORM_VIDEO
+
+awareness_stage: solution_aware
+messaging_territory: "Stop losing to the chains"
+primary_pain: "I'm spending money on multiple marketing tools and an agency I'm not sure I trust. I can't tell which channel is actually driving customers."
+desired_outcome: "Consolidate to one platform that gives me a clear picture of what's working and lets me run smarter campaigns without adding headcount."
+primary_barrier: "Switching costs — worried about breaking what's already working, retraining staff, and losing data from existing tools."
+
+hook_type: FEAR_OF_MISSING_OUT
+primary_hook: "Multi-location restaurant operators who consolidate their marketing stack spend less on tools and see better performance data. The ones still running on three platforms are working harder for the same result."
+opening_3_seconds: "Opens on a clean animation: three separate dashboards (generic ad platform, email tool, loyalty app) shown on separate screens. Data is fragmented — different numbers, no unified view. Text: 'This is how most multi-location operators run their marketing.' Then the three screens collapse into one Tablr dashboard. Text: 'This is what they're switching to.'"
+supporting_claim: "Operators using unified marketing platforms typically reduce tool redundancy and gain clearer attribution — Tablr is built specifically for the restaurant industry."
+proof_type: PRODUCT_WALKTHROUGH
+
+visual_concept: "Short LinkedIn video ad, 20-25 seconds. Animation-led (not live action) — three fragmented dashboards consolidating into one. Professional, clean animation style — not cartoony. Tablr colors (dark navy, red accent). Voice over: business-case framing, not emotional. Ends with a single dashboard view, a 'request a walkthrough' CTA on screen, and the Tablr logo. LinkedIn-appropriate production quality."
+headline: "Consolidate your restaurant marketing stack"
+primary_text: "Most multi-location restaurant operators are running separate tools for campaigns, loyalty, and analytics — and still can't tell what's driving customers. Tablr unifies everything. See if it's right for your operation. Results may vary."
+cta: see_how_it_works
+landing_page_message: "Multi-location restaurant marketing, unified. Stop managing three tools and start seeing the full picture. Schedule your Tablr walkthrough today."
+
+hypothesis: "Insufficient evidence — this creative is in early learning phase on LinkedIn. The FOMO-style consolidation hook has not previously been tested for growth_minded operators in a short-form video format on LinkedIn. Minimum click threshold (150 clicks) has not been reached. No directional conclusion should be drawn from current data. Recommend observation for the full 21-day evaluation window before assessing."
+variable_tested: new_creative
+control_id: cb_014
+compliance_notes: "No specific claims about how much operators 'typically reduce' tool costs — framing must be qualified. 'Typically reduce tool redundancy' is directional and acceptable with results may vary qualifier. No real tool logos or company names in the animation (use generic dashboard icons). LinkedIn short-form video must have captions for accessibility compliance. Free trial terms must be current."
+
+activation_hypothesis: "If this creative reaches the minimum click threshold, expect growth_minded operators to arrive in evaluation mode similar to cb_014. The FOMO angle may attract a slightly wider audience than the pure demonstration hook, which could lower the quality signal. However, the consolidation framing is highly specific to this persona's actual pain point — operators who resonate with 'three tools, no unified view' are likely genuine Tablr candidates."
+expected_quality: medium

@@ -1,0 +1,32 @@
+brief_id: cb_016
+creative_id: cr_linkedin_028_002
+experiment_id: exp_009
+persona: growth_minded
+channel: LINKEDIN
+format: PRODUCT_DEMO
+
+awareness_stage: solution_aware
+messaging_territory: "Own your customer relationship"
+primary_pain: "I'm spending money on multiple marketing tools and an agency I'm not sure I trust. I can't tell which channel is actually driving customers."
+desired_outcome: "Consolidate to one platform that gives me a clear picture of what's working and lets me run smarter campaigns without adding headcount."
+primary_barrier: "Switching costs — worried about breaking what's already working, retraining staff, and losing data from existing tools."
+
+hook_type: DEMONSTRATION
+primary_hook: "What does a 20-minute Tablr setup actually look like? Here's a multi-location operator connecting two locations, creating a loyalty program, and launching their first re-engagement campaign — before the lunch rush."
+opening_3_seconds: "Screen recording begins immediately. Tablr onboarding wizard opens. A cursor clicks through location setup at a brisk, confident pace. Text overlay: '9:47 AM. Two locations. Zero campaigns running.' The product setup begins without narration for the first 3 seconds — the product speaks first."
+supporting_claim: "Tablr's multi-location setup is designed for operators who don't have time for complex implementations — most operators complete initial setup in under 30 minutes."
+proof_type: PRODUCT_WALKTHROUGH
+
+visual_concept: "LinkedIn video product demo, 30-35 seconds. Screen recording of the Tablr multi-location onboarding flow — clean, unscripted-looking navigation. The story: operator connects two locations, sets up a loyalty tier, builds a re-engagement campaign targeting lapsed customers, and hits 'launch.' End card shows: '9:14 remaining in free trial setup.' Tablr brand colors. Clean, professional. Voice over from a business-operator tone — not a marketing tone."
+headline: "See Tablr working. 30 minutes, two locations."
+primary_text: "Growth-minded restaurant operators don't have time for tools that require an implementation period. Tablr is built to show value in the first session. Watch the product work — then request your own free trial walkthrough."
+cta: see_how_it_works
+landing_page_message: "See Tablr working in your first 30 minutes. Multi-location restaurant marketing platform — campaigns, loyalty, and customer analytics unified. Schedule a live walkthrough or start your free 14-day trial."
+
+hypothesis: "DEMONSTRATION hook on LinkedIn for growth_minded operators will produce lower CTR but higher activation quality than OUTCOME hook (see exp_009 counterpart), because operators who engage with a product walkthrough on LinkedIn are actively evaluating — not just responding to an aspiration. This is a consideration-stage creative and should be measured on downstream trial engagement depth, not top-of-funnel CTR."
+variable_tested: hook_type
+control_id: null
+compliance_notes: "Screen recording must show actual Tablr features available in the trial tier. '30 minutes' setup claim must be accurate to current product onboarding flow — confirm with product team before finalizing. '9:14 remaining in free trial setup' is illustrative — adjust to reflect actual current trial structure. Results may vary qualifier required. No real restaurant or operator names."
+
+activation_hypothesis: "Growth_minded operators who watch a 30-second product demo on LinkedIn and then click to 'see how it works' are among the highest-intent prospects in the entire pipeline. They have invested attention before clicking. Expect lower click volume than any social awareness creative, but significantly higher onboarding completion rates and faster paths to campaign launch. This brief is expected to generate the highest activation quality of all LinkedIn briefs in the portfolio."
+expected_quality: high

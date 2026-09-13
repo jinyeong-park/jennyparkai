@@ -1,0 +1,32 @@
+brief_id: cb_007
+creative_id: cr_tiktok_015_002
+experiment_id: exp_004
+persona: scrappy_independent
+channel: TIKTOK
+format: SHORT_FORM_VIDEO
+
+awareness_stage: problem_aware
+messaging_territory: "Stop losing to the chains"
+primary_pain: "I don't have time to learn another marketing platform, and I never know if it's actually working."
+desired_outcome: "Get more new customers walking through the door without spending hours each week managing campaigns."
+primary_barrier: "Believes marketing software is built for people with marketing degrees, not restaurant owners."
+
+hook_type: CONTRAST
+primary_hook: "National brands have entire marketing departments. You have 45 minutes between lunch and dinner service. Let's talk about that."
+opening_3_seconds: "Owner stands in their restaurant — apron on, clearly mid-shift. They look directly at the camera with a wry, knowing expression. They say: 'You know what national chain restaurants spend on marketing? More than most of us make in a year.' Then they pause and hold up their phone. 'But I found a way to compete anyway.'"
+supporting_claim: "Tablr was built for owners who run the restaurant and the marketing — not for marketing teams."
+proof_type: SOCIAL_PROOF_OWNER
+
+visual_concept: "Vertical video, 25-30 seconds. Authentic TikTok format — owner on camera, in their own restaurant, talking directly to the audience like they're sharing a discovery with a peer. Raw, slightly shaky, no ring light. Caption text appears over the video as she speaks. No graphics or product screenshots until the last 5 seconds where she briefly shows her Tablr dashboard and the notification 'Campaign sent to 84 customers.' End card: 'Free trial at tablr.co'"
+headline: null
+primary_text: "They have the marketing team. You have Tablr. Independent restaurants, this is for you. #restaurantowner #smallbusiness #restaurantmarketing"
+cta: start_free_trial
+landing_page_message: "You run the restaurant and the marketing. Tablr was built for that. Get started in under an hour — free 14-day trial, no credit card."
+
+hypothesis: "CONTRAST hook on TikTok for scrappy_independent will generate competitive CTR but may produce lower CPAO than OUTCOME/simplicity messaging (see cb_008) because the TikTok format rewards hooks that deliver an immediate payoff or discovery — 'you vs. the chains' framing works but needs to resolve into a practical answer quickly to hold the audience through the CTA."
+variable_tested: messaging_territory
+control_id: null
+compliance_notes: "Does not name real restaurant chains. 'More than most of us make in a year' is a non-specific framing and does not constitute a misleading claim. TikTok caption hashtags should be relevant and not misleading. Results may vary required for any implied outcome. Free trial terms must be current and accurate in landing page."
+
+activation_hypothesis: "Scrappy independent owners who respond to a CONTRAST hook on TikTok are motivated by competitive frustration — a real and actionable state. However, TikTok's broad algorithmic reach means the audience mix may include some viewers who are not restaurant owners. Monitor trial signup quality carefully. Owners who sign up from this hook tend to be ready to act but need clear, fast onboarding to maintain momentum."
+expected_quality: medium

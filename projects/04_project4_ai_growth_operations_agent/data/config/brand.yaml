@@ -1,0 +1,31 @@
+brand:
+  name: Tablr
+  tagline: "The AI-powered growth OS for independent restaurants"
+  voice:
+    tone: [direct, confident, empathetic, practical]
+    style: "Speak like a trusted advisor who understands the restaurant business — not a tech startup selling to restaurants"
+    avoid: [corporate_jargon, overpromising, generic_marketing_speak, condescending_to_owners]
+
+  approved_claims:
+    - "AI-powered marketing tools"
+    - "Built for independent restaurant owners"
+    - "Automates your marketing campaigns"
+    - "Helps you attract and retain customers"
+    - "Start your free trial today"
+
+  prohibited_claims:
+    - Any specific revenue increase percentage without data
+    - "Guaranteed results"
+    - "#1 restaurant marketing platform"
+    - Specific customer count claims without verification
+    - "Used by X restaurants" without current verified data
+
+  legal_notes:
+    - All outcome claims must include "results may vary"
+    - Do not use real competitor names in comparative ads
+    - GDPR and CCPA compliance required for any audience data reference
+
+  visual_identity:
+    primary_color: "#1A1A2E"
+    accent_color: "#E94560"
+    style: "Clean, modern, warm — not cold tech aesthetic"
