@@ -60,14 +60,14 @@ def main() -> None:
             display[column] = display[column].map("{:.1%}".format)
         display["Variant"] = display["Variant"].map({"control": "Control", "treatment": "Variant"})
         st.subheader("Primary and downstream metrics")
-        st.dataframe(display, hide_index=True, width="stretch")
+        st.dataframe(display, hide_index=True, use_container_width=True)
     with right:
         guardrails = pd.DataFrame({"Metric": ["Workspace creation", "Trial start", "60-day retention"], "Control": [control["workspace_created"].mean(), control["trial_started"].mean(), retention_rate(control, 60)], "Variant": [treatment["workspace_created"].mean(), treatment["trial_started"].mean(), retention_rate(treatment, 60)]})
         guardrails["Difference"] = guardrails["Variant"] - guardrails["Control"]
         for column in ["Control", "Variant", "Difference"]:
             guardrails[column] = guardrails[column].map("{:+.1%}".format if column == "Difference" else "{:.1%}".format)
         st.subheader("Guardrail metrics")
-        st.dataframe(guardrails, hide_index=True, width="stretch")
+        st.dataframe(guardrails, hide_index=True, use_container_width=True)
 
     st.subheader("Segment-level treatment effect")
     segments = accounts.groupby(["company_size", "variant"], as_index=False).agg(activation_rate=("activated_7d", "mean"))
@@ -75,7 +75,7 @@ def main() -> None:
     fig = px.bar(segments, x="company_size", y="activation_rate", color="variant_label", barmode="group", color_discrete_map={"Control": PRIMARY, "Variant": GREEN})
     fig.update_layout(height=330, margin=dict(l=8, r=8, t=24, b=8), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", legend_title_text="")
     fig.update_yaxes(tickformat=".0%", range=[0, 1], gridcolor="#dce6f4")
-    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
 
 if __name__ == "__main__":

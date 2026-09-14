@@ -53,17 +53,17 @@ def main() -> None:
         source_data = accounts.groupby("acquisition_source", as_index=False).agg(signups=("org_id", "size")).sort_values("signups")
         fig = px.bar(source_data, x="signups", y="acquisition_source", orientation="h", color_discrete_sequence=[PRIMARY])
         fig.update_layout(title="Signup volume by acquisition source")
-        st.plotly_chart(chart_style(fig), width="stretch", config={"displayModeBar": False})
+        st.plotly_chart(chart_style(fig), use_container_width=True, config={"displayModeBar": False})
     with size:
         size_data = accounts.groupby("company_size", as_index=False).agg(signups=("org_id", "size")).sort_values("signups")
         fig = px.bar(size_data, x="company_size", y="signups", color_discrete_sequence=[BLUE])
         fig.update_layout(title="Signup volume by company size")
-        st.plotly_chart(chart_style(fig), width="stretch", config={"displayModeBar": False})
+        st.plotly_chart(chart_style(fig), use_container_width=True, config={"displayModeBar": False})
     with region:
         region_data = accounts.groupby("region", as_index=False).agg(signups=("org_id", "size")).sort_values("signups")
         fig = px.bar(region_data, x="signups", y="region", orientation="h", color_discrete_sequence=[TEAL])
         fig.update_layout(title="Signup volume by region")
-        st.plotly_chart(chart_style(fig), width="stretch", config={"displayModeBar": False})
+        st.plotly_chart(chart_style(fig), use_container_width=True, config={"displayModeBar": False})
 
     st.subheader("Account directory")
     st.caption("Use this operational view to connect acquisition context with activation, monetization, and current risk.")
@@ -73,7 +73,7 @@ def main() -> None:
     display["Activated"] = display["Activated"].map({True: "Yes", False: "No"})
     display["Current paid customer"] = display["Current paid customer"].map({True: "Yes", False: "No"})
     display["Current MRR"] = display["Current MRR"].map("${:,.0f}".format)
-    st.dataframe(display, hide_index=True, width="stretch", height=500)
+    st.dataframe(display, hide_index=True, use_container_width=True, height=500)
 
 
 if __name__ == "__main__":

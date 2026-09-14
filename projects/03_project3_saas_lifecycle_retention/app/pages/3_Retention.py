@@ -47,7 +47,7 @@ def main() -> None:
     rates = segment_rates(accounts, field)
     rates.index = rates.index.map(lambda value: "Activated" if value is True else "Not activated" if value is False else value)
     st.caption("Each horizon uses only accounts old enough to have reached it.")
-    st.dataframe(rates.style.format("{:.1%}").background_gradient(cmap="Blues", axis=None, vmin=0, vmax=1), width="stretch")
+    st.dataframe(rates.style.format("{:.1%}").background_gradient(cmap="Blues", axis=None, vmin=0, vmax=1), use_container_width=True)
 
     st.subheader("Paid retention by signup cohort")
     cohort_data = signup_cohort_retention(accounts)
@@ -59,7 +59,7 @@ def main() -> None:
     fig.update_layout(height=330, margin=dict(l=8, r=8, t=20, b=8), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", legend_title_text="")
     fig.update_xaxes(title="Days since paid conversion", tickvals=[0, 30, 60, 90])
     fig.update_yaxes(title="Retention rate", tickformat=".0%", range=[0, 1], gridcolor="#dce6f4")
-    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
 
 if __name__ == "__main__":

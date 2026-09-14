@@ -32,14 +32,14 @@ def main() -> None:
         colors = {"High": RED, "Medium": AMBER, "Low": TEAL}
         fig = px.pie(risk, values="accounts", names="risk_segment", hole=0.62, color="risk_segment", color_discrete_map=colors)
         fig.update_layout(height=310, margin=dict(l=8, r=8, t=20, b=8), paper_bgcolor="rgba(0,0,0,0)", legend_title_text="")
-        st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
     with right:
         st.subheader("Risk segment counts")
         display = risk.copy()
         display["mrr_at_risk"] = display["mrr_at_risk"].map("${:,.0f}".format)
         display["average_risk_score"] = display["average_risk_score"].map("{:.0f}".format)
         display.columns = ["Risk segment", "Accounts", "MRR exposure", "Average score"]
-        st.dataframe(display, hide_index=True, width="stretch")
+        st.dataframe(display, hide_index=True, use_container_width=True)
         st.subheader("Risk drivers")
         st.write("High risk combines churned or non-subscribed status, no 7-day activation, failed 60-day retention for horizon-eligible accounts, and long gaps since the last product event. Scores are rules-based for transparent prioritization, not a predictive churn model.")
 
@@ -49,11 +49,11 @@ def main() -> None:
     display.columns = ["Org ID", "Segment", "Source", "Plan", "Subscription status", "Activated", "Days since last event", "Current MRR", "Risk score", "Risk segment"]
     display["Activated"] = display["Activated"].map({True: "Yes", False: "No"})
     display["Current MRR"] = display["Current MRR"].map("${:,.0f}".format)
-    st.dataframe(display, hide_index=True, width="stretch", height=400)
+    st.dataframe(display, hide_index=True, use_container_width=True, height=400)
 
     st.subheader("Recommended customer success actions")
     actions = pd.DataFrame({"Risk segment": ["High", "Medium", "Low"], "Recommended action": ["Start a proactive save play: confirm business value, address the activation gap, and schedule an executive check-in for paid accounts.", "Run a scaled re-engagement sequence with a use-case reminder, training offer, and product-adoption review.", "Maintain lifecycle education and identify expansion signals; no immediate retention intervention required."]})
-    st.dataframe(actions, hide_index=True, width="stretch")
+    st.dataframe(actions, hide_index=True, use_container_width=True)
 
 
 if __name__ == "__main__":

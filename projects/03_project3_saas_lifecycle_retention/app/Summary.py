@@ -97,7 +97,7 @@ def render_funnel(funnel):
         paper_bgcolor="rgba(0,0,0,0)",
         font=dict(family="Arial, sans-serif", color=INK),
     )
-    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
 
 def render_cohort_retention(cohort_retention: pd.DataFrame):
@@ -123,7 +123,7 @@ def render_cohort_retention(cohort_retention: pd.DataFrame):
         title="Days since paid conversion", tickvals=[0, 30, 60, 90]
     )
     fig.update_yaxes(title="Retention", ticksuffix="%", range=[0, 105])
-    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
 
 def render_nrr(nrr_data: pd.DataFrame):
@@ -186,7 +186,7 @@ def render_risk(risk, total_accounts: int):
         showlegend=True,
         legend=dict(orientation="v", font=dict(size=10), x=1.0, y=0.5),
     )
-    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
 
 def main() -> None:

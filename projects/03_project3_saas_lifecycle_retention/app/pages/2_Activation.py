@@ -51,12 +51,12 @@ def main() -> None:
         fig = px.bar(activation_by_size, x="company_size", y="activation_rate", color_discrete_sequence=[PRIMARY], text_auto=".1%")
         fig.update_layout(title="Activation rate by company size")
         fig.update_yaxes(tickformat=".0%", range=[0, 1])
-        st.plotly_chart(chart_style(fig), width="stretch", config={"displayModeBar": False})
+        st.plotly_chart(chart_style(fig), use_container_width=True, config={"displayModeBar": False})
     with right:
         fig = px.bar(activation_by_source, x="activation_rate", y="acquisition_source", orientation="h", color_discrete_sequence=[TEAL], text_auto=".1%")
         fig.update_layout(title="Activation rate by acquisition source")
         fig.update_xaxes(tickformat=".0%", range=[0, 1])
-        st.plotly_chart(chart_style(fig), width="stretch", config={"displayModeBar": False})
+        st.plotly_chart(chart_style(fig), use_container_width=True, config={"displayModeBar": False})
 
     st.subheader("Early product action adoption")
     action_names = ["workspace_created", *sorted(KEY_ACTION_EVENTS)]
@@ -67,7 +67,7 @@ def main() -> None:
     fig = px.bar(adoption, x="event_name", y="adoption_rate", color_discrete_sequence=[GREEN], text_auto=".1%")
     fig.update_layout(title="Share of accounts completing each action in the first 7 days")
     fig.update_yaxes(tickformat=".0%", range=[0, 1])
-    st.plotly_chart(chart_style(fig, 300), width="stretch", config={"displayModeBar": False})
+    st.plotly_chart(chart_style(fig, 300), use_container_width=True, config={"displayModeBar": False})
 
 
 if __name__ == "__main__":

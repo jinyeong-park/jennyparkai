@@ -57,14 +57,14 @@ def main() -> None:
         fig = px.line(nrr_long, x="cohort_month", y="modeled_nrr", color="horizon", markers=True, color_discrete_sequence=[GREEN, PRIMARY, TEAL])
         fig.update_layout(title="Modeled NRR (no expansion events)", height=320, margin=dict(l=8, r=8, t=36, b=8), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", legend_title_text="Cohort age")
         fig.update_yaxes(title="Retained MRR / beginning MRR", tickformat=".0%", gridcolor="#dce6f4")
-        st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
         st.caption("Each point includes only subscriptions old enough to reach that horizon. Retained MRR excludes subscriptions that ended earlier; expansion and contraction events are not modeled.")
     with right:
         plan_mix = paid.groupby("plan_type", as_index=False).agg(customers=("org_id", "size"), mrr=("current_mrr", "sum")).sort_values("mrr", ascending=False)
         fig = px.bar(plan_mix, x="plan_type", y="mrr", color_discrete_sequence=[PRIMARY], text_auto="$.2s")
         fig.update_layout(title="Paid MRR by plan", height=320, margin=dict(l=8, r=8, t=36, b=8), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
         fig.update_yaxes(title="MRR", tickprefix="$", gridcolor="#dce6f4")
-        st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
     st.subheader("Treatment rollout impact model")
     rollout_display = rollout.copy()
@@ -76,7 +76,7 @@ def main() -> None:
     st.dataframe(
         rollout_display[["Segment", "Eligible accounts", "Activation lift", "Activated to current paid", "Current ARPA", "Estimated incremental MRR"]],
         hide_index=True,
-        width="stretch",
+        use_container_width=True,
     )
     st.write(f"Applying each segment's observed lift, activated-to-current-paid conversion, and current ARPA across **SMB and Mid-Market only** estimates **{incremental_activated:,.0f}** incremental activated accounts and **${estimated_incremental_mrr:,.0f}** in incremental monthly recurring revenue.")
 
