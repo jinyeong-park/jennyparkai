@@ -11,6 +11,8 @@
     content="Case study: Building a five-page revenue intelligence system that traces the full B2B revenue lifecycle from first lead to collected cash, surfacing a $2.1M gap and flagging 136 zombie pipeline deals."
   >
 
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,15 +24,29 @@
   <style>
 
     :root {
-      --surface: #FFFFFF;
-      --raised: #F2F1EE;
-      --ink: #0C0C0C;
-      --muted: #6F6C66;
-      --accent: #A85C13;
-      --on-accent: #FFFFFF;
+      --bg: #f7f7f4;
+      --bg-soft: #f0f1ed;
+      --surface: #ffffff;
+      --surface-2: #f5f6f2;
+      --raised: #f5f6f2;
+      --ink: #17191c;
+      --text-soft: #2c3035;
+      --muted: #697078;
+      --muted-2: #92989f;
+      --accent: #5f7f16;
+      --accent-dark: #46600f;
+      --accent-soft: rgba(95, 127, 22, 0.08);
+      --accent-border: rgba(95, 127, 22, 0.24);
+      --blue: #4267a9;
+      --yellow: #a97816;
+      --red: #b84f4f;
+      --purple: #7353a6;
+      --on-accent: #ffffff;
 
-      --font-display: 'Inter', system-ui, sans-serif;
-      --font-body: 'Inter', system-ui, sans-serif;
+      --font-display: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max-width: 1180px;
+      --content-width: 820px;
 
       --s1: 0.25rem;
       --s2: 0.5rem;
@@ -43,8 +59,9 @@
       --s9: 6rem;
       --s10: 8rem;
 
-      --radius: 0px;
-      --line: 1px solid #E0DDD8;
+      --radius: 18px;
+      --line: 1px solid rgba(23, 25, 28, 0.10);
+      --line-strong: 1px solid rgba(23, 25, 28, 0.16);
       --t-fast: 150ms;
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -59,7 +76,9 @@
 
     body {
       font-family: var(--font-body);
-      background: var(--surface);
+      background:
+        radial-gradient(circle at 85% 10%, rgba(95, 127, 22, 0.05), transparent 24rem),
+        var(--bg);
       color: var(--ink);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -77,7 +96,7 @@
     }
 
     .wrap {
-      max-width: 800px;
+      max-width: var(--content-width);
       margin-inline: auto;
       padding-inline: var(--s6);
     }
@@ -88,12 +107,14 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: var(--surface);
+      background: rgba(247, 247, 244, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: var(--line);
     }
 
     .site-header .wrap {
-      max-width: 1200px;
+      max-width: var(--max-width);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -101,34 +122,35 @@
     }
 
     .wordmark {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: var(--font-body);
       font-size: 0.9375rem;
       font-weight: 700;
       color: var(--ink);
     }
 
-    .header-back {
-      display: inline-flex;
+    .site-nav {
+      display: flex;
       align-items: center;
-      gap: var(--s2);
+      gap: var(--s5);
+    }
+
+    .site-nav a {
       font-size: 0.875rem;
       font-weight: 500;
       color: var(--muted);
       transition: color var(--t-fast) var(--ease);
     }
 
-    .header-back:hover { color: var(--ink); }
-
-    .header-back svg { flex-shrink: 0; }
+    .site-nav a:hover { color: var(--ink); }
 
     /* HERO */
 
     .cs-hero {
-      padding-block: var(--s8) var(--s7);
+      padding-block: var(--s10) var(--s8);
       border-bottom: var(--line);
     }
 
-    .cs-hero .wrap { max-width: 800px; }
+    .cs-hero .wrap { max-width: var(--max-width); }
 
     .cs-kicker {
       display: flex;
@@ -138,7 +160,7 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--accent-dark);
       margin-bottom: var(--s5);
     }
 
@@ -146,26 +168,47 @@
       width: 4px;
       height: 4px;
       border-radius: 50%;
-      background: var(--muted);
+      background: var(--accent);
       flex-shrink: 0;
     }
 
     .cs-hero h1 {
       font-family: var(--font-display);
-      font-weight: 400;
-      font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1.15;
+      font-weight: 700;
+      font-size: clamp(3rem, 8vw, 5.75rem);
+      line-height: 1.04;
+      letter-spacing: -0.045em;
       color: var(--ink);
       margin-bottom: var(--s5);
-      max-width: 22ch;
+      max-width: 11ch;
     }
 
     .cs-hero-lead {
       font-size: 1.0625rem;
       line-height: 1.7;
-      color: var(--muted);
-      max-width: 60ch;
-      margin-bottom: var(--s6);
+      color: var(--text-soft);
+      max-width: 68ch;
+      margin-bottom: var(--s5);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2);
+      margin-bottom: var(--s7);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 var(--s3);
+      border: var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--text-soft);
+      font-size: 0.8125rem;
+      font-weight: 600;
     }
 
     .cs-meta-row {
@@ -193,19 +236,74 @@
     .cs-meta-value {
       font-size: 0.9375rem;
       font-weight: 500;
-      color: var(--ink);
+      color: var(--text-soft);
+    }
+
+    /* SNAPSHOT */
+
+    .snapshot-section {
+      padding-block: var(--s8);
+      border-bottom: var(--line);
+    }
+
+    .snapshot-section .wrap { max-width: var(--max-width); }
+
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s5);
+    }
+
+    .snapshot-card,
+    .takeaway {
+      background: var(--surface);
+      border: var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025);
+    }
+
+    .snapshot-card h2 {
+      font-size: 1.25rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--s3);
+    }
+
+    .snapshot-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    .takeaway {
+      background: var(--accent-soft);
+      border-color: var(--accent-border);
+      max-width: var(--content-width);
+      margin-inline: auto;
+    }
+
+    .takeaway .cs-section-label { margin-bottom: var(--s4); }
+
+    .takeaway p:last-child {
+      color: var(--text-soft);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      line-height: 1.22;
+      letter-spacing: -0.035em;
+      font-weight: 650;
+      margin-bottom: 0;
     }
 
     /* STAT STRIP */
 
     .stat-strip {
-      background: var(--raised);
+      background: transparent;
       border-bottom: var(--line);
       padding-block: var(--s6);
     }
 
     .stat-strip .wrap {
-      max-width: 800px;
+      max-width: var(--max-width);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: var(--s6);
@@ -215,12 +313,16 @@
       display: flex;
       flex-direction: column;
       gap: var(--s1);
+      background: var(--surface);
+      border: var(--line);
+      border-radius: var(--radius);
+      padding: var(--s5);
     }
 
     .stat-value {
       font-family: var(--font-display);
       font-size: 2.25rem;
-      font-weight: 400;
+      font-weight: 700;
       color: var(--accent);
       line-height: 1;
     }
@@ -233,9 +335,9 @@
 
     /* BODY */
 
-    .cs-body { padding-block: var(--s8); }
+    .cs-body { padding-block: var(--s9); }
 
-    .cs-section { margin-bottom: var(--s8); }
+    .cs-section { margin-bottom: var(--s9); }
 
     .cs-section:last-child { margin-bottom: 0; }
 
@@ -244,22 +346,35 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--accent-dark);
       margin-bottom: var(--s4);
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+    }
+
+    .cs-section-label::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex: 0 0 auto;
     }
 
     .cs-section h2 {
       font-family: var(--font-display);
-      font-weight: 400;
-      font-size: 1.625rem;
-      line-height: 1.2;
+      font-weight: 650;
+      font-size: clamp(2.125rem, 5vw, 3.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
       color: var(--ink);
       margin-bottom: var(--s4);
     }
 
     .cs-section h3 {
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
       margin-bottom: var(--s3);
       margin-top: var(--s5);
@@ -302,13 +417,50 @@
     /* PROBLEM BLOCK */
 
     .problem-block {
-      background: var(--raised);
-      border-left: 3px solid var(--accent);
-      padding: var(--s5) var(--s6);
-      margin-bottom: var(--s4);
+      background: var(--surface);
+      border: var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 0;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025);
     }
 
-    .problem-block p { margin-bottom: 0; color: var(--ink); }
+    .problem-block p { margin-bottom: 0; color: var(--muted); }
+
+    .problem-index {
+      display: block;
+      color: var(--accent);
+      font-size: 0.8125rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--s3);
+    }
+
+    .failure-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s4);
+      margin-bottom: var(--s5);
+    }
+
+    .key-statement {
+      border-top: var(--line);
+      border-bottom: var(--line);
+      padding-block: var(--s8);
+      margin-block: var(--s8);
+    }
+
+    .key-statement p {
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0;
+      max-width: 13ch;
+    }
+
+    .key-statement span { color: var(--accent-dark); }
 
     /* TABLE */
 
@@ -316,6 +468,8 @@
       overflow-x: auto;
       margin-bottom: var(--s6);
       border: var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
     }
 
     .cs-table {
@@ -324,7 +478,7 @@
       font-size: 0.875rem;
     }
 
-    .cs-table thead { background: var(--raised); }
+    .cs-table thead { background: var(--surface-2); }
 
     .cs-table th {
       text-align: left;
@@ -361,8 +515,11 @@
 
     .rev-waterfall {
       border: var(--line);
+      border-radius: var(--radius);
       margin-block: var(--s6);
       background: var(--surface);
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025);
     }
 
     .rev-waterfall-header {
@@ -371,7 +528,7 @@
       align-items: flex-end;
       gap: var(--s4);
       padding: var(--s4) var(--s5);
-      background: var(--raised);
+      background: var(--surface-2);
       border-bottom: var(--line);
     }
 
@@ -419,9 +576,10 @@
       height: 8px;
       background: var(--raised);
       overflow: hidden;
+      border-radius: 999px;
     }
 
-    .rev-bar { height: 100%; background: var(--ink); }
+    .rev-bar { height: 100%; background: var(--text-soft); border-radius: 999px; }
 
     .rev-bar--accent { background: var(--accent); }
 
@@ -433,7 +591,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: var(--s4);
-      background: var(--raised);
+      background: var(--surface-2);
     }
 
     .rev-summary-item {
@@ -461,13 +619,16 @@
 
     .funnel-visual {
       border: var(--line);
+      border-radius: var(--radius);
       margin-block: var(--s6);
       background: var(--surface);
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025);
     }
 
     .funnel-header {
       padding: var(--s4) var(--s5);
-      background: var(--raised);
+      background: var(--surface-2);
       border-bottom: var(--line);
     }
 
@@ -509,9 +670,10 @@
       height: 8px;
       background: var(--raised);
       overflow: hidden;
+      border-radius: 999px;
     }
 
-    .funnel-bar { height: 100%; background: var(--ink); }
+    .funnel-bar { height: 100%; background: var(--text-soft); border-radius: 999px; }
 
     .funnel-bar--accent { background: var(--accent); }
 
@@ -520,9 +682,10 @@
       font-size: 0.6875rem;
       font-weight: 600;
       color: var(--on-accent);
-      background: #C00000;
+      background: var(--red);
       padding: 1px 7px;
       margin-left: var(--s2);
+      border-radius: 999px;
     }
 
     .funnel-footer {
@@ -531,7 +694,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: var(--s4);
-      background: var(--raised);
+      background: var(--surface-2);
     }
 
     .funnel-metric {
@@ -564,14 +727,16 @@
 
     .risk-card {
       border: var(--line);
-      border-top: 3px solid var(--card-color, #E0DDD8);
+      border-top: 3px solid var(--card-color, rgba(23, 25, 28, 0.16));
+      border-radius: var(--radius);
       padding: var(--s5);
       background: var(--surface);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025);
     }
 
-    .risk-card--high  { --card-color: #C00000; }
-    .risk-card--med   { --card-color: #A15C00; }
-    .risk-card--green { --card-color: #107C41; }
+    .risk-card--high  { --card-color: var(--red); }
+    .risk-card--med   { --card-color: var(--yellow); }
+    .risk-card--green { --card-color: var(--accent); }
 
     .risk-label {
       font-size: 0.6875rem;
@@ -586,6 +751,7 @@
       font-family: var(--font-display);
       font-size: 2rem;
       line-height: 1;
+      font-weight: 700;
       color: var(--ink);
       margin-bottom: var(--s2);
     }
@@ -607,9 +773,11 @@
 
     .health-card {
       border: var(--line);
+      border-radius: var(--radius);
       padding: var(--s5);
       background: var(--surface);
       text-align: center;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025);
     }
 
     .health-dot {
@@ -622,6 +790,7 @@
     .health-value {
       font-family: var(--font-display);
       font-size: 1.75rem;
+      font-weight: 700;
       color: var(--ink);
       line-height: 1;
       margin-bottom: var(--s2);
@@ -646,13 +815,16 @@
 
     .impact-card {
       border: var(--line);
+      border-radius: var(--radius);
       padding: var(--s5);
       background: var(--surface);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025);
     }
 
     .impact-card .ic-value {
       font-family: var(--font-display);
       font-size: 2rem;
+      font-weight: 700;
       color: var(--accent);
       line-height: 1;
       margin-bottom: var(--s2);
@@ -683,10 +855,11 @@
       font-size: 0.75rem;
       font-weight: 500;
       color: var(--muted);
-      background: var(--raised);
+      background: rgba(255, 255, 255, 0.55);
       border: var(--line);
       padding: var(--s1) var(--s3);
       letter-spacing: 0.02em;
+      border-radius: 999px;
     }
 
     .cs-divider {
@@ -698,13 +871,13 @@
     /* FOOTER CTA */
 
     .cs-footer-cta {
-      background: var(--raised);
+      background: var(--accent-soft);
       border-top: var(--line);
       padding-block: var(--s7);
     }
 
     .cs-footer-cta .wrap {
-      max-width: 800px;
+      max-width: var(--max-width);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -714,8 +887,9 @@
 
     .cs-footer-cta h3 {
       font-family: var(--font-display);
-      font-weight: 400;
-      font-size: 1.375rem;
+      font-weight: 700;
+      font-size: 1.75rem;
+      letter-spacing: -0.03em;
       color: var(--ink);
       margin-bottom: var(--s2);
     }
@@ -749,8 +923,8 @@
     }
 
     .btn--primary:hover {
-      background: #924f10;
-      border-color: #924f10;
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
     }
 
     .btn--secondary {
@@ -772,7 +946,7 @@
     }
 
     .site-footer .wrap {
-      max-width: 1200px;
+      max-width: var(--max-width);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -781,7 +955,7 @@
     }
 
     .footer-name {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: var(--font-body);
       font-size: 0.9375rem;
       font-weight: 700;
       color: var(--ink);
@@ -797,6 +971,8 @@
     @media (max-width: 640px) {
       .wrap { padding-inline: var(--s4); }
       .stat-strip .wrap { grid-template-columns: 1fr; }
+      .snapshot-grid { grid-template-columns: 1fr; }
+      .failure-grid { grid-template-columns: 1fr; }
       .impact-grid { grid-template-columns: 1fr; }
       .risk-comparison { grid-template-columns: 1fr; }
       .health-grid { grid-template-columns: repeat(2, 1fr); }
@@ -816,12 +992,11 @@
   <header class="site-header">
     <div class="wrap">
       <a href="index.html" class="wordmark">Jenny Park</a>
-      <a href="index.html#work" class="header-back">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Back to work
-      </a>
+      <nav class="site-nav" aria-label="Case study navigation">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
@@ -839,6 +1014,14 @@
       <p class="cs-hero-lead">
         Built a five-page Streamlit intelligence layer that traces the full revenue lifecycle — from first marketing touch to collected cash — surfacing a $2.1M gap between bookings and realised revenue, diagnosing where the GTM funnel leaks, and flagging 136 zombie pipeline deals before the next forecast cycle.
       </p>
+
+      <div class="tag-row" aria-label="Capabilities demonstrated">
+        <span class="tag">Revenue Analytics</span>
+        <span class="tag">GTM Strategy</span>
+        <span class="tag">Decision Systems</span>
+        <span class="tag">Pipeline Risk</span>
+        <span class="tag">Customer Health</span>
+      </div>
 
       <div class="cs-meta-row">
 
@@ -864,6 +1047,33 @@
 
       </div>
 
+    </div>
+  </section>
+
+  <!-- PROJECT SNAPSHOT -->
+  <section class="snapshot-section" aria-label="Project snapshot">
+    <div class="wrap">
+      <div class="snapshot-grid">
+        <article class="snapshot-card">
+          <p class="cs-section-label">Project Snapshot</p>
+          <h2>The Challenge</h2>
+          <p>
+            Finance, RevOps, Marketing Ops, and Customer Success each had a valid metric, but
+            no shared model connected bookings, billed revenue, collected cash, pipeline risk,
+            and renewal exposure.
+          </p>
+        </article>
+
+        <article class="snapshot-card">
+          <p class="cs-section-label">Project Snapshot</p>
+          <h2>The Approach</h2>
+          <p>
+            I designed a revenue intelligence layer that standardizes raw GTM data in dbt,
+            turns it into decision-ready marts, and surfaces team-specific actions through a
+            five-page Streamlit dashboard.
+          </p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -900,8 +1110,10 @@
 
         <h2>Finance, RevOps, and CS Were Each Looking at a Different Number</h2>
 
+        <div class="failure-grid">
         <div class="problem-block">
           <p>
+            <span class="problem-index">01</span>
             <strong>Revenue Fragmentation:</strong>
             Finance tracked CRM bookings ($11.8M). RevOps tracked weighted pipeline ($9.8M). Customer Success monitored NRR on the renewal base. No single view connected them, and no one could answer the CFO's question: how much of our booked revenue will we actually collect?
           </p>
@@ -909,14 +1121,29 @@
 
         <div class="problem-block">
           <p>
+            <span class="problem-index">02</span>
             <strong>Invisible Pipeline Risk:</strong>
             The CRM contained deals with no activity in 90+ days that were still counted in the forecast. $4.0M in pipeline carried two or more risk flags. Executives were using a raw pipeline number that overstated closeable revenue by over $23M.
           </p>
         </div>
 
+        <div class="problem-block">
+          <p>
+            <span class="problem-index">03</span>
+            <strong>No Decision Ownership:</strong>
+            Revenue leakage existed across discounts, billing gaps, payment risk, lead matching,
+            and renewal health, but the reporting layer did not show which team owned which fix.
+          </p>
+        </div>
+        </div>
+
         <p>
           The core problem was not a reporting gap. It was a structural one: four domains of revenue data (CRM, billing, pipeline, customer health) had never been joined into a single model. Every team was correct about their own slice. Nobody could see the whole picture.
         </p>
+
+        <div class="key-statement" aria-label="Core case study statement">
+          <p>The issue was not reporting. It was <span>decision quality.</span></p>
+        </div>
 
       </section>
 
@@ -1442,6 +1669,20 @@
           </svg>
         </a>
 
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- FINAL TAKEAWAY -->
+      <section class="cs-section">
+        <div class="takeaway">
+          <p class="cs-section-label">What This Project Demonstrates</p>
+          <p>
+            Revenue intelligence is strongest when it turns fragmented business data into
+            decision ownership: what changed, why it matters, who owns the fix, and how the
+            next operating review should act on it.
+          </p>
+        </div>
       </section>
 
     </div>
