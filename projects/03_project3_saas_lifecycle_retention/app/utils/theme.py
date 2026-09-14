@@ -22,6 +22,7 @@ def render_navigation() -> None:
             ("pages/4_Revenue.py", "Revenue", ":material/attach_money:"),
             ("pages/5_Experiments.py", "Experiments", ":material/science:"),
             ("pages/6_Churn_Risk.py", "Churn Risk", ":material/health_and_safety:"),
+            ("pages/7_Real_Data_Guide.py", "Real Data Guide", ":material/database:"),
         ]
         for page, label, icon in pages:
             st.page_link(page, label=label, icon=icon)
