@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>GTM Intelligence Agent — Jenny Park</title>
+  <meta
+    name="description"
+    content="GTM Intelligence Agent is an evidence-backed decision system designed to help teams validate ideas, make defensible go-to-market decisions, and learn from performance data."
+  />
+
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --bg-soft: #111419;
+      --card: #15191f;
+      --card-2: #1a1f26;
+
+      --text: #f4f5f7;
+      --muted: #9da5b0;
+      --muted-2: #717985;
+
+      --line: rgba(255, 255, 255, 0.10);
+      --line-strong: rgba(255, 255, 255, 0.16);
+
+      --accent: #b8ff5a;
+      --accent-soft: rgba(184, 255, 90, 0.10);
+      --accent-border: rgba(184, 255, 90, 0.28);
+
+      --blue: #79a8ff;
+      --yellow: #ffd66b;
+      --red: #ff8f8f;
+      --purple: #ba9cff;
+
+      --max-width: 1180px;
+      --content-width: 820px;
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(
+          circle at 85% 10%,
+          rgba(184, 255, 90, 0.055),
+          transparent 24rem
+        ),
+        var(--bg);
+
+      color: var(--text);
+
+      font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .shell {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin-inline: auto;
+    }
+
+    .content {
+      width: min(100%, var(--content-width));
+    }
+
+    /* ---------------------------------
+       NAV
+    ---------------------------------- */
+
+    .site-nav {
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* ---------------------------------
+       SHARED
+    ---------------------------------- */
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+
+    h1 {
+      margin: 22px 0 24px;
+      max-width: 900px;
+      font-size: clamp(48px, 8vw, 94px);
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: 14px 0 22px;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 650;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 23px;
+    }
+
+    p {
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+
+    .lead {
+      color: #d2d6dc;
+      font-size: clamp(18px, 2.3vw, 23px);
+      line-height: 1.55;
+      max-width: 780px;
+    }
+
+    .section {
+      padding: 108px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-intro {
+      margin-bottom: 54px;
+    }
+
+    .section-intro p {
+      max-width: 720px;
+      font-size: 18px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 31px;
+      padding: 5px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #c7ccd3;
+      background: rgba(255, 255, 255, 0.025);
+      font-size: 12px;
+    }
+
+    .tag.status {
+      border-color: var(--accent-border);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* ---------------------------------
+       HERO
+    ---------------------------------- */
+
+    .hero {
+      padding: 104px 0 92px;
+    }
+
+    .hero-copy {
+      max-width: 1000px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 36px;
+    }
+
+    .hero-note {
+      margin-top: 64px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .meta-label {
+      color: var(--muted-2);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      color: #d8dce2;
+    }
+
+    /* ---------------------------------
+       CASE STUDY SUMMARY
+    ---------------------------------- */
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .summary-card {
+      min-height: 210px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+    }
+
+    .summary-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ---------------------------------
+       PROBLEM
+    ---------------------------------- */
+
+    .problem-list {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .problem-item {
+      padding: 27px;
+      background: var(--bg-soft);
+    }
+
+    .problem-number {
+      display: block;
+      margin-bottom: 22px;
+      color: var(--muted-2);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .problem-item strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .problem-item p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* ---------------------------------
+       KEY STATEMENT
+    ---------------------------------- */
+
+    .statement {
+      padding: 80px 0;
+    }
+
+    .statement-box {
+      border-top: 1px solid var(--line-strong);
+      border-bottom: 1px solid var(--line-strong);
+      padding: 50px 0;
+    }
+
+    .statement p {
+      max-width: 960px;
+      color: var(--text);
+      font-size: clamp(28px, 4vw, 48px);
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+    }
+
+    /* ---------------------------------
+       DECISION FRAMEWORK
+    ---------------------------------- */
+
+    .question-list {
+      margin-top: 52px;
+    }
+
+    .question {
+      display: grid;
+      grid-template-columns: 68px 1fr 1.4fr;
+      gap: 22px;
+      padding: 25px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .question:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .question-num {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .question-title {
+      font-size: 19px;
+      font-weight: 650;
+    }
+
+    .question-desc {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* ---------------------------------
+       PRINCIPLES
+    ---------------------------------- */
+
+    .principle-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .principle-card {
+      padding: 32px;
+      min-height: 240px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+
+    .principle-index {
+      display: inline-block;
+      margin-bottom: 56px;
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .principle-card h3 {
+      margin-bottom: 12px;
+    }
+
+    .principle-card p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    /* ---------------------------------
+       LOOP VISUAL
+    ---------------------------------- */
+
+    .loop {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns:
+        minmax(120px, 1fr) auto
+        minmax(120px, 1fr) auto
+        minmax(120px, 1fr) auto
+        minmax(120px, 1fr) auto
+        minmax(120px, 1fr);
+      align-items: center;
+      gap: 10px;
+    }
+
+    .loop-node {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 96px;
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--line-strong);
+      background: var(--card);
+      text-align: center;
+      font-weight: 650;
+      font-size: 14px;
+    }
+
+    .loop-node:first-child,
+    .loop-node:last-child {
+      border-color: var(--accent-border);
+      background: var(--accent-soft);
+    }
+
+    .loop-arrow {
+      color: var(--muted-2);
+      font-size: 18px;
+    }
+
+    /* ---------------------------------
+       OPERATING MODES
+    ---------------------------------- */
+
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .mode {
+      padding: 32px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--bg-soft);
+    }
+
+    .mode-label {
+      display: inline-block;
+      margin-bottom: 38px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mode h3 {
+      font-size: 27px;
+    }
+
+    .mode ul,
+    .scope-card ul {
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .mode li,
+    .scope-card li {
+      margin: 8px 0;
+    }
+
+    /* ---------------------------------
+       EVIDENCE MODEL
+    ---------------------------------- */
+
+    .evidence-table {
+      overflow: hidden;
+      margin-top: 48px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .evidence-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      min-height: 78px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .evidence-row:last-child {
+      border-bottom: 0;
+    }
+
+    .evidence-name,
+    .evidence-desc {
+      display: flex;
+      align-items: center;
+      padding: 20px 24px;
+    }
+
+    .evidence-name {
+      border-right: 1px solid var(--line);
+      background: var(--card);
+      font-weight: 650;
+    }
+
+    .evidence-desc {
+      color: var(--muted);
+      background: var(--bg-soft);
+      font-size: 14px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      margin-right: 10px;
+      border-radius: 99px;
+      flex: none;
+    }
+
+    .fact {
+      background: var(--accent);
+    }
+
+    .inference {
+      background: var(--blue);
+    }
+
+    .assumption {
+      background: var(--yellow);
+    }
+
+    .recommendation {
+      background: var(--purple);
+    }
+
+    .unknown {
+      background: var(--red);
+    }
+
+    /* ---------------------------------
+       SYSTEM FLOW
+    ---------------------------------- */
+
+    .flow {
+      margin-top: 54px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .flow-row {
+      display: grid;
+      grid-template-columns: 56px 220px 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .flow-row:last-child {
+      border-bottom: 0;
+    }
+
+    .flow-number,
+    .flow-title,
+    .flow-copy {
+      padding: 22px;
+      display: flex;
+      align-items: center;
+    }
+
+    .flow-number {
+      color: var(--accent);
+      font-family: monospace;
+      border-right: 1px solid var(--line);
+      background: var(--card);
+    }
+
+    .flow-title {
+      font-weight: 650;
+      border-right: 1px solid var(--line);
+      background: var(--card);
+    }
+
+    .flow-copy {
+      color: var(--muted);
+      background: var(--bg-soft);
+      font-size: 14px;
+    }
+
+    /* ---------------------------------
+       HUMAN / AI BOUNDARY
+    ---------------------------------- */
+
+    .boundary {
+      margin-top: 46px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .boundary-card {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+    }
+
+    .boundary-card h3 {
+      font-size: 20px;
+    }
+
+    .boundary-card ul {
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .boundary-card li {
+      margin: 8px 0;
+    }
+
+    .boundary-card.highlight {
+      border-color: var(--accent-border);
+      background: var(--accent-soft);
+    }
+
+    /* ---------------------------------
+       MVP
+    ---------------------------------- */
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 44px;
+    }
+
+    .scope-card {
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+    }
+
+    .scope-card h3 {
+      font-size: 23px;
+    }
+
+    .scope-card.not-included {
+      background: var(--bg-soft);
+    }
+
+    /* ---------------------------------
+       EXAMPLE
+    ---------------------------------- */
+
+    .example {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      overflow: hidden;
+    }
+
+    .example-head {
+      padding: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .example-head p {
+      margin-bottom: 0;
+    }
+
+    .example-body {
+      padding: 30px;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 0;
+    }
+
+    .example-grid > div {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .example-key {
+      color: var(--muted-2);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .example-value {
+      color: #d6dae0;
+    }
+
+    /* ---------------------------------
+       EVALUATION
+    ---------------------------------- */
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 42px;
+    }
+
+    .metric {
+      padding: 26px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--bg-soft);
+    }
+
+    .metric-label {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .metric strong {
+      display: block;
+      line-height: 1.35;
+    }
+
+    /* ---------------------------------
+       STATUS
+    ---------------------------------- */
+
+    .status-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 44px;
+    }
+
+    .status-column {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+    }
+
+    .checklist {
+      padding: 0;
+      margin: 22px 0 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 11px;
+      padding: 9px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .done::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .todo::before {
+      content: "○";
+      color: var(--muted-2);
+    }
+
+    /* ---------------------------------
+       TAKEAWAY
+    ---------------------------------- */
+
+    .takeaway {
+      padding: 120px 0;
+    }
+
+    .takeaway-box {
+      padding: 50px;
+      border: 1px solid var(--accent-border);
+      border-radius: 24px;
+      background: var(--accent-soft);
+    }
+
+    .takeaway-box h2 {
+      max-width: 870px;
+      margin-bottom: 30px;
+    }
+
+    .takeaway-box p {
+      max-width: 760px;
+      color: #c9d0c2;
+      font-size: 18px;
+    }
+
+    /* ---------------------------------
+       FOOTER
+    ---------------------------------- */
+
+    footer {
+      padding: 46px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted-2);
+      font-size: 13px;
+    }
+
+    /* ---------------------------------
+       RESPONSIVE
+    ---------------------------------- */
+
+    @media (max-width: 900px) {
+      .hero-note,
+      .summary-grid,
+      .principle-grid,
+      .mode-grid,
+      .scope-grid,
+      .status-box {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-grid,
+      .boundary {
+        grid-template-columns: 1fr;
+      }
+
+      .question {
+        grid-template-columns: 46px 1fr;
+      }
+
+      .question-desc {
+        grid-column: 2;
+      }
+
+      .loop {
+        grid-template-columns: 1fr;
+      }
+
+      .loop-arrow {
+        transform: rotate(90deg);
+        text-align: center;
+      }
+
+      .flow-row {
+        grid-template-columns: 48px 1fr;
+      }
+
+      .flow-copy {
+        grid-column: 2;
+        border-top: 1px solid var(--line);
+      }
+
+      .flow-title {
+        border-right: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 76px 0 70px;
+      }
+
+      h1 {
+        font-size: 50px;
+      }
+
+      .section {
+        padding: 78px 0;
+      }
+
+      .problem-list {
+        grid-template-columns: 1fr;
+      }
+
+      .evidence-row {
+        grid-template-columns: 1fr;
+      }
+
+      .evidence-name {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .example-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .example-grid > div:nth-child(odd) {
+        border-bottom: 0;
+        padding-bottom: 4px;
+      }
+
+      .example-grid > div:nth-child(even) {
+        padding-top: 4px;
+      }
+
+      .takeaway-box {
+        padding: 32px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAV
+  ========================== -->
+
+  <nav class="site-nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="/#work">Jenny Park</a>
+
+      <div class="nav-links">
+        <a href="/#work">Work</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <header class="hero">
+    <div class="shell">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          GTM Intelligence · Decision Systems
+        </div>
+
+        <h1>GTM Intelligence Agent</h1>
+
+        <p class="lead">
+          An evidence-backed GTM decision system designed to help teams
+          validate early business ideas, make defensible go-to-market
+          decisions, and learn from real performance data.
+        </p>
+
+        <div class="hero-meta">
+          <span class="tag">GTM Strategy</span>
+          <span class="tag">Decision Systems</span>
+          <span class="tag">Growth Analytics</span>
+          <span class="tag">AI System Design</span>
+          <span class="tag status">In Development</span>
+        </div>
+      </div>
+
+      <div class="hero-note">
+        <div>
+          <div class="meta-label">Role</div>
+          <div class="meta-value">Product / Data / GTM System Design</div>
+        </div>
+
+        <div>
+          <div class="meta-label">Primary User</div>
+          <div class="meta-value">B2B SaaS founders & growth teams</div>
+        </div>
+
+        <div>
+          <div class="meta-label">Current Stage</div>
+          <div class="meta-value">Experience & data design</div>
+        </div>
+
+        <div>
+          <div class="meta-label">Core Principle</div>
+          <div class="meta-value">Evidence before recommendation</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- =========================
+       PROJECT SNAPSHOT
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Project snapshot</div>
+        <h2>Turning fragmented GTM inputs into structured decisions.</h2>
+
+        <p>
+          GTM teams rarely lack information. They lack a consistent way to
+          separate what they know, what they assume, what matters, and what
+          should be tested next.
+        </p>
+      </div>
+
+      <div class="summary-grid">
+
+        <article class="summary-card">
+          <div class="meta-label">The challenge</div>
+
+          <h3>
+            Strategy is often built across disconnected evidence.
+          </h3>
+
+          <p>
+            Market research, customer interviews, competitor analysis,
+            analytics, pricing assumptions, launch plans, and stakeholder
+            opinions often live in different systems with no clear decision
+            trail.
+          </p>
+        </article>
+
+        <article class="summary-card">
+          <div class="meta-label">The approach</div>
+
+          <h3>
+            Make the reasoning behind GTM decisions explicit.
+          </h3>
+
+          <p>
+            The system separates evidence, assumptions, interpretation,
+            recommendations, and human decisions so each strategic choice can
+            be challenged, validated, and updated.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       PROBLEM
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Problem</div>
+        <h2>Most GTM work has a traceability problem.</h2>
+
+        <p>
+          A polished strategy can still be weak if the evidence underneath it
+          is unclear. Generative AI increases that risk because unsupported
+          recommendations can sound just as confident as well-supported ones.
+        </p>
+      </div>
+
+      <div class="problem-list">
+
+        <article class="problem-item">
+          <span class="problem-number">01</span>
+          <strong>Evidence gets fragmented</strong>
+          <p>
+            Research, analytics, customer feedback, and stakeholder inputs
+            often live in separate tools and documents.
+          </p>
+        </article>
+
+        <article class="problem-item">
+          <span class="problem-number">02</span>
+          <strong>Assumptions become facts</strong>
+          <p>
+            Founder beliefs and early hypotheses can quietly become strategic
+            inputs without sufficient validation.
+          </p>
+        </article>
+
+        <article class="problem-item">
+          <span class="problem-number">03</span>
+          <strong>Recommendations lose context</strong>
+          <p>
+            Teams may know what was recommended without knowing why, based on
+            which evidence, or under which assumptions.
+          </p>
+        </article>
+
+        <article class="problem-item">
+          <span class="problem-number">04</span>
+          <strong>Learning loops break</strong>
+          <p>
+            Launch results and customer behavior do not always flow back into
+            the next positioning, channel, or growth decision.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       STATEMENT
+  ========================== -->
+
+  <section class="statement">
+    <div class="shell">
+      <div class="statement-box">
+        <p>
+          The goal is not to automate strategy.
+          <span class="accent">
+            The goal is to make GTM decisions more evidence-backed,
+            traceable, and testable.
+          </span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       DECISION FRAMEWORK
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Decision framework</div>
+
+        <h2>
+          Five questions organize the system.
+        </h2>
+
+        <p>
+          Rather than generating one large GTM strategy, the product breaks
+          the work into a sequence of connected decisions.
+        </p>
+      </div>
+
+      <div class="question-list">
+
+        <div class="question">
+          <div class="question-num">01</div>
+          <div class="question-title">Where are we?</div>
+          <div class="question-desc">
+            Diagnose whether the product is still validating product-market
+            fit or is ready for a scaling-oriented GTM approach.
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="question-num">02</div>
+          <div class="question-title">Where should we compete?</div>
+          <div class="question-desc">
+            Evaluate markets, customer segments, evidence quality, pain
+            severity, reachability, and opportunity.
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="question-num">03</div>
+          <div class="question-title">How should we win?</div>
+          <div class="question-desc">
+            Develop positioning, value proposition, pricing, messaging, and
+            channel hypotheses tied to the priority customer.
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="question-num">04</div>
+          <div class="question-title">How should we launch?</div>
+          <div class="question-desc">
+            Translate strategy into launch priorities, ownership, milestones,
+            KPIs, dependencies, and approval decisions.
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="question-num">05</div>
+          <div class="question-title">What should we improve next?</div>
+          <div class="question-desc">
+            Feed funnel, cohort, revenue, attribution, and experiment evidence
+            back into the next strategic decision.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       DESIGN PRINCIPLES
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Design principles</div>
+        <h2>AI supports the system. It does not own the decision.</h2>
+
+        <p>
+          The product architecture intentionally separates evidence,
+          deterministic logic, AI interpretation, and human judgment.
+        </p>
+      </div>
+
+      <div class="principle-grid">
+
+        <article class="principle-card">
+          <span class="principle-index">01 / EVIDENCE</span>
+          <h3>Evidence before recommendation</h3>
+          <p>
+            Important recommendations should be tied to evidence. Unsupported
+            inputs remain assumptions instead of quietly becoming facts.
+          </p>
+        </article>
+
+        <article class="principle-card">
+          <span class="principle-index">02 / LOGIC</span>
+          <h3>Deterministic rules before AI judgment</h3>
+          <p>
+            Scores, thresholds, calculations, workflow states, and business
+            rules belong to deterministic application logic.
+          </p>
+        </article>
+
+        <article class="principle-card">
+          <span class="principle-index">03 / CONTROL</span>
+          <h3>Human approval for consequential decisions</h3>
+          <p>
+            ICP selection, pricing, launch readiness, public claims, and major
+            budget decisions require explicit human review.
+          </p>
+        </article>
+
+        <article class="principle-card">
+          <span class="principle-index">04 / TRACEABILITY</span>
+          <h3>Every important decision should be explainable</h3>
+          <p>
+            A recommendation should be traceable back to its sources,
+            assumptions, interpretation, and final human decision.
+          </p>
+        </article>
+
+      </div>
+
+      <div class="loop">
+        <div class="loop-node">Evidence</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-node">Decision</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-node">Action</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-node">Measurement</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-node">Learning</div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       OPERATING MODES
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Operating modes</div>
+        <h2>The system adapts to the amount of evidence available.</h2>
+
+        <p>
+          A team does not need a finished product or historical revenue data
+          to begin. What changes is the type of conclusion the system is
+          allowed to make.
+        </p>
+      </div>
+
+      <div class="mode-grid">
+
+        <article class="mode">
+          <span class="mode-label">Mode 01</span>
+          <h3>Idea Validation</h3>
+
+          <p>
+            For teams with an early product or business hypothesis but little
+            or no internal performance data.
+          </p>
+
+          <ul>
+            <li>Structure assumptions</li>
+            <li>Review available market evidence</li>
+            <li>Identify critical unknowns</li>
+            <li>Create proto-segments</li>
+            <li>Build a validation backlog</li>
+            <li>Design research and experiments</li>
+          </ul>
+        </article>
+
+        <article class="mode">
+          <span class="mode-label">Mode 02</span>
+          <h3>Evidence-Backed GTM</h3>
+
+          <p>
+            For teams with customer, product, revenue, or marketing evidence
+            that can support stronger strategic decisions.
+          </p>
+
+          <ul>
+            <li>Compare target segments</li>
+            <li>Score ICP candidates</li>
+            <li>Develop positioning hypotheses</li>
+            <li>Evaluate channel strategy</li>
+            <li>Build measurable launch plans</li>
+            <li>Connect strategy to observed results</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       EVIDENCE MODEL
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Evidence model</div>
+
+        <h2>
+          Not every statement deserves the same level of certainty.
+        </h2>
+
+        <p>
+          The system explicitly labels material statements so users can see
+          which parts of a strategy are known, inferred, assumed, or still
+          unknown.
+        </p>
+      </div>
+
+      <div class="evidence-table">
+
+        <div class="evidence-row">
+          <div class="evidence-name">
+            <span class="dot fact"></span>
+            Verified fact
+          </div>
+
+          <div class="evidence-desc">
+            Directly supported by a credible source or supplied dataset.
+          </div>
+        </div>
+
+        <div class="evidence-row">
+          <div class="evidence-name">
+            <span class="dot inference"></span>
+            Inference
+          </div>
+
+          <div class="evidence-desc">
+            A reasonable interpretation derived from the available evidence.
+          </div>
+        </div>
+
+        <div class="evidence-row">
+          <div class="evidence-name">
+            <span class="dot assumption"></span>
+            Assumption
+          </div>
+
+          <div class="evidence-desc">
+            An unverified input temporarily used for planning.
+          </div>
+        </div>
+
+        <div class="evidence-row">
+          <div class="evidence-name">
+            <span class="dot recommendation"></span>
+            Recommendation
+          </div>
+
+          <div class="evidence-desc">
+            A proposed action based on stated evidence and assumptions.
+          </div>
+        </div>
+
+        <div class="evidence-row">
+          <div class="evidence-name">
+            <span class="dot unknown"></span>
+            Unknown
+          </div>
+
+          <div class="evidence-desc">
+            Important information that is not currently available.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="statement-box" style="margin-top: 54px;">
+        <p style="font-size: clamp(24px, 3.4vw, 38px);">
+          Confidence is separate from strategic importance.
+          <span class="accent">
+            A high-impact claim with weak evidence becomes a validation
+            priority—not a confident recommendation.
+          </span>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       WORKFLOW
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Workflow</div>
+        <h2>From product context to an approved decision.</h2>
+      </div>
+
+      <div class="flow">
+
+        <div class="flow-row">
+          <div class="flow-number">01</div>
+          <div class="flow-title">Intake</div>
+          <div class="flow-copy">
+            Collect product, market, customer, pricing, business model,
+            objectives, resources, and available evidence.
+          </div>
+        </div>
+
+        <div class="flow-row">
+          <div class="flow-number">02</div>
+          <div class="flow-title">Stage diagnosis</div>
+          <div class="flow-copy">
+            Determine whether the analytical focus should be validation or
+            scaling.
+          </div>
+        </div>
+
+        <div class="flow-row">
+          <div class="flow-number">03</div>
+          <div class="flow-title">Evidence mapping</div>
+          <div class="flow-copy">
+            Separate verified evidence, assumptions, inferences, and unknowns.
+          </div>
+        </div>
+
+        <div class="flow-row">
+          <div class="flow-number">04</div>
+          <div class="flow-title">Segment evaluation</div>
+          <div class="flow-copy">
+            Compare ICP candidates using transparent weighted criteria such as
+            pain, fit, urgency, reachability, and market potential.
+          </div>
+        </div>
+
+        <div class="flow-row">
+          <div class="flow-number">05</div>
+          <div class="flow-title">Strategy hypotheses</div>
+          <div class="flow-copy">
+            Generate positioning, messaging, pricing, and channel hypotheses
+            appropriate to the available evidence.
+          </div>
+        </div>
+
+        <div class="flow-row">
+          <div class="flow-number">06</div>
+          <div class="flow-title">Human approval</div>
+          <div class="flow-copy">
+            Review the evidence behind material decisions before strategy or
+            launch outputs are finalized.
+          </div>
+        </div>
+
+        <div class="flow-row">
+          <div class="flow-number">07</div>
+          <div class="flow-title">Learning loop</div>
+          <div class="flow-copy">
+            Feed observed customer and performance evidence back into the next
+            prioritization and experiment cycle.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       SYSTEM BOUNDARIES
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">System boundaries</div>
+
+        <h2>
+          Rules calculate. AI interprets. Humans decide.
+        </h2>
+
+        <p>
+          Keeping these responsibilities separate makes the system easier to
+          evaluate, audit, and trust.
+        </p>
+      </div>
+
+      <div class="boundary">
+
+        <article class="boundary-card">
+          <div class="meta-label">Deterministic domain</div>
+          <h3>Calculates</h3>
+
+          <ul>
+            <li>Weighted scores</li>
+            <li>Thresholds</li>
+            <li>State transitions</li>
+            <li>Required fields</li>
+            <li>Validation rules</li>
+          </ul>
+        </article>
+
+        <article class="boundary-card">
+          <div class="meta-label">AI layer</div>
+          <h3>Interprets & proposes</h3>
+
+          <ul>
+            <li>Synthesizes research</li>
+            <li>Explains patterns</li>
+            <li>Generates hypotheses</li>
+            <li>Surfaces evidence gaps</li>
+            <li>Proposes next actions</li>
+          </ul>
+        </article>
+
+        <article class="boundary-card highlight">
+          <div class="meta-label">Human owner</div>
+          <h3>Decides</h3>
+
+          <ul>
+            <li>Approves priority ICP</li>
+            <li>Accepts positioning</li>
+            <li>Changes pricing</li>
+            <li>Allocates budget</li>
+            <li>Approves launch readiness</li>
+          </ul>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       MVP
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">MVP scope</div>
+
+        <h2>
+          Start with evidence-backed pre-launch GTM decisions.
+        </h2>
+
+        <p>
+          The long-term vision spans validation through post-launch learning,
+          but the initial MVP intentionally focuses on decision quality before
+          adding automation and integration complexity.
+        </p>
+      </div>
+
+      <div class="scope-grid">
+
+        <article class="scope-card">
+          <h3>Included in MVP</h3>
+
+          <ul>
+            <li>Guided product intake</li>
+            <li>Stage diagnosis</li>
+            <li>Evidence and source tracking</li>
+            <li>Validation backlog</li>
+            <li>Market research workspace</li>
+            <li>Customer-segment comparison</li>
+            <li>Weighted ICP scoring</li>
+            <li>Competitor benchmarking</li>
+            <li>Positioning hypotheses</li>
+            <li>Channel recommendations</li>
+            <li>Launch plan and KPIs</li>
+            <li>Human approval workflow</li>
+          </ul>
+        </article>
+
+        <article class="scope-card not-included">
+          <h3>Intentionally deferred</h3>
+
+          <ul>
+            <li>Autonomous campaign publishing</li>
+            <li>Automatic ad-budget changes</li>
+            <li>Full CRM integration</li>
+            <li>Predictive revenue forecasting</li>
+            <li>Real-time competitor monitoring</li>
+            <li>Automated experiment execution</li>
+            <li>Fully autonomous strategy decisions</li>
+          </ul>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       EXAMPLE DECISION
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Example decision</div>
+
+        <h2>
+          The output is not “build this.”
+          It is “this is worth validating next.”
+        </h2>
+      </div>
+
+      <div class="example">
+
+        <div class="example-head">
+          <div class="meta-label">Illustrative B2B SaaS scenario</div>
+
+          <h3 style="margin-bottom: 10px;">
+            Which customer segment should we investigate first?
+          </h3>
+
+          <p>
+            The system makes the reasoning and remaining uncertainty visible
+            before asking the user to approve a target segment.
+          </p>
+        </div>
+
+        <div class="example-body">
+          <div class="example-grid">
+
+            <div class="example-key">Claim</div>
+            <div class="example-value">
+              Mid-market SaaS teams may have the strongest initial fit.
+            </div>
+
+            <div class="example-key">Classification</div>
+            <div class="example-value">
+              Inference
+            </div>
+
+            <div class="example-key">Evidence</div>
+            <div class="example-value">
+              Market research, competitor positioning, and initial customer
+              evidence.
+            </div>
+
+            <div class="example-key">Confidence</div>
+            <div class="example-value">
+              Medium
+            </div>
+
+            <div class="example-key">Strategic impact</div>
+            <div class="example-value">
+              High
+            </div>
+
+            <div class="example-key">Decision</div>
+            <div class="example-value">
+              Do not finalize the ICP yet.
+            </div>
+
+            <div class="example-key">Next action</div>
+            <div class="example-value">
+              Validate with target-customer interviews and a measurable
+              acquisition or landing-page experiment.
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       EVALUATION
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Evaluation</div>
+
+        <h2>
+          Measure decision quality—not just output quality.
+        </h2>
+
+        <p>
+          Evaluation is designed to test whether the system is grounded,
+          traceable, useful, and appropriately uncertain.
+        </p>
+      </div>
+
+      <div class="metric-grid">
+
+        <div class="metric">
+          <span class="metric-label">01</span>
+          <strong>Evidence coverage</strong>
+          <p>
+            What percentage of material claims can be traced to supporting
+            evidence?
+          </p>
+        </div>
+
+        <div class="metric">
+          <span class="metric-label">02</span>
+          <strong>Unsupported-claim rate</strong>
+          <p>
+            How often does the system make claims that exceed the available
+            evidence?
+          </p>
+        </div>
+
+        <div class="metric">
+          <span class="metric-label">03</span>
+          <strong>Human revision rate</strong>
+          <p>
+            How much of the generated recommendation requires substantive
+            correction?
+          </p>
+        </div>
+
+        <div class="metric">
+          <span class="metric-label">04</span>
+          <strong>Recommendation acceptance</strong>
+          <p>
+            Which recommendations survive human review and why?
+          </p>
+        </div>
+
+        <div class="metric">
+          <span class="metric-label">05</span>
+          <strong>Traceability</strong>
+          <p>
+            Can users understand which evidence and assumptions produced the
+            recommendation?
+          </p>
+        </div>
+
+        <div class="metric">
+          <span class="metric-label">06</span>
+          <strong>Actionability</strong>
+          <p>
+            Does the output lead to a clear, measurable next decision or
+            validation step?
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       TECH / ARCHITECTURE
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Architecture</div>
+
+        <h2>
+          Designed as a decision system, not an AI wrapper.
+        </h2>
+
+        <p>
+          The architecture separates product features, deterministic business
+          logic, structured AI workflows, data access, and evaluation so each
+          layer can be tested independently.
+        </p>
+      </div>
+
+      <div class="boundary">
+
+        <article class="boundary-card">
+          <div class="meta-label">Product layer</div>
+          <h3>Features</h3>
+          <ul>
+            <li>Intake</li>
+            <li>Evidence workspace</li>
+            <li>Segmentation</li>
+            <li>Strategy</li>
+            <li>Launch planning</li>
+          </ul>
+        </article>
+
+        <article class="boundary-card">
+          <div class="meta-label">Domain layer</div>
+          <h3>Business logic</h3>
+          <ul>
+            <li>Scoring</li>
+            <li>Decision rules</li>
+            <li>Workflow states</li>
+            <li>Validation</li>
+            <li>Approval requirements</li>
+          </ul>
+        </article>
+
+        <article class="boundary-card">
+          <div class="meta-label">Agent layer</div>
+          <h3>Bounded AI</h3>
+          <ul>
+            <li>Research synthesis</li>
+            <li>Structured outputs</li>
+            <li>Interpretation</li>
+            <li>Recommendation generation</li>
+            <li>Evidence-gap detection</li>
+          </ul>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       STATUS
+  ========================== -->
+
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-intro content">
+        <div class="eyebrow">Current status</div>
+
+        <h2>
+          Building the decision infrastructure before the agent layer.
+        </h2>
+
+        <p>
+          This project is currently in experience and data design. Planned
+          capabilities are intentionally presented as planned—not as completed
+          production functionality.
+        </p>
+      </div>
+
+      <div class="status-box">
+
+        <article class="status-column">
+          <h3>Completed design work</h3>
+
+          <ul class="checklist">
+            <li class="done">Project direction and scope</li>
+            <li class="done">Product brief</li>
+            <li class="done">Implementation phases</li>
+            <li class="done">Agent roles and boundaries</li>
+            <li class="done">System architecture</li>
+            <li class="done">Detailed data model</li>
+            <li class="done">Deterministic decision rules</li>
+            <li class="done">Data sourcing and provenance rules</li>
+          </ul>
+        </article>
+
+        <article class="status-column">
+          <h3>Next milestones</h3>
+
+          <ul class="checklist">
+            <li class="todo">Prepare synthetic B2B SaaS dataset</li>
+            <li class="todo">Implement stage diagnosis</li>
+            <li class="todo">Implement ICP scoring</li>
+            <li class="todo">Build evidence workflow</li>
+            <li class="todo">Build MVP interface</li>
+            <li class="todo">Evaluate agent outputs</li>
+            <li class="todo">Document case study results</li>
+          </ul>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       TAKEAWAY
+  ========================== -->
+
+  <section class="takeaway">
+    <div class="shell">
+
+      <div class="takeaway-box">
+        <div class="eyebrow">What this project demonstrates</div>
+
+        <h2>
+          I am interested in the layer between data, AI, and the business
+          decision that actually needs to get made.
+        </h2>
+
+        <p>
+          GTM Intelligence Agent brings together business analysis, growth
+          analytics, decision modeling, structured AI workflows, and
+          human-in-the-loop product design around one problem:
+          turning incomplete evidence into better next decisions.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+    <div class="shell footer-inner">
+      <div>
+        Jenny Park · GTM Intelligence Agent
+      </div>
+
+      <div>
+        Evidence → Decision → Action → Measurement → Learning
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
