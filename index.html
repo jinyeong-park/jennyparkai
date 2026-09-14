@@ -501,6 +501,7 @@
     .card:nth-child(3) .slot { animation-delay: 120ms; }
     .card:nth-child(4) .slot { animation-delay: 180ms; }
     .card:nth-child(5) .slot { animation-delay: 240ms; }
+    .card:nth-child(6) .slot { animation-delay: 300ms; }
 
     .card .card-meta {
       display: flex;
@@ -1132,6 +1133,33 @@
               <path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
+        </article>
+
+        <!-- Card 6: Hyundai -->
+        <article class="card card--half">
+          <figure class="slot" style="--slot-ratio: 16 / 9; --slot-focus: 50% 40%">
+            <picture>
+              <source srcset="images/02-cs-hyundai.webp" type="image/webp">
+              <img src="images/02-cs-hyundai.png"
+                   alt="A regional sales performance dashboard showing multi-market demand trends across Southeast Asia"
+                   width="1200" height="675"
+                   loading="lazy"
+                   decoding="async"
+                   onerror="this.remove()">
+            </picture>
+            <figcaption>Slot 02. images/02-cs-hyundai.webp, 1200x675. Prompt in images.md.</figcaption>
+          </figure>
+          <div class="card-meta">
+            <span class="card-tag">Sales Analytics</span>
+            <span class="card-dot" aria-hidden="true"></span>
+            <span class="card-tag">Hyundai Motor / Kolao Holdings</span>
+          </div>
+          <h3>Multi-Market Sales and Demand Analytics</h3>
+          <p class="card-summary">
+            Analyzed Hyundai and Kia sales, inventory, and model-level demand across Laos,
+            Myanmar, and Vietnam. Built executive KPI reporting workflows used by leadership
+            across three markets.
+          </p>
         </article>
 
       </div><!-- /work-grid -->
