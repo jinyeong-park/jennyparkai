@@ -25,15 +25,14 @@ st.caption(
     "This guide documents the real data sources, schema, and pipeline needed for production."
 )
 
-st.markdown(
+st.html(
     f"<div style='background:#eef4ff;border-left:4px solid {PRIMARY};"
     f"border-radius:0 6px 6px 0;padding:14px 18px;margin-bottom:24px;"
     f"font-size:0.84rem;color:#0b1f3a;line-height:1.6;'>"
     f"Five CSV tables power all six pages — <code>organizations</code>, <code>users</code>, "
     f"<code>event_logs</code>, <code>subscriptions</code>, and <code>experiment_assignments</code>. "
     f"In production these map 1-to-1 to warehouse tables from your product database, CRM, and billing system."
-    f"</div>",
-    unsafe_allow_html=True,
+    f"</div>"
 )
 
 # ── Section 1: Data requirements per page ────────────────────────────────────
@@ -97,7 +96,7 @@ pages = [
 ]
 
 for page in pages:
-    st.markdown(
+    st.html(
         f"<div style='background:#fff;border:1px solid #dce6f4;border-radius:8px;"
         f"border-left:4px solid {page['color']};padding:18px 22px;margin-bottom:12px;'>"
         f"<div style='font-weight:700;font-size:0.95rem;color:{page['color']};margin-bottom:10px;'>"
@@ -121,8 +120,7 @@ for page in pages:
         f"letter-spacing:0.09em;margin-bottom:5px;'>Note</div>"
         f"<div style='color:#0b1f3a;line-height:1.55;'>{page['note']}</div>"
         f"</div>"
-        f"</div></div>",
-        unsafe_allow_html=True,
+        f"</div></div>"
     )
 
 st.divider()
@@ -181,7 +179,7 @@ for i, (name, tools, color, desc) in enumerate(pipeline_steps):
         if i < len(pipeline_steps) - 1
         else ""
     )
-    st.markdown(
+    st.html(
         f"<div style='display:flex;align-items:flex-start;gap:16px;margin-bottom:4px;'>"
         f"<div style='display:flex;flex-direction:column;align-items:center;'>"
         f"<div style='width:36px;height:36px;border-radius:50%;background:{color};"
@@ -195,8 +193,7 @@ for i, (name, tools, color, desc) in enumerate(pipeline_steps):
         f"<div style='font-size:0.77rem;color:{MUTED};font-style:italic;margin-bottom:4px;'>{tools}</div>"
         f"<div style='font-size:0.82rem;color:#0b1f3a;'>{desc}</div>"
         f"</div>"
-        f"</div>",
-        unsafe_allow_html=True,
+        f"</div>"
     )
 
 st.divider()
@@ -293,7 +290,7 @@ for table in tables:
             f"</tr>"
             for c in table["columns"]
         )
-        st.markdown(
+        st.html(
             f"<table style='width:100%;border-collapse:collapse;'>"
             f"<thead><tr>"
             f"<th style='text-align:left;font-size:0.67rem;font-weight:700;text-transform:uppercase;"
@@ -307,8 +304,7 @@ for table in tables:
             f"border-bottom:2px solid #dce6f4;'>Description</th>"
             f"</tr></thead>"
             f"<tbody>{col_rows}</tbody>"
-            f"</table>",
-            unsafe_allow_html=True,
+            f"</table>"
         )
 
 st.divider()
@@ -328,23 +324,21 @@ simplifications = [
 cols = st.columns(2)
 for i, (color, title, desc) in enumerate(simplifications):
     with cols[i % 2]:
-        st.markdown(
+        st.html(
             f"<div style='background:#f6f9ff;border:1px solid #dce6f4;border-radius:8px;"
             f"border-left:3px solid {color};padding:14px 16px;margin-bottom:12px;'>"
             f"<div style='font-weight:700;font-size:0.82rem;color:{color};margin-bottom:4px;'>{title}</div>"
             f"<div style='font-size:0.8rem;color:#0b1f3a;line-height:1.55;'>{desc}</div>"
-            f"</div>",
-            unsafe_allow_html=True,
+            f"</div>"
         )
 
 st.divider()
-st.markdown(
+st.html(
     f"<div style='background:#fff8ec;border-left:3px solid {AMBER};"
     f"border-radius:0 6px 6px 0;padding:12px 16px;font-size:0.82rem;"
     f"color:#0b1f3a;line-height:1.6;'>"
     f"In production this dashboard would connect to a live dbt project with BigQuery or Snowflake. "
     f"The Streamlit app reads from Parquet snapshots of dbt mart models — keeping the app layer "
     f"stateless, fast, and testable independently of the warehouse."
-    f"</div>",
-    unsafe_allow_html=True,
+    f"</div>"
 )

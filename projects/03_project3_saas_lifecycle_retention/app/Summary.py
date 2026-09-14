@@ -238,11 +238,10 @@ def main() -> None:
         st.title("Product-Led SaaS Lifecycle & Retention Analytics")
         st.caption("Understand how accounts find value, activate, and stay so product teams can grow revenue and reduce churn.")
     with col_badge:
-        st.markdown(
+        st.html(
             "<div style='text-align:right;padding-top:20px'>"
             "<span style='background:#e8f0fe;color:#0f4c81;font-size:0.78rem;font-weight:600;"
-            "padding:5px 12px;border-radius:4px;'>Last 30 days</span></div>",
-            unsafe_allow_html=True,
+            "padding:5px 12px;border-radius:4px;'>Last 30 days</span></div>"
         )
 
     # ── KPI row ───────────────────────────────────────────────────────────────
@@ -354,16 +353,15 @@ def main() -> None:
             </tr>
             """
         table_html += "</tbody></table>"
-        st.markdown(table_html, unsafe_allow_html=True)
+        st.html(table_html)
     with bottom_columns[1]:
         st.subheader("Net Revenue Retention (NRR)")
         nrr_sign  = "▲" if nrr_delta >= 0 else "▼"
         nrr_color = GREEN if nrr_delta >= 0 else RED
-        st.markdown(
+        st.html(
             f"<span style='font-size:1.9rem;font-weight:800;color:{INK}'>{overall_nrr:.1f}%</span>"
             f"&nbsp;&nbsp;<span style='color:{nrr_color};font-size:0.9rem;font-weight:700'>"
-            f"{nrr_sign} {abs(nrr_delta):.1f}%</span>",
-            unsafe_allow_html=True,
+            f"{nrr_sign} {abs(nrr_delta):.1f}%</span>"
         )
         render_nrr(nrr_data)
     with bottom_columns[2]:
@@ -378,7 +376,7 @@ def main() -> None:
             for _, segment in risk.iterrows():
                 pct = segment["accounts"] / total_risk * 100
                 color = dot_colors.get(segment["risk_segment"], MUTED)
-                st.markdown(
+                st.html(
                     f"""
                     <div style="border:1px solid #dce6f4;border-radius:8px;padding:12px 14px;
                                 background:#ffffff;margin-bottom:10px;">
@@ -396,8 +394,7 @@ def main() -> None:
                         {pct:.1f}% &nbsp;·&nbsp; ${segment['mrr_at_risk']:,.0f} MRR
                       </div>
                     </div>
-                    """,
-                    unsafe_allow_html=True,
+                    """
                 )
 
 

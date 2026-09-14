@@ -47,7 +47,7 @@ def main() -> None:
     rates = segment_rates(accounts, field)
     rates.index = rates.index.map(lambda value: "Activated" if value is True else "Not activated" if value is False else value)
     st.caption("Each horizon uses only accounts old enough to have reached it.")
-    st.dataframe(rates.style.format("{:.1%}").background_gradient(cmap="Blues", axis=None, vmin=0, vmax=1), use_container_width=True)
+    st.dataframe(rates.style.format("{:.1%}", na_rep="—").background_gradient(cmap="Blues", axis=None, vmin=0, vmax=1, gmap=rates.fillna(0)), use_container_width=True)
 
     st.subheader("Paid retention by signup cohort")
     cohort_data = signup_cohort_retention(accounts)
