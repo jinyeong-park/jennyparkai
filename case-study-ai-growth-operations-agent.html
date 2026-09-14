@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI Growth Operations Agent — Jenny Park</title>
+
+  <meta
+    name="description"
+    content="Case study: Building a recommend-only AI growth operations agent for a simulated B2B SaaS company, using CPAO, creative fatigue detection, experiment guardrails, LTV:CAC, and auditable recommendations."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;family=Instrument+Serif&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --surface: #FFFFFF;
+      --raised: #F3F6F2;
+      --ink: #0C0C0C;
+      --muted: #59635B;
+      --accent: #1E6B4E;
+      --accent-strong: #164A36;
+      --accent-light: #DFF3E8;
+      --green: #107C41;
+      --green-light: #DCFCE7;
+      --amber: #92400E;
+      --amber-light: #FEF3C7;
+      --red: #991B1B;
+      --red-light: #FEE2E2;
+      --blue: #1D4ED8;
+      --blue-light: #DBEAFE;
+      --on-accent: #FFFFFF;
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Instrument Sans', system-ui, sans-serif;
+
+      --s1: 0.25rem;
+      --s2: 0.5rem;
+      --s3: 0.75rem;
+      --s4: 1rem;
+      --s5: 1.5rem;
+      --s6: 2rem;
+      --s7: 3rem;
+      --s8: 4rem;
+
+      --line: 1px solid #DDE5DD;
+      --t-fast: 150ms;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    code { font-family: 'SF Mono', Menlo, monospace; font-size: 0.875em; color: var(--accent); }
+    .wrap { max-width: 800px; margin-inline: auto; padding-inline: var(--s6); }
+
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--surface); border-bottom: var(--line); }
+    .site-header .wrap { max-width: 1200px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .wordmark { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; color: var(--ink); }
+    .header-back { display: inline-flex; align-items: center; gap: var(--s2); font-size: 0.875rem; font-weight: 500; color: var(--muted); transition: color var(--t-fast) var(--ease); }
+    .header-back:hover { color: var(--ink); }
+    .header-back svg { flex-shrink: 0; }
+
+    .cs-hero { padding-block: var(--s8) var(--s7); border-bottom: var(--line); }
+    .cs-kicker { display: flex; align-items: center; gap: var(--s3); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s5); }
+    .cs-kicker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+    .cs-hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; color: var(--ink); margin-bottom: var(--s5); max-width: 24ch; }
+    .cs-hero-lead { font-size: 1.0625rem; line-height: 1.7; color: var(--muted); max-width: 62ch; margin-bottom: var(--s6); }
+
+    .cs-meta-row { display: flex; flex-wrap: wrap; gap: var(--s5); padding-top: var(--s5); border-top: var(--line); }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .cs-meta-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .cs-meta-value { font-size: 0.9375rem; font-weight: 500; color: var(--ink); }
+
+    .stat-strip { background: var(--raised); border-bottom: var(--line); padding-block: var(--s6); }
+    .stat-strip .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s6); }
+    .stat-item { display: flex; flex-direction: column; gap: var(--s1); }
+    .stat-value { font-family: var(--font-display); font-size: 2.25rem; font-weight: 400; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.8125rem; color: var(--muted); line-height: 1.4; }
+
+    .cs-body { padding-block: var(--s8); }
+    .cs-section { margin-bottom: var(--s8); }
+    .cs-section:last-child { margin-bottom: 0; }
+    .cs-section-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s4); }
+    .cs-section h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.625rem; line-height: 1.2; color: var(--ink); margin-bottom: var(--s4); }
+    .cs-section h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: var(--s3); margin-top: var(--s5); }
+    .cs-section p { font-size: 1rem; line-height: 1.75; color: var(--muted); margin-bottom: var(--s4); }
+    .cs-section ul { list-style: none; margin-bottom: var(--s4); }
+    .cs-section ul li { font-size: 1rem; line-height: 1.7; color: var(--muted); padding-left: var(--s5); position: relative; margin-bottom: var(--s2); }
+    .cs-section ul li::before { content: '-'; position: absolute; left: 0; color: var(--accent); }
+    .cs-section ul li strong, .cs-section p strong { color: var(--ink); font-weight: 600; }
+    .cs-divider { border: none; border-top: var(--line); margin-block: var(--s7); }
+
+    .problem-block { background: var(--raised); border-left: 3px solid var(--accent); padding: var(--s5) var(--s6); margin-bottom: var(--s4); }
+    .problem-block p { margin-bottom: 0; color: var(--ink); }
+
+    .insight-callout, .governance-callout { border-left: 4px solid var(--accent); padding: var(--s4) var(--s5); margin: var(--s5) 0; }
+    .insight-callout { background: var(--accent-light); }
+    .governance-callout { background: var(--amber-light); border-left-color: #D97706; }
+    .ic-eyebrow { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--s2); }
+    .governance-callout .ic-eyebrow { color: var(--amber); }
+    .ic-text { font-size: 0.9375rem; font-weight: 500; color: var(--ink); line-height: 1.6; }
+
+    .channel-table { border: var(--line); margin-block: var(--s6); overflow-x: auto; }
+    .channel-table table { width: 100%; border-collapse: collapse; min-width: 640px; }
+    .channel-table th, .channel-table td { text-align: left; padding: var(--s3) var(--s4); border-bottom: var(--line); font-size: 0.875rem; color: var(--muted); vertical-align: top; }
+    .channel-table th { background: var(--raised); color: var(--ink); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .channel-table tr:last-child td { border-bottom: none; }
+    .channel-table td strong { color: var(--ink); }
+
+    .decision-pill { display: inline-flex; align-items: center; padding: 2px 8px; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+    .decision-pill--scale { color: var(--green); background: var(--green-light); }
+    .decision-pill--hold { color: var(--red); background: var(--red-light); }
+    .decision-pill--observe { color: var(--blue); background: var(--blue-light); }
+
+    .reversal-card { border: var(--line); margin-block: var(--s6); background: var(--surface); }
+    .reversal-header { display: flex; justify-content: space-between; align-items: center; gap: var(--s4); padding: var(--s4) var(--s5); background: var(--raised); border-bottom: var(--line); flex-wrap: wrap; }
+    .reversal-title { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
+    .reversal-badge { font-size: 0.6875rem; font-weight: 700; color: var(--on-accent); background: var(--accent); padding: 2px 9px; white-space: nowrap; }
+    .reversal-body { padding: var(--s5); }
+    .bar-metric { margin-bottom: var(--s5); }
+    .bar-metric:last-child { margin-bottom: 0; }
+    .bar-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s3); }
+    .bar-row { display: grid; grid-template-columns: 96px 1fr 84px; gap: var(--s3); align-items: center; margin-bottom: var(--s2); }
+    .bar-label { font-size: 0.8125rem; font-weight: 600; color: var(--ink); }
+    .bar-track { height: 24px; background: var(--raised); position: relative; overflow: hidden; }
+    .bar-fill { height: 100%; display: flex; align-items: center; padding-left: var(--s2); min-width: 38px; }
+    .bar-fill--good { background: var(--accent); }
+    .bar-fill--warn { background: #D97706; }
+    .bar-fill--bad { background: #DC2626; }
+    .bar-fill-label { font-size: 0.75rem; font-weight: 700; color: #FFFFFF; white-space: nowrap; }
+    .bar-note { font-size: 0.8125rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
+
+    .experiment-grid, .architecture-grid, .impact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s4); margin-block: var(--s5); }
+    .impact-grid { grid-template-columns: repeat(3, 1fr); }
+    .experiment-card, .architecture-card, .impact-card { border: var(--line); padding: var(--s5); background: var(--surface); }
+    .experiment-card--running { border-top: 3px solid var(--accent); }
+    .experiment-card--evaluating { border-top: 3px solid #D97706; }
+    .card-eyebrow { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s3); }
+    .card-title { font-size: 0.9375rem; font-weight: 600; color: var(--ink); margin-bottom: var(--s2); }
+    .card-detail { font-size: 0.875rem; line-height: 1.6; color: var(--muted); margin-bottom: var(--s3); }
+    .metric-chip { display: inline-flex; font-size: 0.75rem; font-weight: 600; color: var(--accent); background: var(--accent-light); padding: 2px 8px; }
+    .architecture-card { display: grid; grid-template-columns: 40px 1fr; gap: var(--s4); }
+    .architecture-num { font-family: var(--font-display); font-size: 1.875rem; color: var(--accent); line-height: 1; }
+    .impact-card .ic-value { font-family: var(--font-display); font-size: 2rem; color: var(--accent); line-height: 1; margin-bottom: var(--s2); }
+    .impact-card .ic-label { font-size: 0.875rem; color: var(--ink); font-weight: 600; margin-bottom: var(--s1); }
+    .impact-card .ic-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
+
+    .fatigue-visual { border: var(--line); margin-block: var(--s6); background: var(--surface); }
+    .fatigue-header { padding: var(--s4) var(--s5); background: var(--raised); border-bottom: var(--line); }
+    .fatigue-title { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
+    .fatigue-body { padding: var(--s5); }
+    .fatigue-bar { display: grid; grid-template-columns: 17.8fr 82.2fr; height: 36px; overflow: hidden; margin-bottom: var(--s3); }
+    .fatigue-seg { display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #FFFFFF; }
+    .fatigue-seg--flagged { background: #DC2626; }
+    .fatigue-seg--ok { background: var(--accent); }
+    .fatigue-legend { display: flex; flex-wrap: wrap; gap: var(--s5); font-size: 0.75rem; color: var(--muted); }
+    .legend-item { display: flex; align-items: center; gap: var(--s2); }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    .tech-grid { display: flex; flex-wrap: wrap; gap: var(--s2); }
+    .tech-tag { font-size: 0.75rem; font-weight: 500; color: var(--muted); background: var(--raised); border: var(--line); padding: var(--s1) var(--s3); letter-spacing: 0.02em; }
+
+    .btn { display: inline-flex; align-items: center; gap: var(--s2); font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; padding: var(--s3) var(--s5); cursor: pointer; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); border: 1.5px solid transparent; white-space: nowrap; }
+    .btn--primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    .btn--primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+    .btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn--secondary:hover { background: var(--ink); color: var(--surface); }
+
+    .cs-footer-cta { background: var(--raised); border-top: var(--line); padding-block: var(--s7); }
+    .cs-footer-cta .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--s6); flex-wrap: wrap; }
+    .cs-footer-cta h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.375rem; color: var(--ink); margin-bottom: var(--s2); }
+    .cs-footer-cta p { font-size: 0.9375rem; color: var(--muted); }
+    .site-footer { padding-block: var(--s6); border-top: var(--line); }
+    .site-footer .wrap { max-width: 1200px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s4); }
+    .footer-name { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; color: var(--ink); }
+    .footer-location { font-size: 0.8125rem; color: var(--muted); }
+
+    @media (max-width: 720px) {
+      .wrap { padding-inline: var(--s4); }
+      .cs-hero { padding-block: var(--s6) var(--s5); }
+      .stat-strip .wrap, .experiment-grid, .architecture-grid, .impact-grid { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 80px 1fr; }
+      .bar-note { grid-column: 2; }
+      .architecture-card { grid-template-columns: 1fr; }
+      .cs-footer-cta .wrap { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="wordmark">Jenny Park</a>
+      <a href="index.html#work" class="header-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to work
+      </a>
+    </div>
+  </header>
+
+  <section class="cs-hero">
+    <div class="wrap">
+      <p class="cs-kicker">
+        <span>AI Growth Operations</span>
+        <span class="cs-kicker-dot" aria-hidden="true"></span>
+        <span>B2B SaaS</span>
+      </p>
+
+      <h1>AI Growth Operations Agent for Paid Acquisition and Creative Testing</h1>
+
+      <p class="cs-hero-lead">
+        Built a recommend-only growth operations system for a simulated B2B SaaS company, connecting AI-assisted creative generation, experiment governance, paid acquisition analytics, retention economics, and auditable budget recommendations.
+      </p>
+
+      <div class="cs-meta-row">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Focus</span>
+          <span class="cs-meta-value">Creative Ops, Acquisition Quality, LTV:CAC</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Growth Analyst &amp; AI Workflow Builder</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Methods</span>
+          <span class="cs-meta-value">CPAO, Cohort Retention, Z-Test, Fatigue Detection, Policy Engine</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">Python, DuckDB, Streamlit, Plotly, pytest, LLM Mock Provider</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stat-strip" aria-label="Key results">
+    <div class="wrap">
+      <div class="stat-item">
+        <span class="stat-value">$143</span>
+        <span class="stat-label">TikTok cost per activated owner, outperforming META's $666 CPAO in synthetic data</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">17.8%</span>
+        <span class="stat-label">Creatives flagged for fatigue after a greater than 25% CTR drop from peak</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">2.03x</span>
+        <span class="stat-label">TikTok LTV:CAC versus META's 0.48x, triggering a scale candidate recommendation</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="cs-body">
+    <div class="wrap">
+      <section class="cs-section">
+        <p class="cs-section-label">The Problem</p>
+        <h2>Cheap Trials Were Masking Expensive, Low-Quality Acquisition.</h2>
+        <div class="problem-block">
+          <p><strong>Wrong Optimization Metric:</strong> Trial CAC rewarded cheap signups, even if those owners never launched a campaign. The team needed CPAO: cost per owner who activated by launching a marketing campaign within 14 days.</p>
+        </div>
+        <div class="problem-block">
+          <p><strong>Creative Fatigue Without a System:</strong> Performance was decaying after early creative wins, but there was no consistent rule for separating a weak channel from a tired asset.</p>
+        </div>
+        <div class="problem-block">
+          <p><strong>AI Without Governance Risked Becoming Noise:</strong> A useful agent needed to generate briefs and explanations, but budget recommendations had to remain deterministic, auditable, and human-approved.</p>
+        </div>
+        <p>
+          Tablr is a fictional B2B SaaS product for independent restaurant owners. The project simulates 12 weeks of paid media, product activation, subscription, and revenue data to test whether a growth team can use AI to move faster without giving up measurement discipline.
+        </p>
+      </section>
+
+      <hr class="cs-divider">
+
+      <section class="cs-section">
+        <p class="cs-section-label">Measurement Strategy</p>
+        <h2>CPAO Reframed the Channel Decision.</h2>
+        <p>
+          Trial CAC was treated as context, not the decision metric. The primary metric became Cost Per Activated Owner, defined as spend divided by owners who launched their first Tablr campaign within 14 days of trial signup. That behavioral milestone is much closer to future subscription value than a top-of-funnel signup.
+        </p>
+
+        <div class="reversal-card" aria-label="Trial CAC and CPAO channel comparison">
+          <div class="reversal-header">
+            <div class="reversal-title">The META Reversal Story</div>
+            <div class="reversal-badge">Trial CAC hides downstream quality</div>
+          </div>
+          <div class="reversal-body">
+            <div class="bar-metric">
+              <div class="bar-title">Trial CAC, lower is better</div>
+              <div class="bar-row">
+                <div class="bar-label">TikTok</div>
+                <div class="bar-track"><div class="bar-fill bar-fill--good" style="width:23%;"><span class="bar-fill-label">$12</span></div></div>
+                <div class="bar-note">Best</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label">Search</div>
+                <div class="bar-track"><div class="bar-fill bar-fill--good" style="width:40%;"><span class="bar-fill-label">$21</span></div></div>
+                <div class="bar-note">Solid</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label">META</div>
+                <div class="bar-track"><div class="bar-fill bar-fill--warn" style="width:100%;"><span class="bar-fill-label">$52</span></div></div>
+                <div class="bar-note">Costly</div>
+              </div>
+            </div>
+
+            <div class="bar-metric">
+              <div class="bar-title">CPAO, lower is better</div>
+              <div class="bar-row">
+                <div class="bar-label">TikTok</div>
+                <div class="bar-track"><div class="bar-fill bar-fill--good" style="width:21%;"><span class="bar-fill-label">$143</span></div></div>
+                <div class="bar-note">Scale</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label">Search</div>
+                <div class="bar-track"><div class="bar-fill bar-fill--warn" style="width:37%;"><span class="bar-fill-label">$248</span></div></div>
+                <div class="bar-note">Observe</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label">META</div>
+                <div class="bar-track"><div class="bar-fill bar-fill--bad" style="width:100%;"><span class="bar-fill-label">$666</span></div></div>
+                <div class="bar-note">Hold</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="insight-callout">
+          <div class="ic-eyebrow">Key Insight</div>
+          <div class="ic-text">META was not just more expensive at the trial stage. Its CPAO was 4.7x TikTok's, which means it acquired restaurant owners who were harder to activate. Optimizing on trial CAC alone would have kept spend flowing toward the wrong channel.</div>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <section class="cs-section">
+        <p class="cs-section-label">Acquisition Quality</p>
+        <h2>The Decision Engine Ranked Channels by Activated Value, Not Click Volume.</h2>
+        <div class="channel-table" aria-label="Channel scorecard">
+          <table>
+            <thead>
+              <tr>
+                <th>Channel</th>
+                <th>Trial CAC</th>
+                <th>CPAO</th>
+                <th>LTV:CAC</th>
+                <th>Recommendation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>TikTok</strong></td>
+                <td>$12</td>
+                <td>$143</td>
+                <td>2.03x</td>
+                <td><span class="decision-pill decision-pill--scale">Scale Candidate</span></td>
+              </tr>
+              <tr>
+                <td><strong>Google Search</strong></td>
+                <td>$21</td>
+                <td>$248</td>
+                <td>0.96x</td>
+                <td><span class="decision-pill decision-pill--observe">Observe</span></td>
+              </tr>
+              <tr>
+                <td><strong>META</strong></td>
+                <td>$52</td>
+                <td>$666</td>
+                <td>0.48x</td>
+                <td><span class="decision-pill decision-pill--hold">Hold</span></td>
+              </tr>
+              <tr>
+                <td><strong>LinkedIn</strong></td>
+                <td>No data</td>
+                <td>No data</td>
+                <td>No data</td>
+                <td><span class="decision-pill decision-pill--observe">Insufficient Data</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          At a $150K monthly budget scenario, the allocator recommended increasing TikTok to 55.8% of spend while holding META to 12.0%. The system did not make the budget change. It produced a recommendation package with evidence, risk, and next-test logic for human review.
+        </p>
+      </section>
+
+      <hr class="cs-divider">
+
+      <section class="cs-section">
+        <p class="cs-section-label">Creative Intelligence</p>
+        <h2>AI Generated Testable Briefs, Then Analytics Decided What Deserved Budget.</h2>
+        <p>
+          Sixteen creative briefs were generated across restaurant owner personas, hook types, channels, and funnel stages. Each creative preserved the strategy behind it: persona, pain point, value proposition, opening hook, proof type, variable tested, control ID, and compliance notes.
+        </p>
+
+        <div class="channel-table" aria-label="Creative hook performance">
+          <table>
+            <thead>
+              <tr>
+                <th>Hook Type</th>
+                <th>Trial CAC</th>
+                <th>Strategic Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>CONTRAST</strong></td>
+                <td>$216</td>
+                <td>Before-and-after framing for skeptical independent owners</td>
+              </tr>
+              <tr>
+                <td><strong>OUTCOME</strong></td>
+                <td>$234</td>
+                <td>Revenue result focus for owners already seeking growth</td>
+              </tr>
+              <tr>
+                <td><strong>SOCIAL_PROOF</strong></td>
+                <td>$241</td>
+                <td>Peer restaurant success for evidence-driven operators</td>
+              </tr>
+              <tr>
+                <td><strong>DEMONSTRATION</strong></td>
+                <td>$258</td>
+                <td>Dashboard setup walkthrough for hands-on evaluators</td>
+              </tr>
+              <tr>
+                <td><strong>FOMO</strong></td>
+                <td>$271</td>
+                <td>Competitive urgency for growth-minded owners</td>
+              </tr>
+              <tr>
+                <td><strong>PROBLEM_AGITATE</strong></td>
+                <td>$289</td>
+                <td>Pain-point amplification for cold audiences</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fatigue-visual" aria-label="Creative fatigue distribution">
+          <div class="fatigue-header">
+            <div class="fatigue-title">Creative Fatigue Detection - 90 Simulated Creatives</div>
+          </div>
+          <div class="fatigue-body">
+            <div class="fatigue-bar">
+              <div class="fatigue-seg fatigue-seg--flagged">17.8%</div>
+              <div class="fatigue-seg fatigue-seg--ok">82.2%</div>
+            </div>
+            <div class="fatigue-legend">
+              <div class="legend-item"><span class="legend-dot" style="background:#DC2626;"></span>16 creatives flagged after greater than 25% CTR decay</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#1E6B4E;"></span>74 creatives monitored without refresh trigger</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="insight-callout">
+          <div class="ic-eyebrow">Operational Rule</div>
+          <div class="ic-text">Fatigue flags trigger creative refresh recommendations, not automatic budget shifts. The system separates "this asset is tiring" from "this channel no longer works."</div>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <section class="cs-section">
+        <p class="cs-section-label">Experiment Governance</p>
+        <h2>Every Test Had a Primary Metric, Guardrail, and Decision Rule.</h2>
+        <p>
+          The experiment registry prevented the agent from treating every performance lift as a win. A result had to clear both statistical confidence and practical significance before being promoted, and guardrail violations automatically downgraded scale recommendations to hold.
+        </p>
+        <div class="experiment-grid">
+          <div class="experiment-card experiment-card--running">
+            <div class="card-eyebrow">exp_001 - Running</div>
+            <div class="card-title">META Hook Type Test</div>
+            <div class="card-detail">CONTRAST vs OUTCOME for scrappy independent owners. Tests whether the META problem is creative-solvable or channel-structural.</div>
+            <span class="metric-chip">Primary: activation rate</span>
+          </div>
+          <div class="experiment-card experiment-card--running">
+            <div class="card-eyebrow">exp_002 - Running</div>
+            <div class="card-title">Messaging Territory</div>
+            <div class="card-detail">SOCIAL_PROOF vs FOMO for growth-minded owners, with CPAO as a guardrail so a click lift cannot hide poor activation.</div>
+            <span class="metric-chip">Guardrail: CPAO</span>
+          </div>
+          <div class="experiment-card experiment-card--running">
+            <div class="card-eyebrow">exp_003 - Running</div>
+            <div class="card-title">TikTok Format Test</div>
+            <div class="card-detail">UGC video vs static creative for new owners. CTR is primary, but activation rate prevents optimization for empty clicks.</div>
+            <span class="metric-chip">Guardrail: activation rate</span>
+          </div>
+          <div class="experiment-card experiment-card--evaluating">
+            <div class="card-eyebrow">exp_004 - Evaluating</div>
+            <div class="card-title">LinkedIn Channel Test</div>
+            <div class="card-detail">Job-title targeting vs META lookalike for delivery-heavy owners, designed around CPAO and activation quality.</div>
+            <span class="metric-chip">Primary: CPAO</span>
+          </div>
+        </div>
+        <div class="governance-callout">
+          <div class="ic-eyebrow">Decision Gate</div>
+          <div class="ic-text">A test needed 95% confidence and practical significance against the minimum detectable effect before action. The agent could explain the result, but it could not overrule the policy engine.</div>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <section class="cs-section">
+        <p class="cs-section-label">Architecture</p>
+        <h2>The LLM Could Explain Decisions, Not Make Them.</h2>
+        <div class="architecture-grid">
+          <div class="architecture-card">
+            <div class="architecture-num">1</div>
+            <div>
+              <div class="card-eyebrow">Analytics Engine</div>
+              <div class="card-title">Python + DuckDB + Parquet</div>
+              <div class="card-detail">Computes channel scorecards, creative diagnostics, cohort retention, LTV:CAC, and budget scenarios from reproducible synthetic data.</div>
+            </div>
+          </div>
+          <div class="architecture-card">
+            <div class="architecture-num">2</div>
+            <div>
+              <div class="card-eyebrow">Policy Engine</div>
+              <div class="card-title">Deterministic Rules</div>
+              <div class="card-detail">Sets recommendation states using explicit thresholds: LTV:CAC, M6 maturity, retention guardrails, trial floors, and missing-data checks.</div>
+            </div>
+          </div>
+          <div class="architecture-card">
+            <div class="architecture-num">3</div>
+            <div>
+              <div class="card-eyebrow">LLM Analyst Layer</div>
+              <div class="card-title">Narrative Only</div>
+              <div class="card-detail">Receives the policy state plus evidence dictionary, then writes rationale, tradeoffs, risks, and next experiment hypotheses.</div>
+            </div>
+          </div>
+          <div class="architecture-card">
+            <div class="architecture-num">4</div>
+            <div>
+              <div class="card-eyebrow">Governance Layer</div>
+              <div class="card-title">Recommend Only</div>
+              <div class="card-detail">Writes auditable recommendations and disabled review actions. No ad platform mutation, no budget change, no campaign pause.</div>
+            </div>
+          </div>
+        </div>
+        <div class="governance-callout">
+          <div class="ic-eyebrow">Safety Constraint</div>
+          <div class="ic-text"><code>RECOMMEND_ONLY=True</code> is enforced throughout the system. The output is a decision packet for a human operator, not an autonomous media-buying agent.</div>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <section class="cs-section">
+        <p class="cs-section-label">Impact</p>
+        <h2>What the System Made Visible</h2>
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="ic-value">7.6%</div>
+            <div class="ic-label">Attribution gap surfaced</div>
+            <div class="ic-desc">152 accounts were marked UNKNOWN, keeping data quality visible instead of burying it in blended metrics.</div>
+          </div>
+          <div class="impact-card">
+            <div class="ic-value">55.8%</div>
+            <div class="ic-label">Recommended TikTok spend share</div>
+            <div class="ic-desc">Budget moved toward the channel with stronger activated-owner economics in the $150K scenario.</div>
+          </div>
+          <div class="impact-card">
+            <div class="ic-value">4</div>
+            <div class="ic-label">Governed experiments</div>
+            <div class="ic-desc">Each test defined a variable, primary metric, guardrail, evidence threshold, and decision rule.</div>
+          </div>
+        </div>
+        <p>
+          The most important output was not an AI-written ad. It was a repeatable operating model: generate strategically structured creative, measure quality past the click, detect fatigue, apply deterministic policy rules, and ask a human to approve the next move.
+        </p>
+      </section>
+
+      <hr class="cs-divider">
+
+      <section class="cs-section">
+        <p class="cs-section-label">Limitations</p>
+        <h2>The Simulation Is Honest About What It Cannot Prove.</h2>
+        <ul>
+          <li><strong>Synthetic data:</strong> All restaurant owners, campaigns, spend, revenue, and outcomes are simulated for portfolio demonstration.</li>
+          <li><strong>Short observation window:</strong> The 12-week period is not long enough for mature M6 retention on newer cohorts.</li>
+          <li><strong>No live platform mutations:</strong> The project does not call Meta Ads, TikTok, Google Ads, or LinkedIn campaign APIs to spend money or alter campaigns.</li>
+          <li><strong>Mock analyst layer:</strong> The LLM-style narrative layer is a controlled provider pattern, not a production deployment with full prompt evaluation.</li>
+          <li><strong>Attribution remains imperfect:</strong> UNKNOWN source records are preserved as a visible data quality issue, not forcibly reassigned.</li>
+        </ul>
+      </section>
+
+      <hr class="cs-divider">
+
+      <section class="cs-section">
+        <p class="cs-section-label">Tech Stack</p>
+        <h2>Tools &amp; Methods</h2>
+        <div class="tech-grid">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">DuckDB</span>
+          <span class="tech-tag">Parquet</span>
+          <span class="tech-tag">pandas</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Plotly</span>
+          <span class="tech-tag">pytest</span>
+          <span class="tech-tag">Synthetic Data Generation</span>
+          <span class="tech-tag">Creative Brief Schema</span>
+          <span class="tech-tag">Experiment Registry</span>
+          <span class="tech-tag">Two-Proportion Z-Test</span>
+          <span class="tech-tag">Creative Fatigue Detection</span>
+          <span class="tech-tag">Cohort Retention</span>
+          <span class="tech-tag">LTV:CAC Modeling</span>
+          <span class="tech-tag">Policy-Based Decisioning</span>
+          <span class="tech-tag">Recommend-Only Governance</span>
+        </div>
+      </section>
+
+      <hr class="cs-divider">
+
+      <section class="cs-section">
+        <p class="cs-section-label">Source Code</p>
+        <h2>Code &amp; Documentation</h2>
+        <p>
+          Full project documentation, synthetic data generation, Streamlit dashboard code, decisioning logic, and tests are available on GitHub.
+        </p>
+        <a
+          href="https://github.com/jinyeong-park/ai-growth-operations-agent"
+          target="_blank"
+          rel="noopener"
+          class="btn btn--secondary"
+        >
+          View on GitHub
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <section class="cs-footer-cta" aria-label="Contact">
+    <div class="wrap">
+      <div>
+        <h3>Interested in working together?</h3>
+        <p>Open to Data Analyst, Product Analyst, Growth Analyst, and Revenue Analytics roles in the Bay Area or remote.</p>
+      </div>
+      <div style="display:flex; gap:var(--s3); flex-wrap:wrap;">
+        <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
+        <a href="index.html#work" class="btn btn--secondary">See more work</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <div class="footer-name">Jenny Park</div>
+        <div class="footer-location">San Francisco Bay Area</div>
+      </div>
+      <a
+        href="https://www.linkedin.com/in/jennypark7/"
+        target="_blank"
+        rel="noopener"
+        style="font-size:0.8125rem;font-weight:500;color:var(--muted);"
+      >
+        LinkedIn
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
