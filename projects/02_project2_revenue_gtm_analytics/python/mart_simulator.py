@@ -23,6 +23,12 @@ import pandas as pd
 
 RAW_DIR = os.path.join(os.path.dirname(__file__), "../data/raw")
 
+# Fixed snapshot date — keeps risk/staleness metrics stable relative to the
+# synthetic data range (close dates go up to ~2026-03). Using today() would
+# classify every open deal as past-due once the real calendar moves past the
+# data window.
+SNAPSHOT_DATE = pd.Timestamp("2025-12-31")
+
 
 # ---------------------------------------------------------------------------
 # Raw loaders
@@ -73,7 +79,7 @@ def build_stg_opps() -> pd.DataFrame:
     df["opportunity_created_at"] = pd.to_datetime(df["opportunity_created_at"])
     df["close_date"] = pd.to_datetime(df["close_date"])
     df["last_activity_at"] = pd.to_datetime(df["last_activity_at"])
-    today = pd.Timestamp.today().normalize()
+    today = SNAPSHOT_DATE
 
     df["is_won"] = df["opportunity_stage"] == "Closed-Won"
     df["is_lost"] = df["opportunity_stage"] == "Closed-Lost"
@@ -142,8 +148,7 @@ def build_stg_billing() -> pd.DataFrame:
 def build_stg_customer_success() -> pd.DataFrame:
     df = load_raw("raw_customer_success")
     df["renewal_date"] = pd.to_datetime(df["renewal_date"])
-    today = pd.Timestamp.today().normalize()
-    df["days_to_renewal"] = (df["renewal_date"] - today).dt.days
+    df["days_to_renewal"] = (df["renewal_date"] - SNAPSHOT_DATE).dt.days
 
     def health_tier(score):
         if score >= 70:
@@ -421,7 +426,7 @@ def build_fct_pipeline() -> pd.DataFrame:
         return "On Track"
 
     df["pipeline_risk"] = df.apply(risk, axis=1)
-    df["snapshot_date"] = pd.Timestamp.today().normalize()
+    df["snapshot_date"] = SNAPSHOT_DATE
     return df
 
 
