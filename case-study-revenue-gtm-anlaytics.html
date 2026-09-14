@@ -992,6 +992,7 @@
   <header class="site-header">
     <div class="wrap">
       <a href="index.html" class="wordmark">Jenny Park</a>
+
       <nav class="site-nav" aria-label="Case study navigation">
         <a href="index.html#work">Work</a>
         <a href="index.html#about">About</a>
@@ -1000,219 +1001,375 @@
     </div>
   </header>
 
+
   <!-- HERO -->
   <section class="cs-hero">
     <div class="wrap">
 
       <p class="cs-kicker">
-        <span>B2B Revenue Analytics</span>
+        <span>Revenue Intelligence · GTM Analytics</span>
         <span class="cs-kicker-dot" aria-hidden="true"></span>
       </p>
 
       <h1>Revenue Intelligence &amp; GTM Analytics</h1>
 
       <p class="cs-hero-lead">
-        Built a five-page Streamlit intelligence layer that traces the full revenue lifecycle — from first marketing touch to collected cash — surfacing a $2.1M gap between bookings and realised revenue, diagnosing where the GTM funnel leaks, and flagging 136 zombie pipeline deals before the next forecast cycle.
+        Built a revenue intelligence system that connects CRM, billing,
+        pipeline, and customer health data to show how booked revenue
+        converts into collected cash, where revenue is at risk, and which
+        teams need to act.
       </p>
 
-      <div class="tag-row" aria-label="Capabilities demonstrated">
+      <p class="cs-hero-lead">
+        The analysis surfaced a <strong>$2.1M gap</strong> between bookings
+        and collected cash, identified <strong>136 stale pipeline deals</strong>,
+        and created a shared decision layer for Finance, RevOps, Marketing,
+        and Customer Success.
+      </p>
+
+      <div class="tag-row">
         <span class="tag">Revenue Analytics</span>
-        <span class="tag">GTM Strategy</span>
-        <span class="tag">Decision Systems</span>
-        <span class="tag">Pipeline Risk</span>
+        <span class="tag">GTM Analytics</span>
+        <span class="tag">Data Modeling</span>
+        <span class="tag">Pipeline Intelligence</span>
         <span class="tag">Customer Health</span>
       </div>
 
       <div class="cs-meta-row">
 
         <div class="cs-meta-item">
-          <span class="cs-meta-label">Project</span>
-          <span class="cs-meta-value">Revenue Intelligence System</span>
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Revenue &amp; Growth Analytics</span>
         </div>
 
         <div class="cs-meta-item">
-          <span class="cs-meta-label">Role</span>
-          <span class="cs-meta-value">Revenue &amp; Marketing Analyst</span>
+          <span class="cs-meta-label">Business Questions</span>
+          <span class="cs-meta-value">
+            Revenue Leakage · Funnel Conversion · Pipeline Risk · Retention
+          </span>
         </div>
 
         <div class="cs-meta-item">
           <span class="cs-meta-label">Methods</span>
-          <span class="cs-meta-value">Revenue Reconciliation, GTM Funnel, Pipeline Risk, NRR</span>
+          <span class="cs-meta-value">
+            Revenue Reconciliation · GTM Funnel · Risk Scoring · NRR
+          </span>
         </div>
 
         <div class="cs-meta-item">
           <span class="cs-meta-label">Tools</span>
-          <span class="cs-meta-value">SQL, Python, dbt, Streamlit, Plotly</span>
+          <span class="cs-meta-value">
+            SQL · dbt · Python · Streamlit · Plotly
+          </span>
         </div>
 
       </div>
-
     </div>
   </section>
 
+
   <!-- PROJECT SNAPSHOT -->
-  <section class="snapshot-section" aria-label="Project snapshot">
+  <section class="snapshot-section">
     <div class="wrap">
+
       <div class="snapshot-grid">
-        <article class="snapshot-card">
-          <p class="cs-section-label">Project Snapshot</p>
-          <h2>The Challenge</h2>
-          <p>
-            Finance, RevOps, Marketing Ops, and Customer Success each had a valid metric, but
-            no shared model connected bookings, billed revenue, collected cash, pipeline risk,
-            and renewal exposure.
-          </p>
-        </article>
 
         <article class="snapshot-card">
           <p class="cs-section-label">Project Snapshot</p>
-          <h2>The Approach</h2>
+
+          <h2>The Challenge</h2>
+
           <p>
-            I designed a revenue intelligence layer that standardizes raw GTM data in dbt,
-            turns it into decision-ready marts, and surfaces team-specific actions through a
-            five-page Streamlit dashboard.
+            Finance, RevOps, Marketing, and Customer Success were each
+            measuring a different part of the revenue lifecycle.
+          </p>
+
+          <p>
+            CRM showed bookings. Billing showed invoices and payments.
+            Sales tracked pipeline. Customer Success tracked retention
+            and account health.
+          </p>
+
+          <p>
+            Each metric was useful on its own, but there was no shared
+            model showing where expected revenue was being created,
+            lost, delayed, or put at risk.
           </p>
         </article>
+
+
+        <article class="snapshot-card">
+          <p class="cs-section-label">Project Snapshot</p>
+
+          <h2>The Approach</h2>
+
+          <p>
+            I designed a shared revenue model connecting acquisition,
+            sales pipeline, contracts, billing, payments, and customer
+            health.
+          </p>
+
+          <p>
+            On top of that model, I created decision-focused analytical
+            views for Finance, Marketing, RevOps, and Customer Success —
+            each answering a different business question from the same
+            underlying source of truth.
+          </p>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <!-- STAT STRIP -->
-  <div class="stat-strip" aria-label="Key results">
+
+  <!-- KEY RESULTS -->
+  <div class="stat-strip">
     <div class="wrap">
 
       <div class="stat-item">
         <span class="stat-value">82%</span>
-        <span class="stat-label">Cash collection rate against CRM bookings</span>
+        <span class="stat-label">
+          Cash collection rate against CRM bookings
+        </span>
       </div>
 
       <div class="stat-item">
         <span class="stat-value">$2.1M</span>
-        <span class="stat-label">Revenue gap quantified across three causes</span>
+        <span class="stat-label">
+          Revenue gap quantified between bookings and cash
+        </span>
       </div>
 
       <div class="stat-item">
-        <span class="stat-value">5 pages</span>
-        <span class="stat-label">Dashboard layers — Executive to Diagnostic</span>
+        <span class="stat-value">136</span>
+        <span class="stat-label">
+          Pipeline deals with no activity for 90+ days
+        </span>
       </div>
 
     </div>
   </div>
 
+
   <!-- BODY -->
   <main class="cs-body">
     <div class="wrap">
 
-      <!-- THE PROBLEM -->
+
+      <!-- PROBLEM -->
       <section class="cs-section">
 
         <p class="cs-section-label">The Problem</p>
 
-        <h2>Finance, RevOps, and CS Were Each Looking at a Different Number</h2>
+        <h2>
+          Every Team Had a Number. No One Had the Full Revenue Story.
+        </h2>
 
         <div class="failure-grid">
-        <div class="problem-block">
-          <p>
+
+          <div class="problem-block">
             <span class="problem-index">01</span>
-            <strong>Revenue Fragmentation:</strong>
-            Finance tracked CRM bookings ($11.8M). RevOps tracked weighted pipeline ($9.8M). Customer Success monitored NRR on the renewal base. No single view connected them, and no one could answer the CFO's question: how much of our booked revenue will we actually collect?
-          </p>
-        </div>
 
-        <div class="problem-block">
-          <p>
+            <p>
+              <strong>Fragmented revenue definitions</strong><br>
+              CRM bookings, invoices, cash collection, weighted pipeline,
+              and recurring revenue were measured independently.
+            </p>
+          </div>
+
+          <div class="problem-block">
             <span class="problem-index">02</span>
-            <strong>Invisible Pipeline Risk:</strong>
-            The CRM contained deals with no activity in 90+ days that were still counted in the forecast. $4.0M in pipeline carried two or more risk flags. Executives were using a raw pipeline number that overstated closeable revenue by over $23M.
-          </p>
-        </div>
 
-        <div class="problem-block">
-          <p>
+            <p>
+              <strong>Pipeline risk was hidden</strong><br>
+              Old and inactive deals remained in open pipeline, making the
+              headline pipeline number look stronger than the underlying
+              opportunity set.
+            </p>
+          </div>
+
+          <div class="problem-block">
             <span class="problem-index">03</span>
-            <strong>No Decision Ownership:</strong>
-            Revenue leakage existed across discounts, billing gaps, payment risk, lead matching,
-            and renewal health, but the reporting layer did not show which team owned which fix.
-          </p>
-        </div>
+
+            <p>
+              <strong>Revenue problems lacked ownership</strong><br>
+              Discounts, billing gaps, payment risk, lead matching, and
+              renewal exposure required different teams to act, but the
+              reporting did not make that ownership clear.
+            </p>
+          </div>
+
         </div>
 
         <p>
-          The core problem was not a reporting gap. It was a structural one: four domains of revenue data (CRM, billing, pipeline, customer health) had never been joined into a single model. Every team was correct about their own slice. Nobody could see the whole picture.
+          The core issue was not simply missing dashboards. CRM, billing,
+          pipeline, and customer data had never been connected into a
+          shared analytical model.
         </p>
 
-        <div class="key-statement" aria-label="Core case study statement">
-          <p>The issue was not reporting. It was <span>decision quality.</span></p>
+        <div class="key-statement">
+          <p>
+            The issue was not reporting.
+            It was <span>decision quality.</span>
+          </p>
         </div>
 
       </section>
 
+
       <hr class="cs-divider">
 
-      <!-- APPROACH -->
+
+      <!-- DECISION MODEL -->
       <section class="cs-section">
 
-        <p class="cs-section-label">Approach</p>
+        <p class="cs-section-label">Decision Model</p>
 
-        <h2>dbt Staging → Mart → Streamlit Intelligence Layer</h2>
-
-        <h3>1. Three-Layer dbt Data Architecture</h3>
+        <h2>
+          One Revenue Model, Multiple Business Decisions
+        </h2>
 
         <p>
-          Raw tables (accounts, leads, opportunities, contracts, invoices, payments, usage, support) were standardised in dbt staging models with consistent types, field names, and null handling.
+          I did not design separate views simply to create more dashboard
+          pages. Each view exists because a different revenue question has
+          a different decision owner.
         </p>
 
-        <ul>
-          <li><strong>Staging models:</strong> Type-cast raw tables, rename fields to a consistent convention, handle nulls.</li>
-          <li><strong>Intermediate models:</strong> Join across domains — match leads to accounts, score pipeline risk, compute lifecycle timelines, build customer health composites.</li>
-          <li><strong>Mart models:</strong> Pre-aggregated facts for each page: <code>fct_revenue_reconciliation</code>, <code>fct_gtm_funnel</code>, <code>fct_pipeline</code>, <code>fct_customer_health</code>.</li>
-        </ul>
+        <div class="problem-block">
+          <p>
+            <strong>Executive / Finance</strong><br>
+            How much booked revenue actually becomes collected cash?
+          </p>
+        </div>
 
-        <h3>2. Shared Dashboard Component System</h3>
+        <div class="problem-block" style="margin-top:1rem;">
+          <p>
+            <strong>Marketing / GTM</strong><br>
+            Where are potential customers being lost before revenue is created?
+          </p>
+        </div>
+
+        <div class="problem-block" style="margin-top:1rem;">
+          <p>
+            <strong>RevOps</strong><br>
+            Which open opportunities are realistically closeable, and which
+            require intervention?
+          </p>
+        </div>
+
+        <div class="problem-block" style="margin-top:1rem;">
+          <p>
+            <strong>Customer Success</strong><br>
+            Which existing customers represent the greatest future recurring
+            revenue risk?
+          </p>
+        </div>
+
+        <div class="key-statement">
+          <p>
+            Same customer. Same revenue lifecycle.
+            <span>Different decisions.</span>
+          </p>
+        </div>
+
+      </section>
+
+
+      <hr class="cs-divider">
+
+
+      <!-- DATA MODEL -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Data Model</p>
+
+        <h2>
+          Connecting GTM Activity to Revenue
+        </h2>
 
         <p>
-          All five Streamlit pages share a single <code>theme.py</code> that defines visual primitives: <code>hero()</code>, <code>kpi()</code>, <code>insight()</code>, <code>alert()</code>, <code>story_step()</code>, and <code>action_box()</code>. Each page uses the same primitives with different data — making the visual language consistent and the code maintainable.
+          I used dbt to standardize and connect data across the full B2B
+          revenue lifecycle:
         </p>
 
-        <h3>3. Deterministic Risk Scoring</h3>
+        <div class="problem-block">
+          <p style="font-size:1.05rem; line-height:2;">
+            Marketing &amp; Leads
+            &nbsp;→&nbsp;
+            Accounts
+            &nbsp;→&nbsp;
+            Opportunities
+            &nbsp;→&nbsp;
+            Contracts
+            &nbsp;→&nbsp;
+            Invoices
+            &nbsp;→&nbsp;
+            Payments
+            &nbsp;→&nbsp;
+            Customer Health
+          </p>
+        </div>
+
+        <h3>Staging Layer</h3>
 
         <p>
-          Rather than a black-box propensity model, pipeline risk was scored using three explicit boolean flags that RevOps could immediately verify and act on.
+          Standardized field names, data types, null handling, and core
+          identifiers across raw CRM, billing, product, and support data.
         </p>
 
-        <ul>
-          <li><strong>is_past_due:</strong> Close date has passed without a stage change.</li>
-          <li><strong>is_stale:</strong> No activity recorded in 30+ days.</li>
-          <li><strong>has_repeated_slip:</strong> Close date has been moved at least twice.</li>
-        </ul>
+        <h3>Intermediate Layer</h3>
 
         <p>
-          Any deal with two or more flags becomes High Risk. Stage win rates (5% / 15% / 35% / 65%) were hard-coded as editable constants — the analytic pattern is correct; teams replace constants with historical actuals once they have enough closed-won history.
+          Resolved lead-to-account relationships, calculated lifecycle
+          timelines, scored pipeline risk, and combined product and support
+          signals into customer health measures.
+        </p>
+
+        <h3>Analytics Marts</h3>
+
+        <p>
+          Created decision-ready datasets for revenue reconciliation,
+          GTM funnel analysis, pipeline risk, and customer health.
+        </p>
+
+        <p>
+          Streamlit was used as the delivery layer so business users could
+          explore these analytical models interactively. The core of the
+          project is the shared revenue logic underneath the interface.
         </p>
 
       </section>
 
+
       <hr class="cs-divider">
+
 
       <!-- REVENUE RECONCILIATION -->
       <section class="cs-section">
 
         <p class="cs-section-label">Revenue Reconciliation</p>
 
-        <h2>$2.1M Disappears Between CRM Bookings and Collected Cash</h2>
+        <h2>
+          $2.1M Disappears Between Bookings and Collected Cash
+        </h2>
 
         <p>
-          The reconciliation page traces every dollar from booking to bank. Three distinct gaps emerge, each owned by a different team.
+          The first question was simple:
+          <strong>
+            How much of the revenue recorded as booked in CRM actually reaches cash?
+          </strong>
         </p>
 
-        <div class="rev-waterfall" aria-label="Revenue reconciliation waterfall">
+        <div class="rev-waterfall">
 
           <div class="rev-waterfall-header">
-            <div>
-              <div class="rev-waterfall-title">CRM Bookings → Collected Cash</div>
+            <div class="rev-waterfall-title">
+              CRM Bookings → Collected Cash
             </div>
+
             <div class="rev-waterfall-note">
-              Each gap has a different owner<br>and a different fix
+              Each gap has a different owner<br>
+              and a different fix
             </div>
           </div>
 
@@ -1223,79 +1380,135 @@
                 <span class="rev-stage">CRM Bookings</span>
                 <span class="rev-amount">$11.8M</span>
               </div>
-              <div class="rev-track"><div class="rev-bar" style="width:100%;"></div></div>
+
+              <div class="rev-track">
+                <div class="rev-bar" style="width:100%;"></div>
+              </div>
             </div>
+
 
             <div class="rev-row">
               <div class="rev-label-row">
-                <span class="rev-stage">Contract Value <span style="font-size:0.75rem;font-weight:400;color:var(--muted);">after discounts</span></span>
-                <span class="rev-amount rev-amount--gap">−$0.1M &nbsp;<span style="font-weight:400;color:var(--muted);">→ $11.7M</span></span>
+                <span class="rev-stage">Contract Value</span>
+
+                <span class="rev-amount rev-amount--gap">
+                  −$0.1M → $11.7M
+                </span>
               </div>
-              <div class="rev-track"><div class="rev-bar" style="width:99%;"></div></div>
+
+              <div class="rev-track">
+                <div class="rev-bar" style="width:99%;"></div>
+              </div>
             </div>
+
 
             <div class="rev-row">
               <div class="rev-label-row">
-                <span class="rev-stage">Billed Revenue <span style="font-size:0.75rem;font-weight:400;color:var(--muted);">after unbilled amounts</span></span>
-                <span class="rev-amount rev-amount--gap">−$0.4M &nbsp;<span style="font-weight:400;color:var(--muted);">→ $11.4M</span></span>
+                <span class="rev-stage">Billed Revenue</span>
+
+                <span class="rev-amount rev-amount--gap">
+                  −$0.4M → $11.4M
+                </span>
               </div>
-              <div class="rev-track"><div class="rev-bar" style="width:96%;"></div></div>
+
+              <div class="rev-track">
+                <div class="rev-bar" style="width:96%;"></div>
+              </div>
             </div>
+
 
             <div class="rev-row">
               <div class="rev-label-row">
-                <span class="rev-stage">Collected Cash <span style="font-size:0.75rem;font-weight:400;color:var(--muted);">after payment risk</span></span>
-                <span class="rev-amount rev-amount--gap">−$1.7M &nbsp;<span style="font-weight:400;color:#107C41;">→ $9.7M</span></span>
+                <span class="rev-stage">Collected Cash</span>
+
+                <span class="rev-amount rev-amount--gap">
+                  −$1.7M → $9.7M
+                </span>
               </div>
-              <div class="rev-track"><div class="rev-bar rev-bar--green" style="width:82%;"></div></div>
+
+              <div class="rev-track">
+                <div
+                  class="rev-bar rev-bar--green"
+                  style="width:82%;">
+                </div>
+              </div>
             </div>
 
           </div>
+
 
           <div class="rev-waterfall-summary">
 
             <div class="rev-summary-item">
               <span class="rev-summary-value">−$0.1M</span>
-              <span class="rev-summary-label">Discounts — owned by Sales Operations</span>
+
+              <span class="rev-summary-label">
+                Discounting · Sales Operations
+              </span>
             </div>
 
             <div class="rev-summary-item">
               <span class="rev-summary-value">−$0.4M</span>
-              <span class="rev-summary-label">Unbilled — owned by Finance / Billing</span>
+
+              <span class="rev-summary-label">
+                Unbilled contracts · Finance / Billing
+              </span>
             </div>
 
             <div class="rev-summary-item">
-              <span class="rev-summary-value rev-summary-value--green">−$1.7M</span>
-              <span class="rev-summary-label">Payment risk — owned by AR + Customer Success</span>
+              <span class="rev-summary-value rev-summary-value--green">
+                −$1.7M
+              </span>
+
+              <span class="rev-summary-label">
+                Payment risk · AR / Customer Success
+              </span>
             </div>
 
           </div>
 
         </div>
 
+        <h3>Why It Matters</h3>
+
         <p>
-          The largest single gap is payment risk ($1.7M), concentrated in customers with low health scores and overdue invoices beyond 60 days. The unbilled amount ($0.4M) points to contracts won but never invoiced — a billing workflow problem, not a sales problem. Surfacing these three buckets separately gave each team a clear, actionable number they could own.
+          The key insight was not simply that a $2.1M gap existed.
+          The analysis separated the gap into causes with different
+          operational owners.
+        </p>
+
+        <p>
+          That turns a financial variance into a set of specific decisions:
+          review discount policy, resolve unbilled contracts, and prioritize
+          collection risk.
         </p>
 
       </section>
 
+
       <hr class="cs-divider">
+
 
       <!-- GTM FUNNEL -->
       <section class="cs-section">
 
-        <p class="cs-section-label">GTM Funnel Analysis</p>
+        <p class="cs-section-label">GTM Funnel</p>
 
-        <h2>Only 27% of Accounts Close as Won Revenue</h2>
+        <h2>
+          Where Are Potential Customers Lost Before Revenue?
+        </h2>
 
         <p>
-          The funnel page maps every account from first lead to closed-won. Joining lead data to accounts and tracking lifecycle stage progression revealed where the pipeline loses the most volume — and which lead sources convert most efficiently.
+          The GTM funnel connected lead and account activity to downstream
+          opportunities and closed-won revenue.
         </p>
 
-        <div class="funnel-visual" aria-label="GTM funnel stage breakdown">
+        <div class="funnel-visual">
 
           <div class="funnel-header">
-            <div class="funnel-header-title">Account Attrition by Funnel Stage</div>
+            <div class="funnel-header-title">
+              Account Progression Through the Revenue Funnel
+            </div>
           </div>
 
           <div class="funnel-body">
@@ -1303,52 +1516,68 @@
             <div class="funnel-row">
               <div class="funnel-label-row">
                 <span class="funnel-stage">All Accounts</span>
-                <span class="funnel-count">1,200 &nbsp;·&nbsp; 100%</span>
+                <span class="funnel-count">1,200 · 100%</span>
               </div>
-              <div class="funnel-track"><div class="funnel-bar" style="width:100%;"></div></div>
+
+              <div class="funnel-track">
+                <div class="funnel-bar" style="width:100%;"></div>
+              </div>
             </div>
+
 
             <div class="funnel-row">
               <div class="funnel-label-row">
                 <span class="funnel-stage">Has Lead</span>
-                <span class="funnel-count">1,122 &nbsp;·&nbsp; 94%</span>
+                <span class="funnel-count">1,122 · 94%</span>
               </div>
-              <div class="funnel-track"><div class="funnel-bar" style="width:93.5%;"></div></div>
+
+              <div class="funnel-track">
+                <div class="funnel-bar" style="width:93.5%;"></div>
+              </div>
             </div>
+
 
             <div class="funnel-row">
               <div class="funnel-label-row">
-                <span class="funnel-stage">
-                  MQL+
-                  <span class="funnel-badge">biggest drop</span>
-                </span>
-                <span class="funnel-count">943 &nbsp;·&nbsp; 79%</span>
+                <span class="funnel-stage">MQL+</span>
+                <span class="funnel-count">943 · 79%</span>
               </div>
-              <div class="funnel-track"><div class="funnel-bar" style="width:78.6%;"></div></div>
+
+              <div class="funnel-track">
+                <div class="funnel-bar" style="width:78.6%;"></div>
+              </div>
             </div>
+
 
             <div class="funnel-row">
               <div class="funnel-label-row">
                 <span class="funnel-stage">SQL+</span>
-                <span class="funnel-count">651 &nbsp;·&nbsp; 54%</span>
+                <span class="funnel-count">651 · 54%</span>
               </div>
-              <div class="funnel-track"><div class="funnel-bar" style="width:54.3%;"></div></div>
+
+              <div class="funnel-track">
+                <div class="funnel-bar" style="width:54.3%;"></div>
+              </div>
             </div>
+
 
             <div class="funnel-row">
               <div class="funnel-label-row">
-                <span class="funnel-stage">Has Opportunity</span>
-                <span class="funnel-count">922 &nbsp;·&nbsp; 77%</span>
-              </div>
-              <div class="funnel-track"><div class="funnel-bar" style="width:76.8%;"></div></div>
-            </div>
+                <span class="funnel-stage" style="color:var(--accent);">
+                  Closed Won
+                </span>
 
-            <div class="funnel-row">
-              <div class="funnel-label-row">
-                <span class="funnel-stage" style="color:var(--accent);">Closed-Won</span>
-                <span class="funnel-count funnel-count--accent">325 &nbsp;·&nbsp; 27%</span>
+                <span class="funnel-count funnel-count--accent">
+                  325 · 27%
+                </span>
               </div>
-              <div class="funnel-track"><div class="funnel-bar funnel-bar--accent" style="width:27.1%;"></div></div>
+
+              <div class="funnel-track">
+                <div
+                  class="funnel-bar funnel-bar--accent"
+                  style="width:27.1%;">
+                </div>
+              </div>
             </div>
 
           </div>
@@ -1357,277 +1586,344 @@
 
             <div class="funnel-metric">
               <span class="funnel-metric-val">27%</span>
-              <span class="funnel-metric-label">End-to-end win rate</span>
+              <span class="funnel-metric-label">
+                End-to-end closed-won rate
+              </span>
             </div>
 
             <div class="funnel-metric">
               <span class="funnel-metric-val">MQL+</span>
-              <span class="funnel-metric-label">Biggest single drop — priority fix stage</span>
+              <span class="funnel-metric-label">
+                Key qualification transition
+              </span>
             </div>
 
             <div class="funnel-metric">
               <span class="funnel-metric-val">14%</span>
-              <span class="funnel-metric-label">Leads with no account ID — invisible to pipeline</span>
+              <span class="funnel-metric-label">
+                Leads missing account IDs
+              </span>
             </div>
 
           </div>
 
         </div>
 
+        <h3>Decision</h3>
+
         <p>
-          Lead source quality analysis showed that Referral had the highest win rate — flagging underinvestment in the highest-converting channel — while Paid Search generated the most volume with a below-average close rate. The signal: optimise MQL qualification criteria before increasing spend.
+          Referral traffic showed the strongest conversion while Paid Search
+          generated high volume with weaker downstream performance.
         </p>
 
         <p>
-          The analysis also surfaced two data quality problems that distorted funnel metrics before any insight could be trusted: 14% of leads had no <code>account_id</code> (marketing spend invisible to pipeline reporting), and a set of orphan opportunities referenced accounts that no longer existed in Salesforce.
+          The implication was not simply “spend more on referrals.”
+          It suggested reviewing qualification and lead quality before
+          increasing paid acquisition spend.
+        </p>
+
+        <h3>Data Quality Finding</h3>
+
+        <p>
+          Fourteen percent of leads had no account ID, preventing those leads
+          from being connected to downstream pipeline and revenue.
+        </p>
+
+        <p>
+          Before channel performance could be trusted, lead-to-account identity
+          resolution needed to be improved.
         </p>
 
       </section>
 
+
       <hr class="cs-divider">
+
 
       <!-- PIPELINE -->
       <section class="cs-section">
 
-        <p class="cs-section-label">Pipeline Risk Analysis</p>
+        <p class="cs-section-label">Pipeline Intelligence</p>
 
-        <h2>Raw Pipeline Overstates Closeable Revenue — Risk Signals Tell the Real Story</h2>
+        <h2>
+          Raw Pipeline Is Not the Same as Closeable Revenue
+        </h2>
 
         <p>
-          Three deterministic risk signals generate a High / Medium / On Track classification for every open deal. This converts the pipeline from a single opaque number into an actionable priority list.
+          CRM stage alone can overstate pipeline quality, so I created
+          deterministic risk indicators that RevOps could understand,
+          validate, and act on.
         </p>
+
+        <ul>
+          <li>
+            <strong>Past Due:</strong>
+            expected close date has passed.
+          </li>
+
+          <li>
+            <strong>Stale:</strong>
+            no recent opportunity activity.
+          </li>
+
+          <li>
+            <strong>Repeated Slip:</strong>
+            close date has moved multiple times.
+          </li>
+        </ul>
+
 
         <div class="risk-comparison">
 
           <div class="risk-card risk-card--high">
             <div class="risk-label">High Risk</div>
             <div class="risk-value">$4.0M</div>
-            <div class="risk-desc">136 deals with 2+ risk flags — past-due, stale, or repeated close date slippage.</div>
+
+            <div class="risk-desc">
+              136 deals carrying multiple risk signals.
+            </div>
           </div>
 
+
           <div class="risk-card risk-card--med">
-            <div class="risk-label">Medium / On Track</div>
+            <div class="risk-label">Active Pipeline</div>
             <div class="risk-value">$28.9M</div>
-            <div class="risk-desc">1,006 deals with zero or one risk flag — closeable with normal follow-up.</div>
+
+            <div class="risk-desc">
+              Opportunities requiring normal sales follow-up.
+            </div>
           </div>
+
 
           <div class="risk-card risk-card--green">
             <div class="risk-label">Weighted Forecast</div>
             <div class="risk-value">$9.8M</div>
-            <div class="risk-desc">Probability-adjusted total. Use this for exec reporting, not the $32.9M raw figure.</div>
+
+            <div class="risk-desc">
+              Probability-adjusted view for more defensible forecasting.
+            </div>
           </div>
 
         </div>
 
+        <h3>Key Finding</h3>
+
         <p>
-          136 deals had no activity recorded in 90+ days — zombie deals still counted in the raw pipeline number but with near-zero probability of closing this quarter. Removing them from the active denominator immediately improves the weighted forecast ratio. The page surfaces these deals with histograms of deal age and days-since-last-activity, making the distribution visible for a weekly RevOps hygiene sweep.
+          136 open deals had no recorded activity for more than 90 days.
+          They were still visible in headline pipeline even though their
+          current closeability was questionable.
         </p>
 
-        <div class="table-wrapper">
-          <table class="cs-table" aria-label="Pipeline risk signal breakdown">
-            <thead>
-              <tr>
-                <th>Risk Signal</th>
-                <th>Deals</th>
-                <th>Pipeline Value</th>
-                <th>% of Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Past Due (close date passed)</td>
-                <td>89</td>
-                <td>$2.7M</td>
-                <td class="accent-val">8%</td>
-              </tr>
-              <tr>
-                <td>Stale (no activity 30+ days)</td>
-                <td>214</td>
-                <td>$6.5M</td>
-                <td class="accent-val">20%</td>
-              </tr>
-              <tr>
-                <td>Repeated Slip (close date moved 2×+)</td>
-                <td>156</td>
-                <td>$4.8M</td>
-                <td class="accent-val">15%</td>
-              </tr>
-              <tr>
-                <td>Zombie (90+ days no activity)</td>
-                <td>136</td>
-                <td>$4.0M</td>
-                <td class="accent-val">12%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <h3>Decision</h3>
+
+        <p>
+          RevOps could use the risk view to review stale deals, clean the
+          active opportunity set, and distinguish raw pipeline from a more
+          realistic weighted forecast.
+        </p>
 
       </section>
 
+
       <hr class="cs-divider">
+
 
       <!-- CUSTOMER HEALTH -->
       <section class="cs-section">
 
         <p class="cs-section-label">Customer Health &amp; NRR</p>
 
-        <h2>42 At-Risk Accounts Represent the NRR Floor</h2>
+        <h2>
+          Customer Health Became More Useful When Connected to Revenue Risk
+        </h2>
 
         <p>
-          Customer health scoring joined three signals: product engagement (login frequency, feature adoption), support ticket volume (severity-weighted), and contract renewal proximity. Each account received a composite score bucketed into four tiers.
+          I combined product engagement, support activity, and renewal timing
+          into a customer-health framework and connected those signals to
+          recurring revenue exposure.
         </p>
 
-        <div class="health-grid" aria-label="Customer health tier breakdown">
+        <div class="health-grid">
 
           <div class="health-card">
-            <div class="health-dot" style="background:#107C41;"></div>
+            <div
+              class="health-dot"
+              style="background:#107C41;">
+            </div>
+
             <div class="health-value">50%</div>
             <div class="health-label">Healthy</div>
           </div>
 
+
           <div class="health-card">
-            <div class="health-dot" style="background:#A15C00;"></div>
+            <div
+              class="health-dot"
+              style="background:#A15C00;">
+            </div>
+
             <div class="health-value">~28%</div>
             <div class="health-label">Needs Attention</div>
           </div>
 
-          <div class="health-card">
-            <div class="health-dot" style="background:#C00000;"></div>
-            <div class="health-value">6%</div>
-            <div class="health-label">At Risk · 42 accounts</div>
-          </div>
 
           <div class="health-card">
-            <div class="health-dot" style="background:#5C5C5C;"></div>
+            <div
+              class="health-dot"
+              style="background:#C00000;">
+            </div>
+
+            <div class="health-value">42</div>
+            <div class="health-label">At-Risk Accounts</div>
+          </div>
+
+
+          <div class="health-card">
+            <div
+              class="health-dot"
+              style="background:#5C5C5C;">
+            </div>
+
             <div class="health-value">16%</div>
             <div class="health-label">Churned</div>
           </div>
 
         </div>
 
+        <h3>Decision</h3>
+
         <p>
-          The page also computes segment-level NRR, separating expansion revenue (upsells within existing accounts) from contraction and churn. This gave CS leadership a renewal priority list ranked by ARR at risk × health score — replacing the previous approach of prioritising accounts solely by size.
+          Instead of asking only which accounts had low health scores,
+          the model reframed the question:
+        </p>
+
+        <div class="problem-block">
+          <p>
+            <strong>
+              Which customers represent the greatest recurring-revenue
+              exposure and should Customer Success prioritize first?
+            </strong>
+          </p>
+        </div>
+
+        <p style="margin-top:1rem;">
+          This supports an intervention queue based on both customer risk
+          and ARR exposure rather than account size alone.
         </p>
 
       </section>
 
+
       <hr class="cs-divider">
 
-      <!-- IMPACT -->
+
+      <!-- BUSINESS ACTIONS -->
       <section class="cs-section">
 
-        <p class="cs-section-label">Modelled Business Impact</p>
+        <p class="cs-section-label">From Insight to Action</p>
 
-        <h2>Recommendations by Team</h2>
+        <h2>
+          Each Finding Ends With an Owner and a Decision
+        </h2>
 
-        <h3>Finance — Recover $0.4M in Unbilled Revenue</h3>
 
-        <div class="problem-block">
-          <p>
-            <strong>Unbilled → No Invoice → Revenue Lost</strong>: Enforce a 7-day billing SLA from contract execution. Audit all contracts signed in the last 90 days with no corresponding invoice.
-          </p>
-        </div>
-
-        <h3>RevOps — Zombie Sweep and Forecast Correction</h3>
+        <h3>Finance</h3>
 
         <div class="problem-block">
           <p>
-            <strong>136 Zombie Deals → Weekly Hygiene Sweep → Accurate Forecast</strong>: Mark as Lost or reassign. Switch exec reporting to $9.8M weighted forecast, not $32.9M raw. Set a 30-day activity SLA with auto-flag for manager review.
+            <strong>$0.4M unbilled revenue</strong><br>
+            Identify signed contracts without corresponding invoices and
+            establish a billing follow-up workflow.
           </p>
         </div>
 
-        <h3>Customer Success — Intervene Before Renewal</h3>
+
+        <h3>RevOps</h3>
 
         <div class="problem-block">
           <p>
-            <strong>42 At-Risk Accounts → QBR Queue → NRR Protection</strong>: Build a CS intervention queue ranked by ARR × (1 − health score). Assign QBRs to all at-risk accounts renewing in the next 90 days.
+            <strong>136 stale opportunities</strong><br>
+            Review inactive deals, clean pipeline, and use weighted forecast
+            for executive reporting instead of relying only on raw pipeline.
           </p>
         </div>
 
-        <h3>Marketing Ops — Fix Lead-to-Account Matching</h3>
+
+        <h3>Customer Success</h3>
 
         <div class="problem-block">
           <p>
-            <strong>14% Unmatched Leads → Enforce account_id at Form Capture → Full Attribution</strong>: Route unmatched leads through a matching workflow so marketing pipeline attribution is complete and spend is defensible.
+            <strong>42 at-risk accounts</strong><br>
+            Prioritize intervention using customer health combined with ARR
+            and renewal timing.
           </p>
         </div>
 
-        <div class="impact-grid">
 
-          <div class="impact-card">
-            <div class="ic-value">$2.1M</div>
-            <div class="ic-label">Revenue Gap Identified</div>
-            <div class="ic-desc">
-              Across three causes — discounts, unbilled amounts, and payment risk — each with a distinct owner and fix.
-            </div>
-          </div>
+        <h3>Marketing Operations</h3>
 
-          <div class="impact-card">
-            <div class="ic-value">136</div>
-            <div class="ic-label">Zombie Deals Surfaced</div>
-            <div class="ic-desc">
-              $4.0M in pipeline with no activity in 90+ days, now visible for weekly RevOps hygiene sweeps.
-            </div>
-          </div>
-
-          <div class="impact-card">
-            <div class="ic-value">42</div>
-            <div class="ic-label">At-Risk Accounts Flagged</div>
-            <div class="ic-desc">
-              CS intervention queue ranked by ARR at risk, replacing the previous size-only prioritisation.
-            </div>
-          </div>
-
+        <div class="problem-block">
+          <p>
+            <strong>14% unmatched leads</strong><br>
+            Improve lead-to-account matching before using downstream revenue
+            reporting to evaluate channel performance.
+          </p>
         </div>
-
-        <p>
-          Beyond point-in-time numbers, the dashboard established a repeatable operating cadence: Finance reviews the reconciliation page at month-end, RevOps runs the pipeline page weekly, CS uses the health page for renewal planning. Replacing synthetic data with production dbt models requires only updating the <code>data_loader.py</code> connection — the analytic layer is unchanged.
-        </p>
 
       </section>
 
+
       <hr class="cs-divider">
 
-      <!-- TECH STACK -->
+
+      <!-- WHAT I BUILT -->
       <section class="cs-section">
 
-        <p class="cs-section-label">Tech Stack</p>
+        <p class="cs-section-label">Implementation</p>
 
-        <h2>Tools &amp; Methods</h2>
+        <h2>
+          How the Analysis Was Delivered
+        </h2>
+
+        <p>
+          SQL and dbt form the analytical foundation.
+          Python handles supporting analysis and data generation.
+          Streamlit and Plotly provide the interactive delivery layer.
+        </p>
 
         <div class="tech-grid">
-          <span class="tech-tag">Python 3.11</span>
-          <span class="tech-tag">pandas</span>
-          <span class="tech-tag">numpy</span>
-          <span class="tech-tag">dbt</span>
+
           <span class="tech-tag">SQL</span>
-          <span class="tech-tag">Window Functions</span>
-          <span class="tech-tag">CTEs</span>
+          <span class="tech-tag">dbt</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">pandas</span>
           <span class="tech-tag">Streamlit</span>
           <span class="tech-tag">Plotly</span>
           <span class="tech-tag">Revenue Reconciliation</span>
-          <span class="tech-tag">GTM Funnel</span>
+          <span class="tech-tag">GTM Funnel Analysis</span>
           <span class="tech-tag">Pipeline Risk Scoring</span>
-          <span class="tech-tag">Customer Health Scoring</span>
+          <span class="tech-tag">Customer Health</span>
           <span class="tech-tag">NRR</span>
-          <span class="tech-tag">Lead Lifecycle Tracking</span>
-          <span class="tech-tag">Waterfall Analysis</span>
-          <span class="tech-tag">Deterministic Risk Flags</span>
+
         </div>
 
       </section>
 
+
       <hr class="cs-divider">
+
 
       <!-- LIVE APP -->
       <section class="cs-section">
 
         <p class="cs-section-label">Live App</p>
 
-        <h2>Try the Dashboard</h2>
+        <h2>Explore the Revenue Intelligence System</h2>
 
         <p>
-          The full five-page Streamlit intelligence layer is deployed and interactive. Explore the GTM funnel, revenue reconciliation, pipeline health, and customer churn risk with synthetic data.
+          The interactive application uses synthetic data to demonstrate the
+          revenue model, reconciliation workflow, GTM funnel, pipeline risk,
+          and customer-health analysis.
         </p>
 
         <a
@@ -1637,14 +1933,13 @@
           class="btn btn--primary"
         >
           Open live app
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
         </a>
 
       </section>
 
+
       <hr class="cs-divider">
+
 
       <!-- SOURCE CODE -->
       <section class="cs-section">
@@ -1654,7 +1949,9 @@
         <h2>Code &amp; Documentation</h2>
 
         <p>
-          Full dbt models, Streamlit app, data generation scripts, and synthetic dataset are available on GitHub. The README includes a quickstart to run the dashboard locally in under five minutes.
+          The repository includes the dbt models, analytical logic,
+          Streamlit application, synthetic data, and documentation used
+          for this case study.
         </p>
 
         <a
@@ -1664,49 +1961,76 @@
           class="btn btn--secondary"
         >
           View on GitHub
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
         </a>
 
       </section>
 
+
       <hr class="cs-divider">
+
 
       <!-- FINAL TAKEAWAY -->
       <section class="cs-section">
+
         <div class="takeaway">
-          <p class="cs-section-label">What This Project Demonstrates</p>
-          <p>
-            Revenue intelligence is strongest when it turns fragmented business data into
-            decision ownership: what changed, why it matters, who owns the fix, and how the
-            next operating review should act on it.
+
+          <p class="cs-section-label">
+            What This Project Demonstrates
           </p>
+
+          <p>
+            I connect fragmented GTM and financial data into a shared revenue
+            model, identify where revenue and customer risk are concentrated,
+            and translate those findings into decisions with clear business
+            ownership.
+          </p>
+
+          <p style="
+            margin-top:1.5rem;
+            font-size:1rem;
+            font-weight:600;
+            color:var(--accent-dark);
+          ">
+            Trusted Revenue Model
+            → Business Insight
+            → Decision Owner
+            → Action
+          </p>
+
         </div>
+
       </section>
 
     </div>
   </main>
 
+
   <!-- FOOTER CTA -->
-  <section class="cs-footer-cta" aria-label="Contact">
+  <section class="cs-footer-cta">
     <div class="wrap">
 
       <div>
         <h3>Interested in working together?</h3>
+
         <p>
-          Open to Data Analyst, Growth Analyst, Marketing Analyst,
-          and Revenue Analytics roles in the Bay Area or remote.
+          Open to Data Analyst, Growth Analyst, Marketing Analytics,
+          and Revenue Analytics opportunities.
         </p>
       </div>
 
       <div style="display:flex; gap:var(--s3); flex-wrap:wrap;">
-        <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
-        <a href="index.html#work" class="btn btn--secondary">See more work</a>
+        <a href="index.html#contact" class="btn btn--primary">
+          Get in touch
+        </a>
+
+        <a href="index.html#work" class="btn btn--secondary">
+          See more work
+        </a>
       </div>
 
     </div>
   </section>
+
 
   <!-- SITE FOOTER -->
   <footer class="site-footer">
@@ -1721,7 +2045,11 @@
         href="https://www.linkedin.com/in/jennypark7/"
         target="_blank"
         rel="noopener"
-        style="font-size:0.8125rem;font-weight:500;color:var(--muted);"
+        style="
+          font-size:0.8125rem;
+          font-weight:500;
+          color:var(--muted);
+        "
       >
         LinkedIn
       </a>
