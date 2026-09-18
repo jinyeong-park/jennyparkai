@@ -1,0 +1,11 @@
+partner_id,partner_name,insurance_verticals,accepted_states,active_status,minimum_quality_score,daily_lead_capacity,pricing_model,base_payout,created_at
+P001,Progressive Direct,auto,CA|TX|FL|NY|OH|PA|IL|GA|NC|MI,active,60,50,cpl,65.0,2023-01-01
+P002,State Farm Network,auto|home,CA|TX|FL|NY|OH|PA|IL|GA|NC|MI,active,40,80,cpa,75.0,2023-01-01
+P003,Allstate Connect,auto|home,CA|TX|FL|NY|OH|PA|IL|GA|NC|MI,active,47,60,cpl,68.0,2023-01-01
+P004,BlueCross Health,health,CA|TX|FL|NY,active,44,40,cpl,95.0,2023-01-01
+P005,UnitedHealth Direct,health,CA|TX|FL|NY|OH|PA|IL|GA|NC|MI,active,57,55,cpl,105.0,2023-01-01
+P006,MetLife Life,life,CA|TX|FL|NY|OH|PA|IL|GA|NC|MI,active,58,30,cpa,118.0,2023-01-01
+P007,Prudential Life,life,CA|TX|FL|NY|OH|PA|IL|GA|NC|MI,active,41,25,cpl,128.0,2023-01-01
+P008,Farmers Home,home,CA|TX|FL|IL,active,42,35,cpl,78.0,2023-01-01
+P009,Liberty Mutual Auto,auto,CA|TX|FL|NY|OH|PA|IL|GA|NC|MI,active,47,70,cpl,58.0,2023-01-01
+P010,Nationwide Multi,auto|home|life,CA|TX|FL|NY|OH|PA|IL|GA|NC|MI,active,57,90,cpl,72.0,2023-01-01

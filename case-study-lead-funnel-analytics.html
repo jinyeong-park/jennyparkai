@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lead Funnel Analytics — Jenny Park</title>
+
+  <meta
+    name="description"
+    content="Case study: Building a BigQuery + LookML + Streamlit analytics system for insurance lead generation — connecting marketing spend to verified revenue across 7,795 leads, uncovering 15.2% platform overclaim and 2 campaigns operating below break-even."
+  >
+
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root {
+      --bg: #f7f7f4;
+      --bg-soft: #f0f1ed;
+      --surface: #ffffff;
+      --surface-2: #f5f6f2;
+      --raised: #f5f6f2;
+      --ink: #17191c;
+      --text-soft: #2c3035;
+      --muted: #697078;
+      --muted-2: #92989f;
+      --accent: #5f7f16;
+      --accent-dark: #46600f;
+      --accent-soft: rgba(95, 127, 22, 0.08);
+      --accent-border: rgba(95, 127, 22, 0.24);
+      --blue: #4267a9;
+      --yellow: #a97816;
+      --red: #b84f4f;
+      --purple: #7353a6;
+      --on-accent: #ffffff;
+
+      --font-display: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max-width: 1180px;
+      --content-width: 820px;
+
+      --s1: 0.25rem;
+      --s2: 0.5rem;
+      --s3: 0.75rem;
+      --s4: 1rem;
+      --s5: 1.5rem;
+      --s6: 2rem;
+      --s7: 3rem;
+      --s8: 4rem;
+      --s9: 6rem;
+      --s10: 8rem;
+
+      --radius: 18px;
+      --line: 1px solid rgba(23, 25, 28, 0.10);
+      --line-strong: 1px solid rgba(23, 25, 28, 0.16);
+      --t-fast: 150ms;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background:
+        radial-gradient(circle at 85% 10%, rgba(95, 127, 22, 0.05), transparent 24rem),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible, .btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      max-width: var(--content-width);
+      margin-inline: auto;
+      padding-inline: var(--s6);
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(247, 247, 244, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: var(--line);
+    }
+    .site-header .wrap {
+      max-width: var(--max-width);
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .wordmark { font-size: 0.9375rem; font-weight: 700; color: var(--ink); }
+    .site-nav { display: flex; align-items: center; gap: var(--s5); }
+    .site-nav a { font-size: 0.875rem; font-weight: 500; color: var(--muted); transition: color var(--t-fast) var(--ease); }
+    .site-nav a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    .cs-hero { padding-block: var(--s10) var(--s8); border-bottom: var(--line); }
+    .cs-hero .wrap { max-width: var(--max-width); }
+
+    .cs-kicker {
+      display: flex; align-items: center; gap: var(--s3);
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent-dark);
+      margin-bottom: var(--s5);
+    }
+    .cs-kicker-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
+
+    .cs-hero h1 {
+      font-weight: 700;
+      font-size: clamp(3rem, 8vw, 5.75rem);
+      line-height: 1.04; letter-spacing: -0.045em;
+      color: var(--ink); margin-bottom: var(--s5); max-width: 14ch;
+    }
+    .cs-hero-lead {
+      font-size: 1.0625rem; line-height: 1.7;
+      color: var(--text-soft); max-width: 68ch; margin-bottom: var(--s5);
+    }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s7); }
+    .tag {
+      display: inline-flex; align-items: center; min-height: 32px;
+      padding: 0 var(--s3); border: var(--line); border-radius: 999px;
+      background: rgba(255,255,255,0.55); color: var(--text-soft);
+      font-size: 0.8125rem; font-weight: 600;
+    }
+
+    .cs-meta-row { display: flex; flex-wrap: wrap; gap: var(--s5); padding-top: var(--s5); border-top: var(--line); }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .cs-meta-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .cs-meta-value { font-size: 0.9375rem; font-weight: 500; color: var(--text-soft); }
+
+    /* ── SNAPSHOT ── */
+    .snapshot-section { padding-block: var(--s8); border-bottom: var(--line); }
+    .snapshot-section .wrap { max-width: var(--max-width); }
+    .snapshot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5); }
+    .snapshot-card {
+      background: var(--surface); border: var(--line); border-radius: var(--radius);
+      padding: 28px; box-shadow: 0 1px 2px rgba(0,0,0,0.025);
+    }
+    .snapshot-card h2 { font-size: 1.25rem; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: var(--s3); }
+    .snapshot-card p { color: var(--muted); line-height: 1.7; margin-bottom: 0; }
+    .snapshot-card p + p { margin-top: var(--s3); }
+
+    /* ── STAT STRIP ── */
+    .stat-strip { background: transparent; border-bottom: var(--line); padding-block: var(--s6); }
+    .stat-strip .wrap {
+      max-width: var(--max-width);
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s6);
+    }
+    .stat-item {
+      display: flex; flex-direction: column; gap: var(--s1);
+      background: var(--surface); border: var(--line); border-radius: var(--radius); padding: var(--s5);
+    }
+    .stat-value { font-size: 2.25rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.8125rem; color: var(--muted); line-height: 1.4; }
+
+    /* ── BODY ── */
+    .cs-body { padding-block: var(--s9); }
+    .cs-section { margin-bottom: var(--s9); }
+    .cs-section:last-child { margin-bottom: 0; }
+
+    .cs-section-label {
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent-dark);
+      margin-bottom: var(--s4);
+      display: flex; align-items: center; gap: var(--s2);
+    }
+    .cs-section-label::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); flex: 0 0 auto;
+    }
+    .cs-section h2 {
+      font-weight: 650; font-size: clamp(2.125rem, 5vw, 3.5rem);
+      line-height: 1.08; letter-spacing: -0.04em; color: var(--ink); margin-bottom: var(--s4);
+    }
+    .cs-section h3 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: var(--s3); margin-top: var(--s5); }
+    .cs-section p { font-size: 1rem; line-height: 1.75; color: var(--muted); margin-bottom: var(--s4); }
+    .cs-section ul { list-style: none; margin-bottom: var(--s4); }
+    .cs-section ul li {
+      font-size: 1rem; line-height: 1.7; color: var(--muted);
+      padding-left: var(--s5); position: relative; margin-bottom: var(--s2);
+    }
+    .cs-section ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+    .cs-section ul li strong, .cs-section p strong { color: var(--ink); font-weight: 600; }
+
+    /* ── PROBLEM BLOCKS ── */
+    .problem-block {
+      background: var(--surface); border: var(--line); border-radius: var(--radius);
+      padding: 28px; margin-bottom: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.025);
+    }
+    .problem-block p { margin-bottom: 0; color: var(--muted); }
+    .problem-index {
+      display: block; color: var(--accent); font-size: 0.8125rem;
+      font-weight: 800; letter-spacing: 0.1em; margin-bottom: var(--s3);
+    }
+    .failure-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); margin-bottom: var(--s5); }
+
+    .key-statement { border-top: var(--line); border-bottom: var(--line); padding-block: var(--s8); margin-block: var(--s8); }
+    .key-statement p {
+      font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.08;
+      letter-spacing: -0.04em; font-weight: 700; color: var(--ink); margin-bottom: 0; max-width: 15ch;
+    }
+    .key-statement span { color: var(--accent-dark); }
+
+    /* ── FUNNEL VISUAL ── */
+    .funnel-visual {
+      border: var(--line); border-radius: var(--radius);
+      margin-block: var(--s6); background: var(--surface);
+      overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.025);
+    }
+    .funnel-header { padding: var(--s4) var(--s5); background: var(--surface-2); border-bottom: var(--line); }
+    .funnel-header-title { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
+    .funnel-header-sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+    .funnel-body { padding: var(--s5); }
+    .funnel-row { margin-bottom: var(--s5); }
+    .funnel-row:last-child { margin-bottom: 0; }
+    .funnel-label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--s2); }
+    .funnel-stage { font-size: 0.8125rem; font-weight: 600; color: var(--ink); }
+    .funnel-count { font-size: 0.8125rem; font-weight: 600; color: var(--muted); }
+    .funnel-count--accent { color: var(--accent); }
+    .funnel-count--drop { color: var(--red); }
+    .funnel-track { width: 100%; height: 8px; background: var(--raised); overflow: hidden; border-radius: 999px; }
+    .funnel-bar { height: 100%; background: var(--text-soft); border-radius: 999px; }
+    .funnel-bar--accent { background: var(--accent); }
+    .funnel-bar--drop { background: var(--red); }
+    .funnel-footer {
+      border-top: var(--line); padding: var(--s4) var(--s5);
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4);
+      background: var(--surface-2);
+    }
+    .funnel-metric { display: flex; flex-direction: column; gap: var(--s1); }
+    .funnel-metric-val { font-size: 1.5rem; color: var(--accent); line-height: 1; font-weight: 700; }
+    .funnel-metric-label { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+
+    /* ── CAMPAIGN BAR CHART ── */
+    .campaign-chart {
+      border: var(--line); border-radius: var(--radius);
+      margin-block: var(--s6); background: var(--surface);
+      overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.025);
+    }
+    .campaign-header { padding: var(--s4) var(--s5); background: var(--surface-2); border-bottom: var(--line); display: flex; justify-content: space-between; align-items: center; }
+    .campaign-header-title { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
+    .campaign-header-note { font-size: 0.75rem; color: var(--muted); }
+    .campaign-body { padding: var(--s5); }
+    .campaign-row { margin-bottom: var(--s4); }
+    .campaign-row:last-child { margin-bottom: 0; }
+    .campaign-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--s2); gap: var(--s3); }
+    .campaign-name { font-size: 0.8125rem; font-weight: 600; color: var(--ink); min-width: 120px; }
+    .campaign-tags { display: flex; gap: var(--s2); flex-wrap: wrap; }
+    .c-tag {
+      font-size: 0.6875rem; font-weight: 600; padding: 2px 8px;
+      border-radius: 999px; letter-spacing: 0.04em;
+    }
+    .c-tag--channel { background: var(--raised); color: var(--muted); border: var(--line); }
+    .c-tag--green { background: rgba(16, 124, 65, 0.1); color: #107C41; }
+    .c-tag--amber { background: rgba(169, 120, 22, 0.1); color: var(--yellow); }
+    .c-tag--red { background: rgba(184, 79, 79, 0.1); color: var(--red); }
+    .campaign-roas { font-size: 0.875rem; font-weight: 700; white-space: nowrap; }
+    .campaign-roas--green { color: #107C41; }
+    .campaign-roas--amber { color: var(--yellow); }
+    .campaign-roas--red { color: var(--red); }
+    .campaign-track { width: 100%; height: 6px; background: var(--raised); border-radius: 999px; overflow: hidden; }
+    .campaign-bar { height: 100%; border-radius: 999px; }
+    .campaign-bar--green { background: #107C41; }
+    .campaign-bar--amber { background: var(--yellow); }
+    .campaign-bar--red { background: var(--red); }
+    .campaign-detail { display: flex; gap: var(--s4); margin-top: var(--s2); flex-wrap: wrap; }
+    .campaign-detail span { font-size: 0.75rem; color: var(--muted); }
+    .campaign-detail strong { color: var(--ink); font-weight: 600; }
+    .breakeven-note { display: flex; align-items: center; gap: var(--s2); padding: var(--s4); border-top: var(--line); background: rgba(184,79,79,0.04); }
+    .breakeven-note span { font-size: 0.8125rem; color: var(--red); font-weight: 600; }
+
+    /* ── PARTNER GRID ── */
+    .partner-chart {
+      border: var(--line); border-radius: var(--radius);
+      margin-block: var(--s6); background: var(--surface);
+      overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.025);
+    }
+    .partner-header { padding: var(--s4) var(--s5); background: var(--surface-2); border-bottom: var(--line); display: flex; justify-content: space-between; align-items: center; }
+    .partner-header-title { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
+    .partner-body { padding: var(--s5); }
+    .partner-row { margin-bottom: var(--s4); }
+    .partner-row:last-child { margin-bottom: 0; }
+    .partner-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--s2); }
+    .partner-name { font-size: 0.8125rem; font-weight: 600; color: var(--ink); }
+    .partner-rate { font-size: 0.875rem; font-weight: 700; }
+    .partner-rate--red { color: var(--red); }
+    .partner-rate--amber { color: var(--yellow); }
+    .partner-track { width: 100%; height: 6px; background: var(--raised); border-radius: 999px; overflow: hidden; position: relative; }
+    .partner-bar { height: 100%; border-radius: 999px; }
+    .partner-bar--red { background: var(--red); }
+    .partner-bar--amber { background: var(--yellow); }
+    .partner-bar--navy { background: #4267a9; }
+    .partner-threshold {
+      position: absolute; top: -4px; height: 14px; width: 2px;
+      background: var(--muted-2); border-radius: 1px;
+    }
+    .partner-footer { border-top: var(--line); padding: var(--s4) var(--s5); background: rgba(184,79,79,0.04); }
+    .partner-footer span { font-size: 0.8125rem; color: var(--red); font-weight: 600; }
+
+    /* ── RECONCILIATION VISUAL ── */
+    .recon-visual {
+      border: var(--line); border-radius: var(--radius);
+      margin-block: var(--s6); background: var(--surface);
+      overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.025);
+    }
+    .recon-header { padding: var(--s4) var(--s5); background: var(--surface-2); border-bottom: var(--line); display: flex; justify-content: space-between; align-items: flex-end; }
+    .recon-header-title { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
+    .recon-header-note { font-size: 0.75rem; color: var(--muted); text-align: right; }
+    .recon-body { padding: var(--s5); }
+    .recon-row { margin-bottom: var(--s5); }
+    .recon-row:last-child { margin-bottom: 0; }
+    .recon-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--s2); flex-wrap: wrap; gap: var(--s2); }
+    .recon-channel { font-size: 0.8125rem; font-weight: 600; color: var(--ink); }
+    .recon-nums { display: flex; gap: var(--s4); }
+    .recon-num { font-size: 0.75rem; color: var(--muted); }
+    .recon-num strong { font-weight: 600; color: var(--ink); }
+    .recon-num--red strong { color: var(--red); }
+    .recon-tracks { display: flex; flex-direction: column; gap: 4px; }
+    .recon-track { width: 100%; height: 6px; background: var(--raised); border-radius: 999px; overflow: hidden; }
+    .recon-bar { height: 100%; border-radius: 999px; }
+    .recon-bar--platform { background: var(--blue); }
+    .recon-bar--warehouse { background: var(--accent); }
+    .recon-legend { display: flex; gap: var(--s5); padding: var(--s4) var(--s5); border-top: var(--line); background: var(--surface-2); }
+    .recon-legend-item { display: flex; align-items: center; gap: var(--s2); font-size: 0.75rem; color: var(--muted); }
+    .recon-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── TABLE ── */
+    .table-wrapper {
+      overflow-x: auto; margin-bottom: var(--s6);
+      border: var(--line); border-radius: var(--radius); background: var(--surface);
+    }
+    .cs-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .cs-table thead { background: var(--surface-2); }
+    .cs-table th {
+      text-align: left; font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+      padding: var(--s3) var(--s4); border-bottom: var(--line); white-space: nowrap;
+    }
+    .cs-table td { padding: var(--s3) var(--s4); border-bottom: var(--line); color: var(--muted); line-height: 1.4; }
+    .cs-table tr:last-child td { border-bottom: none; }
+    .cs-table td:first-child { color: var(--ink); font-weight: 500; }
+    .val-green { color: #107C41 !important; font-weight: 600; }
+    .val-amber { color: var(--yellow) !important; font-weight: 600; }
+    .val-red { color: var(--red) !important; font-weight: 600; }
+
+    /* ── RISK COMPARISON ── */
+    .risk-comparison { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); margin-block: var(--s6); }
+    .risk-card {
+      border: var(--line); border-top: 3px solid var(--card-color, rgba(23,25,28,0.16));
+      border-radius: var(--radius); padding: var(--s5);
+      background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,0.025);
+    }
+    .risk-card--high  { --card-color: var(--red); }
+    .risk-card--med   { --card-color: var(--yellow); }
+    .risk-card--green { --card-color: var(--accent); }
+    .risk-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s3); }
+    .risk-value { font-size: 2rem; line-height: 1; font-weight: 700; color: var(--ink); margin-bottom: var(--s2); }
+    .risk-desc { font-size: 0.8125rem; line-height: 1.5; color: var(--muted); }
+
+    /* ── STACK CARDS ── */
+    .stack-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s4); margin-block: var(--s6); }
+    .stack-card { background: var(--surface); border: var(--line); border-radius: var(--radius); padding: var(--s5); box-shadow: 0 1px 2px rgba(0,0,0,0.025); }
+    .stack-card-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s3); }
+    .stack-card-value { font-size: 0.9375rem; font-weight: 700; color: var(--ink); margin-bottom: var(--s2); }
+    .stack-card-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── TAKEAWAY ── */
+    .takeaway {
+      background: var(--accent-soft); border: var(--line); border-color: var(--accent-border);
+      border-radius: var(--radius); padding: 28px;
+      max-width: var(--content-width); margin-inline: auto;
+    }
+    .takeaway .cs-section-label { margin-bottom: var(--s4); }
+    .takeaway p { color: var(--text-soft); line-height: 1.7; }
+    .takeaway p:last-child {
+      font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.22;
+      letter-spacing: -0.035em; font-weight: 650; margin-bottom: 0;
+    }
+
+    /* ── TECH TAGS ── */
+    .tech-grid { display: flex; flex-wrap: wrap; gap: var(--s2); }
+    .tech-tag {
+      font-size: 0.75rem; font-weight: 500; color: var(--muted);
+      background: rgba(255,255,255,0.55); border: var(--line);
+      padding: var(--s1) var(--s3); letter-spacing: 0.02em; border-radius: 999px;
+    }
+
+    .cs-divider { border: none; border-top: var(--line); margin-block: var(--s7); }
+
+    /* ── FOOTER CTA ── */
+    .cs-footer-cta { background: var(--accent-soft); border-top: var(--line); padding-block: var(--s7); }
+    .cs-footer-cta .wrap {
+      max-width: var(--max-width);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--s6); flex-wrap: wrap;
+    }
+    .cs-footer-cta h3 { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.03em; color: var(--ink); margin-bottom: var(--s2); }
+    .cs-footer-cta p { font-size: 0.9375rem; color: var(--muted); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: var(--s2);
+      font-size: 0.875rem; font-weight: 600; padding: var(--s3) var(--s5);
+      border-radius: var(--radius); cursor: pointer;
+      transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+      border: 1.5px solid transparent; white-space: nowrap;
+    }
+    .btn--primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    .btn--primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+    .btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn--secondary:hover { background: var(--ink); color: var(--surface); }
+
+    /* ── SITE FOOTER ── */
+    .site-footer { padding-block: var(--s6); border-top: var(--line); }
+    .site-footer .wrap { max-width: var(--max-width); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s4); }
+    .footer-name { font-size: 0.9375rem; font-weight: 700; color: var(--ink); }
+    .footer-location { font-size: 0.8125rem; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .wrap { padding-inline: var(--s4); }
+      .stat-strip .wrap { grid-template-columns: 1fr; }
+      .snapshot-grid { grid-template-columns: 1fr; }
+      .failure-grid { grid-template-columns: 1fr; }
+      .risk-comparison { grid-template-columns: 1fr; }
+      .stack-grid { grid-template-columns: 1fr; }
+      .funnel-footer { grid-template-columns: 1fr; }
+      .cs-footer-cta .wrap { flex-direction: column; align-items: flex-start; }
+      .cs-hero { padding-block: var(--s6) var(--s5); }
+      .recon-nums { flex-direction: column; gap: var(--s1); }
+      .campaign-detail { gap: var(--s2); }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="wordmark">Jenny Park</a>
+      <nav class="site-nav" aria-label="Case study navigation">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="wrap">
+
+      <p class="cs-kicker">
+        <span>Lead Funnel Analytics · Insurance Performance Marketing</span>
+        <span class="cs-kicker-dot" aria-hidden="true"></span>
+      </p>
+
+      <h1>Lead Funnel Analytics</h1>
+
+      <p class="cs-hero-lead">
+        Built a full-stack analytics system for an insurance performance-marketing business —
+        connecting Google, Meta, and Affiliate spend to verified partner revenue across
+        7,795 leads, 6 months, and 4 insurance verticals.
+      </p>
+
+      <p class="cs-hero-lead">
+        The system uncovered <strong>15.2% platform overclaim</strong> (platforms claiming
+        6,795 leads vs. 5,764 verified in warehouse), identified <strong>2 of 5 campaigns
+        operating below break-even</strong>, and showed every partner below the 80% acceptance
+        target — turning a CPL-optimized operation into a revenue-first one.
+      </p>
+
+      <div class="tag-row">
+        <span class="tag">BigQuery · SQL</span>
+        <span class="tag">dbt · Data Modeling</span>
+        <span class="tag">LookML · Looker</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Marketing Attribution</span>
+        <span class="tag">Lead Quality Analytics</span>
+        <span class="tag">Partner Performance</span>
+      </div>
+
+      <div class="cs-meta-row">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Analytics Engineer · Growth Analyst</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Dataset</span>
+          <span class="cs-meta-value">7,795 leads · 35,000 sessions · Jan – Jun 2025 · Synthetic</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Stack</span>
+          <span class="cs-meta-value">BigQuery · dbt · LookML · Looker · Streamlit · Python</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Deliverables</span>
+          <span class="cs-meta-value">5 SQL Marts · 5 LookML Views · 4-page Dashboard</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PROJECT SNAPSHOT -->
+  <section class="snapshot-section">
+    <div class="wrap">
+      <div class="snapshot-grid">
+
+        <article class="snapshot-card">
+          <p class="cs-section-label">Project Snapshot</p>
+          <h2>The Business</h2>
+          <p>
+            An insurance lead generation company buys demand from Google, Meta, and
+            affiliates — then routes each submitted lead to insurance carriers
+            (Progressive, State Farm, Allstate, etc.) one partner at a time in
+            priority order until one accepts.
+          </p>
+          <p>
+            Only accepted leads generate revenue. Every rejected or
+            capacity-exceeded lead is pure acquisition cost. Partner payouts range
+            from $58 to $128 per accepted lead.
+          </p>
+          <p>
+            The critical question: <strong>which acquisition channels generate
+            the most accepted, monetized leads — not just the most submissions?</strong>
+          </p>
+        </article>
+
+        <article class="snapshot-card">
+          <p class="cs-section-label">Project Snapshot</p>
+          <h2>The Problem</h2>
+          <p>
+            Marketing was optimizing toward platform-reported CPL. But platforms
+            systematically overclaim: a campaign reporting 144 conversions at
+            $8,795 revenue could yield only 132 warehouse leads — 28 of which
+            fail validation — leaving just 64 accepted leads and $3,200 in
+            verified revenue.
+          </p>
+          <p>
+            The business had no single system connecting acquisition spend to
+            downstream partner acceptance and verified cash. Each team — marketing,
+            operations, partner management — measured only their own stage.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- KEY RESULTS -->
+  <div class="stat-strip">
+    <div class="wrap">
+      <div class="stat-item">
+        <span class="stat-value">$356K</span>
+        <span class="stat-label">Total verified revenue across 6 months · 1.61x blended portfolio ROAS</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">15.2%</span>
+        <span class="stat-label">Platform overclaim rate — platforms claimed 6,795 leads vs. 5,764 verified in warehouse</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">2 of 5</span>
+        <span class="stat-label">Campaigns operating below break-even despite low reported CPL</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- BODY -->
+  <main class="cs-body">
+    <div class="wrap">
+
+
+      <!-- THE PROBLEM -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">The Problem</p>
+
+        <h2>Cheap Leads Can Cost More Than Expensive Ones</h2>
+
+        <div class="failure-grid">
+
+          <div class="problem-block">
+            <span class="problem-index">01</span>
+            <p>
+              <strong>CPL ≠ Revenue per lead</strong><br>
+              Affiliate traffic generated the lowest CPL ($17.50) and the
+              highest ROAS (2.69x) — but also the worst valid-lead rate (59.1%).
+              Google leads cost $44–$46 but converted at 80–82% valid rate.
+              Optimizing toward CPL alone would systematically shift budget
+              toward lower-quality supply.
+            </p>
+          </div>
+
+          <div class="problem-block">
+            <span class="problem-index">02</span>
+            <p>
+              <strong>Platform conversions are overstated</strong><br>
+              Meta campaigns overstated conversions by 15–40%. Google overclaimed
+              by 5–20%. The blended overclaim rate across paid channels was 15.2%.
+              Budget decisions made on platform metrics were working from
+              systematically inflated signals.
+            </p>
+          </div>
+
+          <div class="problem-block">
+            <span class="problem-index">03</span>
+            <p>
+              <strong>No partner visibility</strong><br>
+              All 10 insurance partners were below the 80% acceptance target.
+              Four were below the 70% operational minimum. Without
+              visibility into which partners were rejecting leads — and why —
+              routing priority couldn't be adjusted to protect revenue.
+            </p>
+          </div>
+
+        </div>
+
+        <p>
+          The team didn't need more dashboard tiles. They needed one connected
+          system from acquisition spend to verified partner revenue.
+        </p>
+
+        <div class="key-statement">
+          <p>
+            The decision wasn't CPL.
+            <span>It was revenue per valid, accepted lead.</span>
+          </p>
+        </div>
+
+      </section>
+
+
+      <hr class="cs-divider">
+
+
+      <!-- FUNNEL -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Lead Funnel</p>
+
+        <h2>Where 35,000 Sessions Become $356K in Revenue</h2>
+
+        <p>
+          The funnel mart (<code>mart_lead_funnel</code>) joined
+          100,928 quote events and 7,795 lead records to trace every session
+          through quote start, completion, submission, and validation — by
+          channel, vertical, and month.
+        </p>
+
+        <div class="funnel-visual">
+
+          <div class="funnel-header">
+            <div class="funnel-header-title">Acquisition Funnel — All Channels, Jan–Jun 2025</div>
+            <div class="funnel-header-sub">Stage-to-stage pass-through · Biggest drop: Quote Start → Completion (46%)</div>
+          </div>
+
+          <div class="funnel-body">
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Sessions</span>
+                <span class="funnel-count">35,000 · 100%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:100%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Quote Starts</span>
+                <span class="funnel-count">21,161 · 60.5%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:60.5%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Quote Completions</span>
+                <span class="funnel-count funnel-count--drop">9,726 · 27.8% <span style="font-weight:400;font-size:0.7rem;">(↓ 46% drop from starts)</span></span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar funnel-bar--drop" style="width:27.8%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Leads Submitted</span>
+                <span class="funnel-count">7,795 · 22.3% overall CVR</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar" style="width:22.3%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage" style="color:var(--accent);">Valid Leads</span>
+                <span class="funnel-count funnel-count--accent">5,834 · 74.8% valid rate</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar funnel-bar--accent" style="width:16.7%;"></div></div>
+            </div>
+
+          </div>
+
+          <div class="funnel-footer">
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">22.3%</span>
+              <span class="funnel-metric-label">Overall CVR session → lead submission</span>
+            </div>
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">74.8%</span>
+              <span class="funnel-metric-label">Valid lead rate — 5,834 of 7,795 submitted</span>
+            </div>
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">5.9%</span>
+              <span class="funnel-metric-label">Duplicate rate across all channels</span>
+            </div>
+          </div>
+
+        </div>
+
+        <h3>Channel Quality Is Not Uniform</h3>
+
+        <div class="table-wrapper">
+          <table class="cs-table">
+            <thead>
+              <tr>
+                <th>Channel</th>
+                <th>Leads</th>
+                <th>Valid Rate</th>
+                <th>Dup Rate</th>
+                <th>Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Organic</td>
+                <td>1,171</td>
+                <td class="val-green">85.0%</td>
+                <td>6.4%</td>
+                <td>$53,900</td>
+              </tr>
+              <tr>
+                <td>Google</td>
+                <td>2,674</td>
+                <td class="val-green">81.3%</td>
+                <td>5.6%</td>
+                <td>$122,011</td>
+              </tr>
+              <tr>
+                <td>Direct</td>
+                <td>860</td>
+                <td class="val-green">80.5%</td>
+                <td>7.2%</td>
+                <td>$39,721</td>
+              </tr>
+              <tr>
+                <td>Meta</td>
+                <td>1,938</td>
+                <td class="val-amber">66.6%</td>
+                <td>5.7%</td>
+                <td>$85,887</td>
+              </tr>
+              <tr>
+                <td>Affiliate</td>
+                <td>1,152</td>
+                <td class="val-red">59.1%</td>
+                <td>5.3%</td>
+                <td>$54,193</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Organic and Google leads convert at the highest valid rate
+          (85% and 81%) but Affiliate — despite the lowest CPL and best surface
+          ROAS — produces the weakest quality at 59.1%. Before reallocating
+          budget toward Affiliate on CPL alone, the team needed to see this
+          downstream quality gap.
+        </p>
+
+        <h3>SQL Design: Preventing Fan-out</h3>
+
+        <p>
+          The mart pre-aggregates quote events and lead records separately
+          into the same <code>channel × vertical × month</code> grain before joining —
+          because a direct join would create one session row per quote event,
+          inflating session counts by the number of events per user.
+        </p>
+
+      </section>
+
+
+      <hr class="cs-divider">
+
+
+      <!-- CAMPAIGN PERFORMANCE -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Campaign Performance</p>
+
+        <h2>Two Campaigns Below Break-Even. Low CPL Doesn't Mean Profitable.</h2>
+
+        <p>
+          The campaign mart (<code>mart_campaign_performance</code>) joined ad spend,
+          warehouse leads, and verified revenue across 5 campaigns — applying
+          three separate pre-aggregation CTEs before any join to prevent spend
+          fan-out. Without pre-aggregation, joining leads to ad spend records
+          would inflate total spend by 3x.
+        </p>
+
+        <div class="campaign-chart">
+
+          <div class="campaign-header">
+            <div class="campaign-header-title">Campaign ROAS — Jan–Jun 2025 · Break-even = 1.0x</div>
+            <div class="campaign-header-note">$220,701 total spend · $262,092 paid revenue</div>
+          </div>
+
+          <div class="campaign-body">
+
+            <div class="campaign-row">
+              <div class="campaign-meta">
+                <span class="campaign-name">C005 — Affiliate</span>
+                <div class="campaign-tags">
+                  <span class="c-tag c-tag--channel">Affiliate</span>
+                  <span class="c-tag c-tag--green">2.69x ROAS</span>
+                </div>
+                <span class="campaign-roas campaign-roas--green">2.69x</span>
+              </div>
+              <div class="campaign-track"><div class="campaign-bar campaign-bar--green" style="width:100%;"></div></div>
+              <div class="campaign-detail">
+                <span>Spend: <strong>$20,164</strong></span>
+                <span>Revenue: <strong>$54,193</strong></span>
+                <span>CPL: <strong>$17.50</strong></span>
+                <span>Valid Rate: <strong class="val-red">59.1%</strong></span>
+                <span>Overclaim: <strong>15.2%</strong></span>
+              </div>
+            </div>
+
+            <div class="campaign-row">
+              <div class="campaign-meta">
+                <span class="campaign-name">C004 — Meta</span>
+                <div class="campaign-tags">
+                  <span class="c-tag c-tag--channel">Meta</span>
+                  <span class="c-tag c-tag--green">1.24x ROAS</span>
+                </div>
+                <span class="campaign-roas campaign-roas--green">1.24x</span>
+              </div>
+              <div class="campaign-track"><div class="campaign-bar campaign-bar--green" style="width:46%;"></div></div>
+              <div class="campaign-detail">
+                <span>Spend: <strong>$40,756</strong></span>
+                <span>Revenue: <strong>$50,705</strong></span>
+                <span>CPL: <strong>$42.02</strong></span>
+                <span>Valid Rate: <strong class="val-red">66.3%</strong></span>
+                <span>Overclaim: <strong>17.9%</strong></span>
+              </div>
+            </div>
+
+            <div class="campaign-row">
+              <div class="campaign-meta">
+                <span class="campaign-name">C002 — Google</span>
+                <div class="campaign-tags">
+                  <span class="c-tag c-tag--channel">Google</span>
+                  <span class="c-tag c-tag--green">1.08x ROAS</span>
+                </div>
+                <span class="campaign-roas campaign-roas--green">1.08x</span>
+              </div>
+              <div class="campaign-track"><div class="campaign-bar campaign-bar--green" style="width:40%;"></div></div>
+              <div class="campaign-detail">
+                <span>Spend: <strong>$60,208</strong></span>
+                <span>Revenue: <strong>$65,139</strong></span>
+                <span>CPL: <strong>$43.76</strong></span>
+                <span>Valid Rate: <strong class="val-green">80.5%</strong></span>
+                <span>Overclaim: <strong>12.7%</strong></span>
+              </div>
+            </div>
+
+            <div class="campaign-row">
+              <div class="campaign-meta">
+                <span class="campaign-name">C001 — Google</span>
+                <div class="campaign-tags">
+                  <span class="c-tag c-tag--channel">Google</span>
+                  <span class="c-tag c-tag--amber">0.96x ROAS</span>
+                </div>
+                <span class="campaign-roas campaign-roas--amber">0.96x</span>
+              </div>
+              <div class="campaign-track"><div class="campaign-bar campaign-bar--amber" style="width:35%;"></div></div>
+              <div class="campaign-detail">
+                <span>Spend: <strong>$59,340</strong></span>
+                <span>Revenue: <strong>$56,872</strong></span>
+                <span>CPL: <strong>$45.72</strong></span>
+                <span>Valid Rate: <strong class="val-green">82.2%</strong></span>
+                <span>Overclaim: <strong>13.2%</strong></span>
+              </div>
+            </div>
+
+            <div class="campaign-row">
+              <div class="campaign-meta">
+                <span class="campaign-name">C003 — Meta</span>
+                <div class="campaign-tags">
+                  <span class="c-tag c-tag--channel">Meta</span>
+                  <span class="c-tag c-tag--red">0.87x ROAS</span>
+                </div>
+                <span class="campaign-roas campaign-roas--red">0.87x</span>
+              </div>
+              <div class="campaign-track"><div class="campaign-bar campaign-bar--red" style="width:32%;"></div></div>
+              <div class="campaign-detail">
+                <span>Spend: <strong>$40,233</strong></span>
+                <span>Revenue: <strong>$35,182</strong></span>
+                <span>CPL: <strong>$41.56</strong></span>
+                <span>Valid Rate: <strong class="val-red">67.0%</strong></span>
+                <span>Overclaim: <strong>18.2%</strong></span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="breakeven-note">
+            <span>⚠ 2 of 5 campaigns (C001, C003) operating below break-even — $100.5K spend generating $92.1K revenue</span>
+          </div>
+
+        </div>
+
+        <h3>The Affiliate Paradox</h3>
+
+        <p>
+          C005 (Affiliate) shows the highest ROAS at 2.69x — but the lowest
+          valid-lead rate at 59.1%. This creates a deceptive signal: the channel
+          looks profitable on blended metrics, but nearly 4 in 10 leads generated
+          cost money to acquire and route without generating any revenue. Scale
+          this channel without addressing quality and the economics deteriorate.
+        </p>
+
+        <h3>Attribution: First-Touch vs. Submitted Channel</h3>
+
+        <p>
+          The attribution mart (<code>mart_attribution</code>) applied
+          <code>QUALIFY ROW_NUMBER() = 1 ORDER BY event_timestamp ASC</code> to isolate
+          each lead's earliest quote event as the first-touch channel. Approximately
+          15% of leads showed a different first-touch channel than the submitted
+          channel — cross-channel journeys that standard last-touch attribution
+          would misattribute entirely to one channel.
+        </p>
+
+      </section>
+
+
+      <hr class="cs-divider">
+
+
+      <!-- PARTNER PERFORMANCE -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Partner Performance</p>
+
+        <h2>All 10 Partners Below the 80% Target. Four Below the 70% Minimum.</h2>
+
+        <p>
+          The partner mart (<code>mart_partner_performance</code>) tracked every
+          routing attempt — delivered, accepted, rejected, capacity-exceeded —
+          across 10 insurance partners. A key design decision: a
+          <strong>7-day rolling acceptance rate</strong> using
+          <code>RANGE BETWEEN 6 PRECEDING AND CURRENT ROW</code> on
+          <code>UNIX_DATE(route_date)</code> to distinguish genuine trend from
+          one-day noise. <code>RANGE</code> (not <code>ROWS</code>) handles
+          partner gaps — partners with only ~70 active days out of 180.
+        </p>
+
+        <div class="partner-chart">
+
+          <div class="partner-header">
+            <div class="partner-header-title">Partner Acceptance Rate · 6-Month Average</div>
+            <div style="display:flex;gap:var(--s4);font-size:0.75rem;color:var(--muted);">
+              <span>▏Min 70%</span>
+              <span>▏Target 80%</span>
+            </div>
+          </div>
+
+          <div class="partner-body">
+
+            <div class="partner-row">
+              <div class="partner-meta">
+                <span class="partner-name">BlueCross Health</span>
+                <span class="partner-rate partner-rate--amber">75.4%</span>
+              </div>
+              <div class="partner-track">
+                <div class="partner-bar partner-bar--amber" style="width:75.4%;"></div>
+                <div class="partner-threshold" style="left:70%;"></div>
+                <div class="partner-threshold" style="left:80%; background:var(--accent);"></div>
+              </div>
+            </div>
+
+            <div class="partner-row">
+              <div class="partner-meta">
+                <span class="partner-name">State Farm Network</span>
+                <span class="partner-rate partner-rate--amber">74.3%</span>
+              </div>
+              <div class="partner-track">
+                <div class="partner-bar partner-bar--amber" style="width:74.3%;"></div>
+                <div class="partner-threshold" style="left:70%;"></div>
+                <div class="partner-threshold" style="left:80%; background:var(--accent);"></div>
+              </div>
+            </div>
+
+            <div class="partner-row">
+              <div class="partner-meta">
+                <span class="partner-name">UnitedHealth Direct</span>
+                <span class="partner-rate partner-rate--amber">69.5%</span>
+              </div>
+              <div class="partner-track">
+                <div class="partner-bar partner-bar--red" style="width:69.5%;"></div>
+                <div class="partner-threshold" style="left:70%;"></div>
+                <div class="partner-threshold" style="left:80%; background:var(--accent);"></div>
+              </div>
+            </div>
+
+            <div class="partner-row">
+              <div class="partner-meta">
+                <span class="partner-name">Progressive Direct</span>
+                <span class="partner-rate partner-rate--amber">69.2%</span>
+              </div>
+              <div class="partner-track">
+                <div class="partner-bar partner-bar--red" style="width:69.2%;"></div>
+                <div class="partner-threshold" style="left:70%;"></div>
+                <div class="partner-threshold" style="left:80%; background:var(--accent);"></div>
+              </div>
+            </div>
+
+            <div class="partner-row">
+              <div class="partner-meta">
+                <span class="partner-name">MetLife Life</span>
+                <span class="partner-rate partner-rate--amber">68.5%</span>
+              </div>
+              <div class="partner-track">
+                <div class="partner-bar partner-bar--red" style="width:68.5%;"></div>
+                <div class="partner-threshold" style="left:70%;"></div>
+                <div class="partner-threshold" style="left:80%; background:var(--accent);"></div>
+              </div>
+            </div>
+
+            <div class="partner-row">
+              <div class="partner-meta">
+                <span class="partner-name">Farmers Home</span>
+                <span class="partner-rate partner-rate--amber">66.7%</span>
+              </div>
+              <div class="partner-track">
+                <div class="partner-bar partner-bar--red" style="width:66.7%;"></div>
+                <div class="partner-threshold" style="left:70%;"></div>
+                <div class="partner-threshold" style="left:80%; background:var(--accent);"></div>
+              </div>
+            </div>
+
+            <div class="partner-row">
+              <div class="partner-meta">
+                <span class="partner-name">Nationwide Multi</span>
+                <span class="partner-rate partner-rate--red">62.8%</span>
+              </div>
+              <div class="partner-track">
+                <div class="partner-bar partner-bar--red" style="width:62.8%;"></div>
+                <div class="partner-threshold" style="left:70%;"></div>
+                <div class="partner-threshold" style="left:80%; background:var(--accent);"></div>
+              </div>
+            </div>
+
+            <div class="partner-row">
+              <div class="partner-meta">
+                <span class="partner-name">Allstate Connect</span>
+                <span class="partner-rate partner-rate--red">61.7%</span>
+              </div>
+              <div class="partner-track">
+                <div class="partner-bar partner-bar--red" style="width:61.7%;"></div>
+                <div class="partner-threshold" style="left:70%;"></div>
+                <div class="partner-threshold" style="left:80%; background:var(--accent);"></div>
+              </div>
+            </div>
+
+            <div class="partner-row">
+              <div class="partner-meta">
+                <span class="partner-name">Prudential Life</span>
+                <span class="partner-rate partner-rate--red">61.1%</span>
+              </div>
+              <div class="partner-track">
+                <div class="partner-bar partner-bar--red" style="width:61.1%;"></div>
+                <div class="partner-threshold" style="left:70%;"></div>
+                <div class="partner-threshold" style="left:80%; background:var(--accent);"></div>
+              </div>
+            </div>
+
+            <div class="partner-row">
+              <div class="partner-meta">
+                <span class="partner-name">Liberty Mutual Auto</span>
+                <span class="partner-rate partner-rate--red">60.0%</span>
+              </div>
+              <div class="partner-track">
+                <div class="partner-bar partner-bar--red" style="width:60%;"></div>
+                <div class="partner-threshold" style="left:70%;"></div>
+                <div class="partner-threshold" style="left:80%; background:var(--accent);"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="partner-footer">
+            <span>⚠ 0 of 10 partners above 80% target · 6 of 10 below 70% minimum · All partners require routing review</span>
+          </div>
+
+        </div>
+
+        <h3>What the Rolling Rate Reveals</h3>
+
+        <p>
+          A partner's 6-month average acceptance rate can look stable while a
+          7-day trend shows a sharp recent decline. The rolling rate uses
+          <strong>volume-weighted aggregation</strong>
+          (<code>SUM(accepted) / SUM(delivered)</code> over the 7-day window)
+          rather than an average of daily rates — which would overweight
+          low-volume days. This distinguishes a genuine trend from a single
+          high-rejection day.
+        </p>
+
+      </section>
+
+
+      <hr class="cs-divider">
+
+
+      <!-- RECONCILIATION -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Platform Reconciliation</p>
+
+        <h2>Platforms Claimed 1,031 More Leads Than the Warehouse Recorded</h2>
+
+        <p>
+          The reconciliation mart (<code>mart_reconciliation</code>) used a
+          <strong>FULL OUTER JOIN</strong> — not a LEFT JOIN — because organic and
+          direct channels generate warehouse leads with no corresponding ad spend
+          rows. A LEFT JOIN on the spend table would silently drop all organic
+          and direct leads from the comparison.
+        </p>
+
+        <div class="recon-visual">
+
+          <div class="recon-header">
+            <div class="recon-header-title">Platform vs. Warehouse Lead Counts — Paid Channels</div>
+            <div class="recon-header-note">Organic/direct: warehouse-only<br>(no platform to reconcile)</div>
+          </div>
+
+          <div class="recon-body">
+
+            <div class="recon-row">
+              <div class="recon-meta">
+                <span class="recon-channel">Google (C001 + C002)</span>
+                <div class="recon-nums">
+                  <span class="recon-num">Platform: <strong>3,073</strong></span>
+                  <span class="recon-num">Warehouse: <strong>2,674</strong></span>
+                  <span class="recon-num recon-num--red">Overclaim: <strong>+13%</strong></span>
+                </div>
+              </div>
+              <div class="recon-tracks">
+                <div class="recon-track"><div class="recon-bar recon-bar--platform" style="width:100%;"></div></div>
+                <div class="recon-track"><div class="recon-bar recon-bar--warehouse" style="width:87%;"></div></div>
+              </div>
+            </div>
+
+            <div class="recon-row">
+              <div class="recon-meta">
+                <span class="recon-channel">Meta (C003 + C004)</span>
+                <div class="recon-nums">
+                  <span class="recon-num">Platform: <strong>2,307</strong></span>
+                  <span class="recon-num">Warehouse: <strong>1,938</strong></span>
+                  <span class="recon-num recon-num--red">Overclaim: <strong>+16%</strong></span>
+                </div>
+              </div>
+              <div class="recon-tracks">
+                <div class="recon-track"><div class="recon-bar recon-bar--platform" style="width:100%;"></div></div>
+                <div class="recon-track"><div class="recon-bar recon-bar--warehouse" style="width:84%;"></div></div>
+              </div>
+            </div>
+
+            <div class="recon-row">
+              <div class="recon-meta">
+                <span class="recon-channel">Affiliate (C005)</span>
+                <div class="recon-nums">
+                  <span class="recon-num">Platform: <strong>1,327</strong></span>
+                  <span class="recon-num">Warehouse: <strong>1,152</strong></span>
+                  <span class="recon-num recon-num--red">Overclaim: <strong>+13%</strong></span>
+                </div>
+              </div>
+              <div class="recon-tracks">
+                <div class="recon-track"><div class="recon-bar recon-bar--platform" style="width:100%;"></div></div>
+                <div class="recon-track"><div class="recon-bar recon-bar--warehouse" style="width:87%;"></div></div>
+              </div>
+            </div>
+
+            <div class="recon-row">
+              <div class="recon-meta">
+                <span class="recon-channel">Organic / Direct</span>
+                <div class="recon-nums">
+                  <span class="recon-num">Platform: <strong>— (none)</strong></span>
+                  <span class="recon-num">Warehouse: <strong>2,031</strong></span>
+                  <span class="recon-num">Status: <strong>Warehouse-only</strong></span>
+                </div>
+              </div>
+              <div class="recon-tracks">
+                <div class="recon-track"><div class="recon-bar" style="width:0%;"></div></div>
+                <div class="recon-track"><div class="recon-bar recon-bar--warehouse" style="width:100%;"></div></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="recon-legend">
+            <div class="recon-legend-item">
+              <div class="recon-legend-dot" style="background:var(--blue);"></div>
+              Platform-reported
+            </div>
+            <div class="recon-legend-item">
+              <div class="recon-legend-dot" style="background:var(--accent);"></div>
+              Warehouse-verified
+            </div>
+          </div>
+
+        </div>
+
+        <h3>Why Overclaim Exists</h3>
+
+        <p>
+          Platform conversions fire on ad clicks or page events — before
+          lead validation, duplicate detection, or partner submission.
+          The gap accumulates from: attribution window differences, pixel
+          double-firing, cross-device mismatches, test traffic, and
+          leads rejected as duplicates in the warehouse.
+        </p>
+
+        <p>
+          At 15.2% blended overclaim, any ROAS calculation using platform
+          lead counts as the denominator overstates performance by that same
+          margin. Budget decisions and campaign optimization need to work
+          from warehouse-verified numbers.
+        </p>
+
+      </section>
+
+
+      <hr class="cs-divider">
+
+
+      <!-- TECHNICAL ARCHITECTURE -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Technical Architecture</p>
+
+        <h2>Five SQL Marts. Five LookML Views. One Governed Semantic Layer.</h2>
+
+        <p>
+          The system is structured in three explicit layers so business logic
+          lives in one place and teams can't accidentally create conflicting
+          metric definitions in individual dashboard tiles.
+        </p>
+
+        <div class="stack-grid">
+
+          <div class="stack-card">
+            <div class="stack-card-label">BigQuery + SQL</div>
+            <div class="stack-card-value">5 Mart Tables, 1 Shared Grain per Mart</div>
+            <div class="stack-card-desc">
+              Each mart has a documented grain. Pre-aggregation CTEs prevent
+              spend fan-out on joins. FULL OUTER JOIN handles organic/direct
+              channels in reconciliation. QUALIFY ROW_NUMBER() isolates
+              first-touch events per lead. SAFE_DIVIDE throughout.
+            </div>
+          </div>
+
+          <div class="stack-card">
+            <div class="stack-card-label">LookML Semantic Layer</div>
+            <div class="stack-card-value">5 Views · 5 Explores · Reusable Metrics</div>
+            <div class="stack-card-desc">
+              Ratio measures defined as <code>type: number</code> with
+              <code>SAFE_DIVIDE(SUM_num, SUM_denom)</code> — never average of
+              a pre-computed ratio. Every view has a composite primary key
+              to prevent fan-out on Explore joins.
+              <code>value_format_name</code> set in LookML for format consistency.
+            </div>
+          </div>
+
+          <div class="stack-card">
+            <div class="stack-card-label">Rolling Window Design</div>
+            <div class="stack-card-value">RANGE vs. ROWS — Calendar Days, Not Row Count</div>
+            <div class="stack-card-desc">
+              Partner rolling acceptance uses <code>RANGE BETWEEN 6 PRECEDING
+              AND CURRENT ROW</code> on <code>UNIX_DATE(route_date)</code>.
+              RANGE calculates over calendar-day distance — partners with
+              gaps in daily activity get correct 7-day windows. ROWS would
+              silently skip non-consecutive dates.
+            </div>
+          </div>
+
+          <div class="stack-card">
+            <div class="stack-card-label">Streamlit Dashboard</div>
+            <div class="stack-card-value">4 Pages · Plotly Charts · Alert Logic</div>
+            <div class="stack-card-desc">
+              Executive Summary → Lead Funnel → Campaign Performance →
+              Partner &amp; Reconciliation. Each page includes conditional
+              alert callouts (partner below 70%, campaign below break-even,
+              overclaim above 10% audit threshold). Sidebar filters by
+              channel, vertical, and month range.
+            </div>
+          </div>
+
+        </div>
+
+        <h3>SQL Mart Inventory</h3>
+
+        <div class="table-wrapper">
+          <table class="cs-table">
+            <thead>
+              <tr>
+                <th>Mart</th>
+                <th>Grain</th>
+                <th>Key Design Decision</th>
+                <th>Business Question</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>mart_lead_funnel</td>
+                <td>channel × vertical × month</td>
+                <td>Two CTEs pre-aggregated before join; prevents session fan-out</td>
+                <td>Where in the funnel does volume drop — and for which channels?</td>
+              </tr>
+              <tr>
+                <td>mart_campaign_performance</td>
+                <td>campaign × month</td>
+                <td>3 separate pre-aggregation CTEs; revenue bridged via leads (no campaign_id in revenue table)</td>
+                <td>Which campaigns are above break-even after verified revenue?</td>
+              </tr>
+              <tr>
+                <td>mart_partner_performance</td>
+                <td>partner × date</td>
+                <td>RANGE window on UNIX_DATE for calendar-day rolling rates</td>
+                <td>Is a partner's acceptance decline a real trend or daily noise?</td>
+              </tr>
+              <tr>
+                <td>mart_attribution</td>
+                <td>1 row per lead</td>
+                <td>QUALIFY ROW_NUMBER() for first-touch; revenue pre-aggregated in CTE</td>
+                <td>Which first-touch channels generate the most monetized leads?</td>
+              </tr>
+              <tr>
+                <td>mart_reconciliation</td>
+                <td>channel × month</td>
+                <td>FULL OUTER JOIN; organic/direct get warehouse_only status; NULL-safe overclaim calc</td>
+                <td>How much are platforms overclaiming vs. warehouse reality?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Technology</h3>
+
+        <div class="tech-grid">
+          <span class="tech-tag">Google BigQuery</span>
+          <span class="tech-tag">BigQuery Standard SQL</span>
+          <span class="tech-tag">dbt (modeling patterns)</span>
+          <span class="tech-tag">LookML</span>
+          <span class="tech-tag">Looker</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Plotly</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">pandas</span>
+          <span class="tech-tag">Window Functions</span>
+          <span class="tech-tag">QUALIFY / ROW_NUMBER()</span>
+          <span class="tech-tag">FULL OUTER JOIN</span>
+          <span class="tech-tag">RANGE BETWEEN on UNIX_DATE</span>
+          <span class="tech-tag">First-Touch Attribution</span>
+          <span class="tech-tag">Platform Reconciliation</span>
+          <span class="tech-tag">Fanout Prevention</span>
+        </div>
+
+      </section>
+
+
+      <hr class="cs-divider">
+
+
+      <!-- LIVE APP -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Source Code</p>
+
+        <h2>Code &amp; Documentation</h2>
+
+        <p>
+          The repository includes BigQuery SQL for all 5 marts, LookML views
+          and model file, Streamlit dashboard source, Python data-generation
+          script, and process documentation from raw data through dashboard delivery.
+        </p>
+
+        <a
+          href="https://github.com/jinyeong-park/lead-funnel-analytics"
+          target="_blank"
+          rel="noopener"
+          class="btn btn--secondary"
+        >
+          View on GitHub
+        </a>
+
+      </section>
+
+
+      <hr class="cs-divider">
+
+
+      <!-- FINAL TAKEAWAY -->
+      <section class="cs-section">
+
+        <div class="takeaway">
+
+          <p class="cs-section-label">What This Project Demonstrates</p>
+
+          <p>
+            I connect fragmented acquisition, lead quality, partner routing,
+            and revenue data into a single governed system — and use that
+            system to surface the decisions that get missed when teams
+            optimize toward platform-reported metrics alone.
+          </p>
+
+          <p style="margin-top: 1.5rem; font-size: 1rem; font-weight: 600; color: var(--accent-dark);">
+            Platform Spend → Warehouse Leads → Partner Acceptance → Verified Revenue
+          </p>
+
+          <p>
+            Low CPL without verified ROAS. Platform overclaim without reconciliation.
+            <span>High ROAS without quality — none of these tell the full story.</span>
+          </p>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+
+  <!-- FOOTER CTA -->
+  <section class="cs-footer-cta">
+    <div class="wrap">
+      <div>
+        <h3>Interested in working together?</h3>
+        <p>Open to Data Analyst, Growth Analyst, Marketing Analytics, and Analytics Engineering roles.</p>
+      </div>
+      <div style="display:flex; gap:var(--s3); flex-wrap:wrap;">
+        <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
+        <a href="index.html#work" class="btn btn--secondary">See more work</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <div class="footer-name">Jenny Park</div>
+        <div class="footer-location">San Francisco Bay Area</div>
+      </div>
+      <a
+        href="https://www.linkedin.com/in/jennypark7/"
+        target="_blank"
+        rel="noopener"
+        style="font-size:0.8125rem; font-weight:500; color:var(--muted);"
+      >
+        LinkedIn
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
