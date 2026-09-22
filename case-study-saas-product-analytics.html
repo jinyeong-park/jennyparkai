@@ -258,6 +258,8 @@
     .cs-footer-cta h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.375rem; color: var(--ink); margin-bottom: var(--s2); }
     .cs-footer-cta p { font-size: 0.9375rem; color: var(--muted); }
 
+    .cs-hero-actions { display: flex; gap: var(--s3); flex-wrap: wrap; margin-bottom: var(--s6); }
+
     .btn { display: inline-flex; align-items: center; gap: var(--s2); font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; padding: var(--s3) var(--s5); cursor: pointer; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); border: 1.5px solid transparent; white-space: nowrap; }
     .btn--primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
     .btn--primary:hover { background: #0a3d6b; border-color: #0a3d6b; }
@@ -316,6 +318,20 @@
       <p class="cs-hero-lead">
         Mapped the full B2B SaaS customer lifecycle from first signup to churn risk — surfacing where accounts drop off, whether guided onboarding actually moves the needle, and which accounts need a customer success call before they churn.
       </p>
+
+      <div class="cs-hero-actions">
+        <a
+          href="https://jennypark-saas-analytics.streamlit.app/"
+          target="_blank"
+          rel="noopener"
+          class="btn btn--primary"
+        >
+          Live Dashboard
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
 
       <div class="cs-meta-row">
         <div class="cs-meta-item">
@@ -731,6 +747,18 @@
         <p>
           Full Streamlit dashboard, data generation scripts, metric definitions, and test suite available on GitHub. The README includes a quickstart to run the full analytics system locally.
         </p>
+
+        <a
+          href="https://jennypark-saas-analytics.streamlit.app/"
+          target="_blank"
+          rel="noopener"
+          class="btn btn--primary"
+        >
+          Live Dashboard
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
 
         <a
           href="https://github.com/jinyeong-park/saas-lifecycle-retention"
