@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Product-Led SaaS Lifecycle &amp; Retention Analytics — Jenny Park</title>
+
+  <meta
+    name="description"
+    content="Case study: Mapping the full B2B SaaS customer lifecycle — surfacing an 18.6 pp activation lift from guided onboarding, $96K in at-risk MRR, and segment-specific rollout recommendations."
+  >
+
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root {
+      --surface:      #FFFFFF;
+      --raised:       #F2F4F8;
+      --ink:          #0C0C0C;
+      --muted:        #5B6880;
+      --accent:       #0f4c81;
+      --accent-light: #dbeafe;
+      --green:        #107C41;
+      --green-light:  #dcfce7;
+      --amber:        #92400e;
+      --amber-light:  #fef3c7;
+      --red:          #991b1b;
+      --red-light:    #fee2e2;
+      --on-accent:    #FFFFFF;
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body:    'Instrument Sans', system-ui, sans-serif;
+
+      --s1: 0.25rem; --s2: 0.5rem;  --s3: 0.75rem; --s4: 1rem;
+      --s5: 1.5rem;  --s6: 2rem;    --s7: 3rem;    --s8: 4rem;
+
+      --line:   1px solid #E2E8F0;
+      --radius: 0px;
+      --t-fast: 150ms;
+      --ease:   cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    code { font-family: 'SF Mono', Menlo, monospace; font-size: 0.875em; color: var(--accent); }
+
+    .wrap { max-width: 800px; margin-inline: auto; padding-inline: var(--s6); }
+
+    /* ── HEADER ── */
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--surface); border-bottom: var(--line); }
+    .site-header .wrap { max-width: 1200px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .wordmark { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; color: var(--ink); }
+    .header-back { display: inline-flex; align-items: center; gap: var(--s2); font-size: 0.875rem; font-weight: 500; color: var(--muted); transition: color var(--t-fast) var(--ease); }
+    .header-back:hover { color: var(--ink); }
+    .header-back svg { flex-shrink: 0; }
+
+    /* ── HERO ── */
+    .cs-hero { padding-block: var(--s8) var(--s7); border-bottom: var(--line); }
+    .cs-hero .wrap { max-width: 800px; }
+
+    .cs-kicker { display: flex; align-items: center; gap: var(--s3); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s5); }
+    .cs-kicker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+
+    .cs-hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; color: var(--ink); margin-bottom: var(--s5); max-width: 24ch; }
+    .cs-hero-lead { font-size: 1.0625rem; line-height: 1.7; color: var(--muted); max-width: 60ch; margin-bottom: var(--s6); }
+
+    .cs-meta-row { display: flex; flex-wrap: wrap; gap: var(--s5); padding-top: var(--s5); border-top: var(--line); }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .cs-meta-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .cs-meta-value { font-size: 0.9375rem; font-weight: 500; color: var(--ink); }
+
+    /* ── STAT STRIP ── */
+    .stat-strip { background: var(--raised); border-bottom: var(--line); padding-block: var(--s6); }
+    .stat-strip .wrap { max-width: 800px; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s6); }
+    .stat-item { display: flex; flex-direction: column; gap: var(--s1); }
+    .stat-value { font-family: var(--font-display); font-size: 2.25rem; font-weight: 400; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.8125rem; color: var(--muted); line-height: 1.4; }
+
+    /* ── BODY ── */
+    .cs-body { padding-block: var(--s8); }
+    .cs-section { margin-bottom: var(--s8); }
+    .cs-section:last-child { margin-bottom: 0; }
+
+    .cs-section-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s4); }
+    .cs-section h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.625rem; line-height: 1.2; color: var(--ink); margin-bottom: var(--s4); }
+    .cs-section h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: var(--s3); margin-top: var(--s5); }
+    .cs-section p { font-size: 1rem; line-height: 1.75; color: var(--muted); margin-bottom: var(--s4); }
+    .cs-section ul { list-style: none; margin-bottom: var(--s4); }
+    .cs-section ul li { font-size: 1rem; line-height: 1.7; color: var(--muted); padding-left: var(--s5); position: relative; margin-bottom: var(--s2); }
+    .cs-section ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+    .cs-section ul li strong, .cs-section p strong { color: var(--ink); font-weight: 600; }
+
+    .cs-divider { border: none; border-top: var(--line); margin-block: var(--s7); }
+
+    /* ── PROBLEM BLOCKS ── */
+    .problem-block { background: var(--raised); border-left: 3px solid var(--accent); padding: var(--s5) var(--s6); margin-bottom: var(--s4); }
+    .problem-block p { margin-bottom: 0; color: var(--ink); }
+
+    /* ── INSIGHT CALLOUT ── */
+    .insight-callout {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      padding: var(--s4) var(--s5);
+      margin: var(--s5) 0;
+    }
+    .insight-callout .ic-eyebrow { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--s2); }
+    .insight-callout .ic-text { font-size: 0.9375rem; font-weight: 500; color: var(--ink); line-height: 1.6; }
+
+    .tension-callout {
+      background: var(--amber-light);
+      border-left: 4px solid #d97706;
+      padding: var(--s4) var(--s5);
+      margin: var(--s5) 0;
+    }
+    .tension-callout .ic-eyebrow { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #92400e; margin-bottom: var(--s2); }
+    .tension-callout .ic-text { font-size: 0.9375rem; font-weight: 500; color: #451a03; line-height: 1.6; }
+
+    /* ── FUNNEL VISUAL ── */
+    .funnel-visual { border: var(--line); margin-block: var(--s6); background: var(--surface); }
+    .funnel-header { padding: var(--s4) var(--s5); background: var(--raised); border-bottom: var(--line); }
+    .funnel-header-title { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
+    .funnel-body { padding: var(--s5); }
+    .funnel-row { margin-bottom: var(--s5); }
+    .funnel-row:last-child { margin-bottom: 0; }
+    .funnel-label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--s2); }
+    .funnel-stage { font-size: 0.8125rem; font-weight: 600; color: var(--ink); }
+    .funnel-count { font-size: 0.8125rem; font-weight: 600; color: var(--muted); }
+    .funnel-count--accent { color: var(--accent); }
+    .funnel-track { width: 100%; height: 8px; background: var(--raised); overflow: hidden; }
+    .funnel-bar { height: 100%; }
+    .funnel-bar--1 { background: #0f4c81; }
+    .funnel-bar--2 { background: #2f80ed; }
+    .funnel-bar--3 { background: #17b8a6; }
+    .funnel-bar--4 { background: #22c55e; }
+    .funnel-bar--5 { background: #6ee7b7; }
+    .funnel-bar--6 { background: #a7f3d0; }
+    .funnel-badge { display: inline-block; font-size: 0.6875rem; font-weight: 600; color: var(--on-accent); background: #dc2626; padding: 1px 7px; margin-left: var(--s2); }
+    .funnel-footer { border-top: var(--line); padding: var(--s4) var(--s5); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); background: var(--raised); }
+    .funnel-metric { display: flex; flex-direction: column; gap: var(--s1); }
+    .funnel-metric-val { font-family: var(--font-display); font-size: 1.5rem; color: var(--accent); line-height: 1; }
+    .funnel-metric-label { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+
+    /* ── A/B VISUAL COMPARISON ── */
+    .ab-block { border: var(--line); margin-block: var(--s6); background: var(--surface); }
+    .ab-header { display: flex; justify-content: space-between; align-items: center; gap: var(--s4); padding: var(--s4) var(--s5); background: var(--raised); border-bottom: var(--line); flex-wrap: wrap; }
+    .ab-header-title { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
+    .ab-badge { font-size: 0.6875rem; font-weight: 700; color: #fff; background: var(--green); padding: 2px 9px; white-space: nowrap; }
+    .ab-body { padding: var(--s5); }
+
+    .ab-metric { margin-bottom: var(--s6); }
+    .ab-metric:last-child { margin-bottom: 0; }
+    .ab-metric-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s3); }
+
+    .ab-row { display: grid; grid-template-columns: 80px 1fr 70px; align-items: center; gap: var(--s3); margin-bottom: var(--s2); }
+    .ab-row:last-child { margin-bottom: 0; }
+    .ab-variant-label { font-size: 0.8125rem; font-weight: 600; color: var(--ink); }
+    .ab-track { height: 24px; background: var(--raised); position: relative; overflow: hidden; }
+    .ab-fill { height: 100%; display: flex; align-items: center; padding-left: var(--s2); }
+    .ab-fill--control { background: #CBD5E1; }
+    .ab-fill--variant { background: var(--accent); }
+    .ab-fill-label { font-size: 0.75rem; font-weight: 700; color: #fff; white-space: nowrap; }
+    .ab-fill--control .ab-fill-label { color: var(--ink); }
+    .ab-lift-badge { font-size: 0.8125rem; font-weight: 700; color: var(--green); white-space: nowrap; }
+    .ab-flat-badge { font-size: 0.8125rem; color: var(--muted); }
+
+    .ab-downstream { border-top: var(--line); margin-top: var(--s5); padding-top: var(--s5); display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s4); }
+    .ab-ds-item { }
+    .ab-ds-label { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: var(--s1); }
+    .ab-ds-row { display: flex; gap: var(--s4); margin-bottom: 4px; }
+    .ab-ds-val { font-size: 0.875rem; color: var(--muted); }
+    .ab-ds-val span { font-weight: 600; color: var(--ink); }
+    .ab-ds-note { font-size: 0.75rem; color: var(--muted); font-style: italic; }
+
+    /* ── SEGMENT CARDS ── */
+    .seg-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); margin-block: var(--s6); }
+    .seg-card { border: var(--line); padding: var(--s5); background: var(--surface); }
+    .seg-card--rollout { border-top: 3px solid var(--green); }
+    .seg-card--watch   { border-top: 3px solid #d97706; }
+    .seg-name { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s4); }
+    .seg-lift-val { font-family: var(--font-display); font-size: 1.75rem; line-height: 1; color: var(--ink); margin-bottom: var(--s1); }
+    .seg-lift-label { font-size: 0.75rem; color: var(--muted); margin-bottom: var(--s4); }
+    .seg-bar-wrap { height: 6px; background: var(--raised); margin-bottom: 4px; }
+    .seg-bar { height: 100%; }
+    .seg-bar--control { background: #CBD5E1; margin-bottom: 4px; }
+    .seg-bar--variant { background: var(--accent); }
+    .seg-compare { font-size: 0.75rem; color: var(--muted); }
+    .seg-compare span { font-weight: 600; color: var(--ink); }
+    .seg-rec { margin-top: var(--s3); padding-top: var(--s3); border-top: var(--line); font-size: 0.75rem; font-weight: 600; }
+    .seg-rec--green { color: var(--green); }
+    .seg-rec--amber { color: #92400e; }
+
+    /* ── CHURN RISK ── */
+    .risk-dist-wrap { margin-block: var(--s5); }
+    .risk-dist-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s3); }
+    .risk-dist-bar { display: flex; height: 32px; overflow: hidden; }
+    .risk-dist-seg { display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; }
+    .risk-dist-seg--high { background: #ef5b5b; }
+    .risk-dist-seg--med  { background: #f5b942; color: var(--ink); }
+    .risk-dist-seg--low  { background: #17b8a6; }
+    .risk-dist-legend { display: flex; gap: var(--s5); margin-top: var(--s3); }
+    .risk-legend-item { display: flex; align-items: center; gap: var(--s2); font-size: 0.75rem; color: var(--muted); }
+    .risk-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    .risk-comparison { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); margin-block: var(--s5); }
+    .risk-card { border: var(--line); border-top: 3px solid var(--card-color, #E2E8F0); padding: var(--s5); background: var(--surface); }
+    .risk-card--high { --card-color: #ef5b5b; }
+    .risk-card--med  { --card-color: #f5b942; }
+    .risk-card--low  { --card-color: #17b8a6; }
+    .risk-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s3); }
+    .risk-value { font-family: var(--font-display); font-size: 2rem; line-height: 1; color: var(--ink); margin-bottom: var(--s2); }
+    .risk-desc { font-size: 0.8125rem; line-height: 1.5; color: var(--muted); }
+
+    /* ── DECISION BLOCKS (Recommendations) ── */
+    .decision-list { display: flex; flex-direction: column; gap: var(--s4); margin-block: var(--s5); }
+    .decision-card { display: grid; grid-template-columns: 40px 1fr; gap: var(--s4); border: var(--line); padding: var(--s5); background: var(--surface); }
+    .decision-num { font-family: var(--font-display); font-size: 1.75rem; color: var(--accent); line-height: 1; padding-top: 2px; }
+    .decision-body { }
+    .decision-owner { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s2); }
+    .decision-title { font-size: 0.9375rem; font-weight: 600; color: var(--ink); margin-bottom: var(--s2); }
+    .decision-detail { font-size: 0.875rem; line-height: 1.6; color: var(--muted); }
+    .decision-metric { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; font-weight: 600; color: var(--accent); background: var(--accent-light); padding: 2px 8px; margin-top: var(--s2); }
+
+    /* ── IMPACT GRID ── */
+    .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); margin-bottom: var(--s6); }
+    .impact-card { border: var(--line); padding: var(--s5); background: var(--surface); }
+    .impact-card .ic-value { font-family: var(--font-display); font-size: 2rem; color: var(--accent); line-height: 1; margin-bottom: var(--s2); }
+    .impact-card .ic-label { font-size: 0.875rem; color: var(--ink); font-weight: 500; margin-bottom: var(--s1); }
+    .impact-card .ic-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── TECH ── */
+    .tech-grid { display: flex; flex-wrap: wrap; gap: var(--s2); }
+    .tech-tag { font-size: 0.75rem; font-weight: 500; color: var(--muted); background: var(--raised); border: var(--line); padding: var(--s1) var(--s3); letter-spacing: 0.02em; }
+
+    /* ── FOOTER CTA ── */
+    .cs-footer-cta { background: var(--raised); border-top: var(--line); padding-block: var(--s7); }
+    .cs-footer-cta .wrap { max-width: 800px; display: flex; align-items: center; justify-content: space-between; gap: var(--s6); flex-wrap: wrap; }
+    .cs-footer-cta h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.375rem; color: var(--ink); margin-bottom: var(--s2); }
+    .cs-footer-cta p { font-size: 0.9375rem; color: var(--muted); }
+
+    .btn { display: inline-flex; align-items: center; gap: var(--s2); font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; padding: var(--s3) var(--s5); cursor: pointer; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); border: 1.5px solid transparent; white-space: nowrap; }
+    .btn--primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    .btn--primary:hover { background: #0a3d6b; border-color: #0a3d6b; }
+    .btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn--secondary:hover { background: var(--ink); color: var(--surface); }
+
+    /* ── SITE FOOTER ── */
+    .site-footer { padding-block: var(--s6); border-top: var(--line); }
+    .site-footer .wrap { max-width: 1200px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s4); }
+    .footer-name { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; color: var(--ink); }
+    .footer-location { font-size: 0.8125rem; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .wrap { padding-inline: var(--s4); }
+      .stat-strip .wrap { grid-template-columns: 1fr; }
+      .impact-grid, .seg-cards, .risk-comparison { grid-template-columns: 1fr; }
+      .cs-footer-cta .wrap { flex-direction: column; align-items: flex-start; }
+      .cs-hero { padding-block: var(--s6) var(--s5); }
+      .funnel-footer { grid-template-columns: 1fr; }
+      .ab-downstream { grid-template-columns: 1fr; }
+      .decision-card { grid-template-columns: 1fr; }
+      .decision-num { font-size: 1.25rem; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="wordmark">Jenny Park</a>
+      <a href="index.html#work" class="header-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to work
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="wrap">
+
+      <p class="cs-kicker">
+        <span>Product Analytics</span>
+        <span class="cs-kicker-dot" aria-hidden="true"></span>
+        <span>B2B SaaS</span>
+      </p>
+
+      <h1>Product-Led SaaS Lifecycle &amp; Retention Analytics</h1>
+
+      <p class="cs-hero-lead">
+        Mapped the full B2B SaaS customer lifecycle from first signup to churn risk — surfacing where accounts drop off, whether guided onboarding actually moves the needle, and which accounts need a customer success call before they churn.
+      </p>
+
+      <div class="cs-meta-row">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Focus</span>
+          <span class="cs-meta-value">SaaS Lifecycle &amp; Retention</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Product &amp; Growth Analyst</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Methods</span>
+          <span class="cs-meta-value">Lifecycle Funnel · A/B Experiment · Cohort Retention · Churn Risk · NRR</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">Python · Streamlit · Plotly · pytest</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip" aria-label="Key results">
+    <div class="wrap">
+      <div class="stat-item">
+        <span class="stat-value">+18.6 pp</span>
+        <span class="stat-label">Activation lift from guided onboarding — p&nbsp;&lt;&nbsp;0.001, statistically significant</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">$96K</span>
+        <span class="stat-label">MRR exposed in medium-risk accounts — identifiable before any churn has occurred</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">93.5%</span>
+        <span class="stat-label">60-day retention for eligible paid accounts across 2,500 organizations</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <main class="cs-body">
+    <div class="wrap">
+
+      <!-- THE PROBLEM -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">The Problem</p>
+        <h2>Signup Numbers Looked Fine. The Lifecycle Told a Different Story.</h2>
+
+        <div class="problem-block">
+          <p><strong>Activation Gap:</strong> 35% of accounts never created a workspace after signing up — and that drop-off set a ceiling on everything downstream. Among those that did create a workspace, 68% went on to activate within 7 days. But that meant only 44% of all signups activated overall. No consistent definition of "activated" existed — and no way to connect early behavior to downstream paid conversion or churn.</p>
+        </div>
+
+        <div class="problem-block">
+          <p><strong>Experiment Running Blind:</strong> A guided onboarding flow was live in production, but no analytic layer connected it to downstream outcomes. The team knew activation had improved — not whether that improvement carried into paid conversion, retention, or whether it worked the same way for all segments.</p>
+        </div>
+
+        <div class="problem-block">
+          <p><strong>CS Outreach Based on Guesswork:</strong> Customer success was prioritizing accounts by size, not behavior. 1,112 medium-risk accounts carrying $96K in active MRR were showing declining engagement signals — with no system to surface them before they churned.</p>
+        </div>
+
+        <p>The data lived in five disconnected tables. Product behavior, subscription records, and experiment assignments had never been joined into a single lifecycle model. Every team saw their own slice. Nobody could see where accounts were leaking, or why.</p>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- LIFECYCLE FUNNEL -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Lifecycle Funnel</p>
+        <h2>The Biggest Drop Happens Before Onboarding Even Begins</h2>
+
+        <p>
+          Joining five raw tables into a shared account-level model made the full lifecycle visible for the first time. The funnel reveals that the largest single leakage point — losing 35% of signups — happens at workspace creation, before any onboarding experiment or key product action has a chance to intervene.
+        </p>
+
+        <div class="funnel-visual" aria-label="SaaS lifecycle funnel by stage">
+
+          <div class="funnel-header">
+            <div class="funnel-header-title">Account Lifecycle — 2,500 Organizations</div>
+          </div>
+
+          <div class="funnel-body">
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Signups</span>
+                <span class="funnel-count">2,500 &nbsp;·&nbsp; 100%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar funnel-bar--1" style="width:100%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Workspace Created <span class="funnel-badge">35% lost here</span></span>
+                <span class="funnel-count">1,615 &nbsp;·&nbsp; 65%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar funnel-bar--2" style="width:64.6%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Activated &nbsp;<span style="font-weight:400;color:var(--muted);font-size:0.75rem;">(workspace + key action within 7 days)</span></span>
+                <span class="funnel-count">1,106 &nbsp;·&nbsp; 44%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar funnel-bar--3" style="width:44.2%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Trial Started</span>
+                <span class="funnel-count">738 &nbsp;·&nbsp; 30%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar funnel-bar--4" style="width:29.5%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage">Paid Customers</span>
+                <span class="funnel-count">766 &nbsp;·&nbsp; 31%</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar funnel-bar--5" style="width:30.6%;"></div></div>
+            </div>
+
+            <div class="funnel-row">
+              <div class="funnel-label-row">
+                <span class="funnel-stage" style="color:var(--accent);">Retained 60-Day</span>
+                <span class="funnel-count funnel-count--accent">~716 &nbsp;·&nbsp; 93.5% of eligible</span>
+              </div>
+              <div class="funnel-track"><div class="funnel-bar funnel-bar--6" style="width:28.6%;"></div></div>
+            </div>
+
+          </div>
+
+          <div class="funnel-footer">
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">44%</span>
+              <span class="funnel-metric-label">Overall 7-day activation rate</span>
+            </div>
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">68%</span>
+              <span class="funnel-metric-label">Of workspace creators go on to activate — the problem is before onboarding</span>
+            </div>
+            <div class="funnel-metric">
+              <span class="funnel-metric-val">93.5%</span>
+              <span class="funnel-metric-label">60-day retention once accounts reach paid</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="insight-callout">
+          <div class="ic-eyebrow">Key Insight</div>
+          <div class="ic-text">Among accounts that created a workspace, 68% went on to activate — a strong conversion rate. The problem is that 35% of signups never reach even that first milestone. Onboarding improvements help accounts that get through the door; they don't solve the drop before it.</div>
+        </div>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- A/B EXPERIMENT -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">A/B Experiment Readout</p>
+        <h2>+18.6 pp Activation Lift. Paid Conversion: Flat.</h2>
+
+        <p>
+          The guided onboarding experiment (<code>onboarding_guided_v1</code>) compared the existing flow against a guided workspace setup with explicit prompts for the first key product action. 2,500 organizations were randomized at the account level.
+        </p>
+
+        <div class="ab-block" aria-label="A/B experiment results">
+
+          <div class="ab-header">
+            <div class="ab-header-title">Activation Rate — Control vs. Variant</div>
+            <div class="ab-badge">p &lt; 0.001 · Statistically significant</div>
+          </div>
+
+          <div class="ab-body">
+
+            <div class="ab-metric">
+              <div class="ab-metric-title">Primary Metric — 7-Day Activation Rate</div>
+              <div class="ab-row">
+                <div class="ab-variant-label">Control</div>
+                <div class="ab-track">
+                  <div class="ab-fill ab-fill--control" style="width:34.7%;">
+                    <span class="ab-fill-label">34.7%</span>
+                  </div>
+                </div>
+                <div class="ab-flat-badge">1,212 accts</div>
+              </div>
+              <div class="ab-row">
+                <div class="ab-variant-label">Variant</div>
+                <div class="ab-track">
+                  <div class="ab-fill ab-fill--variant" style="width:53.3%;">
+                    <span class="ab-fill-label">53.3%</span>
+                  </div>
+                </div>
+                <div class="ab-lift-badge">+18.6 pp ↑</div>
+              </div>
+            </div>
+
+            <div class="ab-downstream">
+              <div class="ab-ds-item">
+                <div class="ab-ds-label">Paid Conversion Rate</div>
+                <div class="ab-ds-row">
+                  <div class="ab-ds-val">Control <span>38.8%</span></div>
+                  <div class="ab-ds-val">Variant <span>38.7%</span></div>
+                </div>
+                <div class="ab-ds-note">−0.1 pp — effectively unchanged</div>
+              </div>
+              <div class="ab-ds-item">
+                <div class="ab-ds-label">60-Day Retention</div>
+                <div class="ab-ds-row">
+                  <div class="ab-ds-val">Control <span>94.3%</span></div>
+                  <div class="ab-ds-val">Variant <span>92.8%</span></div>
+                </div>
+                <div class="ab-ds-note">−1.5 pp — within noise, monitor ongoing</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="tension-callout">
+          <div class="ic-eyebrow">The Tension</div>
+          <div class="ic-text">Activation improved by 18.6 pp. Paid conversion did not move. Activation lift that doesn't translate into monetization may reflect surface engagement — users completing onboarding steps without reaching genuine product value. Paid conversion needs to be a co-primary metric before this experiment is declared a success.</div>
+        </div>
+
+        <h3>Segment-Level Treatment Effect</h3>
+        <p>The lift was not uniform. SMB and Mid-Market showed large responses; Enterprise did not — likely because enterprise onboarding depends more on implementation support than in-product prompts.</p>
+
+        <div class="seg-cards">
+
+          <div class="seg-card seg-card--rollout">
+            <div class="seg-name">SMB</div>
+            <div class="seg-lift-val">+18 pp</div>
+            <div class="seg-lift-label">activation lift</div>
+            <div class="seg-bar-wrap"><div class="seg-bar seg-bar--control" style="width:33%;"></div></div>
+            <div class="seg-bar-wrap"><div class="seg-bar seg-bar--variant" style="width:51%;"></div></div>
+            <div class="seg-compare">Control <span>33%</span> → Variant <span>51%</span></div>
+            <div class="seg-rec seg-rec--green">✓ Roll out now</div>
+          </div>
+
+          <div class="seg-card seg-card--rollout">
+            <div class="seg-name">Mid-Market</div>
+            <div class="seg-lift-val">+19 pp</div>
+            <div class="seg-lift-label">activation lift</div>
+            <div class="seg-bar-wrap"><div class="seg-bar seg-bar--control" style="width:34%;"></div></div>
+            <div class="seg-bar-wrap"><div class="seg-bar seg-bar--variant" style="width:53%;"></div></div>
+            <div class="seg-compare">Control <span>34%</span> → Variant <span>53%</span></div>
+            <div class="seg-rec seg-rec--green">✓ Roll out now</div>
+          </div>
+
+          <div class="seg-card seg-card--watch">
+            <div class="seg-name">Enterprise</div>
+            <div class="seg-lift-val">+7 pp</div>
+            <div class="seg-lift-label">activation lift</div>
+            <div class="seg-bar-wrap"><div class="seg-bar seg-bar--control" style="width:36%;"></div></div>
+            <div class="seg-bar-wrap"><div class="seg-bar seg-bar--variant" style="width:43%;"></div></div>
+            <div class="seg-compare">Control <span>36%</span> → Variant <span>43%</span></div>
+            <div class="seg-rec seg-rec--amber">⚠ Separate path — monitor first</div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- CHURN RISK -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Churn Risk &amp; CS Prioritization</p>
+        <h2>$96K in MRR at Risk — Before Any Churn Has Occurred</h2>
+
+        <p>
+          Instead of a black-box propensity model, risk scoring uses four transparent signals any CS or product team can immediately verify: subscription status, 7-day activation, 60-day retention eligibility, and days since last product event. Each signal has an explicit point value — the score is auditable, not opaque.
+        </p>
+
+        <div class="risk-dist-wrap">
+          <div class="risk-dist-label">Account distribution by risk segment</div>
+          <div class="risk-dist-bar">
+            <div class="risk-dist-seg risk-dist-seg--high" style="width:24.8%;">24.8%</div>
+            <div class="risk-dist-seg risk-dist-seg--med"  style="width:44.5%;">44.5%</div>
+            <div class="risk-dist-seg risk-dist-seg--low"  style="width:30.7%;">30.7%</div>
+          </div>
+          <div class="risk-dist-legend">
+            <div class="risk-legend-item"><div class="risk-legend-dot" style="background:#ef5b5b;"></div>High — 620 accounts</div>
+            <div class="risk-legend-item"><div class="risk-legend-dot" style="background:#f5b942;"></div>Medium — 1,112 accounts · $96K MRR</div>
+            <div class="risk-legend-item"><div class="risk-legend-dot" style="background:#17b8a6;"></div>Low — 768 accounts</div>
+          </div>
+        </div>
+
+        <div class="risk-comparison">
+          <div class="risk-card risk-card--high">
+            <div class="risk-label">High Risk</div>
+            <div class="risk-value">620</div>
+            <div class="risk-desc">24.8% of accounts. Churned or never converted. $0 MRR remaining — but represent the outcome pool for understanding what preventable churn looks like.</div>
+          </div>
+          <div class="risk-card risk-card--med">
+            <div class="risk-label">Medium Risk · Act Now</div>
+            <div class="risk-value">$96,627</div>
+            <div class="risk-desc">1,112 accounts (44.5%). Active MRR with declining engagement. The highest-priority CS intervention target — revenue is still there, but signals are deteriorating.</div>
+          </div>
+          <div class="risk-card risk-card--low">
+            <div class="risk-label">Low Risk</div>
+            <div class="risk-value">768</div>
+            <div class="risk-desc">30.7% of accounts. Active and engaged. Expansion opportunity — no immediate retention intervention required.</div>
+          </div>
+        </div>
+
+        <div class="insight-callout">
+          <div class="ic-eyebrow">Key Insight</div>
+          <div class="ic-text">Medium-risk accounts are the operational priority — not because the risk score is highest, but because the MRR is still there and recoverable. High-risk accounts have already churned. Medium-risk accounts haven't — yet.</div>
+        </div>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- RECOMMENDATIONS -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Recommendations</p>
+        <h2>Four Decisions, Four Teams</h2>
+
+        <div class="decision-list">
+
+          <div class="decision-card">
+            <div class="decision-num">1</div>
+            <div class="decision-body">
+              <div class="decision-owner">Product</div>
+              <div class="decision-title">Roll out guided onboarding to SMB and Mid-Market now. Hold Enterprise.</div>
+              <div class="decision-detail">The +18.6 pp activation lift is real and significant for SMB and Mid-Market. Enterprise showed only +7 pp — too small and too uncertain to justify the same flow. Enterprise onboarding needs implementation support, not in-product prompts. Separate the paths.</div>
+              <div class="decision-metric">Success metric: 7-day activation rate by segment</div>
+            </div>
+          </div>
+
+          <div class="decision-card">
+            <div class="decision-num">2</div>
+            <div class="decision-body">
+              <div class="decision-owner">Product</div>
+              <div class="decision-title">Move the teammate invite prompt earlier — before workspace setup completes.</div>
+              <div class="decision-detail">Accounts that invite teammates show measurably higher 60-day retention than those that don't. This is currently a downstream event. Making it part of the activation flow turns a retention signal into a retention driver.</div>
+              <div class="decision-metric">Success metric: Invite rate in first 7 days, 60-day retention delta</div>
+            </div>
+          </div>
+
+          <div class="decision-card">
+            <div class="decision-num">3</div>
+            <div class="decision-body">
+              <div class="decision-owner">Analytics</div>
+              <div class="decision-title">Add paid conversion as a co-primary metric before declaring the experiment a success.</div>
+              <div class="decision-detail">Activation is up 18.6 pp. Paid conversion is flat (−0.1 pp). Using activation alone as the success criterion would over-credit the experiment. Until conversion confirms the lift, rollout decisions should be segmented — not universal.</div>
+              <div class="decision-metric">Success metric: Trial-to-paid conversion rate by variant and segment</div>
+            </div>
+          </div>
+
+          <div class="decision-card">
+            <div class="decision-num">4</div>
+            <div class="decision-body">
+              <div class="decision-owner">Customer Success</div>
+              <div class="decision-title">Run a scaled re-engagement sequence for 1,112 medium-risk accounts.</div>
+              <div class="decision-detail">$96K in active MRR is showing declining engagement. A targeted sequence — use-case reminder, training offer, and adoption review for highest-MRR accounts — can arrest churn before it happens. Measure 60-day survival rate as the programme outcome.</div>
+              <div class="decision-metric">Success metric: 60-day survival rate in medium-risk cohort</div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- TECH STACK -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Tech Stack</p>
+        <h2>Tools &amp; Methods</h2>
+
+        <div class="tech-grid">
+          <span class="tech-tag">Python 3.12</span>
+          <span class="tech-tag">pandas</span>
+          <span class="tech-tag">numpy</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Plotly</span>
+          <span class="tech-tag">pytest</span>
+          <span class="tech-tag">Lifecycle Funnel</span>
+          <span class="tech-tag">A/B Experiment Analysis</span>
+          <span class="tech-tag">Two-Proportion Z-Test</span>
+          <span class="tech-tag">Cohort Retention</span>
+          <span class="tech-tag">NRR Modeling</span>
+          <span class="tech-tag">Churn Risk Scoring</span>
+          <span class="tech-tag">HTE Segmentation</span>
+          <span class="tech-tag">Event-Based Product Analytics</span>
+          <span class="tech-tag">Deterministic Synthetic Data</span>
+        </div>
+
+      </section>
+
+      <hr class="cs-divider">
+
+      <!-- SOURCE CODE -->
+      <section class="cs-section">
+
+        <p class="cs-section-label">Source Code</p>
+        <h2>Code &amp; Documentation</h2>
+
+        <p>
+          Full Streamlit dashboard, data generation scripts, metric definitions, and test suite available on GitHub. The README includes a quickstart to run the full analytics system locally.
+        </p>
+
+        <a
+          href="https://github.com/jinyeong-park/saas-lifecycle-retention"
+          target="_blank"
+          rel="noopener"
+          class="btn btn--secondary"
+        >
+          View on GitHub
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER CTA -->
+  <section class="cs-footer-cta" aria-label="Contact">
+    <div class="wrap">
+      <div>
+        <h3>Interested in working together?</h3>
+        <p>Open to Data Analyst, Product Analyst, Growth Analyst, and Revenue Analytics roles in the Bay Area or remote.</p>
+      </div>
+      <div style="display:flex; gap:var(--s3); flex-wrap:wrap;">
+        <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
+        <a href="index.html#work" class="btn btn--secondary">See more work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <div class="footer-name">Jenny Park</div>
+        <div class="footer-location">San Francisco Bay Area</div>
+      </div>
+      <a
+        href="https://www.linkedin.com/in/jennypark7/"
+        target="_blank"
+        rel="noopener"
+        style="font-size:0.8125rem;font-weight:500;color:var(--muted);"
+      >
+        LinkedIn
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
