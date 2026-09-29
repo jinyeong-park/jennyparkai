@@ -5,6 +5,7 @@ Executive briefing: one page that answers the primary question.
 import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
+import numpy as np
 import sys
 from pathlib import Path
 
