@@ -15,6 +15,8 @@ Most LLM-powered products send every request to the same frontier model (e.g., S
 Sonnet costs 4–6× more than Haiku and responds 2× slower — but on 3 of 4 task types, the quality is identical.
 That cost difference is recoverable waste.
 
+**[Dashboard](https://jennypark-llm-cost-analysis.streamlit.app/)**
+
 ---
 
 ## The solution
@@ -28,12 +30,12 @@ Quality gap > 0.10  →  route to Sonnet (quality premium is earned)
 
 From the benchmark:
 
-| Task             | Haiku quality | Sonnet quality | Gap   | Route to  |
-|------------------|:-------------:|:--------------:|:-----:|-----------|
-| Simple Q&A       | 1.00          | 1.00           | 0.00  | ✅ Haiku  |
-| Code Generation  | 1.00          | 1.00           | 0.00  | ✅ Haiku  |
-| Reasoning        | 0.75          | 0.68           | −0.07 | ✅ Haiku  |
-| Summarization    | 0.83          | 0.93           | +0.10 | ⚠️ Sonnet |
+| Task            | Haiku quality | Sonnet quality |  Gap  | Route to  |
+| --------------- | :-----------: | :------------: | :---: | --------- |
+| Simple Q&A      |     1.00      |      1.00      | 0.00  | ✅ Haiku  |
+| Code Generation |     1.00      |      1.00      | 0.00  | ✅ Haiku  |
+| Reasoning       |     0.75      |      0.68      | −0.07 | ✅ Haiku  |
+| Summarization   |     0.83      |      0.93      | +0.10 | ⚠️ Sonnet |
 
 **Result: ~70% cost reduction vs all-Sonnet baseline. Haiku is faster on every task.**
 
@@ -41,12 +43,12 @@ From the benchmark:
 
 ## Dashboard pages
 
-| Page | Question answered |
-|------|-------------------|
-| **Summary** | What are the key findings and recommended action? |
+| Page                    | Question answered                                                   |
+| ----------------------- | ------------------------------------------------------------------- |
+| **Summary**             | What are the key findings and recommended action?                   |
 | **Is Sonnet Worth It?** | Where does Sonnet's quality premium show up — and where doesn't it? |
-| **Routing Rules** | Which tasks route to Haiku at a given quality threshold? |
-| **Cost Projection** | How much does routing save at my actual call volume? |
+| **Routing Rules**       | Which tasks route to Haiku at a given quality threshold?            |
+| **Cost Projection**     | How much does routing save at my actual call volume?                |
 
 ---
 
@@ -55,6 +57,7 @@ From the benchmark:
 This project uses two complementary tools:
 
 ### Langfuse — operational monitoring
+
 [Langfuse](https://langfuse.com) (open-source, self-hostable) captures every API call in production:
 
 ```python
@@ -71,7 +74,9 @@ Query back via `GET /api/public/observations?type=GENERATION`, group by `metadat
 **Langfuse answers:** How much did we use? What did it cost? What was the latency?
 
 ### This Streamlit dashboard — routing strategy
+
 Uses the Langfuse aggregated counts as input to project:
+
 - Which tasks should route where (quality benchmark)
 - How much routing saves at actual production volume
 - What the threshold should be
@@ -129,9 +134,9 @@ streamlit run app/Summary.py
 
 ## Pricing reference (as of 2026-09-28)
 
-| Model | Input | Output |
-|-------|------:|------:|
-| Claude Haiku 4.5 | $1.00/MTok | $5.00/MTok |
+| Model             |      Input |      Output |
+| ----------------- | ---------: | ----------: |
+| Claude Haiku 4.5  | $1.00/MTok |  $5.00/MTok |
 | Claude Sonnet 4.6 | $3.00/MTok | $15.00/MTok |
 
 Source: console.anthropic.com/settings/billing
