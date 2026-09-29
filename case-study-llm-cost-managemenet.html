@@ -337,6 +337,18 @@
       margin: 32px 0;
     }
 
+    /* ── Buttons ──────────────────────────────────────────────────── */
+    .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.875rem; font-weight: 600; padding: 10px 20px;
+      border-radius: 6px; text-decoration: none; cursor: pointer;
+      transition: opacity 150ms ease;
+    }
+    .btn-primary  { background: var(--navy); color: var(--white); border: 1.5px solid var(--navy); }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+    .btn-secondary:hover { background: var(--navy); color: var(--white); }
+
     /* ── Responsive ───────────────────────────────────────────────── */
     @media (max-width: 640px) {
       .hero h1 { font-size: 1.6rem; }
@@ -361,6 +373,28 @@
       <span>5 task types · 2 difficulty levels</span>
       <span>100,000 requests / month</span>
       <span>Langfuse observability</span>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:24px;">
+      <a href="https://jennypark-llm-cost-analysis.streamlit.app/"
+         target="_blank" rel="noopener"
+         style="display:inline-flex; align-items:center; gap:6px; background:#ffffff; color:#0D1F3C;
+                font-size:0.875rem; font-weight:600; padding:10px 20px; border-radius:6px;
+                text-decoration:none; border:none;">
+        Live Dashboard
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="https://github.com/jinyeong-park/llm-cost-optimization-analytics"
+         target="_blank" rel="noopener"
+         style="display:inline-flex; align-items:center; gap:6px; background:transparent; color:#A8B4CC;
+                font-size:0.875rem; font-weight:600; padding:10px 20px; border-radius:6px;
+                text-decoration:none; border:1.5px solid rgba(168,180,204,0.4);">
+        View on GitHub
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
@@ -840,6 +874,36 @@ df.<span class="fn">groupby</span>([<span class="str">"metadata.task_type"</span
         context may behave differently — particularly for reasoning and code tasks
         where prior context matters.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Code & Documentation ──────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-tag">Code &amp; Documentation</p>
+    <h2>Benchmark scripts, routing logic, and Streamlit dashboard</h2>
+    <p style="color:var(--text2); margin-bottom:24px;">
+      Full benchmark pipeline, synthetic data generation, routing engine, and Streamlit dashboard available on GitHub.
+      The README includes a quickstart to run the full analytics system locally.
+    </p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <a href="https://jennypark-llm-cost-analysis.streamlit.app/"
+         target="_blank" rel="noopener"
+         class="btn-primary">
+        Live Dashboard
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="https://github.com/jinyeong-park/llm-cost-optimization-analytics"
+         target="_blank" rel="noopener"
+         class="btn-secondary">
+        View on GitHub
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
